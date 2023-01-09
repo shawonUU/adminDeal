@@ -34,36 +34,34 @@
        </div>
        <div class=" col-lg-9 ">
          <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-arrows="true" data-dots="true" data-autoplay="true">
-           <div class="carousel-box">
-             <a href="#">
-               <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/b4ZCemioim6ddcsoQsgv6XsUmN2gQ10uNlTsUECR.webp" alt="Admin Deal promo" height="320" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder-rect.jpg';">
-             </a>
-           </div>
-           <div class="carousel-box">
-             <a href="#">
-               <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/gNEkIdu3zI9AL9lUqmp5QjMMTr5pGQWeJF84kKlz.webp" alt="Admin Deal promo" height="320" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder-rect.jpg';">
-             </a>
-           </div>
-           <div class="carousel-box">
-             <a href="#">
-               <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/xPDE6NP7k1HPvODjveBRZLztV2ijVL2Xm2VUNiaI.webp" alt="Admin Deal promo" height="320" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder-rect.jpg';">
-             </a>
-           </div>
-           <div class="carousel-box">
-             <a href="#">
-               <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/AUMzXFThIfSStu0XDZtLga6vfaPVrBvhOcDvnaTK.webp" alt="Admin Deal promo" height="320" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder-rect.jpg';">
-             </a>
-           </div>
-           <div class="carousel-box">
-             <a href="#">
-               <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/lgrrZdsJ96ONk1JplPghY9jkNbmsVxH9gsRbmmS6.webp" alt="Admin Deal promo" height="320" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder-rect.jpg';">
-             </a>
-           </div>
-           <div class="carousel-box">
-             <a href="#">
-               <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/fAZZ5SZZX7w2Dlv4DL1EQGwdmzXdEYE5WyipaKSr.webp" alt="Admin Deal promo" height="320" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder-rect.jpg';">
-             </a>
-           </div>
+            <swiper :spaceBetween="30"
+                    :centeredSlides="true"
+                    :autoplay="{
+                      delay: 3000,
+                      disableOnInteraction: false,
+                    }"
+                    :pagination="{
+                      clickable: true,
+                    }"
+                    :navigation="true"
+                    :modules="modules"
+                    class="mySwiper">
+                  <swiper-slide  class="">
+                   <div class="carousel-box">
+                    <a href="#">
+                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/b4ZCemioim6ddcsoQsgv6XsUmN2gQ10uNlTsUECR.webp" alt="Admin Deal promo" height="320">
+                    </a>
+                  </div>
+                </swiper-slide>
+                <swiper-slide  class="">
+                   <div class="carousel-box">
+                    <a href="#">
+                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/b4ZCemioim6ddcsoQsgv6XsUmN2gQ10uNlTsUECR.webp" alt="Admin Deal promo" height="320">
+                    </a>
+                  </div>
+                </swiper-slide>
+              
+            </swiper>
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
            <li v-for="(featuredCategory, index) in featuredCategories" :key="index" class="minw-0 col-4 col-md mt-3">
@@ -80,15 +78,33 @@
    </div>
  </div>
     <TodaysOffer></TodaysOffer>
+    <TodaysOffer></TodaysOffer>
+    <TodaysOffer></TodaysOffer>
+    <TodaysOffer></TodaysOffer>
+    <TodaysOffer></TodaysOffer>
+    <TodaysOffer></TodaysOffer>
+    <TodaysOffer></TodaysOffer>
 </template>
 
 <script>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, Pagination, Navigation } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import TodaysOffer from "./ProductComponents/TodaysOffer.vue";
 import { useCategoryStore } from "@/Store/Categories";
 import { mapState, mapActions} from "pinia";
 import axios from "axios";
 export default {
- components:{TodaysOffer},
+  data(){
+    return{
+      modules: [Autoplay, Pagination, Navigation],
+    }
+  },
+ components:{TodaysOffer, Swiper,SwiperSlide,},
  
  computed:{
   ...mapState(useCategoryStore,['categories']),
@@ -134,5 +150,14 @@ export default {
 </script>
 
 <style>
-
+.swiper-button-next:after, .swiper-button-prev:after {
+    background: #2eb2ff00!important;
+    font-family: swiper-icons;
+    font-size: 20px!important;
+    text-transform: none!important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+    color: #000!important;
+}
 </style>
