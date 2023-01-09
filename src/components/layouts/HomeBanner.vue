@@ -15,7 +15,9 @@
                     <i class="las la-spinner la-spin la-3x opacity-70"></i>
                   </div>
                   <div v-else class="card-columns">
-                    
+                          <div>
+                            okkkkkkk
+                          </div>
                         <div v-for="(subcategory, index) in subcategories" :key="index" class="card shadow-none border-0">
                             <ul class="list-unstyled mb-3">
                                 <li class="fw-600 border-bottom pb-2 mb-3">
@@ -65,11 +67,11 @@
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
            <li v-for="(featuredCategory, index) in featuredCategories" :key="index" class="minw-0 col-4 col-md mt-3">
-             <a href="" class="d-block rounded bg-white p-2 text-reset shadow-sm">
-               <img :src="upload_asset(featuredCategory.banner)" alt="Groceries, Lifestyle &amp; Medical" class="lazyload img-fit" height="78">
-               <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ featuredCategory.name }}</div>
-             </a>
-           </li>
+              <router-link :to="`blog/${featuredCategory.slug}`" class="d-block rounded bg-white p-2 text-reset shadow-sm">
+                <img :src="featuredCategory.banner" alt="Groceries, Lifestyle &amp; Medical" class="lazyload img-fit" height="78">
+                <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ featuredCategory.name }}</div>
+              </router-link>
+            </li>
           
          </ul>
        </div>
@@ -84,6 +86,11 @@
     <TodaysOffer></TodaysOffer>
     <TodaysOffer></TodaysOffer>
     <TodaysOffer></TodaysOffer>
+
+
+    
+
+
 </template>
 
 <script>
@@ -114,36 +121,12 @@ export default {
 
  mounted(){
   this.getCat(this.rootDomain);
-  this.upload_asset();
   // console.log(this.rootDomain);
  },
 
  methods:{
   ...mapActions(useCategoryStore,['getCat']),
   ...mapActions(useCategoryStore,['getSubcategory']),
-
-   async upload_asset(banner){
-  
-    //  console.log(banner);
-    let res = await axios.get(this.rootDomain+'get-upload-asset',{params:{banner:banner}})
-    // .then((res)=>{
-    //   return res.data;
-    // })
-
-    if(res.status == 200){
-      console.log(res.status);
-      console.log(typeof(res.data));
-      return res.data;
-    } else{
-      console.log('error');
-      
-    }  
-
-    
-      
-  }
-  
-   
  }
 
 }

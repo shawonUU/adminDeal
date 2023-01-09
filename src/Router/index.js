@@ -24,7 +24,6 @@ import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
 import SingleProduct from '../components/layouts/ProductComponents/SingleProduct.vue';
-import CategoryWiseProduct from '../components/layouts/ProductComponents/CategoryWiseProduct.vue';
 
 const routes = [
   {
@@ -52,8 +51,10 @@ const routes = [
     name: 'affiliateRegistration',
     component: affiliateRegistration
   },
+ 
   {
-    path: '/blog',
+    path: '/blog/:id',
+    props:true,
     name: 'blog',
     component: Blog
   },
@@ -71,11 +72,6 @@ const routes = [
     path: '/track-your-order',
     name: 'trackOrder',
     component: TrackOrder
-  },
-  {
-    path: '/category',
-    name: 'CategoryWiseProduct',
-    component: CategoryWiseProduct
   },
   {
     path: '/single-product',
