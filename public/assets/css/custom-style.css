@@ -1,0 +1,1574 @@
+/*your custom css goes here*/
+
+/*mobile category */
+.grow {
+  -moz-transition: height .5s;
+  -ms-transition: height .5s;
+  -o-transition: height .5s;
+  -webkit-transition: height .5s;
+  transition: height .5s;
+  overflow: auto;
+  position: relative;
+}
+.item-center-m {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+/* My (Mahid) CSS */
+.container {
+    max-width: 1440px;
+}
+/*Slider and products page carousel inco transparent start*/
+.aiz-carousel .slick-arrow {
+   background: #2eb2ff00;
+}
+.aiz-carousel .slick-arrow:hover {
+    background: #f05a2245;  
+}
+.text-reset:hover {
+	text-decoration: underline;
+}
+.bg-white.d-none.d-lg-block.py-1 {
+    background-color: #0671d6 !important;
+}
+span.fw-600.bg-white.hov-bg-primary.px-2.py-2.hov-text-white.text-center {
+    background-color: #0671d6 !important;
+    color: #fff !important;
+}
+span.bg-white.hov-bg-primary.px-2.py-2.hov-text-white {
+    background-color: #0671d6 !important;
+    color: #fff !important;
+}
+span.nav-box-text.d-none.d-xl-block.opacity-70 {
+    color: #fff !important;
+}
+i.la.la-refresh.la-2x.opacity-80 {
+    color: #fff !important;
+}
+i.la.la-heart-o.la-2x.opacity-80 {
+    color: #fff !important;
+}
+i.la.la-shopping-cart.la-2x.opacity-80 {
+    color: #fff !important;
+}
+.top-navbar.bg-white.border-bottom.border-soft-secondary.z-1035 {
+    background-color: #0671d6 !important;
+    color: #fff !important;
+    
+}
+/*
+.aiz-category-menu.bg-white.rounded.shadow-sm {
+    border-left: 3px solid #F05A22 !important;
+    border-right: 3px solid #F05A22 !important;
+    border-bottom: 3px solid #F05A22 !important;
+    border-radius: 0px 0px 5px 5px !important;
+}
+
+*/
+i.fa.fa-user-circle-o.fs-24.fw-500 {
+    color: #fff !important;
+}
+
+.d-none.d-lg-block.align-self-stretch.ml-3.mr-0.pt-3.pl-5 {
+    color: #fff !important;
+}
+
+.position-relative.logo-bar-area.z-1 {
+    background-color: #0671d6 !important;
+}
+.input-group-append.d-none.d-lg-block {
+    background-color: #0671d6 !important;
+}
+
+.flex-grow-1.front-header-search.d-flex.align-items-center.bg-white {
+    border-radius: 5px !important;
+}
+
+.flex-grow-1.front-header-search.d-flex.align-items-center.bg-white {
+    border-radius: 5px !important;
+	max-width: 8000px !important;
+}
+
+.border-soft-secondary {
+    border-color: rgb(255 255 255 / 25%) !important;
+}
+
+.bg-white d-none d-lg-block  py-1 {
+    border-top: 2px solid #F05A22 !important;
+}
+
+button.btn.btn-sm.btn-secondary {
+    background-color: #F05A22;
+    border-color: #F05A22;
+}
+
+.nav-box-text.d-none.d-xl-block.opacity-70 {
+	display: none !important;
+}
+
+.btn.btn-sm.btn-secondary:hover {
+	background-color: #0671d6 !important;
+	border-color: #0671d6 !important;
+}
+
+.d-none.d-lg-block.align-self-stretch.ml-3.mr-0.pt-3.pl-5 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+
+.aiz-carousel .slick-arrow {
+   background: #2eb2ff00;
+}
+
+.aiz-carousel .slick-arrow:hover {
+    background: #f05a2245;  
+}
+
+.col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+	padding-bottom: 7px;
+}
+
+
+.las.la-search.la-flip-horizontal.la-2x {
+	color: #fff !important;
+}
+
+.fa.fa-user-circle-o.fs-24.fw-500 {
+	padding-left: 6px !important;
+}
+
+.d-lg-none.fa.fa-align-justify.fs-24.pr-3.opacity-80 {
+	color: #fff;
+}
+
+.aiz-mobile-bottom-nav.d-xl-none.fixed-bottom.bg-white.shadow-lg.border-top.rounded-top {
+	background-color: #0671d6 !important;
+	color: #fff !important;
+}
+
+.pt-3, .py-3 {
+	padding-top: 0.3rem !important;
+	padding-bottom: 0.3rem !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .position-relative.logo-bar-area.z-1 {
+   border-bottom: 1px solid #c1c1c175 !important;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .position-relative.logo-bar-area.z-1 {
+   border-bottom: 1px solid #ffffff47 !important;
+  }
+}
+.aiz-mobile-bottom-nav.d-xl-none.fixed-bottom.bg-white.shadow-lg.border-top.rounded-top {
+    border-top: 2px solid #F05A22 !important;
+	border-radius: 5px 5px 0px 0px !important;
+}
+
+.bg-white.py-1 {
+	background-color: #0671d6 !important;
+}
+/*Chat Icon Others Page z-index start*/
+#chat_modal {
+	z-index: 1000000 !important;
+}
+.aiz-mobile-side-nav.collapse-sidebar-wrap.sidebar-xl.d-xl-none.z-1035.active {
+	z-index: 100000 !important;
+}
+.aiz-user-panel {
+	z-index: 1000 !important;
+}
+/*Chat Icon Others Page z-index end*/
+/*Mobile Buttom Menu and buttom logo Start*/
+.h-50px, .size-50px {
+	height: 55px;
+}
+.w-50px, .size-50px {
+	width: 55px;
+}
+.m-footer.img-fluid.border-primary.ls-is-cached.lazyloaded {
+	width: 37px !important;
+}
+.text-reset.d-block.text-center.pb-2.pt-3 {
+	padding-top: 0.4rem !important;
+}
+
+.text-reset.d-block.text-center.pb-2.pt-3 {
+	padding-bottom: .1rem !important;
+}
+
+.d-block.mt-1.fs-10.fw-600.opacity-60 {
+	margin-top: 0rem !important;
+}
+
+/*Mobile Buttom Menu and buttom logo End*/
+
+
+
+.aiz-category-menu .sub-cat-menu {
+	display: none;
+	position: absolute;
+	width: calc(100% - 20%);
+	left: calc(20% - 10px);
+	height: calc(100% + 25px);
+	overflow: hidden;
+	top: 0;
+	z-index: 9;
+	background-color: #fff;
+	overflow-y: auto;
+}
+
+
+
+.sub-cat-menu.c-scrollbar-light.rounded.shadow-lg.p-4.loaded {
+    z-index: 1000 !important;
+}
+
+.aiz-category-menu .sub-cat-menu {
+    display: none;
+    position: absolute;
+    width: calc(100% - 25%);
+    left: calc(19.5% - 10px);
+    height: calc(100% + 35px);
+    overflow: hidden;
+    top: 0;
+    z-index: 9;
+    background-color: #fff;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.fw-600.border-bottom.pb-2.mb-3:hover {
+	text-decoration: underline;
+
+}
+ /* add to compare & add to wish list button middle kora hoy */
+@media only screen and (max-width: 600px) {
+.btn.pl-0.btn-link.fw-600 {
+	padding-left: 25px !important;
+	text-align: center !important;
+    }
+}
+
+/* Soto Computer a problem silo oitar jonno test 
+.img-fit {
+	object-fit: contain !important;
+}
+
+@media only screen and (min-width: 1499px) {
+.img-fit {
+	object-fit: cover !important;
+    }
+} 
+
+*/
+
+/* user icon gulo right align thik kora hoise */
+
+.nav-box-text.d-none.d-xl-block.opacity-70 {
+	display: none !important;
+}
+
+@media only screen and (max-width: 600px){
+.col-lg-4 {
+    margin-bottom: 1.5rem !important;
+    }
+}
+.col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+	margin-left: 6rem !important;
+	padding-right: 0px !important;
+	position: relative;
+	margin-right: 0px !important;
+}
+
+@media only screen and (max-width: 600px){
+.h-20px, .size-20px {
+    height: 25px;
+	}
+}
+.text-truncate.fs-12.fw-600.mt-2.opacity-70 {
+    padding-top: 0px !important;
+}
+/* Div gulo mobile a komano hoyese */
+@media only screen and (max-width: 600px) {
+.pt-md-3, .py-md-3 {
+  padding-top: 0.6rem !important;
+    }
+}
+/* Home page brand catagories seller 4tar design lomba theke thik kora hoise start */
+@media only screen and (max-width: 600px) {
+  .text-truncate.fs-12.fw-600.mt-2.opacity-70 {
+	margin-top: .2rem !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+  .d-block.hov-shadow-md.border.rounded.bg-white.p-2.text-reset.shadow-sm {
+	padding-bottom: .2rem !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+  .minw-0.col-3.col-md.mt-3.text-center {
+	padding-left: 3px !important;
+	padding-right: 3px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+  .minw-0.col-3.col-md.mt-3.text-center {
+	padding-left: 3px !important;
+	padding-right: 3px !important;
+	margin-top: 8px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+  .hov-shadow-md.border.d-block.rounded.bg-white.p-2.text-reset {
+	padding-bottom: 2px !important;
+    }
+}
+/* Home page brand catagories seller 4tar design lomba theke thik kora hoise end */
+/*Slider ar por Catagories ar text align left theke center start */
+.text-truncate.fs-12.fw-600.mt-2.opacity-70 {
+	text-align: center;
+}
+/*Slider ar por Catagories ar text align left theke center end */
+/*chat with seller button  Start*/
+.btn-sm {
+	padding: 0.416rem .5rem;
+	font-size: 0.8125rem;
+}
+/*chat with seller button  end*/
+
+/*Home Product ar padding 10 theke 5 px start*/
+@media only screen and (max-width: 600px) {
+  .aiz-carousel.gutters-10 .carousel-box {
+	padding-left: 4px;
+	padding-right: 4px;
+	}
+}
+/*Home Product ar padding 10 theke 5 px end*/
+.opacity-60 {
+	opacity: 0.9 !important;
+}
+.badge-custom .box {
+    height: 26px;
+    width: 26px;
+    background: #f05a22;
+    color: #fff;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.badge-custom {
+    display: inline-block;
+    padding: 3px;
+    font-size: 11px;
+    border-radius: 0 50em 50em 0;
+    color: #f05a22;
+    font-weight: 600;
+    line-height: 26px;
+    position: absolute;
+    background: #fff;
+    z-index: 1;
+    top: 20px;
+    box-shadow: 2px 1px 6px 2px rgba(0, 0, 0, 0.1), 0 4px 4px 0px rgba(0, 0, 0, 0.06) !important;
+}
+.opacity-70 {
+    opacity: 0.8 !important;
+}
+.shadow-sm {
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 2%) !important;
+}
+.opacity-80 {
+    opacity: 1 !important;
+}
+.opacity-70 {
+    opacity: 1 !important;
+}
+.opacity-50 {
+	opacity: 0.8 !important;
+}
+
+.opacity-60 {
+	opacity: 1 !important;
+}
+span.badge.badge-primary.badge-inline.badge-pill.cart-count {
+    font-weight: 900;
+}
+
+span.badge.badge-primary.badge-inline.badge-pill {
+    font-weight: 900;
+}
+
+.btn-sm {
+    padding: 0.416rem .616rem;
+    font-size: 0.85rem;
+}
+/* Mobile add to cart & buy no 50%+50 Kora hoyesilo
+@media only screen and (max-width: 600px) {
+.btn.btn-primary.mr-2.w-100.block.fw-600 {
+	width: 45.5% !important;
+	padding: 6px !important;
+	text-align: center !important;
+    }
+}
+ */
+ 
+/* Rater CSS Shop Page 10-3-22 */
+
+@media only screen and (min-width: 600px) {
+  .row-cols-lg-4>* {
+   -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+/*UPORER SOB OK */
+
+.pb-20px, .py-20px, .p-20px {
+	padding-bottom:10px;
+}
+
+.pt-20px, .py-20px, .p-20px {
+	padding-top: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+    display: none !important;
+	}
+}
+ .col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+	margin-left: 0rem !important;
+	
+}
+.col-md-3.d-flex.align-items-center.d-none {
+	padding-left: 5.5rem !important;
+}
+
+.col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+	padding-bottom: 0px !important;
+}
+.pl-3, .px-3 {
+	padding-left: .5rem !important;
+	padding-right: .5rem !important;
+}
+
+.pb-2, .py-2 {
+	padding-bottom: .4rem !important;
+	padding-top: .4rem !important;
+}
+
+.col-lg-6 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+
+.mt-3, .my-3 {
+	margin-top: .5rem !important;
+}
+
+.mb-4, .my-4 {
+	margin-bottom: .7rem !important;
+}
+
+.bg-soft-primary {
+	background-color: rgba(138, 162, 255, 0.45) !important;
+}
+
+.bg-soft-primary {
+	background-color: rgba(138, 162, 255, 0.45) !important;
+	/* border-bottom: 3px solid #f05a22 !important;
+	border-top: 3px solid #f05a22 !important;
+	border-radius: 0px !important; */
+}
+
+@media only screen and (min-width: 992px) {
+  .col-lg-9 {
+  -ms-flex: 0 0 75%;
+  flex: 0 0 75%;
+  max-width: 75%;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+  .col-lg-3 {
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
+  max-width: 25%;
+	}
+}
+
+/* Home carosel Button */
+.aiz-carousel .slick-dots button {
+    background: #dddddd38;
+ }
+ 
+ 
+ /* 10-4-22 */
+ .pt-5, .py-5 {
+	padding-top: .5rem !important;
+}
+.fa.fa-address-book {
+	display: none;
+}
+/* Description, review and video
+.text-reset.fw-600.fs-16 {
+	background-color: #f05a22 !important;
+	color: #fff !important;
+	padding-left: 20px;
+	border-radius: 5px !important;
+	padding-right: 20px !important;
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+}
+
+
+.text-reset.fw-600.fs-16:hover {
+	background-color: #186ec0 !important;
+}
+*/
+
+.pt-4, .py-4 {
+	padding-top: .5rem !important;
+}
+
+.mt-2, .my-2 {
+	margin-top: 0rem !important;
+}
+.aiz-titlebar h1, .aiz-titlebar .title {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.pb-15px, .py-15px, .p-15px {
+	padding-bottom: 13px;
+}
+.pt-15px, .py-15px, .p-15px {
+	padding-top: 10px;
+}
+
+.btn.btn-primary.mr-2.w-100.block.fw-600 {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+.p-3.fs-16.fw-600.text-reset {
+	margin-right: 10px;
+	text-align: center !important;
+	vertical-align: middle !important;
+} 
+
+.btn.btn-primary.btn-block.fw-600 {
+	margin-bottom: 16px !important;
+}
+
+.fa.fa-user-circle.fs-24.fw-500:hover {
+	color: #fff !important;
+}
+
+.col-md-4 {
+	padding-right: 10px !important;
+	padding-left: 10px !important;
+}
+
+.bg-white.py-1 {
+	padding-bottom: 2px !important;
+	padding-top: 2px !important;
+}
+
+.fs-15.fw-600.p-3.border-bottom {
+	padding-top: 6px !important;
+	padding-bottom: 6px !important;
+}
+
+
+
+/* Join Now Page ar padding komano hoyese */
+.list-inline.social.colored.text-center.mb-5 {
+	margin-bottom: .951rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 1rem !important;
+}
+
+/* Premium Packages for Customers */
+.py-8.bg-primary.text-white {
+	padding-bottom: .5rem;
+	padding-top: .5rem;
+}
+
+/* test color */
+.position-relative.logo-bar-area.z-1 {
+	background-color: #085298 !important;
+}
+
+.top-navbar.bg-white.border-bottom.border-soft-secondary.z-1035 {
+	background-color: #085298 !important;
+}
+
+.bg-white.py-1 {
+	background-color: #085298 !important;
+}
+span.bg-white.hov-bg-primary.px-2.py-2.hov-text-white {
+	background-color: #085298 !important;
+}
+
+span.fw-600.bg-white.hov-bg-primary.px-2.py-2.hov-text-white.text-center {
+	background-color: #085298 !important;
+}
+
+.aiz-mobile-bottom-nav.d-xl-none.fixed-bottom.bg-white.shadow-lg.border-top.rounded-top {
+	background-color: #085298 !important;
+}
+.pr-3, .px-3 {
+    padding-right: .4rem!important;
+}
+
+.col-auto.col-xl-3.pl-0.d-flex.align-items-center {
+    padding-right: 13px !important;
+}
+
+/* Messege option ar responsive problem solve */
+.card .card-body {
+    padding: 10px 10px;
+}
+
+
+/* Header 3rd section */
+.bg-white.hov-bg-primary {
+	padding-left: 3px !important;
+	padding-right: 3px !important;
+}
+
+.breadcrumb.bg-transparent.p-0 {
+	font-size: 10px;
+	margin-bottom: .3rem;
+}
+
+/* HOME 2ND SECTION 4 COLUMN */
+@media only screen and (max-width: 600px){
+.col-4 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+	}
+}
+
+@media only screen and (max-width: 600px){
+.gutters-5 > .col, .gutters-5 > [class*="col-"] {
+    padding-right: 3px;
+    padding-left: 3px;
+	}
+}
+
+/* test home 3nd section */
+a.d-block.rounded.bg-white.p-2.text-reset.shadow-sm {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+@media only screen and (min-width: 1350px) {
+  .img-fit {
+    max-height: 100%;
+    width: 100%;
+    object-fit: unset;
+	}
+}
+
+@media only screen and (min-width: 1499px){
+.row-cols-lg-4>* {
+    -ms-flex: 0 0 16.666%;
+    flex: 0 0 16.666%;
+    max-width: 16.666%;
+    }
+}
+
+
+
+@media only screen and (min-width: 600px){
+.col {
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+.col {
+    padding-left: 4px;
+    padding-right: 4px;
+    }
+}
+
+/* computer ar menu 3% soto kora hoise width 
+
+@media only screen and (min-width: 992px){
+.col-lg-3 {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+	}
+}
+@media only screen and (min-width: 992px){
+.col-lg-9 {
+    -ms-flex: 0 0 80%;
+    flex: 0 0 80%;
+    max-width: 80%;
+	}
+}
+
+*/
+
+@media only screen and (max-width: 600px) {
+.text-truncate.fs-12.fw-600.mt-2.opacity-70 {
+  margin-top: 0rem !important;
+    }
+}
+
+/* test single product page ar 3 botton */
+.text-reset.fw-600.fs-16 {
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+
+
+/* seller profile home page image fit */
+@media only screen and (min-width: 992px){
+.img-fit {
+    max-height: 100%;
+    width: 100%;
+    object-fit: unset;
+    }
+}
+
+/* Computer virticle menu fixt */
+li#category-menu-icon {
+    padding-right: 0px !important;
+}
+
+i.fa.fa-caret-down.pl-2 {
+    padding-left: 0px !important;
+}
+
+
+/* Header user icon right align thik kora hoise*/
+
+/* All categories Section */
+
+@media (min-width: 1460px) {
+.col-xl-3 {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    }
+} 
+@media (min-width: 1460px) {
+.col-xl-9 {
+    -ms-flex: 0 0 80%;
+    flex: 0 0 80%;
+    max-width: 80%;
+    }
+}
+
+.aiz-radio-inline {
+    max-height: 155px !important;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+} 
+
+ul.list-unstyled {
+    max-height: 432px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* mobile brand page 4 items 8-6-22 start*/
+
+ul.pagination {
+    overflow: auto;
+}
+
+
+@media only screen and (max-width: 600px) {
+.col.text-center {
+    ms: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+.col.text-center {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+.p-3 {
+    padding: .3rem!important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+.mb-3, .my-3 {
+    margin-bottom: .3rem!important;
+    }
+}
+/* mobile brand page 4 items 8-6-22 end */
+
+.text-truncate.fs-12.fw-600.mt-2.opacity-70 {
+	padding-bottom: 0px;
+}
+
+.opacity-50.my-2 {
+    overflow: overlay;
+}
+
+.btn-sm {
+    padding: 0.4516rem .416rem;
+    font-size: 0.76rem;
+}
+
+
+/* Job Section CSS */
+@media only screen and (max-width: 600px){
+.col.text-center {
+    ms: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    }
+}
+
+
+/* Atribute */
+.aiz-checkbox-list {
+    max-height: 155px !important;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+/* Test Atributr */
+
+.col-xl-3 {
+    max-height: 2280px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 600px){
+.img-fit {
+    object-fit: unset;
+    }
+}
+
+/* New 26-08-22 */
+
+i.fa.fa-caret-down.pl-2 {
+    display: none;
+}
+
+@media only screen and (min-width: 600px){
+.col-lg-3 {
+    -ms-flex: 0 0 22%;
+    flex: 0 0 22%;
+    max-width: 22%;
+    }
+}
+
+@media only screen and (min-width: 600px){
+.col-lg-9 {
+    -ms-flex: 0 0 78%;
+    flex: 0 0 78%;
+    max-width: 78%;
+    }
+
+}
+/*
+.col-lg-9 {
+    -ms-flex: 0 0 78%;
+    flex: 0 0 78%;
+    max-width: 78%;
+}
+
+
+.col-lg-3 {
+    -ms-flex: 0 0 22%;
+    flex: 0 0 22%;
+    max-width: 22%;
+}
+*/
+/* NEXT TIME FIXT- 01-12-22 */
+@media only screen and (min-width: 1200px) {
+.col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+    padding-left: 5.176rem !important;
+    }
+}
+
+
+.col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+    padding-left: 9.1rem !important;
+}
+
+@media only screen and (min-width: 1499px){
+.col-lg-3.col-md-3.d-flex.align-items-center.d-none {
+    padding-left: 9.65rem !important;
+    }
+}
+
+/*26-8-22 catagories products */
+
+.col-xl-3 {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
+
+
+.col {
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}
+
+
+
+/* Home Page products */
+
+.aiz-carousel.gutters-10 .carousel-box {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+@media only screen and (min-width: 600px){
+.row-cols-lg-4>* {
+    -ms-flex: 0 0 14.28%;
+    flex: 0 0 14.28%;
+    max-width: 14.28%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+.col.text-center {
+    ms: 0 0 33.33%;
+    flex: 0 0 33.3%;
+    max-width: 33.33%;
+    }
+}
+
+/*
+@media only screen and (min-width: 600px) {
+.row-cols-lg-4>* {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    }
+}
+
+*/
+
+
+
+@media only screen and (min-width: 600px) {
+ul.list-inline.d-flex.justify-content-between.justify-content-lg-start.mb-0 {
+    padding-left: 13px !important;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+ul.list-inline.d-flex.justify-content-between.justify-content-lg-start.mb-0 {
+    padding-left: 12px !important;
+    }
+}
+
+
+div#category-menu-icon {
+    padding-left: 0px !important;
+}
+
+li#category-menu-icon {
+    text-align: start;
+    padding-left: 13px;
+}
+
+.col-auto.col-xl-3.pl-0.d-flex.align-items-center {
+    padding-left: 0px !important;
+}
+
+/* Mobile Mobile Number */
+
+@media only screen and (max-width: 600px) {
+a.text-reset.d-inline-block.opacity-60.py-2 {
+    padding-right: 44px !important;
+    }
+}
+
+/* 18/9/22 Taihid */
+
+.fa.fa-user-circle-fs-24-fw-500 {
+    color: #fff !important;
+}
+
+.fa.fa-user-circle.fs-24.fw-500:hover {
+	color: #f05a22 !important;
+}
+
+
+/* Catagories article view more */
+span.more.text-center.p-2.m-2.bg-primary.w-100px {
+    color: #fff;
+    border-radius: 50px;
+    text-align: center !important;
+}
+
+.text-reset.fw-600.fs-16 {
+    rder-radius: 5px !important;
+    padding-right: 20px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.p-3.fs-16.fw-600.text-reset.active.show:hover {
+	border-radius: 5px;
+}
+
+.p-3.fs-16.fw-600.text-reset:hover {
+	border-radius: 5px;
+}
+
+.p-3.fs-16.fw-600.text-reset.show:hover {
+	color: #fff !important;
+}
+
+.p-3.fs-16.fw-600.text-reset.active:hover {
+	color: #fff !important;
+}
+
+.p-3.fs-16.fw-600.text-reset:hover {
+	color: #fff !important;
+}
+
+
+@media (min-width: 1200px) {
+.row-cols-xl-3>* {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+.row-cols-lg-4>* {
+    -ms-flex: 0 0 16.666%;
+    flex: 0 0 16.66%;
+    max-width: 16.666%;
+    }
+}
+
+form.stop-propagation {
+    margin-bottom: 0px !important;
+}
+
+
+@media only screen and (min-width: 600px) {
+.col.text-center.mb-3 {
+    text-align: left !important;
+    }
+
+}
+
+
+element {
+}
+.gutters-5 > .col, .gutters-5 > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+@media only screen and (min-width: 600px) {
+.row-cols-lg-4 > * {
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+  max-width: 20%;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+.row-cols-lg-4 > * {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 16.666%;
+    max-width: 16.666%;
+    }
+}
+
+.col-xl-5.col-lg-6.mb-4 {
+	overflow: hidden;
+}
+
+.gutters-5 > .col, .gutters-5 > [class*="col-"] {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+@media only screen and (min-width: 1600px) {
+.gutters-5 > .col, .gutters-5 > [class*="col-"] {
+    padding-right: 4px;
+    padding-left: 4px;
+    }
+
+}
+
+.fs-14 {
+    font-size: 0.850rem !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+.sidemnenu.mb-3 {
+	margin-bottom: 3.5rem !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+.aiz-user-sidenav .aiz-side-nav-list .aiz-side-nav-link {
+	font-size: 0.7125rem;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+.col-md-7 {
+    padding-left: 30px !important;
+    }
+}
+
+
+/*  27-10-22 */
+/* 7DAYS MONEY BACK PHOTOS HIDE KORA HOYESE */ 
+.row.no-gutters.mt-3 {
+    display: none;
+}
+/* 7DAYS MONEY BACK PHOTOS HIDE KORA HOYESE */ 
+
+@media only screen and (max-width: 600px) {
+.col-md-7 {
+    padding-left: 29px !important;
+    padding-right: 30px !important;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+.shadow-lg.px-3.py-3 {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+.col-sm-12.p-3 {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+.col-auto.w-90px {
+    display: none;
+    }
+}
+
+/*
+@media only screen and (max-width: 600px) {
+div#wishlist {
+    display: none;
+    }
+}
+*/
+
+@media only screen and (max-width: 600px) {
+.ml-1, .mx-1 {
+    margin-left: 0rem!important;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+.d-lg-none.mr-0 {
+    padding-left: 4px;
+    padding-right: 0px;
+    }
+}
+
+i.las.la-search.la-flip-horizontal.la-2x {
+    margin-right: 5px !important;
+}
+
+i.fa.fa-envelope-o {
+    opacity: .9;
+}
+
+/* Product heading a jhamela kore
+
+@media only screen and (min-width: 600px) {
+h1.mb-2.fs-20.fw-600 {
+    padding-left: 4px;
+    }
+
+} */
+
+/* Quick Viewe a Jhamela kore 
+@media only screen and (min-width: 600px) {
+.opacity-50.mt-2 {
+    padding-left: 27px !important;
+    }
+
+} */
+
+@media only screen and (max-width: 600px) {
+.text-left {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    }
+}
+
+
+
+@media only screen and (min-width: 600px) {
+.fs-14 {
+    font-size: 0.820rem !important;
+    }
+}
+
+
+@media (max-width: 1500px) {
+.mobile-hor-swipe {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hiden;
+    white-space: nowrap;
+    }
+}
+
+.col-md-4 {
+	box-shadow: 0 1px 1px -1px rgb(208, 208, 208), 0 1px 1px -2px rgba(0, 0, 0, 0.05) !important;
+	border-radius: 5px;
+}
+
+
+i.d-lg-none.fa.fa-align-justify.fs-24.pr-3.opacity-80 {
+    opacity: .9 !important;
+}
+
+
+@media (max-width: 600px) {
+.h6, h6 {
+    font-size: .77rem;
+    }
+}
+
+.p-4 {
+    padding: 0.5rem!important;
+}
+
+@media only screen and (min-width: 600px) {
+.h3, h3 {
+    font-size: 1rem;
+    }
+}
+
+
+/* computer menute jhamela kore
+@media (max-width: 600px) {
+.text-left {
+    margin-left: 22px;
+    }
+}
+
+*/
+
+@media (min-width: 600px) {
+.col-auto.w-90px {
+    margin-left: 9px;
+    }
+}
+
+
+
+.media-body.pt-3.text-left {
+    position: absolute;
+}
+
+.media.mb-4 {
+    height: 100px !important;
+    width: 150px !important;
+    text-align: end !important;
+}
+
+.media-body.pt-3.text-left {
+    padding-left: 100px !important;
+}
+
+.media.mb-4 {
+    padding-left: 32px;
+}
+
+/* Mobile header cart messege fixt */
+
+@media only screen and (max-width: 600px) {
+span.badge.badge-primary.badge-inline.badge-pill.cart-count {
+    margin-left: -8px;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+span.badge.badge-primary.badge-inline.badge-pill.style\= {
+    margin-left: -9px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+span.flex-grow-1.ml-1 {
+    margin-left: 2px !important;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+span.badge.badge-primary.badge-inline.badge-pill {
+    margin-left: -10px;
+    }
+}
+
+i.fa.fa-whatsapp {
+    padding-right: 5px;
+}
+
+
+@media only screen and (max-width: 991px){
+.col-lg-9 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 991px){
+.img-fit {
+    max-height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+    }
+}
+
+/*Club Point BG color */
+
+.border-soft-primary {
+    border-color: rgb(179 174 179 / 17%) !important;
+}
+
+.bg-soft-primary {
+    background-color: rgb(179 174 179 / 17%) !important;
+}
+
+/* Product page seller Youtube icon hide 2 line theke 1 line kora hoyese */
+
+@media only screen and (min-width: 991px){
+a.youtube {
+    display: none !important;
+    }
+}
+
+/* Mobile a related job/service thik kora hoyese */ 
+@media only screen and (max-width: 600px){
+.col.text-center {
+    ms: 0 0 33.33%;
+    flex: 0 0 50%;
+    max-width: 100%;
+    }
+}
+
+/* Price choto kora hoyese */
+.fw-600 {
+    font-weight: 500 !important;
+}
+
+
+span.avatar.avatar-md.mr-3 {
+    display: none;
+}
+
+
+@media only screen and (max-width: 600px){
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .5rem 0rem;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    }
+}
+
+
+/* Product review button degine */ 
+
+.p-3.fs-16.fw-600.text-reset.active:hover {
+	color: #f05a22 !important;
+}
+
+.p-3.fs-16.fw-600.text-reset:hover {
+	color: #f05a22 !important;
+}
+
+.p-3.fs-16.fw-600.text-reset.show:hover {
+	color: #f05a22 !important;
+}
+
+
+
+/* Add to cart section my dsign */
+
+.shadow-lg.px-3.py-3 {
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+.shadow-lg {
+    box-shadow: 0 .1rem 0.1rem rgba(0,0,0,.175)!important;
+}
+
+
+.my-offer-banner {
+    overflow: hidden;
+}
+
+
+.my-offer-banner-physical {
+    overflow: hidden;
+}
+
+
+@media only screen and (max-width: 600px){
+.my-offer-banner-physical {
+    margin-left: -19px !important;
+    margin-right: -19px !important;
+    }
+}
+
+@media only screen and (max-width: 600px){
+.col.text-center {
+    ms: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+    }
+}
+
+
+
+@media only screen and (min-width: 1200px) {
+.row-cols-lg-4 > * {
+    -ms-flex: 0 0 12.5%;
+    flex: 0 0 12.5%;
+    max-width: 12.5%;
+    }
+}
+
+
+@media (min-width: 1200px) {
+.col-xl-3 {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    }
+}
+@media (min-width: 1200px) {
+.col-xl-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 80%;
+    max-width: 80%;
+    }
+}
+
+
+@media only screen and (min-width: 1200px) {
+.row-cols-lg-4 > * {
+    -ms-flex: 0 0 16.66%;
+    flex: 0 0 16.66%;
+    max-width: 16.66%;
+	}
+}
+
+
+/* Conpare button */
+.btn.pl-0.btn-link.fw-600 {
+	text-align: center !important;
+	padding-left: 44px !important;
+}
+
+
+@media only screen and (min-width: 1350px) {
+.btn.pl-0.btn-link.fw-600 {
+	text-align: center !important;
+	padding-left: 44px !important;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+.btn.pl-0.btn-link.fw-600 {
+	text-align: center !important;
+	padding-left: 30px !important;
+    }
+
+}
+
+span.box.ml-1.border-sm.p-2.fs-15.shadow-sm.mr-0.text-danger {
+    border: 1px solid #f33600 !important;
+    border-radius: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+span.box.ml-1.border-sm.p-2.fs-15.shadow-sm.mr-0.text-danger {
+    border: 2px solid #f33600 !important;
+    border-radius: 5px;
+    font-size: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+span.my-danger {
+    display: none;
+    }
+}
+
+
+@media only screen and (min-width: 600px) {
+span.badge-custom {
+    display: none;
+    }
+}
+
