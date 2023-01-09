@@ -15,7 +15,7 @@
               </a>
             </li>
             <li class="list-inline-item dropdown " id="lang-change">
-              <router-link :to="{name:'blog'}" class="dropdown-toggle text-reset py-2" data-display="static"> Blog </router-link>
+              <router-link :to="`blog/${23}`" class="dropdown-toggle text-reset py-2" data-display="static"> Blog </router-link>
             </li>
           </ul>
         </div>

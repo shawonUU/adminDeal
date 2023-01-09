@@ -53,8 +53,9 @@ const routes = [
     component: affiliateRegistration
   },
   {
-    path: '/blog',
+    path: '/blog/:id',
     name: 'blog',
+    props: true,
     component: Blog
   },
   {
@@ -73,8 +74,9 @@ const routes = [
     component: TrackOrder
   },
   {
-    path: '/category',
+    path: '/category/:id?',
     name: 'CategoryWiseProduct',
+    props: true,
     component: CategoryWiseProduct
   },
   {
