@@ -8,16 +8,13 @@
              <li v-for="(category,index) in categories" :key="index" class="category-nav-element" data-id="{{ category.id }}">
                <a  href="https://admindeal.com.bd/category/man-woman-baby-fashion" class="text-truncate text-reset py-2 px-3 d-block">
                  <img class="cat-image lazyload mr-2 opacity-60" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/k9PEQwECIZVCZAujoWuvhWvLIdEhlPhFdsGf4HNT.png" width="16" alt="Men&#039;s, Women&#039;s &amp; Baby&#039;s fashion" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder.jpg';">
-                 <span @mouseover="getSubcategory(this.rootDomain,category.id, $event)" class="cat-name">{{ category.name }}</span>
+                 <span @mouseover="getSubcategory(this.rootDomain,category.id)" class="cat-name">{{ category.name }}</span>
                </a>
                <div class="sub-cat-menu c-scrollbar-light rounded shadow-lg p-4">
                   <div v-if="subcategories.length==0" class=" text-center absolute-center">
                     <i class="las la-spinner la-spin la-3x opacity-70"></i>
                   </div>
                   <div v-else class="card-columns">
-                          <div>
-                            okkkkkkk
-                          </div>
                         <div v-for="(subcategory, index) in subcategories" :key="index" class="card shadow-none border-0">
                             <ul class="list-unstyled mb-3">
                                 <li class="fw-600 border-bottom pb-2 mb-3">
@@ -80,17 +77,7 @@
    </div>
  </div>
     <TodaysOffer></TodaysOffer>
-    <TodaysOffer></TodaysOffer>
-    <TodaysOffer></TodaysOffer>
-    <TodaysOffer></TodaysOffer>
-    <TodaysOffer></TodaysOffer>
-    <TodaysOffer></TodaysOffer>
-    <TodaysOffer></TodaysOffer>
-
-
     
-
-
 </template>
 
 <script>

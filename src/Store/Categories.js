@@ -12,21 +12,21 @@ export const useCategoryStore = defineStore('CategoryStore',{
                     //actions
                     actions:{
                         getCat(rootDomain){
-                            // console.log(rootDomain);
+                            console.log(rootDomain);
                                 axios.get(rootDomain)
                                 .then((response)=>{
-                                    // console.log(response.data.featured_categories.data);
+                                   console.log(response.data.featured_categories.data);
                                 this.categories = response.data.caregories;
                                 this.featuredCategories = response.data.featured_categories.data;
                                 })
                         },
-                        getSubcategory(rootDomain,id, ele){
+                        getSubcategory(rootDomain,id){
                                 // console.log(ele.originalTarget.classList.contains('loaded'));
                                 this.subcategories = [];
                                 axios.get(rootDomain+"category/nav-element-list",{params:{id:id}})
                                 .then((response)=>{
                                     let subCategorys = response.data.subCategorys;
-                                    // console.log(subCategorys);
+                                    console.log(subCategorys);
                                     this.subcategories = subCategorys;
                                 })
                         }

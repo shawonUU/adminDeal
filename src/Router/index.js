@@ -25,6 +25,8 @@ import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
 import SingleProduct from '../components/layouts/ProductComponents/SingleProduct.vue';
 
+import CategoryWiseProduct from '../components/layouts/ProductComponents/CategoryWiseProduct.vue';
+
 const routes = [
   {
     path: '/',
@@ -54,8 +56,8 @@ const routes = [
  
   {
     path: '/blog/:id',
-    props:true,
     name: 'blog',
+    props: true,
     component: Blog
   },
   {
@@ -72,6 +74,12 @@ const routes = [
     path: '/track-your-order',
     name: 'trackOrder',
     component: TrackOrder
+  },
+  {
+    path: '/category/:id?',
+    name: 'CategoryWiseProduct',
+    props: true,
+    component: CategoryWiseProduct
   },
   {
     path: '/single-product',

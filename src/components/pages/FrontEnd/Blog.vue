@@ -1,5 +1,6 @@
 <template>
   <section class="pb-4">
+    {{ id }}
   <div class="container">
     <div class="card-columns">
       <div class="card mb-3 overflow-hidden shadow-sm">
@@ -216,10 +217,7 @@
 
 <script>
 export default {
-  props:['id'],
-  mounted(){
-    console.log(this.id)
-  }
+  props: ['id'],
 }
 
 </script>
