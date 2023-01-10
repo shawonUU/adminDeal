@@ -10,11 +10,12 @@ export const useProductStore = defineStore('ProductStore',{
                     //actions
                     actions:{
                         getTodaysDealProduct(rootDomain){
-                                axios.get(rootDomain+'/api/v2/products/todays-deal')
+                                axios.get(rootDomain+'vue/v3/products/todays-deal')
                                 .then((response)=>{
                                   this.getTodaysDealProducts = response.data.data;
                                 })
                         },
+
                      
                     },
 });

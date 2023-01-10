@@ -6,7 +6,7 @@
  
  <script>
  import axios from "axios";
-import MainVue from './components/layouts/Main.vue';
+import MainVue from './components/Main.vue';
  export default {
    components:{MainVue}
      

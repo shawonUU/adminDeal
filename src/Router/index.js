@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 //Home Page
-import HomeComponent from '../components/layouts/HomeBanner.vue';
+import HomeComponent from '../components/HomePageComponent/HomeBanner.vue';
 //Important Pages Routes
 import AboutUs from '../components/pages/FrontEnd/ImportantPages/AboutUs.vue';
 import ContactUs from '../components/pages/FrontEnd/ImportantPages/ContactUs.vue';
@@ -23,9 +23,9 @@ import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
 // Order Routes
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
-import SingleProduct from '../components/layouts/ProductComponents/SingleProduct.vue';
+import SingleProduct from '../components/ResourceComponents/ProductComponents/SingleProduct.vue';
 
-import CategoryWiseProduct from '../components/layouts/ProductComponents/CategoryWiseProduct.vue';
+import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
 
 const routes = [
   {
@@ -53,11 +53,9 @@ const routes = [
     name: 'affiliateRegistration',
     component: affiliateRegistration
   },
- 
   {
-    path: '/blog/:id',
+    path: '/blog',
     name: 'blog',
-    props: true,
     component: Blog
   },
   {
@@ -82,8 +80,9 @@ const routes = [
     component: CategoryWiseProduct
   },
   {
-    path: '/single-product',
+    path: '/product/:slug?',
     name: 'singleProduct',
+    props:true,
     component: SingleProduct
   },
 //important pages
@@ -139,11 +138,15 @@ const routes = [
   component: ReplacementWarrantyPolicy
 },
 
-]
 
+]
 const router = createRouter({
+  scrollBehavior() {
+    window.scrollTo(0,0);
+  },
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+ 
 })
 
 export default router

@@ -626,7 +626,7 @@
         <div class="col-auto">
           <a href="https://admindeal.com.bd/cart" class="text-reset d-block text-center pb-2 pt-3">
             <span class="align-items-center bg-primary border border-white border-width-4 d-flex justify-content-center position-relative rounded-circle size-50px" style="margin-top: -33px;box-shadow: 0px -5px 10px rgb(0 0 0 / 15%);border-color: #fff !important;">
-              <img class="m-footer img-fluid border-primary ls-is-cached lazyloaded" src="/public/uploads/all/1uFG4XOF4RPJDDhWlYVoIJhSpYfoOyKueDyCNL1T.png" alt="AdminDeal" height="44">
+              <img class="m-footer img-fluid border-primary ls-is-cached lazyloaded" src="" alt="AdminDeal" height="44">
             </span>
             <span class="d-block mt-1 fs-10 fw-600 opacity-60 "> Add Post </span>
           </a>

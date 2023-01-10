@@ -1,11 +1,11 @@
 
 <template>
-    <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, expedita!</h1>
+    <h1>{{ index }}</h1>
 </template>
 
 <script>
 export default {
-
+  props:['index']
 }
 </script>
 
