@@ -46,21 +46,13 @@
                     :navigation="true"
                     :modules="modules"
                     class="mySwiper">
-                  <swiper-slide  class="">
+                  <swiper-slide  class="" v-for="(slider,index) in sliders" :key="index">
                    <div class="carousel-box">
                     <a href="#">
-                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/b4ZCemioim6ddcsoQsgv6XsUmN2gQ10uNlTsUECR.webp" alt="Admin Deal promo" height="320">
+                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" :src="slider.photo" alt="Admin Deal promo" height="320">
                     </a>
                   </div>
                 </swiper-slide>
-                <swiper-slide  class="">
-                   <div class="carousel-box">
-                    <a href="#">
-                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/b4ZCemioim6ddcsoQsgv6XsUmN2gQ10uNlTsUECR.webp" alt="Admin Deal promo" height="320">
-                    </a>
-                  </div>
-                </swiper-slide>
-              
             </swiper>
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
@@ -77,10 +69,10 @@
      </div>
    </div>
  </div>
+    <TodaysOffer></TodaysOffer>
     <BrandComponent></BrandComponent>
     <SellersComponent></SellersComponent>
-    <TodaysOffer></TodaysOffer>
-    
+    <NewProduct></NewProduct>
 </template>
 
 <script>
@@ -93,6 +85,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import TodaysOffer from "../ResourceComponents/ProductComponents/TodaysOffer.vue";
+import NewProduct from "../ResourceComponents/ProductComponents/NewProduct.vue";
 import BrandComponent from "./BrandsComponent.vue";
 import SellersComponent from "./SellersComponent.vue";
 import { useCategoryStore } from "@/Store/Categories";
@@ -101,10 +94,11 @@ import axios from "axios";
 export default {
   data(){
     return{
+      sliders:[],
       modules: [Autoplay, Pagination, Navigation],
     }
   },
- components:{TodaysOffer, Swiper,SwiperSlide,SubCategory,BrandComponent,SellersComponent},
+ components:{TodaysOffer, Swiper,SwiperSlide,SubCategory,BrandComponent,SellersComponent,NewProduct},
  
  computed:{
   ...mapState(useCategoryStore,['categories']),
@@ -113,16 +107,20 @@ export default {
  },
  created(){
   this.getSlider(this.rootDomain);
+  this.getCat(this.rootDomain);
  },
  mounted(){
-  this.getCat(this.rootDomain);
+  
  },
 
  methods:{
   ...mapActions(useCategoryStore,['getCat']),
   ...mapActions(useCategoryStore,['getSubcategory']),
-  getSlider(){
-    
+  getSlider(rootDomain){
+    axios.get(rootDomain+'vue/v3/sliders')
+    .then((response)=>{
+      this.sliders = response.data.data;
+    })
   }
  }
 

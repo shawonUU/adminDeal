@@ -9,12 +9,21 @@
          <ul class="list-unstyled mb-0 row gutters-5">
             <li v-for="(brand,index) in brands.slice(0, 8)"  class="minw-0 col-3 col-md mt-3   text-center ">
                <a  href="https://admindeal.com.bd/brand/dell" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
-                  <img class="img-fluid img lazyload h-60px" alt="{{ brand.name }}" height="78" :src="brand.logo"> 
+                  <img class="img-fluid img lazyload h-60px" :alt="brand.name" height="78" :src="brand.logo"> 
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ brand.name }}</div>
                </a>
             </li>
          </ul>
-      
+         <div class="d-none d-lg-block">
+         <ul class="list-unstyled mb-0 row gutters-5">
+            <li v-for="(brand,index) in brands.slice(8, 16)"  class="minw-0 col-3 col-md mt-3   text-center ">
+               <a  href="https://admindeal.com.bd/brand/dell" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
+                  <img class="img-fluid img lazyload h-60px" :alt="brand.name" height="78" :src="brand.logo"> 
+                  <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ brand.name }}</div>
+               </a>
+            </li>
+         </ul>
+      </div>
       </div>
    </div>
 </section>
@@ -27,6 +36,9 @@ export default {
         return{
             brands:[],
         }
+    },
+    created(){
+        this.getBrands();
     },
     mounted(){
         this.getBrands(this.rootDomain)
