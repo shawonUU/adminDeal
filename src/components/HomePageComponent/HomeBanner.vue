@@ -11,22 +11,22 @@
                  <span @mouseover="getSubcategory(this.rootDomain,category.id)" class="cat-name">{{ category.name }}</span>
                </a>
                <div class="sub-cat-menu c-scrollbar-light rounded shadow-lg p-4">
-                    <Test :index="index"></Test>
-                  <div v-if="subcategories.length==0" class=" text-center absolute-center">
-                    <i class="las la-spinner la-spin la-3x opacity-70"></i>
-                  </div>
-                  <div v-else class="card-columns">
-                        <div v-for="(subcategory, index) in subcategories" :key="index" class="card shadow-none border-0">
-                            <ul class="list-unstyled mb-3">
-                                <li class="fw-600 border-bottom pb-2 mb-3">
-                                    <a class="text-reset" href="">{{ subcategory.name }}</a>
-                                </li>
-                                  <li v-for="(childcategory, index) in subcategory.childCategorys" :key="index" class="mb-2">
-                                      <a class="text-reset" href="">{{ childcategory.name }}</a>
-                                  </li>
-                            </ul>
-                        </div>
-                </div>
+                    <div v-if="subcategories.length==0" class=" text-center absolute-center">
+                        <i class="las la-spinner la-spin la-3x opacity-70"></i>
+                    </div>
+                    
+                      <div v-else class="card-columns">
+                            <div v-for="(subcategory, index) in subcategories" :key="index" class="card shadow-none border-0">
+                                <ul class="list-unstyled mb-3">
+                                    <li class="fw-600 border-bottom pb-2 mb-3">
+                                        <a class="text-reset" href="">{{ subcategory.name }}</a>
+                                    </li>
+                                      <li v-for="(childcategory, index) in subcategory.childCategorys" :key="index" class="mb-2">
+                                          <a class="text-reset" href="">{{ childcategory.name }}</a>
+                                      </li>
+                                </ul>
+                            </div>
+                      </div>
                </div>
              </li>
            </ul>
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import Test from '../layouts/test.vue';
+import SubCategory from '../layouts/subCategory.vue';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Pagination, Navigation } from "swiper";
@@ -104,7 +104,7 @@ export default {
       modules: [Autoplay, Pagination, Navigation],
     }
   },
- components:{TodaysOffer, Swiper,SwiperSlide,Test,BrandComponent,SellersComponent},
+ components:{TodaysOffer, Swiper,SwiperSlide,SubCategory,BrandComponent,SellersComponent},
  
  computed:{
   ...mapState(useCategoryStore,['categories']),
