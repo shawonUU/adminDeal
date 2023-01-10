@@ -7,6 +7,7 @@ export const useCategoryStore = defineStore('CategoryStore',{
                             categories: [],
                             subcategories:[],
                             featuredCategories:[],
+                            ck:0,
                         }),
 
                     //actions
