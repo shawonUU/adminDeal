@@ -688,7 +688,6 @@ export default {
          getProductDetails(rootDomain){
                      axios.get(rootDomain+'product/'+this.slug)
                      .then((response)=>{
-                        
                         this.productDetails = response.data.data[0];
                      })
                },

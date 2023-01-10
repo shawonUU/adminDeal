@@ -111,7 +111,9 @@ export default {
   ...mapState(useCategoryStore,['subcategories']),
   ...mapState(useCategoryStore,['featuredCategories']),
  },
-
+ created(){
+  this.getSlider(this.rootDomain);
+ },
  mounted(){
   this.getCat(this.rootDomain);
  },
@@ -119,6 +121,9 @@ export default {
  methods:{
   ...mapActions(useCategoryStore,['getCat']),
   ...mapActions(useCategoryStore,['getSubcategory']),
+  getSlider(){
+    
+  }
  }
 
 }
