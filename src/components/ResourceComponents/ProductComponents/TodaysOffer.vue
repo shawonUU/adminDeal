@@ -5,7 +5,6 @@
        <div class="d-flex mb-3 align-items-baseline border-bottom sectionmenu">
          <h3 class="h5 fw-700 mb-0">
            <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block" style="font-size:16px;color:black">Today's Offer</span>
-           <span class="badge badge-inline badge-danger">OFF 90%</span>
          </h3>
          <a href="https://admindeal.com.bd/todays_best_deals" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
        </div>
@@ -39,7 +38,7 @@
              </span>
              <div class="position-relative">
                <a  style="cursor:pointer" @click="productDetails(product.slug)">
-                 <img :src="product.thumbnail_image" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
+                 <img :src="product.thumbnail_image?product.thumbnail_image:'https://localhost/backend/public/assets/img/placeholder.jpg'" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
                </a>
                <div class="absolute-top-right aiz-p-hov-icon">
                  <a href="javascript:void(0)" onclick="addToWishList(5931)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
@@ -55,8 +54,8 @@
              </div>
              <div class="p-md-3 p-2 text-left">
                <div class="fs-15">
-                 <del class="fw-600 opacity-50 mr-1">৳{{ product.stroked_price }}</del>
-                 <span class="fw-700 text-primary">৳{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-90%</span>
+                 <del class="fw-600 opacity-50 mr-1">{{ product.stroked_price }}</del>
+                 <span class="fw-700 text-primary">{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{ product.discount }}</span>
                  </span>
                </div>
                <div class="rating rating-sm mt-1">
@@ -69,8 +68,8 @@
                <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                 <a style="cursor:pointer" @click="productDetails(product.slug)"  :to="{name:'singleProduct'}" class="d-block text-reset">{{ product.name}}</a>
                </h3>
-               <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border"> Cashback : <span class="fw-700 float-right">0</span>
-               </div>
+               <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border"> Cashback : <span class="fw-700 float-right">0</span>
+               </div> -->
              </div>
            </div>
          </div> 
@@ -111,11 +110,16 @@ export default {
     SwiperSlide,
   },
 
+  
+
   computed:{
   ...mapState(useProductStore,['getTodaysDealProducts']),
   },
-  mounted(){
+  created(){
     this.getTodaysDealProduct(this.rootDomain);
+  },
+  mounted(){
+    
   },
   methods: {
     ...mapActions(useProductStore,['getTodaysDealProduct']),

@@ -15,8 +15,9 @@ export const useCategoryStore = defineStore('CategoryStore',{
                         getCat(rootDomain){
                                 axios.get(rootDomain)
                                 .then((response)=>{
+                                // console.log(response.data.featured_categories);
                                 this.categories = response.data.categories;
-                                this.featuredCategories = response.data.featured_categories;
+                                this.featuredCategories = response.data.featured_categories.data;
                                 })
                         },
                         getSubcategory(rootDomain,id){

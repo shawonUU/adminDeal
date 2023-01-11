@@ -7,7 +7,7 @@
            <ul class="list-unstyled categories no-scrollbar py-2 mb-0 text-left">
              <li v-for="(category,index) in categories" :key="index" class="category-nav-element" data-id="{{ category.id }}">
                <a  href="https://admindeal.com.bd/category/man-woman-baby-fashion" class="text-truncate text-reset py-2 px-3 d-block">
-                 <img class="cat-image lazyload mr-2 opacity-60" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/k9PEQwECIZVCZAujoWuvhWvLIdEhlPhFdsGf4HNT.png" width="16" alt="Men&#039;s, Women&#039;s &amp; Baby&#039;s fashion" onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder.jpg';">
+                 <img class="cat-image lazyload mr-2 opacity-60" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/k9PEQwECIZVCZAujoWuvhWvLIdEhlPhFdsGf4HNT.png" width="16" alt="Men&#039;s, Women&#039;s &amp; Baby&#039;s fashion">
                  <span @mouseover="getSubcategory(this.rootDomain,category.id)" class="cat-name">{{ category.name }}</span>
                </a>
                <div class="sub-cat-menu c-scrollbar-light rounded shadow-lg p-4">
@@ -46,21 +46,13 @@
                     :navigation="true"
                     :modules="modules"
                     class="mySwiper">
-                  <swiper-slide  class="">
+                  <swiper-slide  class="" v-for="(slider,index) in sliders" :key="index">
                    <div class="carousel-box">
                     <a href="#">
-                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/b4ZCemioim6ddcsoQsgv6XsUmN2gQ10uNlTsUECR.webp" alt="Admin Deal promo" height="320">
+                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" :src="slider.photo" alt="Admin Deal promo" height="320">
                     </a>
                   </div>
                 </swiper-slide>
-                <swiper-slide  class="">
-                   <div class="carousel-box">
-                    <a href="#">
-                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/b4ZCemioim6ddcsoQsgv6XsUmN2gQ10uNlTsUECR.webp" alt="Admin Deal promo" height="320">
-                    </a>
-                  </div>
-                </swiper-slide>
-              
             </swiper>
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
@@ -77,10 +69,16 @@
      </div>
    </div>
  </div>
+    <!-- <TodaysOffer></TodaysOffer>
     <BrandComponent></BrandComponent>
     <SellersComponent></SellersComponent>
-    <TodaysOffer></TodaysOffer>
-    
+    <NewProduct></NewProduct>
+    <FeaturedCategory></FeaturedCategory>
+    <BestSellingProduct></BestSellingProduct>
+    <AuctionProducts></AuctionProducts>
+    <HomeCategoriesProduct></HomeCategoriesProduct>
+    <FreelanceService></FreelanceService> -->
+    <AllProductVue></AllProductVue>
 </template>
 
 <script>
@@ -93,18 +91,42 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import TodaysOffer from "../ResourceComponents/ProductComponents/TodaysOffer.vue";
+import NewProduct from "../ResourceComponents/ProductComponents/NewProduct.vue";
+import FeaturedCategory from "../ResourceComponents/ProductComponents/FeaturedCategory.vue";
+import AuctionProducts from "../ResourceComponents/ProductComponents/AuctionProducts.vue";
+import BestSellingProduct from "../ResourceComponents/ProductComponents/BestSellingProduct.vue";
+import HomeCategoriesProduct from "../ResourceComponents/ProductComponents/HomeCategoriesProduct.vue";
+import FreelanceService from "../ResourceComponents/ProductComponents/FreelanceService.vue";
 import BrandComponent from "./BrandsComponent.vue";
 import SellersComponent from "./SellersComponent.vue";
+
+import AllProductVue from '../ResourceComponents/ProductComponents/AllProduct.vue';
+
 import { useCategoryStore } from "@/Store/Categories";
 import { mapState, mapActions} from "pinia";
 import axios from "axios";
 export default {
   data(){
     return{
+      sliders:[],
       modules: [Autoplay, Pagination, Navigation],
     }
   },
- components:{TodaysOffer, Swiper,SwiperSlide,SubCategory,BrandComponent,SellersComponent},
+ components:{
+  TodaysOffer, 
+  Swiper,
+  SwiperSlide,
+  SubCategory,
+  BrandComponent,
+  SellersComponent,
+  NewProduct,
+  FeaturedCategory,
+  BestSellingProduct,
+  AuctionProducts,
+  HomeCategoriesProduct,
+  FreelanceService,
+  AllProductVue,
+},
  
  computed:{
   ...mapState(useCategoryStore,['categories']),
@@ -113,16 +135,20 @@ export default {
  },
  created(){
   this.getSlider(this.rootDomain);
+  this.getCat(this.rootDomain);
  },
  mounted(){
-  this.getCat(this.rootDomain);
+  
  },
 
  methods:{
   ...mapActions(useCategoryStore,['getCat']),
   ...mapActions(useCategoryStore,['getSubcategory']),
-  getSlider(){
-    
+  getSlider(rootDomain){
+    axios.get(rootDomain+'vue/v3/sliders')
+    .then((response)=>{
+      this.sliders = response.data.data;
+    })
   }
  }
 
