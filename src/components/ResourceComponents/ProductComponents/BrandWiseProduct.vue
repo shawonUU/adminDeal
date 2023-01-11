@@ -135,7 +135,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="LED"                                                             onchange="filter()"
+                                  value="LED"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>LED</span>
@@ -144,7 +144,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="LCD"                                                             onchange="filter()"
+                                  value="LCD"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>LCD</span>
@@ -153,7 +153,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="IPS"                                                             onchange="filter()"
+                                  value="IPS"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>IPS</span>
@@ -162,7 +162,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Retinal"                                                             onchange="filter()"
+                                  value="Retinal"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Retinal</span>
@@ -171,7 +171,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="OLED"                                                             onchange="filter()"
+                                  value="OLED"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>OLED</span>
@@ -180,7 +180,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="TFT"                                                             onchange="filter()"
+                                  value="TFT"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>TFT</span>
@@ -198,7 +198,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="100 ml"                                                             onchange="filter()"
+                                  value="100 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>100 ml</span>
@@ -207,7 +207,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="200 ml"                                                             onchange="filter()"
+                                  value="200 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>200 ml</span>
@@ -216,7 +216,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1Liter"                                                             onchange="filter()"
+                                  value="1Liter"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1Liter</span>
@@ -225,7 +225,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="500 mL"                                                             onchange="filter()"
+                                  value="500 mL"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>500 mL</span>
@@ -234,7 +234,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="250 mL"                                                             onchange="filter()"
+                                  value="250 mL"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>250 mL</span>
@@ -243,7 +243,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="470 ml"                                                             onchange="filter()"
+                                  value="470 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>470 ml</span>
@@ -252,7 +252,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="950 ml"                                                             onchange="filter()"
+                                  value="950 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>950 ml</span>
@@ -261,7 +261,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="240 ml"                                                             onchange="filter()"
+                                  value="240 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>240 ml</span>
@@ -270,7 +270,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="400 ml"                                                             onchange="filter()"
+                                  value="400 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>400 ml</span>
@@ -279,7 +279,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="600 ml"                                                             onchange="filter()"
+                                  value="600 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>600 ml</span>
@@ -288,7 +288,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="5Liter"                                                             onchange="filter()"
+                                  value="5Liter"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>5Liter</span>
@@ -297,7 +297,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="2Liter"                                                             onchange="filter()"
+                                  value="2Liter"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>2Liter</span>
@@ -306,7 +306,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="430 ml"                                                             onchange="filter()"
+                                  value="430 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>430 ml</span>
@@ -315,7 +315,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="960 ml"                                                             onchange="filter()"
+                                  value="960 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>960 ml</span>
@@ -324,7 +324,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="750 ml"                                                             onchange="filter()"
+                                  value="750 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>750 ml</span>
@@ -333,7 +333,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="700 ml"                                                             onchange="filter()"
+                                  value="700 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>700 ml</span>
@@ -342,7 +342,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="450 ml"                                                             onchange="filter()"
+                                  value="450 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>450 ml</span>
@@ -351,7 +351,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="900 ml"                                                             onchange="filter()"
+                                  value="900 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>900 ml</span>
@@ -360,7 +360,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="550 ml"                                                             onchange="filter()"
+                                  value="550 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>550 ml</span>
@@ -369,7 +369,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="510 ml"                                                             onchange="filter()"
+                                  value="510 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>510 ml</span>
@@ -378,7 +378,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="350 ml"                                                             onchange="filter()"
+                                  value="350 ml"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>350 ml</span>
@@ -396,7 +396,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Stainless Steel"                                                             onchange="filter()"
+                                  value="Stainless Steel"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Stainless Steel</span>
@@ -405,7 +405,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Waterproof"                                                             onchange="filter()"
+                                  value="Waterproof"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Waterproof</span>
@@ -414,7 +414,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Cabinets"                                                             onchange="filter()"
+                                  value="Cabinets"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Cabinets</span>
@@ -423,7 +423,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Dry and Cool Place"                                                             onchange="filter()"
+                                  value="Dry and Cool Place"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Dry and Cool Place</span>
@@ -432,7 +432,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Room Temperature"                                                             onchange="filter()"
+                                  value="Room Temperature"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Room Temperature</span>
@@ -441,7 +441,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Refrigerated"                                                             onchange="filter()"
+                                  value="Refrigerated"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Refrigerated</span>
@@ -450,7 +450,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Below -18 Degree C (Below )"                                                             onchange="filter()"
+                                  value="Below -18 Degree C (Below )"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Below -18 Degree C (Below )</span>
@@ -459,7 +459,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Freezer"                                                             onchange="filter()"
+                                  value="Freezer"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Freezer</span>
@@ -468,7 +468,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1-3 Degree C (34-38 degree)"                                                             onchange="filter()"
+                                  value="1-3 Degree C (34-38 degree)"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1-3 Degree C (34-38 degree)</span>
@@ -477,7 +477,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1.5GB"                                                             onchange="filter()"
+                                  value="1.5GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1.5GB</span>
@@ -486,7 +486,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="32GB"                                                             onchange="filter()"
+                                  value="32GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>32GB</span>
@@ -495,7 +495,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="64GB"                                                             onchange="filter()"
+                                  value="64GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>64GB</span>
@@ -504,7 +504,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="128GB"                                                             onchange="filter()"
+                                  value="128GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>128GB</span>
@@ -513,7 +513,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="256GB"                                                             onchange="filter()"
+                                  value="256GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>256GB</span>
@@ -522,7 +522,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="100GB"                                                             onchange="filter()"
+                                  value="100GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>100GB</span>
@@ -531,7 +531,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="16GB"                                                             onchange="filter()"
+                                  value="16GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>16GB</span>
@@ -540,7 +540,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="128GB"                                                             onchange="filter()"
+                                  value="128GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>128GB</span>
@@ -549,7 +549,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Freezer Refrigerated"                                                             onchange="filter()"
+                                  value="Freezer Refrigerated"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Freezer Refrigerated</span>
@@ -558,7 +558,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1TB"                                                             onchange="filter()"
+                                  value="1TB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1TB</span>
@@ -567,7 +567,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="2TB"                                                             onchange="filter()"
+                                  value="2TB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>2TB</span>
@@ -576,7 +576,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="64GB"                                                             onchange="filter()"
+                                  value="64GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>64GB</span>
@@ -585,7 +585,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="120GB"                                                             onchange="filter()"
+                                  value="120GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>120GB</span>
@@ -594,7 +594,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="512GB"                                                             onchange="filter()"
+                                  value="512GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>512GB</span>
@@ -603,7 +603,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="320GB"                                                             onchange="filter()"
+                                  value="320GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>320GB</span>
@@ -612,7 +612,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="240GB"                                                             onchange="filter()"
+                                  value="240GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>240GB</span>
@@ -621,7 +621,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="500GB"                                                             onchange="filter()"
+                                  value="500GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>500GB</span>
@@ -630,7 +630,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="480GB"                                                             onchange="filter()"
+                                  value="480GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>480GB</span>
@@ -639,7 +639,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="4TB"                                                             onchange="filter()"
+                                  value="4TB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>4TB</span>
@@ -648,7 +648,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="300MB"                                                             onchange="filter()"
+                                  value="300MB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>300MB</span>
@@ -657,7 +657,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3TB"                                                             onchange="filter()"
+                                  value="3TB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3TB</span>
@@ -666,7 +666,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="250GB"                                                             onchange="filter()"
+                                  value="250GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>250GB</span>
@@ -675,7 +675,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="256GB"                                                             onchange="filter()"
+                                  value="256GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>256GB</span>
@@ -684,7 +684,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="8GB"                                                             onchange="filter()"
+                                  value="8GB"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>8GB</span>
@@ -702,7 +702,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1week-12 weeks"                                                             onchange="filter()"
+                                  value="1week-12 weeks"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1week-12 weeks</span>
@@ -711,7 +711,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1month-60 months"                                                             onchange="filter()"
+                                  value="1month-60 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1month-60 months</span>
@@ -720,7 +720,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1year-5years"                                                             onchange="filter()"
+                                  value="1year-5years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1year-5years</span>
@@ -738,7 +738,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Almond"                                                             onchange="filter()"
+                                  value="Almond"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Almond</span>
@@ -747,7 +747,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Others"                                                             onchange="filter()"
+                                  value="Others"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Others</span>
@@ -756,7 +756,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Mixed"                                                             onchange="filter()"
+                                  value="Mixed"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Mixed</span>
@@ -765,7 +765,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Natural"                                                             onchange="filter()"
+                                  value="Natural"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Natural</span>
@@ -774,7 +774,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Fruity"                                                             onchange="filter()"
+                                  value="Fruity"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Fruity</span>
@@ -783,7 +783,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Banana"                                                             onchange="filter()"
+                                  value="Banana"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Banana</span>
@@ -792,7 +792,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Wheat&amp;Honey"                                                             onchange="filter()"
+                                  value="Wheat&amp;Honey"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Wheat&amp;Honey</span>
@@ -801,7 +801,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Chocolate"                                                             onchange="filter()"
+                                  value="Chocolate"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Chocolate</span>
@@ -810,7 +810,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Apple"                                                             onchange="filter()"
+                                  value="Apple"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Apple</span>
@@ -819,7 +819,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Strawberry"                                                             onchange="filter()"
+                                  value="Strawberry"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Strawberry</span>
@@ -828,7 +828,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Wheat Flavor"                                                             onchange="filter()"
+                                  value="Wheat Flavor"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Wheat Flavor</span>
@@ -837,7 +837,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Sweet Potato"                                                             onchange="filter()"
+                                  value="Sweet Potato"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Sweet Potato</span>
@@ -846,7 +846,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Multi Grain&amp;Garden Ve"                                                             onchange="filter()"
+                                  value="Multi Grain&amp;Garden Ve"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Multi Grain&amp;Garden Ve</span>
@@ -855,7 +855,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Rice&amp;Mixed Fruits"                                                             onchange="filter()"
+                                  value="Rice&amp;Mixed Fruits"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Rice&amp;Mixed Fruits</span>
@@ -864,7 +864,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Egg flavor"                                                             onchange="filter()"
+                                  value="Egg flavor"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Egg flavor</span>
@@ -873,7 +873,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Vanilla"                                                             onchange="filter()"
+                                  value="Vanilla"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Vanilla</span>
@@ -882,7 +882,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Rice&amp;Mixed Vegetables"                                                             onchange="filter()"
+                                  value="Rice&amp;Mixed Vegetables"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Rice&amp;Mixed Vegetables</span>
@@ -891,7 +891,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Cream"                                                             onchange="filter()"
+                                  value="Cream"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Cream</span>
@@ -900,7 +900,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Rice"                                                             onchange="filter()"
+                                  value="Rice"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Rice</span>
@@ -909,7 +909,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Honey"                                                             onchange="filter()"
+                                  value="Honey"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Honey</span>
@@ -918,7 +918,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Mango"                                                             onchange="filter()"
+                                  value="Mango"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Mango</span>
@@ -927,7 +927,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Cheese"                                                             onchange="filter()"
+                                  value="Cheese"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Cheese</span>
@@ -936,7 +936,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Oats,Wheat&amp;Prunes"                                                             onchange="filter()"
+                                  value="Oats,Wheat&amp;Prunes"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Oats,Wheat&amp;Prunes</span>
@@ -945,7 +945,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Peach"                                                             onchange="filter()"
+                                  value="Peach"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Peach</span>
@@ -954,7 +954,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Rice&amp;Chicken"                                                             onchange="filter()"
+                                  value="Rice&amp;Chicken"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Rice&amp;Chicken</span>
@@ -963,7 +963,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Blueberry"                                                             onchange="filter()"
+                                  value="Blueberry"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Blueberry</span>
@@ -981,7 +981,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-4 kg"                                                             onchange="filter()"
+                                  value="0-4 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-4 kg</span>
@@ -990,7 +990,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-11kg"                                                             onchange="filter()"
+                                  value="0-11kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-11kg</span>
@@ -1008,7 +1008,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="EU"                                                             onchange="filter()"
+                                  value="EU"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>EU</span>
@@ -1017,7 +1017,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="40"                                                             onchange="filter()"
+                                  value="40"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>40</span>
@@ -1026,7 +1026,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="44"                                                             onchange="filter()"
+                                  value="44"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>44</span>
@@ -1035,7 +1035,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="48"                                                             onchange="filter()"
+                                  value="48"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>48</span>
@@ -1044,7 +1044,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="50"                                                             onchange="filter()"
+                                  value="50"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>50</span>
@@ -1053,7 +1053,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="52"                                                             onchange="filter()"
+                                  value="52"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>52</span>
@@ -1062,7 +1062,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="54"                                                             onchange="filter()"
+                                  value="54"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>54</span>
@@ -1071,7 +1071,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="56"                                                             onchange="filter()"
+                                  value="56"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>56</span>
@@ -1080,7 +1080,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="58"                                                             onchange="filter()"
+                                  value="58"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>58</span>
@@ -1089,7 +1089,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="22mm"                                                             onchange="filter()"
+                                  value="22mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>22mm</span>
@@ -1098,7 +1098,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="28mm"                                                             onchange="filter()"
+                                  value="28mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>28mm</span>
@@ -1107,7 +1107,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="30mm"                                                             onchange="filter()"
+                                  value="30mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>30mm</span>
@@ -1116,7 +1116,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="32mm"                                                             onchange="filter()"
+                                  value="32mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>32mm</span>
@@ -1125,7 +1125,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="34mm"                                                             onchange="filter()"
+                                  value="34mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>34mm</span>
@@ -1134,7 +1134,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="36mm"                                                             onchange="filter()"
+                                  value="36mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>36mm</span>
@@ -1143,7 +1143,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="38mm"                                                             onchange="filter()"
+                                  value="38mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>38mm</span>
@@ -1152,7 +1152,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="39mm"                                                             onchange="filter()"
+                                  value="39mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>39mm</span>
@@ -1161,7 +1161,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="40mm"                                                             onchange="filter()"
+                                  value="40mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>40mm</span>
@@ -1170,7 +1170,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="41 mm"                                                             onchange="filter()"
+                                  value="41 mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>41 mm</span>
@@ -1179,7 +1179,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="42mm"                                                             onchange="filter()"
+                                  value="42mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>42mm</span>
@@ -1188,7 +1188,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="43 mm"                                                             onchange="filter()"
+                                  value="43 mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>43 mm</span>
@@ -1197,7 +1197,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="44mm"                                                             onchange="filter()"
+                                  value="44mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>44mm</span>
@@ -1206,7 +1206,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="45mm"                                                             onchange="filter()"
+                                  value="45mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>45mm</span>
@@ -1215,7 +1215,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="48mm"                                                             onchange="filter()"
+                                  value="48mm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>48mm</span>
@@ -1224,7 +1224,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="46"                                                             onchange="filter()"
+                                  value="46"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>46</span>
@@ -1233,7 +1233,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="5"                                                             onchange="filter()"
+                                  value="5"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>5</span>
@@ -1242,7 +1242,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="9"                                                             onchange="filter()"
+                                  value="9"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>9</span>
@@ -1251,7 +1251,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3"                                                             onchange="filter()"
+                                  value="3"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3</span>
@@ -1260,7 +1260,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="100"                                                             onchange="filter()"
+                                  value="100"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>100</span>
@@ -1269,7 +1269,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="41-80 Pcs"                                                             onchange="filter()"
+                                  value="41-80 Pcs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>41-80 Pcs</span>
@@ -1278,7 +1278,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="21-40 Pcs"                                                             onchange="filter()"
+                                  value="21-40 Pcs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>21-40 Pcs</span>
@@ -1287,7 +1287,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1-20 Pcs"                                                             onchange="filter()"
+                                  value="1-20 Pcs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1-20 Pcs</span>
@@ -1296,7 +1296,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="81 and Above"                                                             onchange="filter()"
+                                  value="81 and Above"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>81 and Above</span>
@@ -1305,7 +1305,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Adjustable"                                                             onchange="filter()"
+                                  value="Adjustable"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Adjustable</span>
@@ -1314,7 +1314,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="11"                                                             onchange="filter()"
+                                  value="11"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>11</span>
@@ -1323,7 +1323,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="16"                                                             onchange="filter()"
+                                  value="16"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>16</span>
@@ -1332,7 +1332,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="17"                                                             onchange="filter()"
+                                  value="17"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>17</span>
@@ -1341,7 +1341,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="17.5"                                                             onchange="filter()"
+                                  value="17.5"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>17.5</span>
@@ -1350,7 +1350,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="18"                                                             onchange="filter()"
+                                  value="18"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>18</span>
@@ -1359,7 +1359,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="18.5"                                                             onchange="filter()"
+                                  value="18.5"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>18.5</span>
@@ -1368,7 +1368,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="19"                                                             onchange="filter()"
+                                  value="19"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>19</span>
@@ -1377,7 +1377,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="20"                                                             onchange="filter()"
+                                  value="20"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>20</span>
@@ -1386,7 +1386,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="21"                                                             onchange="filter()"
+                                  value="21"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>21</span>
@@ -1395,7 +1395,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10 MM"                                                             onchange="filter()"
+                                  value="10 MM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10 MM</span>
@@ -1404,7 +1404,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="47 CM"                                                             onchange="filter()"
+                                  value="47 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>47 CM</span>
@@ -1413,7 +1413,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="49 CM"                                                             onchange="filter()"
+                                  value="49 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>49 CM</span>
@@ -1422,7 +1422,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="50 CM"                                                             onchange="filter()"
+                                  value="50 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>50 CM</span>
@@ -1431,7 +1431,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="60 CM"                                                             onchange="filter()"
+                                  value="60 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>60 CM</span>
@@ -1440,7 +1440,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="8MM"                                                             onchange="filter()"
+                                  value="8MM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>8MM</span>
@@ -1449,7 +1449,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10MM"                                                             onchange="filter()"
+                                  value="10MM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10MM</span>
@@ -1458,7 +1458,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="55 MM"                                                             onchange="filter()"
+                                  value="55 MM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>55 MM</span>
@@ -1467,7 +1467,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="65 MM"                                                             onchange="filter()"
+                                  value="65 MM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>65 MM</span>
@@ -1476,7 +1476,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10 CM"                                                             onchange="filter()"
+                                  value="10 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10 CM</span>
@@ -1485,7 +1485,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="12 CM"                                                             onchange="filter()"
+                                  value="12 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>12 CM</span>
@@ -1494,7 +1494,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="15 CM"                                                             onchange="filter()"
+                                  value="15 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>15 CM</span>
@@ -1503,7 +1503,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="16 CM"                                                             onchange="filter()"
+                                  value="16 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>16 CM</span>
@@ -1512,7 +1512,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="17 CM"                                                             onchange="filter()"
+                                  value="17 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>17 CM</span>
@@ -1521,7 +1521,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="18 CM"                                                             onchange="filter()"
+                                  value="18 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>18 CM</span>
@@ -1530,7 +1530,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="19 CM"                                                             onchange="filter()"
+                                  value="19 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>19 CM</span>
@@ -1539,7 +1539,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="20 CM"                                                             onchange="filter()"
+                                  value="20 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>20 CM</span>
@@ -1548,7 +1548,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="21 CM"                                                             onchange="filter()"
+                                  value="21 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>21 CM</span>
@@ -1557,7 +1557,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="22 CM"                                                             onchange="filter()"
+                                  value="22 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>22 CM</span>
@@ -1566,7 +1566,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="23 CM"                                                             onchange="filter()"
+                                  value="23 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>23 CM</span>
@@ -1575,7 +1575,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="24 CM"                                                             onchange="filter()"
+                                  value="24 CM"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>24 CM</span>
@@ -1584,7 +1584,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="26"                                                             onchange="filter()"
+                                  value="26"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>26</span>
@@ -1593,7 +1593,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="15-20 inches"                                                             onchange="filter()"
+                                  value="15-20 inches"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>15-20 inches</span>
@@ -1602,7 +1602,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="2"                                                             onchange="filter()"
+                                  value="2"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>2</span>
@@ -1611,7 +1611,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="7"                                                             onchange="filter()"
+                                  value="7"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>7</span>
@@ -1620,7 +1620,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="8"                                                             onchange="filter()"
+                                  value="8"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>8</span>
@@ -1629,7 +1629,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10X12"                                                             onchange="filter()"
+                                  value="10X12"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10X12</span>
@@ -1638,7 +1638,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="8X10"                                                             onchange="filter()"
+                                  value="8X10"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>8X10</span>
@@ -1647,7 +1647,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="12X15"                                                             onchange="filter()"
+                                  value="12X15"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>12X15</span>
@@ -1656,7 +1656,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="4X6"                                                             onchange="filter()"
+                                  value="4X6"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>4X6</span>
@@ -1665,7 +1665,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="5X10"                                                             onchange="filter()"
+                                  value="5X10"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>5X10</span>
@@ -1674,7 +1674,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="16X20"                                                             onchange="filter()"
+                                  value="16X20"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>16X20</span>
@@ -1683,7 +1683,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="75"                                                             onchange="filter()"
+                                  value="75"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>75</span>
@@ -1692,7 +1692,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="98"                                                             onchange="filter()"
+                                  value="98"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>98</span>
@@ -1701,7 +1701,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="126 and Above"                                                             onchange="filter()"
+                                  value="126 and Above"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>126 and Above</span>
@@ -1710,7 +1710,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Below 12"                                                             onchange="filter()"
+                                  value="Below 12"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Below 12</span>
@@ -1719,7 +1719,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="45-46"                                                             onchange="filter()"
+                                  value="45-46"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>45-46</span>
@@ -1728,7 +1728,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="37-38"                                                             onchange="filter()"
+                                  value="37-38"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>37-38</span>
@@ -1737,7 +1737,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="41-42"                                                             onchange="filter()"
+                                  value="41-42"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>41-42</span>
@@ -1755,7 +1755,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-6 months"                                                             onchange="filter()"
+                                  value="0-6 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-6 months</span>
@@ -1764,7 +1764,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Newborn"                                                             onchange="filter()"
+                                  value="Newborn"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Newborn</span>
@@ -1773,7 +1773,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="12-18 months"                                                             onchange="filter()"
+                                  value="12-18 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>12-18 months</span>
@@ -1782,7 +1782,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-12 months"                                                             onchange="filter()"
+                                  value="0-12 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-12 months</span>
@@ -1791,7 +1791,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-3 months"                                                             onchange="filter()"
+                                  value="0-3 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-3 months</span>
@@ -1800,7 +1800,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="6-9 months"                                                             onchange="filter()"
+                                  value="6-9 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>6-9 months</span>
@@ -1809,7 +1809,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="S"                                                             onchange="filter()"
+                                  value="S"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>S</span>
@@ -1818,7 +1818,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="18-24 months"                                                             onchange="filter()"
+                                  value="18-24 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>18-24 months</span>
@@ -1827,7 +1827,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3-6 months"                                                             onchange="filter()"
+                                  value="3-6 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3-6 months</span>
@@ -1836,7 +1836,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="9-12 months"                                                             onchange="filter()"
+                                  value="9-12 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>9-12 months</span>
@@ -1845,7 +1845,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="6-12 months"                                                             onchange="filter()"
+                                  value="6-12 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>6-12 months</span>
@@ -1854,7 +1854,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="2-3yrs"                                                             onchange="filter()"
+                                  value="2-3yrs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>2-3yrs</span>
@@ -1863,7 +1863,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="One Size"                                                             onchange="filter()"
+                                  value="One Size"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>One Size</span>
@@ -1872,7 +1872,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3-4yrs"                                                             onchange="filter()"
+                                  value="3-4yrs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3-4yrs</span>
@@ -1881,7 +1881,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1-2yrs"                                                             onchange="filter()"
+                                  value="1-2yrs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1-2yrs</span>
@@ -1890,7 +1890,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="4-5 yrs"                                                             onchange="filter()"
+                                  value="4-5 yrs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>4-5 yrs</span>
@@ -1899,7 +1899,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-3 years"                                                             onchange="filter()"
+                                  value="0-3 years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-3 years</span>
@@ -1908,7 +1908,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3-12 months"                                                             onchange="filter()"
+                                  value="3-12 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3-12 months</span>
@@ -1917,7 +1917,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3years"                                                             onchange="filter()"
+                                  value="3years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3years</span>
@@ -1935,7 +1935,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Bangladesh"                                                             onchange="filter()"
+                                  value="Bangladesh"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Bangladesh</span>
@@ -1944,7 +1944,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="China"                                                             onchange="filter()"
+                                  value="China"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>China</span>
@@ -1953,7 +1953,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Pakistan"                                                             onchange="filter()"
+                                  value="Pakistan"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Pakistan</span>
@@ -1962,7 +1962,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="India"                                                             onchange="filter()"
+                                  value="India"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>India</span>
@@ -1971,7 +1971,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="United States of America"                                                             onchange="filter()"
+                                  value="United States of America"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>United States of America</span>
@@ -1980,7 +1980,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Russia"                                                             onchange="filter()"
+                                  value="Russia"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Russia</span>
@@ -1989,7 +1989,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Japan"                                                             onchange="filter()"
+                                  value="Japan"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Japan</span>
@@ -1998,7 +1998,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Canada"                                                             onchange="filter()"
+                                  value="Canada"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Canada</span>
@@ -2007,7 +2007,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Australia"                                                             onchange="filter()"
+                                  value="Australia"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Australia</span>
@@ -2016,7 +2016,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="New Zealand"                                                             onchange="filter()"
+                                  value="New Zealand"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>New Zealand</span>
@@ -2025,7 +2025,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="UK"                                                             onchange="filter()"
+                                  value="UK"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>UK</span>
@@ -2034,7 +2034,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Malaysia"                                                             onchange="filter()"
+                                  value="Malaysia"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Malaysia</span>
@@ -2043,7 +2043,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="France"                                                             onchange="filter()"
+                                  value="France"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>France</span>
@@ -2052,7 +2052,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Germany"                                                             onchange="filter()"
+                                  value="Germany"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Germany</span>
@@ -2061,7 +2061,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Korea"                                                             onchange="filter()"
+                                  value="Korea"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Korea</span>
@@ -2070,7 +2070,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Dubai"                                                             onchange="filter()"
+                                  value="Dubai"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Dubai</span>
@@ -2079,7 +2079,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Italy"                                                             onchange="filter()"
+                                  value="Italy"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Italy</span>
@@ -2097,7 +2097,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="No Warranty"                                                             onchange="filter()"
+                                  value="No Warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>No Warranty</span>
@@ -2106,7 +2106,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Brand Warranty"                                                             onchange="filter()"
+                                  value="Brand Warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Brand Warranty</span>
@@ -2115,7 +2115,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Seller Warranty"                                                             onchange="filter()"
+                                  value="Seller Warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Seller Warranty</span>
@@ -2124,7 +2124,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="7 Days"                                                             onchange="filter()"
+                                  value="7 Days"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>7 Days</span>
@@ -2133,7 +2133,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10 Days"                                                             onchange="filter()"
+                                  value="10 Days"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10 Days</span>
@@ -2142,7 +2142,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Life Time Warranty"                                                             onchange="filter()"
+                                  value="Life Time Warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Life Time Warranty</span>
@@ -2151,7 +2151,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Local seller warranty"                                                             onchange="filter()"
+                                  value="Local seller warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Local seller warranty</span>
@@ -2160,7 +2160,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1Year"                                                             onchange="filter()"
+                                  value="1Year"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1Year</span>
@@ -2169,7 +2169,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3Months"                                                             onchange="filter()"
+                                  value="3Months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3Months</span>
@@ -2178,7 +2178,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3Years"                                                             onchange="filter()"
+                                  value="3Years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3Years</span>
@@ -2187,7 +2187,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="4Years"                                                             onchange="filter()"
+                                  value="4Years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>4Years</span>
@@ -2196,7 +2196,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="6Months"                                                             onchange="filter()"
+                                  value="6Months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>6Months</span>
@@ -2205,7 +2205,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="2 Years"                                                             onchange="filter()"
+                                  value="2 Years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>2 Years</span>
@@ -2214,7 +2214,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="5 Years"                                                             onchange="filter()"
+                                  value="5 Years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>5 Years</span>
@@ -2223,7 +2223,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="6 Years"                                                             onchange="filter()"
+                                  value="6 Years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>6 Years</span>
@@ -2232,7 +2232,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1Month"                                                             onchange="filter()"
+                                  value="1Month"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1Month</span>
@@ -2241,7 +2241,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Shelf Life"                                                             onchange="filter()"
+                                  value="Shelf Life"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Shelf Life</span>
@@ -2250,7 +2250,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1week-12 weeks"                                                             onchange="filter()"
+                                  value="1week-12 weeks"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1week-12 weeks</span>
@@ -2259,7 +2259,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1month-60 months"                                                             onchange="filter()"
+                                  value="1month-60 months"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1month-60 months</span>
@@ -2268,7 +2268,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1year-5years"                                                             onchange="filter()"
+                                  value="1year-5years"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1year-5years</span>
@@ -2277,7 +2277,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Non-local warranty"                                                             onchange="filter()"
+                                  value="Non-local warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Non-local warranty</span>
@@ -2286,7 +2286,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="International Manufacturer Warranty"                                                             onchange="filter()"
+                                  value="International Manufacturer Warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>International Manufacturer Warranty</span>
@@ -2295,7 +2295,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="International Seller Warranty"                                                             onchange="filter()"
+                                  value="International Seller Warranty"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>International Seller Warranty</span>
@@ -2304,7 +2304,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10 Years and above"                                                             onchange="filter()"
+                                  value="10 Years and above"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10 Years and above</span>
@@ -2322,7 +2322,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Installment"                                                             onchange="filter()"
+                                  value="Installment"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Installment</span>
@@ -2331,7 +2331,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Cash On Delivery"                                                             onchange="filter()"
+                                  value="Cash On Delivery"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Cash On Delivery</span>
@@ -2340,7 +2340,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Fulfilled By Daraz"                                                             onchange="filter()"
+                                  value="Fulfilled By Daraz"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Fulfilled By Daraz</span>
@@ -2349,7 +2349,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Free Shipping"                                                             onchange="filter()"
+                                  value="Free Shipping"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Free Shipping</span>
@@ -2358,7 +2358,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Admin Deal Mall"                                                             onchange="filter()"
+                                  value="Admin Deal Mall"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Admin Deal Mall</span>
@@ -2367,7 +2367,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Products only"                                                             onchange="filter()"
+                                  value="Products only"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Products only</span>
@@ -2376,7 +2376,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Product with services"                                                             onchange="filter()"
+                                  value="Product with services"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Product with services</span>
@@ -2385,7 +2385,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Service only"                                                             onchange="filter()"
+                                  value="Service only"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Service only</span>
@@ -2394,7 +2394,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Fulfilled By Admin Deal"                                                             onchange="filter()"
+                                  value="Fulfilled By Admin Deal"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Fulfilled By Admin Deal</span>
@@ -2412,7 +2412,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Dhaka"                                                             onchange="filter()"
+                                  value="Dhaka"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Dhaka</span>
@@ -2421,7 +2421,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Chittagong"                                                             onchange="filter()"
+                                  value="Chittagong"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Chittagong</span>
@@ -2430,7 +2430,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Khulna"                                                             onchange="filter()"
+                                  value="Khulna"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Khulna</span>
@@ -2439,7 +2439,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Sylhet"                                                             onchange="filter()"
+                                  value="Sylhet"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Sylhet</span>
@@ -2448,7 +2448,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Rajjshahi"                                                             onchange="filter()"
+                                  value="Rajjshahi"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Rajjshahi</span>
@@ -2457,7 +2457,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Mymensingh"                                                             onchange="filter()"
+                                  value="Mymensingh"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Mymensingh</span>
@@ -2466,7 +2466,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Barisal"                                                             onchange="filter()"
+                                  value="Barisal"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Barisal</span>
@@ -2475,7 +2475,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Rangpur"                                                             onchange="filter()"
+                                  value="Rangpur"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Rangpur</span>
@@ -2484,7 +2484,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Comilla"                                                             onchange="filter()"
+                                  value="Comilla"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Comilla</span>
@@ -2493,7 +2493,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Narayanganj"                                                             onchange="filter()"
+                                  value="Narayanganj"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Narayanganj</span>
@@ -2502,7 +2502,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Gazipur"                                                             onchange="filter()"
+                                  value="Gazipur"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Gazipur</span>
@@ -2520,7 +2520,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10 gm"                                                             onchange="filter()"
+                                  value="10 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10 gm</span>
@@ -2529,7 +2529,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="20 gm"                                                             onchange="filter()"
+                                  value="20 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>20 gm</span>
@@ -2538,7 +2538,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="30 gm"                                                             onchange="filter()"
+                                  value="30 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>30 gm</span>
@@ -2547,7 +2547,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="40 gm"                                                             onchange="filter()"
+                                  value="40 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>40 gm</span>
@@ -2556,7 +2556,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="50 gm"                                                             onchange="filter()"
+                                  value="50 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>50 gm</span>
@@ -2565,7 +2565,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="60 gm"                                                             onchange="filter()"
+                                  value="60 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>60 gm</span>
@@ -2574,7 +2574,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="70 gm"                                                             onchange="filter()"
+                                  value="70 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>70 gm</span>
@@ -2583,7 +2583,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="80 gm"                                                             onchange="filter()"
+                                  value="80 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>80 gm</span>
@@ -2592,7 +2592,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="90 gm"                                                             onchange="filter()"
+                                  value="90 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>90 gm</span>
@@ -2601,7 +2601,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="100 gm"                                                             onchange="filter()"
+                                  value="100 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>100 gm</span>
@@ -2610,7 +2610,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="110 gm"                                                             onchange="filter()"
+                                  value="110 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>110 gm</span>
@@ -2619,7 +2619,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="120 gm"                                                             onchange="filter()"
+                                  value="120 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>120 gm</span>
@@ -2628,7 +2628,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="130 gm"                                                             onchange="filter()"
+                                  value="130 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>130 gm</span>
@@ -2637,7 +2637,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="140 gm"                                                             onchange="filter()"
+                                  value="140 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>140 gm</span>
@@ -2646,7 +2646,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="150 gm"                                                             onchange="filter()"
+                                  value="150 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>150 gm</span>
@@ -2655,7 +2655,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="160 gm"                                                             onchange="filter()"
+                                  value="160 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>160 gm</span>
@@ -2664,7 +2664,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="170 gm"                                                             onchange="filter()"
+                                  value="170 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>170 gm</span>
@@ -2673,7 +2673,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="180 gm"                                                             onchange="filter()"
+                                  value="180 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>180 gm</span>
@@ -2682,7 +2682,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="190 gm"                                                             onchange="filter()"
+                                  value="190 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>190 gm</span>
@@ -2691,7 +2691,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="200 gm"                                                             onchange="filter()"
+                                  value="200 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>200 gm</span>
@@ -2700,7 +2700,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="220 gm"                                                             onchange="filter()"
+                                  value="220 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>220 gm</span>
@@ -2709,7 +2709,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="230 gm"                                                             onchange="filter()"
+                                  value="230 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>230 gm</span>
@@ -2718,7 +2718,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="250 gm"                                                             onchange="filter()"
+                                  value="250 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>250 gm</span>
@@ -2727,7 +2727,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="260 gm"                                                             onchange="filter()"
+                                  value="260 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>260 gm</span>
@@ -2736,7 +2736,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="270 gm"                                                             onchange="filter()"
+                                  value="270 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>270 gm</span>
@@ -2745,7 +2745,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="280 gm"                                                             onchange="filter()"
+                                  value="280 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>280 gm</span>
@@ -2754,7 +2754,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="290 gm"                                                             onchange="filter()"
+                                  value="290 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>290 gm</span>
@@ -2763,7 +2763,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="300 gm"                                                             onchange="filter()"
+                                  value="300 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>300 gm</span>
@@ -2772,7 +2772,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="330 gm"                                                             onchange="filter()"
+                                  value="330 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>330 gm</span>
@@ -2781,7 +2781,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="350 gm"                                                             onchange="filter()"
+                                  value="350 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>350 gm</span>
@@ -2790,7 +2790,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="400 gm"                                                             onchange="filter()"
+                                  value="400 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>400 gm</span>
@@ -2799,7 +2799,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="450 gm"                                                             onchange="filter()"
+                                  value="450 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>450 gm</span>
@@ -2808,7 +2808,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="470 gm"                                                             onchange="filter()"
+                                  value="470 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>470 gm</span>
@@ -2817,7 +2817,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="480 gm"                                                             onchange="filter()"
+                                  value="480 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>480 gm</span>
@@ -2826,7 +2826,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="500 gm"                                                             onchange="filter()"
+                                  value="500 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>500 gm</span>
@@ -2835,7 +2835,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="600 gm"                                                             onchange="filter()"
+                                  value="600 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>600 gm</span>
@@ -2844,7 +2844,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="700 gm"                                                             onchange="filter()"
+                                  value="700 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>700 gm</span>
@@ -2853,7 +2853,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="750 gm"                                                             onchange="filter()"
+                                  value="750 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>750 gm</span>
@@ -2862,7 +2862,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="800 gm"                                                             onchange="filter()"
+                                  value="800 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>800 gm</span>
@@ -2871,7 +2871,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="900 gm"                                                             onchange="filter()"
+                                  value="900 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>900 gm</span>
@@ -2880,7 +2880,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="960 gm"                                                             onchange="filter()"
+                                  value="960 gm"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>960 gm</span>
@@ -2889,7 +2889,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-4 kg"                                                             onchange="filter()"
+                                  value="0-4 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-4 kg</span>
@@ -2898,7 +2898,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-11kg"                                                             onchange="filter()"
+                                  value="0-11kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-11kg</span>
@@ -2907,7 +2907,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-13 kg"                                                             onchange="filter()"
+                                  value="0-13 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-13 kg</span>
@@ -2916,7 +2916,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-15 Kg"                                                             onchange="filter()"
+                                  value="0-15 Kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-15 Kg</span>
@@ -2925,7 +2925,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-18 kg"                                                             onchange="filter()"
+                                  value="0-18 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-18 kg</span>
@@ -2934,7 +2934,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-20 kg"                                                             onchange="filter()"
+                                  value="0-20 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-20 kg</span>
@@ -2943,7 +2943,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-23 kg"                                                             onchange="filter()"
+                                  value="0-23 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-23 kg</span>
@@ -2952,7 +2952,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-25 kg"                                                             onchange="filter()"
+                                  value="0-25 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-25 kg</span>
@@ -2961,7 +2961,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="0-30 kg"                                                             onchange="filter()"
+                                  value="0-30 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>0-30 kg</span>
@@ -2970,7 +2970,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3-8 kg"                                                             onchange="filter()"
+                                  value="3-8 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3-8 kg</span>
@@ -2979,7 +2979,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3.5-11kg"                                                             onchange="filter()"
+                                  value="3.5-11kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3.5-11kg</span>
@@ -2988,7 +2988,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3.5-12 kg"                                                             onchange="filter()"
+                                  value="3.5-12 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3.5-12 kg</span>
@@ -2997,7 +2997,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3.5-15 kg"                                                             onchange="filter()"
+                                  value="3.5-15 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3.5-15 kg</span>
@@ -3006,7 +3006,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="4-6 kgs"                                                             onchange="filter()"
+                                  value="4-6 kgs"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>4-6 kgs</span>
@@ -3015,7 +3015,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="6-12 kg"                                                             onchange="filter()"
+                                  value="6-12 kg"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>6-12 kg</span>
@@ -3033,7 +3033,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Single Item"                                                             onchange="filter()"
+                                  value="Single Item"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Single Item</span>
@@ -3042,7 +3042,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Multi-pack"                                                             onchange="filter()"
+                                  value="Multi-pack"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Multi-pack</span>
@@ -3060,7 +3060,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Organic"                                                             onchange="filter()"
+                                  value="Organic"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Organic</span>
@@ -3069,7 +3069,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Paraben Free"                                                             onchange="filter()"
+                                  value="Paraben Free"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Paraben Free</span>
@@ -3078,7 +3078,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Alcohol Free"                                                             onchange="filter()"
+                                  value="Alcohol Free"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Alcohol Free</span>
@@ -3087,7 +3087,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Fragrance Free"                                                             onchange="filter()"
+                                  value="Fragrance Free"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Fragrance Free</span>
@@ -3096,7 +3096,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Fat Free"                                                             onchange="filter()"
+                                  value="Fat Free"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Fat Free</span>
@@ -3105,7 +3105,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Sugar Free"                                                             onchange="filter()"
+                                  value="Sugar Free"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Sugar Free</span>
@@ -3114,7 +3114,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Suitable for vegetarian"                                                             onchange="filter()"
+                                  value="Suitable for vegetarian"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Suitable for vegetarian</span>
@@ -3123,7 +3123,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="No Preservative"                                                             onchange="filter()"
+                                  value="No Preservative"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>No Preservative</span>
@@ -3132,7 +3132,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="No Colourings"                                                             onchange="filter()"
+                                  value="No Colourings"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>No Colourings</span>
@@ -3141,7 +3141,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="No Artificial Flavors"                                                             onchange="filter()"
+                                  value="No Artificial Flavors"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>No Artificial Flavors</span>
@@ -3150,7 +3150,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Do not stand bottle on hot"                                                             onchange="filter()"
+                                  value="Do not stand bottle on hot"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Do not stand bottle on hot</span>
@@ -3159,7 +3159,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Sodium Free"                                                             onchange="filter()"
+                                  value="Sodium Free"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Sodium Free</span>
@@ -3168,7 +3168,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Carbon Neutral"                                                             onchange="filter()"
+                                  value="Carbon Neutral"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Carbon Neutral</span>
@@ -3177,7 +3177,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Transport Upright"                                                             onchange="filter()"
+                                  value="Transport Upright"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Transport Upright</span>
@@ -3195,7 +3195,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Body"                                                             onchange="filter()"
+                                  value="Body"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Body</span>
@@ -3204,7 +3204,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Skin"                                                             onchange="filter()"
+                                  value="Skin"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Skin</span>
@@ -3213,7 +3213,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Hand"                                                             onchange="filter()"
+                                  value="Hand"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Hand</span>
@@ -3222,7 +3222,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Face"                                                             onchange="filter()"
+                                  value="Face"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Face</span>
@@ -3231,7 +3231,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Foot"                                                             onchange="filter()"
+                                  value="Foot"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Foot</span>
@@ -3240,7 +3240,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Ears"                                                             onchange="filter()"
+                                  value="Ears"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Ears</span>
@@ -3249,7 +3249,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Mouth"                                                             onchange="filter()"
+                                  value="Mouth"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Mouth</span>
@@ -3258,7 +3258,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Nose"                                                             onchange="filter()"
+                                  value="Nose"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Nose</span>
@@ -3276,7 +3276,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Folic Acid"                                                             onchange="filter()"
+                                  value="Folic Acid"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Folic Acid</span>
@@ -3285,7 +3285,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Vitamin D"                                                             onchange="filter()"
+                                  value="Vitamin D"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Vitamin D</span>
@@ -3294,7 +3294,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Vitamin E"                                                             onchange="filter()"
+                                  value="Vitamin E"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Vitamin E</span>
@@ -3303,7 +3303,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Vitamin A"                                                             onchange="filter()"
+                                  value="Vitamin A"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Vitamin A</span>
@@ -3312,7 +3312,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Vitamin B"                                                             onchange="filter()"
+                                  value="Vitamin B"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Vitamin B</span>
@@ -3321,7 +3321,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="VITAMIN C"                                                             onchange="filter()"
+                                  value="VITAMIN C"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>VITAMIN C</span>
@@ -3330,7 +3330,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Biotin"                                                             onchange="filter()"
+                                  value="Biotin"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Biotin</span>
@@ -3339,7 +3339,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Ginseng"                                                             onchange="filter()"
+                                  value="Ginseng"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Ginseng</span>
@@ -3348,7 +3348,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Collagen"                                                             onchange="filter()"
+                                  value="Collagen"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Collagen</span>
@@ -3357,7 +3357,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Garcinia Cambogia"                                                             onchange="filter()"
+                                  value="Garcinia Cambogia"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Garcinia Cambogia</span>
@@ -3366,7 +3366,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Magnesium"                                                             onchange="filter()"
+                                  value="Magnesium"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Magnesium</span>
@@ -3375,7 +3375,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Calcium"                                                             onchange="filter()"
+                                  value="Calcium"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Calcium</span>
@@ -3384,7 +3384,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Zinc"                                                             onchange="filter()"
+                                  value="Zinc"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Zinc</span>
@@ -3393,7 +3393,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Omega Fatty Acids"                                                             onchange="filter()"
+                                  value="Omega Fatty Acids"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Omega Fatty Acids</span>
@@ -3402,7 +3402,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Whey Protein"                                                             onchange="filter()"
+                                  value="Whey Protein"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Whey Protein</span>
@@ -3420,7 +3420,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Manual"                                                             onchange="filter()"
+                                  value="Manual"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Manual</span>
@@ -3429,7 +3429,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Automatic"                                                             onchange="filter()"
+                                  value="Automatic"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Automatic</span>
@@ -3447,7 +3447,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="1"                                                             onchange="filter()"
+                                  value="1"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>1</span>
@@ -3456,7 +3456,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="3"                                                             onchange="filter()"
+                                  value="3"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>3</span>
@@ -3465,7 +3465,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="36"                                                             onchange="filter()"
+                                  value="36"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>36</span>
@@ -3474,7 +3474,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="10"                                                             onchange="filter()"
+                                  value="10"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>10</span>
@@ -3483,7 +3483,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="9"                                                             onchange="filter()"
+                                  value="9"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>9</span>
@@ -3492,7 +3492,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="30"                                                             onchange="filter()"
+                                  value="30"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>30</span>
@@ -3501,7 +3501,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="12"                                                             onchange="filter()"
+                                  value="12"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>12</span>
@@ -3510,7 +3510,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="15"                                                             onchange="filter()"
+                                  value="15"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>15</span>
@@ -3519,7 +3519,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="6"                                                             onchange="filter()"
+                                  value="6"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>6</span>
@@ -3528,7 +3528,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="72"                                                             onchange="filter()"
+                                  value="72"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>72</span>
@@ -3537,7 +3537,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="18"                                                             onchange="filter()"
+                                  value="18"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>18</span>
@@ -3546,7 +3546,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="100"                                                             onchange="filter()"
+                                  value="100"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>100</span>
@@ -3555,7 +3555,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="2"                                                             onchange="filter()"
+                                  value="2"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>2</span>
@@ -3564,7 +3564,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="50"                                                             onchange="filter()"
+                                  value="50"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>50</span>
@@ -3573,7 +3573,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="20"                                                             onchange="filter()"
+                                  value="20"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>20</span>
@@ -3591,7 +3591,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Dry"                                                             onchange="filter()"
+                                  value="Dry"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Dry</span>
@@ -3600,7 +3600,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Oragnic"                                                             onchange="filter()"
+                                  value="Oragnic"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Oragnic</span>
@@ -3609,7 +3609,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Gluten Free"                                                             onchange="filter()"
+                                  value="Gluten Free"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Gluten Free</span>
@@ -3618,7 +3618,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Raw"                                                             onchange="filter()"
+                                  value="Raw"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Raw</span>
@@ -3627,7 +3627,7 @@
                                <input
                                   type="checkbox"
                                   name="selected_attribute_values[]"
-                                  value="Liquid"                                                             onchange="filter()"
+                                  value="Liquid"                                                             
                                   >
                                <span class="aiz-square-check"></span>
                                <span>Liquid</span>
@@ -3644,10 +3644,10 @@
                       <a class="text-reset" href="https://admindeal.com.bd">Home</a>
                    </li>
                    <li class="breadcrumb-item opacity-50">
-                      <a class="text-reset" href="https://admindeal.com.bd/search">All categories</a>
+                      <a class="text-reset" href="https://admindeal.com.bd/search">All Brands</a>
                    </li>
                    <li class="text-dark fw-600 breadcrumb-item">
-                      <a class="text-reset" href="https://admindeal.com.bd/category/groceries-lifestyle-medical">"Groceries, Lifestyle &amp; Medical"</a>
+                      <a class="text-reset" href="https://admindeal.com.bd/category/groceries-lifestyle-medical">{{ brandName }}</a>
                    </li>
                 </ul>
                 <div class="text-left">
@@ -3665,14 +3665,14 @@
                       </div>
                       <div class="col-6 col-lg-auto mb-3 w-lg-200px">
                          <label class="mb-0 opacity-50">Brands</label>
-                         <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" onchange="filter()">
+                         <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" >
                             <option value="">All Brands</option>
                             <option value="axe" >AXE</option>
                          </select>
                       </div>
                       <div class="col-6 col-lg-auto mb-3 w-lg-200px">
                          <label class="mb-0 opacity-50">Sort by</label>
-                         <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" onchange="filter()">
+                         <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" >
                             <option value="newest" >Newest</option>
                             <option value="oldest" >Oldest</option>
                             <option value="price-asc" >Price low to high</option>
@@ -3683,17 +3683,15 @@
                 </div>
                 <input type="hidden" name="min_price" value="">
                 <input type="hidden" name="max_price" value="">
-                <div class="row gutters-5 row-cols-xxl-5 row-cols-xl-5 row-cols-lg-5 row-cols-md-3 row-cols-2">
-                   <div class="col">
+                <div v-if="brandWiseProducts.length>0" class="row gutters-5 row-cols-xxl-5 row-cols-xl-5 row-cols-lg-5 row-cols-md-3 row-cols-2">
+                   <div class="col" v-for="(product,index) in brandWiseProducts">
                       <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                          <div class="position-relative">
                             <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block">
                             <img
                                class="img-fit lazyload mx-auto h-140px h-md-210px"
-                               src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                               data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/BmCScDBn9c286So1e0Vf2CIM8bdO6xNAXNBKU6KF.webp"
-                               alt="Coriander Leaves (Dhonia Pata) ± 10 gm"
-                               onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder.jpg';"
+                               :src="product.thumbnail_image"
+                               :alt="product.name"
                                >
                             </a>
                             <div class="absolute-top-right aiz-p-hov-icon">
@@ -3710,53 +3708,24 @@
                          </div>
                          <div class="p-md-3 p-2 text-left">
                             <div class="fs-15">
-                               <span class="fw-700 text-primary">৳30 <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-0%</span> </span> 
+                               <span class="fw-700 text-primary">{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{ product.discount }}</span> </span> 
                             </div>
                             <div class="rating rating-sm mt-1">
-                               <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
+                               <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> ({{ product.rating }})
                             </div>
                             <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                               <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block text-reset">Coriander Leaves (Dhonia Pata) ± 10 gm</a>
+                               <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block text-reset">{{ product.name }}</a>
                             </h3>
-                            <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
+                            <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
                                Cashback :
                                <span class="fw-700 float-right">0</span>
-                            </div>
+                            </div> -->
                          </div>
                       </div>
                    </div>
                 </div>
-                <div class="aiz-pagination aiz-pagination-center mt-4">
-                   <nav>
-                      <ul class="pagination">
-                         <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-                            <span class="page-link" aria-hidden="true">&lsaquo;</span>
-                         </li>
-                         <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=2">2</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=3">3</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=4">4</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=5">5</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=6">6</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=7">7</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=8">8</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=9">9</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=10">10</a></li>
-                         <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=24">24</a></li>
-                         <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=25">25</a></li>
-                         <li class="page-item">
-                            <a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=2" rel="next" aria-label="Next »">&rsaquo;</a>
-                         </li>
-                      </ul>
-                   </nav>
-                </div>
-                <div class="bg-white shadow-sm card my-5 px-4">
-                   <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
-                      <p >
-                      </p>
-                   </div>
-                   <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
+                <div v-else>
+                       <h5 class="text-danger text-center">Product Not Found..</h5>
                 </div>
              </div>
           </div>
@@ -3766,12 +3735,29 @@
  </template>
  
  <script>
- 
+import axios from 'axios'
  export default {
-     props: ['id'],
+     props: ['slug'],
+     data(){
+      return{
+         brandWiseProducts:[],  
+         brandName:""
+      }
+     },
       mounted(){
-         console.log(this.id);
-      }  
+         this.getBrandWiseProduct(this.rootDomain,this.slug)
+      },
+
+      methods:{
+         getBrandWiseProduct(rootDomain,slug){
+            axios.get(rootDomain+'vue/v3/products/brand/'+slug)
+            .then((response)=>{
+               
+               this.brandWiseProducts = response.data[0].data;
+               this.brandName = response.data[1];
+            })
+         }
+      }
  }
  
  </script>

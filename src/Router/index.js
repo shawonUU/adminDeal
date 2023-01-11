@@ -17,15 +17,18 @@ import LoginComponent from '../components/pages/Auth/Login.vue';
 import Registration from '../components/pages/Auth/Registration.vue';
 import SellerRegistration from '../components/pages/Auth/SellerRegistration.vue';
 import affiliateRegistration from '../components/pages/Auth/AffiliateRegistration.vue';
+//for resources
 import Blog from '../components/pages/FrontEnd/Blog.vue';
 import Categories from '../components/pages/FrontEnd/Categories.vue';
 import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
+import BrandWiseProduct from '../components/ResourceComponents/ProductComponents/BrandWiseProduct.vue';
 // Order Routes
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
 import SingleProduct from '../components/ResourceComponents/ProductComponents/SingleProduct.vue';
 
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
+import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/ShopWiseProduct.vue';
 
 const routes = [
   {
@@ -84,6 +87,18 @@ const routes = [
     name: 'singleProduct',
     props:true,
     component: SingleProduct
+  },
+  {
+    path: '/brand/:slug?',
+    name: 'Brand',
+    props: true,
+    component: BrandWiseProduct
+  },
+  {
+    path: '/shop/:slug?',
+    name: 'Shop',
+    props: true,
+    component: ShopWiseProduct
   },
 //important pages
 {

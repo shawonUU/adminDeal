@@ -7,8 +7,8 @@
             <a href="https://admindeal.com.bd/brands" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a> 
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
-            <li v-for="(brand,index) in brands.slice(0, 8)"  class="minw-0 col-3 col-md mt-3   text-center ">
-               <a  href="https://admindeal.com.bd/brand/dell" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
+            <li v-for="(brand,index) in brands.slice(0, 8)"  class="minw-0 col-3 col-md mt-3 text-center ">
+               <a @click="brandSlug(brand.slug)" style="cursor:pointer" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
                   <img class="img-fluid img lazyload h-60px" :alt="brand.name" height="78" :src="brand.logo"> 
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ brand.name }}</div>
                </a>
@@ -16,8 +16,8 @@
          </ul>
          <div class="d-none d-lg-block">
          <ul class="list-unstyled mb-0 row gutters-5">
-            <li v-for="(brand,index) in brands.slice(8, 16)"  class="minw-0 col-3 col-md mt-3   text-center ">
-               <a  href="https://admindeal.com.bd/brand/dell" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
+            <li v-for="(brand,index) in brands.slice(8, 16)"  class="minw-0 col-3 col-md mt-3 text-center ">
+               <a @click="brandSlug(brand.slug)" style="cursor:pointer" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
                   <img class="img-fluid img lazyload h-60px" :alt="brand.name" height="78" :src="brand.logo"> 
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ brand.name }}</div>
                </a>
@@ -28,7 +28,6 @@
    </div>
 </section>
 </template>
-
 <script>
 import axios from 'axios'
 export default {
@@ -37,7 +36,7 @@ export default {
             brands:[],
         }
     },
-    created(){
+    beforeCreated(){
         this.getBrands();
     },
     mounted(){
@@ -45,12 +44,19 @@ export default {
     },
     methods:{
        getBrands(rootDomain){
-        axios.get('https://localhost/backend/vue/v3/brands')
+        axios.get(rootDomain+'vue/v3/brands')
         .then((response)=>{
-            // console.log(response.data.data);
             this.brands = response.data.data;
         })
-       } 
+       },
+       brandSlug(slug){
+         this.$router.push({
+            name: "Brand",
+            params: {
+            slug: slug
+        }
+      });
+       }
     }
 }
 </script>

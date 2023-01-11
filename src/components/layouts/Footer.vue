@@ -835,7 +835,6 @@ export default {
   getImportantPages(rootDomain){
     axios.get(rootDomain+'vue/get-important-pages')
     .then((response)=>{
-        console.log(response.data)
         this.importantPages = response.data.pages;
         this.importantPagesTitle = response.data.title;
         this.pageLinks = response.data.links
