@@ -61,38 +61,13 @@
           </div>
           <div class="col-lg-3 col-md-6 col-6">
             <div class="text-center text-md-left mt-4">
-              <h4 class="fs-13 text-uppercase fw-600 border-bottom border-gray-900 pb-2 mb-4"> Important Page </h4>
+              <h4 class="fs-13 text-uppercase fw-600 border-bottom border-gray-900 pb-2 mb-4"> {{ importantPagesTitle }} </h4>
               <ul class="list-unstyled">
-                <li class="mb-2">
-                  <router-link :to="{name:'About'}" class="opacity-50 hov-opacity-100 text-reset"> About Us </router-link>
+
+                <li v-for="(page,indexUp) in importantPages" :key="indexUp" class="mb-2">
+                  <router-link :to="pageLinks[indexUp]" class="opacity-50 hov-opacity-100 text-reset"> {{ page }} </router-link>
                 </li>
-                <li class="mb-2">
-                  <router-link :to="{name:'ContactUs'}" class="opacity-50 hov-opacity-100 text-reset"> Contact Us </router-link>
-                </li>
-                <li class="mb-2">
-                  <router-link  :to="{name:'CookiePolicy'}" class="opacity-50 hov-opacity-100 text-reset"> Cookie Policy </router-link>
-                </li>
-                <li class="mb-2">
-                    <router-link :to="{name:'PrivacyPolicy'}" class="opacity-50 hov-opacity-100 text-reset"> Privacy Policys </router-link>
-                </li>
-                <li class="mb-2">
-                  <router-link :to="{name:'terms'}" class="opacity-50 hov-opacity-100 text-reset"> Tarms &amp; Condition </router-link>
-                </li>
-                <li class="mb-2">
-                  <router-link :to="{name:'ReturnPolicy'}" class="opacity-50 hov-opacity-100 text-reset"> Return &amp; Refund Policy </router-link>
-                </li>
-                <li class="mb-2">
-                  <router-link :to="{name:'WhyDoYouBelieve'}" class="opacity-50 hov-opacity-100 text-reset"> Why do You Believe us ? </router-link>
-                </li>
-                <li class="mb-2">
-                  <router-link  :to="{name:'SellerPolicy'}" class="opacity-50 hov-opacity-100 text-reset"> Seller Policy of AdminDeal </router-link>
-                </li>
-                <li class="mb-2">
-                  <router-link :to="{name:'SupportPolicy'}" class="opacity-50 hov-opacity-100 text-reset"> Support Policy of AdminDeal </router-link >
-                </li>
-                <li class="mb-2">
-                  <router-link :to="{name:'ReplacementWarrantyPolicy'}" class="opacity-50 hov-opacity-100 text-reset"> Replacement Warranty Policy </router-link>
-                </li>
+
               </ul>
             </div>
           </div>
@@ -844,8 +819,29 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-
+  data(){
+    return{
+        importantPagesTitle:"",
+        importantPages:[],
+        pageLinks:[],
+    }
+  },
+  created(){
+    this.getImportantPages(this.rootDomain);
+  },
+ methods:{
+  getImportantPages(rootDomain){
+    axios.get(rootDomain+'vue/get-important-pages')
+    .then((response)=>{
+        console.log(response.data)
+        this.importantPages = response.data.pages;
+        this.importantPagesTitle = response.data.title;
+        this.pageLinks = response.data.links
+    })
+  }
+ }
 }
 </script>
 
