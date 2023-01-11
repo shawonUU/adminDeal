@@ -611,7 +611,7 @@
                                        <i class="las la-star active"></i>
                                        <i class="las la-star active"></i>
                                        <i class="las la-star active"></i>
-                                                                                               </span> --> 
+                                         </span> --> 
                                  </div>
                                  <!-- my review design <div class="opacity-60 mb-2">
                                     27-09-2022</div> --> 
