@@ -69,7 +69,7 @@
      </div>
    </div>
  </div>
-    <!-- <TodaysOffer></TodaysOffer>
+    <TodaysOffer></TodaysOffer>
     <BrandComponent></BrandComponent>
     <SellersComponent></SellersComponent>
     <NewProduct></NewProduct>
@@ -77,7 +77,7 @@
     <BestSellingProduct></BestSellingProduct>
     <AuctionProducts></AuctionProducts>
     <HomeCategoriesProduct></HomeCategoriesProduct>
-    <FreelanceService></FreelanceService> -->
+    <FreelanceService></FreelanceService>
     <AllProductVue></AllProductVue>
 </template>
 

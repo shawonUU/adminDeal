@@ -3710,9 +3710,14 @@
                             <div class="fs-15">
                                <span class="fw-700 text-primary">{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{ product.discount }}</span> </span> 
                             </div>
+                            
                             <div class="rating rating-sm mt-1">
-                               <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> ({{ product.rating }})
+                              <template v-for="index in 5">
+                                 <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                                 <i v-else class = 'las la-star'></i>
+                              </template>
                             </div>
+                              ({{ product.rating }})
                             <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                                <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block text-reset">{{ product.name }}</a>
                             </h3>
