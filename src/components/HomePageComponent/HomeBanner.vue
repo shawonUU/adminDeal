@@ -69,7 +69,7 @@
      </div>
    </div>
  </div>
-    <TodaysOffer></TodaysOffer>
+    <!-- <TodaysOffer></TodaysOffer>
     <BrandComponent></BrandComponent>
     <SellersComponent></SellersComponent>
     <NewProduct></NewProduct>
@@ -77,7 +77,8 @@
     <BestSellingProduct></BestSellingProduct>
     <AuctionProducts></AuctionProducts>
     <HomeCategoriesProduct></HomeCategoriesProduct>
-    <FreelanceService></FreelanceService>
+    <FreelanceService></FreelanceService> -->
+    <AllProductVue></AllProductVue>
 </template>
 
 <script>
@@ -98,6 +99,9 @@ import HomeCategoriesProduct from "../ResourceComponents/ProductComponents/HomeC
 import FreelanceService from "../ResourceComponents/ProductComponents/FreelanceService.vue";
 import BrandComponent from "./BrandsComponent.vue";
 import SellersComponent from "./SellersComponent.vue";
+
+import AllProductVue from '../ResourceComponents/ProductComponents/AllProduct.vue';
+
 import { useCategoryStore } from "@/Store/Categories";
 import { mapState, mapActions} from "pinia";
 import axios from "axios";
@@ -120,7 +124,8 @@ export default {
   BestSellingProduct,
   AuctionProducts,
   HomeCategoriesProduct,
-  FreelanceService
+  FreelanceService,
+  AllProductVue,
 },
  
  computed:{

@@ -12,10 +12,54 @@
         </div>
     
         <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-6 row-cols-md-3 row-cols-2 gutters-300" id="product-list">
-            
+            <template v-for="(products, indexup) in productsCollection" :id="indexup">
+                <div v-for="(product, index) in products" :id="index" class="col">
+                    <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
+                        <div class="position-relative">
+                        <a href="" class="d-block">
+                            <img class="img-fit lazyload mx-auto h-140px h-md-210px" :src="product.thumbnail_image" :data-src="product.thumbnail_image" :alt="product.name">
+                        </a>
+                        <div class="absolute-top-right aiz-p-hov-icon">
+                            <a href="javascript:void(0)"  data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
+                            <i class="la la-heart-o"></i>
+                            </a>
+                            <a href="javascript:void(0)"  data-toggle="tooltip" data-title="Add to compare" data-placement="left">
+                            <i class="las la-sync"></i>
+                            </a>
+                            <a href="javascript:void(0)"  data-toggle="tooltip" data-title="Add to cart" data-placement="left">
+                            <i class="las la-shopping-cart"></i>
+                            </a>
+                        </div>
+                        </div>
+                        <div class="p-md-3 p-2 text-left">
+                        <div class="fs-15"> 
+                            <template v-if="product.base_discounted_price != product.base_price">
+                                <del class="fw-600 opacity-50 mr-1"> ৳{{product.base_price}}</del>
+                                <span class="text-primary fw-600">৳{{product.base_discounted_price}}</span>
+                            </template>
+                            <template v-else>
+                                <span class="fw-700 text-primary">৳{{ product.base_price }}</span>
+                            </template>
+                           
+                            <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-0%</span>
+                        </div>
+                        <div class="rating rating-sm mt-1">
+                            ***{{ product.rating }} ({{ product.rating }} )
+                        </div>
+                        <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
+                            <a href="" class="d-block text-reset">{{product.name}}</a>
+                        </h3> 
+                        <!-- @if (addon_is_activated('club_point'))  -->
+                            <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border"> Cashback:0 <span class="fw-700 float-right">{{ product.earn_point }}</span>
+                            </div> 
+                        <!-- @endif -->
+                        </div>
+                    </div>
+                </div>
+            </template>
         </div>
         <div id="load-more" class="text-center">
-            <div class="fs-14 d-inline-block fw-600 btn btn-soft-primary c-pointer" onclick="loadMoreProduct()">Loading..
+            <div class="fs-14 d-inline-block fw-600 btn btn-soft-primary c-pointer" @click="loadMore()">{{ buttonText }}
             </div>
         </div>
                     
@@ -24,8 +68,33 @@
 </template>
 
 <script>
+ import axios from "axios";
 export default {
-
+    data(){
+        return{
+            productsCollection: [],
+            links: this.rootDomain+'vue/products/allpost',
+            buttonText: 'Loading..',
+        }
+    },created(){
+        this.loadMore(this.rootDomain);
+    },
+    mounted(){
+        
+    },
+    methods:{
+        loadMore(){
+            this.buttonText = 'Loading..',
+            axios.get(this.links)
+            .then((response)=>{
+                // console.log("SHAWON");
+                this.productsCollection.push(response.data.data);
+                this.links = response.data.links.next;
+                console.log(this.productsCollection);
+                this.buttonText = 'Load More';
+            })
+        }
+    }
 }
 </script>
 

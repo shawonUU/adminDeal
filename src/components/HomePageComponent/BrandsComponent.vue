@@ -6,6 +6,7 @@
             <h3 class="h5 fw-700 mb-0"> <span class="text-custom border-primary border-width-2 pb-3 d-inline-block">Top Brands</span> </h3>
             <a href="https://admindeal.com.bd/brands" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a> 
          </div>
+
          <ul class="list-unstyled mb-0 row gutters-5">
             <li v-for="(brand,index) in brands.slice(0, 8)"  class="minw-0 col-3 col-md mt-3 text-center ">
                <a @click="brandSlug(brand.slug)" style="cursor:pointer" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">

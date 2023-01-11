@@ -13,7 +13,6 @@ export const useCategoryStore = defineStore('CategoryStore',{
                     //actions
                     actions:{
                         getCat(rootDomain){
-                           
                                 axios.get(rootDomain)
                                 .then((response)=>{
                                 // console.log(response.data.featured_categories);
@@ -22,6 +21,7 @@ export const useCategoryStore = defineStore('CategoryStore',{
                                 })
                         },
                         getSubcategory(rootDomain,id){
+                            
                                 this.subcategories = [];
                                 axios.get(rootDomain+"category/nav-element-list",{params:{id:id}})
                                 .then((response)=>{
