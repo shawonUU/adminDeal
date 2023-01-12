@@ -3713,8 +3713,8 @@
                             
                             <div class="rating rating-sm mt-1">
                               <template v-for="index in 5">
-                                 <i v-if="index<=product.rating" class = 'las la-star active'></i>
-                                 <i v-else class = 'las la-star'></i>
+                                 <i v-if="index<=product.rating" class ='las la-star active'></i>
+                                 <i v-else class='las la-star'></i>
                               </template>
                             </div>
                               ({{ product.rating }})
