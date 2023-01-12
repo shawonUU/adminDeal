@@ -13,7 +13,7 @@
     
         <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-6 row-cols-md-3 row-cols-2 gutters-300" id="product-list">
             <template v-for="(products, indexup) in productsCollection" :id="indexup">
-                <div v-for="(product, index) in products" :id="index" class="col">
+                <div v-for="(product, index) in products" :key="index" class="col">
                     <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                         <div class="position-relative">
                         <a href="" class="d-block">
