@@ -10,7 +10,7 @@
             <a href="https://admindeal.com.bd/sellers" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
-            <li class="minw-0 col-3 col-md mt-3 text-center" v-for="(seller,index) in sellers.slice(0, 8)">
+            <li  v-for="(seller,index) in sellers.slice(0, 8)" :key="index" class="minw-0 col-3 col-md mt-3 text-center">
                <a style="cursor:pointer" @click="shopSlug(seller.slug)" class="hov-shadow-md border d-block rounded bg-white p-2 text-reset ">
                   <img :src="seller.logo" :alt="seller.name " class="img-fluid img h-60px ls-is-cached lazyloaded" height="78">
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ seller.name }}</div>
@@ -19,9 +19,9 @@
          </ul>
          <div class="d-none d-lg-block">
          <ul class="list-unstyled mb-0 row gutters-5">
-            <li v-for="(seller,index) in sellers.slice(8, 16)"  class="minw-0 col-3 col-md mt-3   text-center ">
+            <li v-for="(seller,index) in sellers.slice(8, 16)" :key="index" class="minw-0 col-3 col-md mt-3   text-center ">
                <a style="cursor:pointer" @click="shopSlug(seller.slug)" href="https://admindeal.com.bd/brand/dell" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
-                  <img class="img-fluid img lazyload h-60px" :alt="seller.name" height="78" :src="seller.logo"> 
+                  <img :src="seller.logo?seller.logo:`https://admindeal.com.bd/public/assets/img/placeholder.jpg`" class="img-fluid img lazyload h-60px" :alt="seller.name" height="78"> 
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ seller.name }}</div>
                </a>
             </li>

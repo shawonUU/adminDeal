@@ -13,7 +13,7 @@
     
         <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-6 row-cols-md-3 row-cols-2 gutters-300" id="product-list">
             <template v-for="(products, indexup) in productsCollection" :id="indexup">
-                <div v-for="(product, index) in products" :id="index" class="col">
+                <div v-for="(product, index) in products" :key="index" class="col">
                     <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                         <div class="position-relative">
                         <a href="" class="d-block">
@@ -49,17 +49,17 @@
                         <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                             <a href="" class="d-block text-reset">{{product.name}}</a>
                         </h3> 
-                        <!-- @if (addon_is_activated('club_point'))  -->
-                            <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border"> Cashback:0 <span class="fw-700 float-right">{{ product.earn_point }}</span>
-                            </div> 
-                        <!-- @endif -->
+                            <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border"> Cashback:0 <span class="fw-700 float-right">{{ product.earn_point }}</span>
+                            </div>  -->
                         </div>
                     </div>
                 </div>
             </template>
         </div>
         <div id="load-more" class="text-center">
-            <div class="fs-14 d-inline-block fw-600 btn btn-soft-primary c-pointer" @click="loadMore()">{{ buttonText }}
+            <div v-if="buttonIsLoading" class="fs-14 d-inline-block fw-600 btn btn-soft-primary c-pointer">Loading..
+            </div>
+            <div v-else class="fs-14 d-inline-block fw-600 btn btn-soft-primary c-pointer"  @click="loadMore()">Load More
             </div>
         </div>
                     
@@ -74,7 +74,7 @@ export default {
         return{
             productsCollection: [],
             links: this.rootDomain+'vue/products/allpost',
-            buttonText: 'Loading..',
+            buttonIsLoading:true,
         }
     },created(){
         this.loadMore(this.rootDomain);
@@ -84,14 +84,12 @@ export default {
     },
     methods:{
         loadMore(){
-            this.buttonText = 'Loading..',
+            this.buttonIsLoading=true;
             axios.get(this.links)
             .then((response)=>{
-                // console.log("SHAWON");
                 this.productsCollection.push(response.data.data);
                 this.links = response.data.links.next;
-                console.log(this.productsCollection);
-                this.buttonText = 'Load More';
+                this.buttonIsLoading=false;
             })
         }
     }

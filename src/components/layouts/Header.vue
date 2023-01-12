@@ -80,7 +80,8 @@
           <div class="col-auto col-xl-3 pl-0  d-flex align-items-center">
             <i class="d-lg-none fa fa-align-justify fs-24 pr-3 opacity-80" data-toggle="class-toggle" data-backdrop="static" data-target=".aiz-mobile-side-nav-cat"></i>
             <router-link class="d-block py-20px mr-3 ml-0" :to="{name:'home'}">
-              <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/wX5s4T1KUanpH8wLrFqzcOtElCZ7w2WNYf1MPIGq.webp" alt="Admin Deal" class="mw-100 h-20px h-md-40px" height="40">
+               <p>Logo Here</p>
+              <!-- <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/wX5s4T1KUanpH8wLrFqzcOtElCZ7w2WNYf1MPIGq.webp" alt="Admin Deal" class="mw-100 h-20px h-md-40px" height="40"> -->
             </router-link>
           </div>
           <div class="flex-grow-1 front-header-search d-flex align-items-center bg-white" style="max-width: 750px;">

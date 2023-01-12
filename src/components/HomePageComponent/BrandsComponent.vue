@@ -8,16 +8,16 @@
          </div>
 
          <ul class="list-unstyled mb-0 row gutters-5">
-            <li v-for="(brand,index) in brands.slice(0, 8)"  class="minw-0 col-3 col-md mt-3 text-center ">
+            <li v-for="(brand,index) in brands.slice(0, 8)" :key="index" class="minw-0 col-3 col-md mt-3 text-center ">
                <a @click="brandSlug(brand.slug)" style="cursor:pointer" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
-                  <img class="img-fluid img lazyload h-60px" :alt="brand.name" height="78" :src="brand.logo"> 
+                  <img :src="brand.logo?brand.logo:`https://admindeal.com.bd/public/assets/img/placeholder.jpg`" class="img-fluid img lazyload h-60px" :alt="brand.name" height="78" > 
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ brand.name }}</div>
                </a>
             </li>
          </ul>
          <div class="d-none d-lg-block">
          <ul class="list-unstyled mb-0 row gutters-5">
-            <li v-for="(brand,index) in brands.slice(8, 16)"  class="minw-0 col-3 col-md mt-3 text-center ">
+            <li v-for="(brand,index) in brands.slice(8, 16)" :key="index"  class="minw-0 col-3 col-md mt-3 text-center ">
                <a @click="brandSlug(brand.slug)" style="cursor:pointer" class="d-block hov-shadow-md border rounded bg-white p-2 text-reset shadow-sm">
                   <img class="img-fluid img lazyload h-60px" :alt="brand.name" height="78" :src="brand.logo"> 
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ brand.name }}</div>
@@ -36,9 +36,6 @@ export default {
         return{
             brands:[],
         }
-    },
-    beforeCreated(){
-        this.getBrands();
     },
     mounted(){
         this.getBrands(this.rootDomain)

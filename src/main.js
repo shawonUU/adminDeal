@@ -8,4 +8,6 @@ app.config.globalProperties.rootDomain ='https://localhost/backend/';
 app.use(router);
 app.use(pinia);
 app.mount("#app");
+
+
  

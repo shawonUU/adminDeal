@@ -3683,8 +3683,8 @@
                 </div>
                 <input type="hidden" name="min_price" value="">
                 <input type="hidden" name="max_price" value="">
-                <div v-if="brandWiseProducts.length>0" class="row gutters-5 row-cols-xxl-5 row-cols-xl-5 row-cols-lg-5 row-cols-md-3 row-cols-2">
-                   <div class="col" v-for="(product,index) in brandWiseProducts">
+                <div class="row gutters-5 row-cols-xxl-5 row-cols-xl-5 row-cols-lg-5 row-cols-md-3 row-cols-2">
+                   <div class="col" v-for="(product,index) in brandWiseProducts" :key="index">
                       <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                          <div class="position-relative">
                             <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block">
@@ -3712,7 +3712,7 @@
                             </div>
                             
                             <div class="rating rating-sm mt-1">
-                              <template v-for="index in 5">
+                              <template v-for="index in 5" :key="index">
                                  <i v-if="index<=product.rating" class = 'las la-star active'></i>
                                  <i v-else class = 'las la-star'></i>
                               </template>
@@ -3729,8 +3729,8 @@
                       </div>
                    </div>
                 </div>
-                <div v-else>
-                       <h5 class="text-danger text-center">Product Not Found..</h5>
+                <div>
+                       <h5 class="text-danger text-center">{{ ShowNotFound }}</h5>
                 </div>
              </div>
           </div>
@@ -3746,7 +3746,8 @@ import axios from 'axios'
      data(){
       return{
          brandWiseProducts:[],  
-         brandName:""
+         brandName:"",
+         ShowNotFound:'Loading...'
       }
      },
       mounted(){
@@ -3755,11 +3756,17 @@ import axios from 'axios'
 
       methods:{
          getBrandWiseProduct(rootDomain,slug){
+            this.ShowNotFound  = 'Loading...';
             axios.get(rootDomain+'vue/v3/products/brand/'+slug)
             .then((response)=>{
                
                this.brandWiseProducts = response.data[0].data;
                this.brandName = response.data[1];
+               if(response.data[0].data<1){
+                  this.ShowNotFound  = 'Product Not Found!';
+               }else{
+                  this.ShowNotFound  = '';
+               }
             })
          }
       }
