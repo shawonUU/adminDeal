@@ -94,7 +94,7 @@
                     </button>
                   </div>
                   <div class="input-group">
-                    <input type="text" class="border-0 border-lg form-control" id="search" name="keyword" placeholder="I am shopping for..." autocomplete="off">
+                    <input @click="search(true)" @keyup="search(true)" @blur="search(false)" type="text" class="border-0 border-lg form-control" id="search" name="keyword" placeholder="I am shopping for..." autocomplete="off">
                     <div class="input-group-append d-none d-lg-block">
                       <button class="btn btn-primary" type="submit">
                         <i class="la la-search la-flip-horizontal fs-18"></i>
@@ -112,7 +112,73 @@
                   </div>
                 </div>
                 <div class="search-nothing d-none p-3 text-center fs-16"></div>
-                <div id="search-content" class="text-left"></div>
+                <div id="search-content" class="text-left">
+
+
+
+                  <div v-if="categories.length>0" class="">
+                        <div class="px-2 py-1 text-uppercase fs-10 text-right text-muted bg-soft-secondary">{{'Category Suggestions'}}</div>
+                        <ul class="list-group list-group-raw">
+                          <template v-for="(category, index) in categories" :key="index">
+                                <li class="list-group-item py-1">
+                                    <a class="text-reset hov-text-primary" href="#">{{ category.name }}</a>
+                                </li>
+                          </template>
+                        </ul>
+                    </div>
+                    <div v-if="products.length>0" class="">
+                            <div class="px-2 py-1 text-uppercase fs-10 text-right text-muted bg-soft-secondary">{{'Products'}}</div>
+                            <ul class="list-group list-group-raw">
+                                    <template v-for="(product, index) in products" :key="index">
+                                      <li class="list-group-item">
+                                        <a class="text-reset" href="#">
+                                            <div class="d-flex search-product align-items-center">
+                                                <div class="mr-3">
+                                                    <img class="size-40px img-fit rounded" :src="product.thumbnail_image">
+                                                </div>
+                                                <div class="flex-grow-1 overflow--hidden minw-0">
+                                                    <div class="product-name text-truncate fs-14 mb-5px">
+                                                        {{  product.name  }}
+                                                    </div>
+                                                    <div class="">
+                                                        <del v-if="product.base_price != product.base_discounted_price" class="opacity-60 fs-15">{{ product.base_price }}</del>
+                                                        <span class="fw-600 fs-16 text-primary">{{ product.discounted_base_price }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                      </li>
+                                  </template>
+                            </ul>
+                    </div>
+                        <div v-if="vendorSystemActivation==1" class="">
+                              <div v-if="shops.length" class="px-2 py-1 text-uppercase fs-10 text-right text-muted bg-soft-secondary">{{'Shops'}}</div>
+                                <ul class="list-group list-group-raw">
+                                      <template v-for="(shop, index) in shops" :key="index">
+                                        <li class="list-group-item">
+                                            <a class="text-reset" href="#">
+                                                <div class="d-flex search-product align-items-center">
+                                                    <div class="mr-3">
+                                                        <img class="size-40px img-fit rounded" :src="shop.logo">
+                                                    </div>
+                                                    <div class="flex-grow-1 overflow--hidden">
+                                                        <div class="product-name text-truncate fs-14 mb-5px">
+                                                            {{ shop.name }}
+                                                        </div>
+                                                        <div class="opacity-60">
+                                                            {{ shop.address }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                      </template>
+                                </ul>
+                        </div>
+
+
+
+                </div>
               </div>
             </div>
           </div>
@@ -428,9 +494,63 @@
   </template>
   
   <script>
+  import axios from "axios";
   export default {
-  
-  }
+    data(){
+        return{
+          categories: [],
+          products: [],
+          shops: [],
+          keywords:[],
+          vendorSystemActivation: 0, 
+
+        }
+    },created(){
+
+    },
+    mounted(){
+        
+    },
+    methods:{
+
+        search(searchBoxFocus = true){
+            var searchKey = $('#search').val();
+            if(searchKey.length > 0 && searchBoxFocus){
+                $('body').addClass("typed-search-box-shown");
+
+                $('.typed-search-box').removeClass('d-none');
+                $('.search-preloader').removeClass('d-none');
+                axios.get(this.rootDomain+'vue/ajax-search', {params:{search:searchKey}})
+                .then((response)=>{
+                    let data = response.data;
+                    if(data == '0'){
+                        // $('.typed-search-box').addClass('d-none');
+                        $('#search-content').html(null);
+                        $('.typed-search-box .search-nothing').removeClass('d-none').html('Sorry, nothing found for <strong>"'+searchKey+'"</strong>');
+                        $('.search-preloader').addClass('d-none');
+
+                    }
+                    else{
+                      // console.log(data);
+                      this.products = data.products.data;
+                      this.categories = data.categories.data;
+                      this.keywords = data.keywords;
+                      this.shops = data.shops.data;
+                      this.vendorSystemActivation = data.vendorSystemActivation;
+                        $('.typed-search-box .search-nothing').addClass('d-none').html(null);
+                        // $('#search-content').html(data);
+                        $('.search-preloader').addClass('d-none');
+                    }
+                });
+            }
+            else {
+                $('.typed-search-box').addClass('d-none');
+                $('body').removeClass("typed-search-box-shown");
+            }
+        }
+
+    }
+}
   </script>
 
 <script>
