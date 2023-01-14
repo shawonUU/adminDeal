@@ -69,16 +69,16 @@
      </div>
    </div>
  </div>
-    <!-- <TodaysOffer></TodaysOffer> -->
-    <!-- <BrandComponent></BrandComponent> -->
+    <TodaysOffer></TodaysOffer>
+    <BrandComponent></BrandComponent>
     <SellersComponent></SellersComponent>
-    <!-- <NewProduct></NewProduct> -->
-    <!-- <FeaturedCategory></FeaturedCategory> -->
-    <!-- <BestSellingProduct></BestSellingProduct> -->
-    <!-- <AuctionProducts></AuctionProducts> -->
-    <!-- <HomeCategoriesProduct></HomeCategoriesProduct> -->
-    <!-- <FreelanceService></FreelanceService> -->
-    <!-- <AllProductVue></AllProductVue> -->
+    <NewProduct></NewProduct>
+    <FeaturedCategory></FeaturedCategory>
+    <BestSellingProduct></BestSellingProduct>
+    <AuctionProducts></AuctionProducts>
+    <HomeCategoriesProduct></HomeCategoriesProduct>
+    <FreelanceService></FreelanceService>
+    <AllProductVue></AllProductVue>
 </template>
 
 <script>
@@ -140,7 +140,7 @@ export default {
   this.getCat(this.rootDomain);
  },
  mounted(){
-  
+ 
  },
 
 methods:{

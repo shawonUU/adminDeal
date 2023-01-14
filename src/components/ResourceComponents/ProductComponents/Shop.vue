@@ -3644,8 +3644,9 @@
                                   <i v-if="index<=product.rating" class = 'las la-star active'></i>
                                   <i v-else class = 'las la-star'></i>
                                </template>
-                             </div>
                                ({{ product.rating }})
+                             </div>
+                               
                              <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                                 <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block text-reset">{{ product.name }}</a>
                              </h3>

@@ -90,7 +90,7 @@
                            <div class="col-10">
                               <div class="fs-20 opacity-60">
                                  <del>
-                                 ৳{{ productDetails.main_price }}
+                                 {{ productDetails.main_price }}
                                  <span>/{{ productDetails.stroked_price }}</span>
                                  </del>
                               </div>
@@ -103,7 +103,7 @@
                            <div class="col-10">
                               <div class="">
                                  <strong class="h2 fw-600 text-primary" id='discount_price' >
-                                 ৳{{ productDetails.main_price }}
+                                 {{ productDetails.main_price }}
                                  </strong>
                                  <span class="opacity-70">/{{ productDetails.stroked_price }}</span>
                               </div>
