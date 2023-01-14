@@ -140,7 +140,7 @@ export default {
   this.getCat(this.rootDomain);
  },
  mounted(){
-  
+ 
  },
 
 methods:{
