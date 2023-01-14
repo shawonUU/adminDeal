@@ -48,15 +48,15 @@
                         <div class="p-3">
                            <ul class="list-unstyled">
                               <li class="mb-2">
-                                 <a class="text-reset fs-14 fw-600" href="https://admindeal.com.bd/search">
+                                 <router-link :to="{name:'productShop'}" class="text-reset fs-14 fw-600">
                                  <i class="las la-angle-left"></i>
-                                 All categories
-                                 </a>
+                                  All categories
+                                 </router-link>
                               </li>
                               <li class="mb-2">
-                                 <a class="text-reset fs-14 fw-600" href="https://admindeal.com.bd/category/groceries-lifestyle-medical">
+                                 <a class="text-reset fs-14 fw-600" @click="receiveCategorySlug(categoryInfo.slug)">
                                  <i class="las la-angle-left"></i>
-                                 Groceries, Lifestyle &amp; Medical
+                                  {{ categoryInfo.name }}
                                  </a>
                               </li>
                               <li class="ml-4 mb-2">
@@ -3641,20 +3641,20 @@
             <div class="col-xl-9">
                <ul class="breadcrumb bg-transparent p-0">
                   <li class="breadcrumb-item opacity-50">
-                     <a class="text-reset" href="https://admindeal.com.bd">Home</a>
+                     <router-link :to="{name:'home'}" class="text-reset" >Home</router-link>
                   </li>
                   <li class="breadcrumb-item opacity-50">
-                     <a class="text-reset" href="https://admindeal.com.bd/search">All categories</a>
+                     <router-link :to="{name:'productShop'}" class="text-reset" >All categories</router-link>
                   </li>
                   <li class="text-dark fw-600 breadcrumb-item">
-                     <a class="text-reset" href="https://admindeal.com.bd/category/groceries-lifestyle-medical">"Groceries, Lifestyle &amp; Medical"</a>
+                     <a class="text-reset" @click="receiveCategorySlug(categoryInfo.slug)">{{ categoryInfo.name }}</a>
                   </li>
                </ul>
                <div class="text-left">
                   <div class="row gutters-5 flex-wrap align-items-center">
                      <div class="col-lg col-10">
                         <h1 class="h6 fw-600 text-body">
-                           Groceries, Lifestyle &amp; Medical
+                           {{ categoryInfo.name }}
                         </h1>
                         <input type="hidden" name="keyword" value="">
                      </div>
@@ -3687,7 +3687,7 @@
                   <div class="col" v-for="(product,index) in categoryWiseProducts" :key="index">
                       <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                          <div class="position-relative">
-                            <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block">
+                            <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block">
                             <img
                                class="img-fit lazyload mx-auto h-140px h-md-210px"
                                :src="product.thumbnail_image"
@@ -3719,7 +3719,7 @@
                             </div>
                               ({{ product.rating }})
                             <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                               <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block text-reset">{{ product.name }}</a>
+                               <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block text-reset">{{ product.name }}</a>
                             </h3>
                             <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
                                Cashback :
@@ -3730,36 +3730,13 @@
                    </div>
                </div>
                <div class="aiz-pagination aiz-pagination-center mt-4">
-                  <nav>
-                     <ul class="pagination">
-                        <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-                           <span class="page-link" aria-hidden="true">&lsaquo;</span>
-                        </li>
-                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=2">2</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=3">3</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=4">4</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=5">5</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=6">6</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=7">7</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=8">8</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=9">9</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=10">10</a></li>
-                        <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=24">24</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=25">25</a></li>
-                        <li class="page-item">
-                           <a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=2" rel="next" aria-label="Next »">&rsaquo;</a>
-                        </li>
-                     </ul>
-                  </nav>
+                   <!-- Pagination here -->
                </div>
                <div class="bg-white shadow-sm card my-5 px-4">
                   <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
                      <p >
                      </p>
                   </div>
-                  <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
                </div>
             </div>
          </div>
@@ -3775,23 +3752,53 @@ export default {
     data(){
       return{
          categoryWiseProducts:[],
+         categoryInfo:[],
       }
     },
      mounted(){
-        this.getCategoryWiseProduct(this.rootDomain,this.slug);
+        this.getCategoryWiseProduct(this.rootDomain);
+     },
+     watch:{
+
      },
      methods:{
          getCategoryWiseProduct(rootDomain,slug){
-            axios.get(rootDomain+'vue/v3/products/category/'+slug)
+            axios.get(rootDomain+'vue/v3/products/category/'+this.slug)
             .then((response)=>{
-               console.log(response.data);
-               this.categoryWiseProducts = response.data.data;
+               this.categoryWiseProducts = response.data[0].data;
+               this.categoryInfo = response.data[1]
             })
             .catch((error)=>{
                console.log(error);
             })
+         },
+         receiveCategorySlug(slug){
+            this.$router.push({
+                name:'CategoryWiseProduct',
+                params: {
+                    slug: slug
+                }
+            }); 
+      },
+         productDetails(slug){
+         this.$router.push({
+         name: "singleProduct",
+         params: {
+            slug: slug
          }
-     }
+         });
+      },
+
+      allCategoryProduct(rootDomain){
+         this.$router.push({
+                name:'shop',
+                params: {
+                    slug: slug
+                }
+            }); 
+      }
+     },
+  
 }
 
 </script>

@@ -25,6 +25,7 @@ import BrandWiseProduct from '../components/ResourceComponents/ProductComponents
 // Order Routes
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
+import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
 import SingleProduct from '../components/ResourceComponents/ProductComponents/SingleProduct.vue';
 
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
@@ -89,13 +90,19 @@ const routes = [
     component: SingleProduct
   },
   {
+    path: '/shop',
+    name: 'productShop',
+    props:true,
+    component: Shop
+  },
+  {
     path: '/brand/:slug?',
     name: 'Brand',
     props: true,
     component: BrandWiseProduct
   },
   {
-    path: '/shop/:slug?',
+    path: '/shops/:slug?',
     name: 'Shop',
     props: true,
     component: ShopWiseProduct
