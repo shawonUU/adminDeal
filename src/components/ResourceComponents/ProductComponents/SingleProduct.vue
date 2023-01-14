@@ -66,14 +66,17 @@
                         <div class="row align-items-center">
                            <div class="col-auto">
                               <small class="mr-2 opacity-50">Sold by: </small><br>
-                              <a href="https://admindeal.com.bd/shop/Fashion-and-Beauty-Shop-222" class="text-reset" id='shop_name'>Fashion and Beauty Shop</a>
+                              <a href="" v-if="productDetails.added_by=='seller'" class="text-reset" id='shop_name'>{{ productDetails.shop_name }}</a>
+                              <span v-else>
+                                 Admin store
+                              </span>
                            </div>
                            <div class="col-auto">
                               <button class="btn btn-sm btn-secondary" onclick="show_chat_modal()">Chat With Seller</button>
                            </div>
                            <div class="col-auto">
                               <a href="https://admindeal.com.bd/brand/others">
-                              <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/47K034IrLBUkHWvxS2GuvJ0PSwnXWe1cuBXLlRoZ.png" id='brand_name' alt="Others" height="30">
+                              <img :src="productDetails.shop_logo" id='brand_name' alt="Others" height="30">
                               </a>
                            </div>
                         </div>
@@ -108,7 +111,8 @@
                         </div>
                         <hr>
                         <form id="option-choice-form">
-                           <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ">                                <input type="hidden" name="id" value="5931">
+                           <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ">                                
+                           <input type="hidden" name="id" value="5931">
                            <!-- Quantity + Add to cart -->
                            <div class="row no-gutters">
                               <div class="col-sm-2">
@@ -126,7 +130,7 @@
                                        </button>
                                     </div>
                                     <div class="avialable-amount opacity-60">
-                                       (<span id="available-quantity">435</span> available)
+                                       (<span id="available-quantity">{{ productDetails.current_stock }}</span> available)
                                     </div>
                                  </div>
                               </div>
@@ -143,7 +147,7 @@
                                  </div>
                               </div>
                               <div class="col-3">
-                                 <span class="box ml-1 border-sm p-2 fs-15 shadow-sm mr-0 text-danger">&nbsp;90% OFF </span>
+                                 <span class="box ml-1 border-sm p-2 fs-15 shadow-sm mr-0 text-danger">&nbsp;{{productDetails.discount}}% OFF </span>
                               </div>
                            </div>
                         </form>
@@ -162,7 +166,7 @@
                               </div>
                               <div class="avialable-amount opacity-60">
                                  In Stock: <b> Qty-</b>
-                                 <b> <span id="available-quantity">435</span> </b>
+                                 <b> <span id="available-quantity">{{ productDetails.current_stock }}</span> </b>
                                  <span>; Cash On Delivery: <b>Yes</b></span>
                               </div>
                               <button type="button" class="btn btn-primary mr-2 w-100 block fw-600" onclick="addToCart()">
@@ -305,7 +309,7 @@
          <div class="col-xl-3 order-1 order-xl-0">
             <div class="bg-white shadow-sm mb-3">
                <div class="position-relative p-3 text-left">
-                  <div class="absolute-top-right p-2 bg-white z-1">
+                  <div v-if="shopDetails.verified==true" class="absolute-top-right p-2 bg-white z-1">
                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
                         viewBox="0 0 287.5 442.2" width="22" height="34">
@@ -323,11 +327,11 @@
                   <div class="opacity-50 fs-12 border-bottom">Sold by</div>
                   <a href="https://admindeal.com.bd/shop/Fashion-and-Beauty-Shop-222"
                      class="text-reset d-block fw-600">
-                  Fashion and Beauty Shop
+                  {{  shopDetails.name }}
                   <span class="ml-2"><i class="fa fa-check-circle"
                      style="color:green"></i></span>
                   </a>
-                  <div class="location opacity-70">Flat: 6/A, House: 84/4, Road: 1,Arambag, Khulna, Bangladesh</div>
+                  <div class="location opacity-70">{{ shopDetails.address }}</div>
                   <div class="text-center border rounded p-2 mt-3">
                      <div class="rating">
                         <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i>
@@ -345,25 +349,25 @@
                   <div class="col">
                      <ul class="social list-inline mb-0">
                         <li class="list-inline-item mr-0">
-                           <a href="#" class="facebook"
+                           <a :href="shopDetails.facebook" class="facebook"
                               target="_blank">
                            <i class="lab la-facebook-f opacity-60"></i>
                            </a>
                         </li>
                         <li class="list-inline-item mr-0">
-                           <a href="#" class="google"
+                           <a :href="shopDetails.google" class="google"
                               target="_blank">
                            <i class="lab la-google opacity-60"></i>
                            </a>
                         </li>
                         <li class="list-inline-item mr-0">
-                           <a href="#" class="twitter"
+                           <a :href="shopDetails.twitter" class="twitter"
                               target="_blank">
                            <i class="lab la-twitter opacity-60"></i>
                            </a>
                         </li>
                         <li class="list-inline-item">
-                           <a href="#" class="youtube"
+                           <a :href="shopDetails.youtube" class="youtube"
                               target="_blank">
                            <i class="lab la-youtube opacity-60"></i>
                            </a>
@@ -551,19 +555,7 @@
                <div class="tab-content pt-0">
                   <div class="tab-pane fade active show" id="tab_default_1">
                      <div class="p-4">
-                        <div class="mw-100 overflow-hidden text-left aiz-editor-data">
-                           <h4 style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 10px 0px; font-family: Roboto, sans-serif; font-weight: bold; font-size: 16px;">Product Description:</h4>
-                           <ul style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 24px; list-style-position: initial; list-style-image: initial; font-family: Roboto, sans-serif; font-size: 13px; letter-spacing: 0.007px;">
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Product Types:Finger Ring</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Fine or Fashion: Fashion</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Item Type: Finger Ring</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Color:Black</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Setting Type: Tension Mount</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Shape pattern: Round</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Brand: other</li>
-                           </ul>
-                           <p style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;"><br></p>
-                           <p style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit;"><b>বিঃদ্রঃ- ডিটেইলস দেখে অর্ডার করার জন্য অনুরোধ রইল। আরও অনুসন্ধানের জন্য Live Chat এ মেসেজ করতে পারবেন। ধন্যবাদ।</b><br></p>
+                        <div v-html="productDetails.description" class="mw-100 overflow-hidden text-left aiz-editor-data">
                         </div>
                      </div>
                   </div>
@@ -679,6 +671,7 @@ export default {
        data(){
         return{
            productDetails:[],
+           shopDetails:[]
         }
        },
        mounted(){
@@ -688,7 +681,9 @@ export default {
          getProductDetails(rootDomain){
                      axios.get(rootDomain+'product/'+this.slug)
                      .then((response)=>{
-                        this.productDetails = response.data.data[0];
+                        console.log(response.data[0].data[0]);
+                        this.productDetails = response.data[0].data[0];
+                        this.shopDetails = response.data[1];
                      })
                },
        }

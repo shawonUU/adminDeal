@@ -80,7 +80,8 @@
           <div class="col-auto col-xl-3 pl-0  d-flex align-items-center">
             <i class="d-lg-none fa fa-align-justify fs-24 pr-3 opacity-80" data-toggle="class-toggle" data-backdrop="static" data-target=".aiz-mobile-side-nav-cat"></i>
             <router-link class="d-block py-20px mr-3 ml-0" :to="{name:'home'}">
-              <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/wX5s4T1KUanpH8wLrFqzcOtElCZ7w2WNYf1MPIGq.webp" alt="Admin Deal" class="mw-100 h-20px h-md-40px" height="40">
+               <p>Logo Here</p>
+              <!-- <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/wX5s4T1KUanpH8wLrFqzcOtElCZ7w2WNYf1MPIGq.webp" alt="Admin Deal" class="mw-100 h-20px h-md-40px" height="40"> -->
             </router-link>
           </div>
           <div class="flex-grow-1 front-header-search d-flex align-items-center bg-white" style="max-width: 750px;">
@@ -180,41 +181,13 @@
           </div>
           <div class="col-lg-6 ">
             <ul class="list-inline mb-0 pl-0 mobile-hor-swipe text-center">
-              <li class="list-inline-item mr-0">
+
+              <li v-for="(name,indexCateName) in navCategoriesName" :key="indexCateName" class="list-inline-item mr-0">
                 <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <router-link :to="{name:'CategoryWiseProduct'}" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Fashion </router-link>
+                  <a style="cursor:pointer" @click="receiveCategorySlug(navCategoriesLinks[indexCateName].replace('/category/',''))" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> {{ name }} </a>
                 </span>
               </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/health-beauty-personal-care" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Beauty </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/electronic-accessories-gadget" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Electronic </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/groceries-lifestyle-medical" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Groceries </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/digital-products-crouse-etc" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Digital Products </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/dollar-crypto-account-vcard" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Gift Cards </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/social-ads-apps-survey" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Etc </a>
-                </span>
-              </li>
+
             </ul>
           </div>
           <div class="col-lg-3 col-md-3 d-flex   align-items-center d-none ">
@@ -427,8 +400,38 @@
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
-  
+    data(){
+      return{
+        navCategoriesName:[],
+        navCategoriesLinks:[],
+      }
+    },
+    mounted(){
+      this.getNavCategories(this.rootDomain);
+    },
+    methods:{
+      getNavCategories(rootDomain){
+        axios.get(rootDomain+'vue/header-category').then(res=>{
+          console.log(res.data.links)
+          this.navCategoriesName = res.data.name;
+          this.navCategoriesLinks = res.data.links;
+        }).catch(err=>{
+          console.log(err);
+        });
+      },
+
+      receiveCategorySlug(slug){
+            this.$router.push({
+                name:'CategoryWiseProduct',
+                params: {
+                    slug: slug
+                }
+            }); 
+      }
+    
+    }
   }
   </script>
 

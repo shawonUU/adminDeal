@@ -3768,9 +3768,14 @@
 <script>
 
 export default {
-    props: ['id'],
+    props: ['slug'],
+    data(){
+      return{
+
+      }
+    },
      mounted(){
-        console.log(this.id);
+        console.log(this.slug);
      }  
 }
 

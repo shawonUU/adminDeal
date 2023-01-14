@@ -77,7 +77,7 @@ const routes = [
     component: TrackOrder
   },
   {
-    path: '/category/:id?',
+    path: '/category/:slug?',
     name: 'CategoryWiseProduct',
     props: true,
     component: CategoryWiseProduct
