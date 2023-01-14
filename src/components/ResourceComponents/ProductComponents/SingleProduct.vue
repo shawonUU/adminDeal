@@ -309,7 +309,7 @@
          <div class="col-xl-3 order-1 order-xl-0">
             <div class="bg-white shadow-sm mb-3">
                <div class="position-relative p-3 text-left">
-                  <div v-if="productDetails.verified==true" class="absolute-top-right p-2 bg-white z-1">
+                  <div v-if="shopDetails.verified==true" class="absolute-top-right p-2 bg-white z-1">
                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
                         viewBox="0 0 287.5 442.2" width="22" height="34">
@@ -327,11 +327,11 @@
                   <div class="opacity-50 fs-12 border-bottom">Sold by</div>
                   <a href="https://admindeal.com.bd/shop/Fashion-and-Beauty-Shop-222"
                      class="text-reset d-block fw-600">
-                  Fashion and Beauty Shop
+                  {{  shopDetails.name }}
                   <span class="ml-2"><i class="fa fa-check-circle"
                      style="color:green"></i></span>
                   </a>
-                  <div class="location opacity-70">Flat: 6/A, House: 84/4, Road: 1,Arambag, Khulna, Bangladesh</div>
+                  <div class="location opacity-70">{{ shopDetails.address }}</div>
                   <div class="text-center border rounded p-2 mt-3">
                      <div class="rating">
                         <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i>
@@ -349,25 +349,25 @@
                   <div class="col">
                      <ul class="social list-inline mb-0">
                         <li class="list-inline-item mr-0">
-                           <a href="#" class="facebook"
+                           <a :href="shopDetails.facebook" class="facebook"
                               target="_blank">
                            <i class="lab la-facebook-f opacity-60"></i>
                            </a>
                         </li>
                         <li class="list-inline-item mr-0">
-                           <a href="#" class="google"
+                           <a :href="shopDetails.google" class="google"
                               target="_blank">
                            <i class="lab la-google opacity-60"></i>
                            </a>
                         </li>
                         <li class="list-inline-item mr-0">
-                           <a href="#" class="twitter"
+                           <a :href="shopDetails.twitter" class="twitter"
                               target="_blank">
                            <i class="lab la-twitter opacity-60"></i>
                            </a>
                         </li>
                         <li class="list-inline-item">
-                           <a href="#" class="youtube"
+                           <a :href="shopDetails.youtube" class="youtube"
                               target="_blank">
                            <i class="lab la-youtube opacity-60"></i>
                            </a>
@@ -555,19 +555,7 @@
                <div class="tab-content pt-0">
                   <div class="tab-pane fade active show" id="tab_default_1">
                      <div class="p-4">
-                        <div class="mw-100 overflow-hidden text-left aiz-editor-data">
-                           <h4 style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 10px 0px; font-family: Roboto, sans-serif; font-weight: bold; font-size: 16px;">Product Description:</h4>
-                           <ul style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 24px; list-style-position: initial; list-style-image: initial; font-family: Roboto, sans-serif; font-size: 13px; letter-spacing: 0.007px;">
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Product Types:Finger Ring</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Fine or Fashion: Fashion</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Item Type: Finger Ring</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Color:Black</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Setting Type: Tension Mount</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Shape pattern: Round</li>
-                              <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;">Brand: other</li>
-                           </ul>
-                           <p style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit; color: rgb(72, 72, 72) !important;"><br></p>
-                           <p style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); margin: 0px; padding: 2px 0px; list-style-position: initial; list-style-image: initial; list-style-type: inherit;"><b>বিঃদ্রঃ- ডিটেইলস দেখে অর্ডার করার জন্য অনুরোধ রইল। আরও অনুসন্ধানের জন্য Live Chat এ মেসেজ করতে পারবেন। ধন্যবাদ।</b><br></p>
+                        <div v-html="productDetails.description" class="mw-100 overflow-hidden text-left aiz-editor-data">
                         </div>
                      </div>
                   </div>
@@ -683,6 +671,7 @@ export default {
        data(){
         return{
            productDetails:[],
+           shopDetails:[]
         }
        },
        mounted(){
@@ -692,8 +681,9 @@ export default {
          getProductDetails(rootDomain){
                      axios.get(rootDomain+'product/'+this.slug)
                      .then((response)=>{
-                        console.log(response.data.data[0]);
-                        this.productDetails = response.data.data[0];
+                        console.log(response.data[0].data[0]);
+                        this.productDetails = response.data[0].data[0];
+                        this.shopDetails = response.data[1];
                      })
                },
        }

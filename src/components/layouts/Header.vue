@@ -247,41 +247,13 @@
           </div>
           <div class="col-lg-6 ">
             <ul class="list-inline mb-0 pl-0 mobile-hor-swipe text-center">
-              <li class="list-inline-item mr-0">
+
+              <li v-for="(name,indexCateName) in navCategoriesName" :key="indexCateName" class="list-inline-item mr-0">
                 <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <router-link :to="{name:'CategoryWiseProduct'}" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Fashion </router-link>
+                  <a style="cursor:pointer" @click="receiveCategorySlug(navCategoriesLinks[indexCateName].replace('/category/',''))" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> {{ name }} </a>
                 </span>
               </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/health-beauty-personal-care" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Beauty </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/electronic-accessories-gadget" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Electronic </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/groceries-lifestyle-medical" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Groceries </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/digital-products-crouse-etc" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Digital Products </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/dollar-crypto-account-vcard" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Gift Cards </a>
-                </span>
-              </li>
-              <li class="list-inline-item mr-0">
-                <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                  <a href="/category/social-ads-apps-survey" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> Etc </a>
-                </span>
-              </li>
+
             </ul>
           </div>
           <div class="col-lg-3 col-md-3 d-flex   align-items-center d-none ">
@@ -494,26 +466,41 @@
   </template>
   
   <script>
-  import axios from "axios";
+  import axios from 'axios';
   export default {
     data(){
-        return{
-          categories: [],
-          products: [],
-          shops: [],
-          keywords:[],
-          vendorSystemActivation: 0, 
-
-        }
-    },created(){
-
+      return{
+        navCategoriesName:[],
+        navCategoriesLinks:[],
+        categories: [],
+        products: [],
+        shops: [],
+        keywords:[],
+        vendorSystemActivation: 0, 
+      }
     },
     mounted(){
-        
+      this.getNavCategories(this.rootDomain);
     },
     methods:{
+      getNavCategories(rootDomain){
+        axios.get(rootDomain+'vue/header-category').then(res=>{
+          this.navCategoriesName = res.data.name;
+          this.navCategoriesLinks = res.data.links;
+        }).catch(err=>{
+          console.log(err);
+        });
+      },
 
-        search(searchBoxFocus = true){
+      receiveCategorySlug(slug){
+            this.$router.push({
+                name:'CategoryWiseProduct',
+                params: {
+                    slug: slug
+                }
+            }); 
+      },
+              search(searchBoxFocus = true){
             var searchKey = $('#search').val();
             if(searchKey.length > 0 && searchBoxFocus){
                 $('body').addClass("typed-search-box-shown");
@@ -523,22 +510,19 @@
                 axios.get(this.rootDomain+'vue/ajax-search', {params:{search:searchKey}})
                 .then((response)=>{
                     let data = response.data;
-                    if(data == '0'){
-                        // $('.typed-search-box').addClass('d-none');
+                    if(data == '0'){                       
                         $('#search-content').html(null);
                         $('.typed-search-box .search-nothing').removeClass('d-none').html('Sorry, nothing found for <strong>"'+searchKey+'"</strong>');
                         $('.search-preloader').addClass('d-none');
 
                     }
                     else{
-                      // console.log(data);
                       this.products = data.products.data;
                       this.categories = data.categories.data;
                       this.keywords = data.keywords;
                       this.shops = data.shops.data;
                       this.vendorSystemActivation = data.vendorSystemActivation;
-                        $('.typed-search-box .search-nothing').addClass('d-none').html(null);
-                        // $('#search-content').html(data);
+                        $('.typed-search-box .search-nothing').addClass('d-none').html(null);        
                         $('.search-preloader').addClass('d-none');
                     }
                 });
@@ -548,12 +532,10 @@
                 $('body').removeClass("typed-search-box-shown");
             }
         }
-
+    
     }
-}
-  </script>
-
-<script>
+  }
+  
 </script>
   
   <style>

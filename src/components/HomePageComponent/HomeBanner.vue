@@ -57,10 +57,10 @@
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
            <li v-for="(featuredCategory, index) in featuredCategories" :key="index" class="minw-0 col-4 col-md mt-3">
-              <router-link :to="{name:'blog'}" class="d-block rounded bg-white p-2 text-reset shadow-sm">
+              <a @click="receiveCategorySlug(featuredCategory.slug)" class="d-block rounded bg-white p-2 text-reset shadow-sm">
                 <img :src="featuredCategory.banner" alt="Groceries, Lifestyle &amp; Medical" class="lazyload img-fit" height="78">
                 <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ featuredCategory.name }}</div>
-              </router-link>
+              </a>
             </li>
           
          </ul>
@@ -69,16 +69,16 @@
      </div>
    </div>
  </div>
-    <TodaysOffer></TodaysOffer>
-    <BrandComponent></BrandComponent>
+    <!-- <TodaysOffer></TodaysOffer> -->
+    <!-- <BrandComponent></BrandComponent> -->
     <SellersComponent></SellersComponent>
-    <NewProduct></NewProduct>
-    <FeaturedCategory></FeaturedCategory>
-    <BestSellingProduct></BestSellingProduct>
-    <AuctionProducts></AuctionProducts>
-    <HomeCategoriesProduct></HomeCategoriesProduct>
-    <FreelanceService></FreelanceService>
-    <AllProductVue></AllProductVue>
+    <!-- <NewProduct></NewProduct> -->
+    <!-- <FeaturedCategory></FeaturedCategory> -->
+    <!-- <BestSellingProduct></BestSellingProduct> -->
+    <!-- <AuctionProducts></AuctionProducts> -->
+    <!-- <HomeCategoriesProduct></HomeCategoriesProduct> -->
+    <!-- <FreelanceService></FreelanceService> -->
+    <!-- <AllProductVue></AllProductVue> -->
 </template>
 
 <script>
@@ -152,10 +152,17 @@ methods:{
       this.sliders = response.data.data;
     })
   },
+  receiveCategorySlug(slug){
+            this.$router.push({
+                name:'CategoryWiseProduct',
+                params: {
+                    slug: slug
+                }
+            }); 
+      },
   getCat(rootDomain){
     axios.get(rootDomain)
     .then((response)=>{
-      // console.log(response.data.featured_categories);
       this.categories = response.data.categories;
       this.featuredCategories = response.data.featured_categories.data;
     })
@@ -170,15 +177,16 @@ methods:{
           let subCategorys = response.data.subCategorys;
           temp[dx]['subcategories'] = subCategorys;
           this.categories = temp;
-          console.log(this.categories);
       })
     }else{
       console.log('exist');
     }
   }
+ }
+ 
 }
 
-}
+
 </script>
 
 <style>

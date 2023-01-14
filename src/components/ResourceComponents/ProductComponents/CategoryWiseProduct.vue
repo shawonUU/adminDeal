@@ -48,15 +48,15 @@
                         <div class="p-3">
                            <ul class="list-unstyled">
                               <li class="mb-2">
-                                 <a class="text-reset fs-14 fw-600" href="https://admindeal.com.bd/search">
+                                 <router-link :to="{name:'productShop'}" class="text-reset fs-14 fw-600">
                                  <i class="las la-angle-left"></i>
-                                 All categories
-                                 </a>
+                                  All categories
+                                 </router-link>
                               </li>
                               <li class="mb-2">
-                                 <a class="text-reset fs-14 fw-600" href="https://admindeal.com.bd/category/groceries-lifestyle-medical">
+                                 <a class="text-reset fs-14 fw-600" @click="receiveCategorySlug(categoryInfo.slug)">
                                  <i class="las la-angle-left"></i>
-                                 Groceries, Lifestyle &amp; Medical
+                                  {{ categoryInfo.name }}
                                  </a>
                               </li>
                               <li class="ml-4 mb-2">
@@ -3641,20 +3641,20 @@
             <div class="col-xl-9">
                <ul class="breadcrumb bg-transparent p-0">
                   <li class="breadcrumb-item opacity-50">
-                     <a class="text-reset" href="https://admindeal.com.bd">Home</a>
+                     <router-link :to="{name:'home'}" class="text-reset" >Home</router-link>
                   </li>
                   <li class="breadcrumb-item opacity-50">
-                     <a class="text-reset" href="https://admindeal.com.bd/search">All categories</a>
+                     <router-link :to="{name:'productShop'}" class="text-reset" >All categories</router-link>
                   </li>
                   <li class="text-dark fw-600 breadcrumb-item">
-                     <a class="text-reset" href="https://admindeal.com.bd/category/groceries-lifestyle-medical">"Groceries, Lifestyle &amp; Medical"</a>
+                     <a class="text-reset" @click="receiveCategorySlug(categoryInfo.slug)">{{ categoryInfo.name }}</a>
                   </li>
                </ul>
                <div class="text-left">
                   <div class="row gutters-5 flex-wrap align-items-center">
                      <div class="col-lg col-10">
                         <h1 class="h6 fw-600 text-body">
-                           Groceries, Lifestyle &amp; Medical
+                           {{ categoryInfo.name }}
                         </h1>
                         <input type="hidden" name="keyword" value="">
                      </div>
@@ -3684,79 +3684,59 @@
                <input type="hidden" name="min_price" value="">
                <input type="hidden" name="max_price" value="">
                <div class="row gutters-5 row-cols-xxl-5 row-cols-xl-5 row-cols-lg-5 row-cols-md-3 row-cols-2">
-                  <div class="col">
-                     <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
-                        <div class="position-relative">
-                           <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block">
-                           <img
-                              class="img-fit lazyload mx-auto h-140px h-md-210px"
-                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                              data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/BmCScDBn9c286So1e0Vf2CIM8bdO6xNAXNBKU6KF.webp"
-                              alt="Coriander Leaves (Dhonia Pata) ± 10 gm"
-                              onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder.jpg';"
-                              >
-                           </a>
-                           <div class="absolute-top-right aiz-p-hov-icon">
-                              <a href="javascript:void(0)" onclick="addToWishList(7980)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
-                              <i class="la la-heart-o"></i>
-                              </a>
-                              <a href="javascript:void(0)" onclick="addToCompare(7980)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
-                              <i class="las la-sync"></i>
-                              </a>
-                              <a href="javascript:void(0)" onclick="showAddToCartModal(7980)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
-                              <i class="las la-shopping-cart"></i>
-                              </a>
-                           </div>
-                        </div>
-                        <div class="p-md-3 p-2 text-left">
-                           <div class="fs-15">
-                              <span class="fw-700 text-primary">৳30 <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-0%</span> </span> 
-                           </div>
-                           <div class="rating rating-sm mt-1">
-                              <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
-                           </div>
-                           <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                              <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block text-reset">Coriander Leaves (Dhonia Pata) ± 10 gm</a>
-                           </h3>
-                           <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
-                              Cashback :
-                              <span class="fw-700 float-right">0</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                  <div class="col" v-for="(product,index) in categoryWiseProducts" :key="index">
+                      <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
+                         <div class="position-relative">
+                            <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block">
+                            <img
+                               class="img-fit lazyload mx-auto h-140px h-md-210px"
+                               :src="product.thumbnail_image"
+                               :alt="product.name"
+                               >
+                            </a>
+                            <div class="absolute-top-right aiz-p-hov-icon">
+                               <a href="javascript:void(0)" onclick="addToWishList(7980)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
+                               <i class="la la-heart-o"></i>
+                               </a>
+                               <a href="javascript:void(0)" onclick="addToCompare(7980)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
+                               <i class="las la-sync"></i>
+                               </a>
+                               <a href="javascript:void(0)" onclick="showAddToCartModal(7980)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
+                               <i class="las la-shopping-cart"></i>
+                               </a>
+                            </div>
+                         </div>
+                         <div class="p-md-3 p-2 text-left">
+                            <div class="fs-15">
+                               <span class="fw-700 text-primary">{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{ product.discount }}</span> </span> 
+                            </div>
+                            
+                            <div class="rating rating-sm mt-1">
+                              <template v-for="index in 5" :key="index">
+                                 <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                                 <i v-else class = 'las la-star'></i>
+                              </template>
+                            </div>
+                              ({{ product.rating }})
+                            <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
+                               <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block text-reset">{{ product.name }}</a>
+                            </h3>
+                            <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
+                               Cashback :
+                               <span class="fw-700 float-right">0</span>
+                            </div> -->
+                         </div>
+                      </div>
+                   </div>
                </div>
                <div class="aiz-pagination aiz-pagination-center mt-4">
-                  <nav>
-                     <ul class="pagination">
-                        <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-                           <span class="page-link" aria-hidden="true">&lsaquo;</span>
-                        </li>
-                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=2">2</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=3">3</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=4">4</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=5">5</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=6">6</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=7">7</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=8">8</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=9">9</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=10">10</a></li>
-                        <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=24">24</a></li>
-                        <li class="page-item"><a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=25">25</a></li>
-                        <li class="page-item">
-                           <a class="page-link" href="https://admindeal.com.bd/category/groceries-lifestyle-medical?page=2" rel="next" aria-label="Next »">&rsaquo;</a>
-                        </li>
-                     </ul>
-                  </nav>
+                   <!-- Pagination here -->
                </div>
                <div class="bg-white shadow-sm card my-5 px-4">
                   <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
                      <p >
                      </p>
                   </div>
-                  <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
                </div>
             </div>
          </div>
@@ -3766,12 +3746,59 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
-    props: ['id'],
+    props: ['slug'],
+    data(){
+      return{
+         categoryWiseProducts:[],
+         categoryInfo:[],
+      }
+    },
      mounted(){
-        console.log(this.id);
-     }  
+        this.getCategoryWiseProduct(this.rootDomain);
+     },
+     watch:{
+
+     },
+     methods:{
+         getCategoryWiseProduct(rootDomain,slug){
+            axios.get(rootDomain+'vue/v3/products/category/'+this.slug)
+            .then((response)=>{
+               this.categoryWiseProducts = response.data[0].data;
+               this.categoryInfo = response.data[1]
+            })
+            .catch((error)=>{
+               console.log(error);
+            })
+         },
+         receiveCategorySlug(slug){
+            this.$router.push({
+                name:'CategoryWiseProduct',
+                params: {
+                    slug: slug
+                }
+            }); 
+      },
+         productDetails(slug){
+         this.$router.push({
+         name: "singleProduct",
+         params: {
+            slug: slug
+         }
+         });
+      },
+
+      allCategoryProduct(rootDomain){
+         this.$router.push({
+                name:'shop',
+                params: {
+                    slug: slug
+                }
+            }); 
+      }
+     },
+  
 }
 
 </script>

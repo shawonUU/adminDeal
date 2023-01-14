@@ -4,7 +4,7 @@
       <div class="row">
          <div class="col-md-6 mx-auto">
             <div class="d-flex justify-content-center">
-               <img height="70" class=" lazyloaded" :src="shopDetails.logo" alt="Skin Paradise">
+               <img height="70" class=" lazyloaded" :src="shopDetails.logo" :alt="shopDetails.name">
                <div class="pl-4 text-left">
                   <h1 class="fw-600 h4 mb-0">{{ shopDetails.name }}
                      <span class="ml-2">
@@ -13,7 +13,11 @@
                      </span>
                   </h1>
                   <div class="rating rating-sm mb-1">
-                     <i class="las la-star active"></i><i class="las la-star active"></i><i class="las la-star active"></i><i class="las la-star active"></i><i class="las la-star active"></i>
+                     <i class="las la-star active"></i>
+                     <i class="las la-star active"></i>
+                     <i class="las la-star active"></i>
+                     <i class="las la-star active"></i>
+                     <i class="las la-star active"></i>
                   </div>
                   <div class="location opacity-60">{{ shopDetails.address }}</div>
                </div>
@@ -172,6 +176,7 @@ export default{
              this.ShowNotFound  = 'Loading...';
             axios.get(rootDomain+'vue/v3/products/seller/'+slug)
             .then((response)=>{
+               // console.log(response.data);
                   this.shopWiseProduct = response.data[0]
                   this.shopDetails = response.data[1]
                   if(response.data[0]<1){
