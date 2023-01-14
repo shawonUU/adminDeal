@@ -3684,47 +3684,50 @@
                <input type="hidden" name="min_price" value="">
                <input type="hidden" name="max_price" value="">
                <div class="row gutters-5 row-cols-xxl-5 row-cols-xl-5 row-cols-lg-5 row-cols-md-3 row-cols-2">
-                  <div class="col">
-                     <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
-                        <div class="position-relative">
-                           <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block">
-                           <img
-                              class="img-fit lazyload mx-auto h-140px h-md-210px"
-                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                              data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/BmCScDBn9c286So1e0Vf2CIM8bdO6xNAXNBKU6KF.webp"
-                              alt="Coriander Leaves (Dhonia Pata) ± 10 gm"
-                              onerror="this.onerror=null;this.src='https://admindeal.com.bd/public/assets/img/placeholder.jpg';"
-                              >
-                           </a>
-                           <div class="absolute-top-right aiz-p-hov-icon">
-                              <a href="javascript:void(0)" onclick="addToWishList(7980)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
-                              <i class="la la-heart-o"></i>
-                              </a>
-                              <a href="javascript:void(0)" onclick="addToCompare(7980)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
-                              <i class="las la-sync"></i>
-                              </a>
-                              <a href="javascript:void(0)" onclick="showAddToCartModal(7980)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
-                              <i class="las la-shopping-cart"></i>
-                              </a>
-                           </div>
-                        </div>
-                        <div class="p-md-3 p-2 text-left">
-                           <div class="fs-15">
-                              <span class="fw-700 text-primary">৳30 <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-0%</span> </span> 
-                           </div>
-                           <div class="rating rating-sm mt-1">
-                              <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
-                           </div>
-                           <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                              <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block text-reset">Coriander Leaves (Dhonia Pata) ± 10 gm</a>
-                           </h3>
-                           <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
-                              Cashback :
-                              <span class="fw-700 float-right">0</span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                  <div class="col" v-for="(product,index) in categoryWiseProducts" :key="index">
+                      <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
+                         <div class="position-relative">
+                            <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block">
+                            <img
+                               class="img-fit lazyload mx-auto h-140px h-md-210px"
+                               :src="product.thumbnail_image"
+                               :alt="product.name"
+                               >
+                            </a>
+                            <div class="absolute-top-right aiz-p-hov-icon">
+                               <a href="javascript:void(0)" onclick="addToWishList(7980)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
+                               <i class="la la-heart-o"></i>
+                               </a>
+                               <a href="javascript:void(0)" onclick="addToCompare(7980)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
+                               <i class="las la-sync"></i>
+                               </a>
+                               <a href="javascript:void(0)" onclick="showAddToCartModal(7980)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
+                               <i class="las la-shopping-cart"></i>
+                               </a>
+                            </div>
+                         </div>
+                         <div class="p-md-3 p-2 text-left">
+                            <div class="fs-15">
+                               <span class="fw-700 text-primary">{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{ product.discount }}</span> </span> 
+                            </div>
+                            
+                            <div class="rating rating-sm mt-1">
+                              <template v-for="index in 5" :key="index">
+                                 <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                                 <i v-else class = 'las la-star'></i>
+                              </template>
+                            </div>
+                              ({{ product.rating }})
+                            <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
+                               <a href="https://admindeal.com.bd/product/coriander-leaves-dhonia-pata-10-gm-2" class="d-block text-reset">{{ product.name }}</a>
+                            </h3>
+                            <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
+                               Cashback :
+                               <span class="fw-700 float-right">0</span>
+                            </div> -->
+                         </div>
+                      </div>
+                   </div>
                </div>
                <div class="aiz-pagination aiz-pagination-center mt-4">
                   <nav>
@@ -3766,17 +3769,29 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     props: ['slug'],
     data(){
       return{
-
+         categoryWiseProducts:[],
       }
     },
      mounted(){
-        console.log(this.slug);
-     }  
+        this.getCategoryWiseProduct(this.rootDomain,this.slug);
+     },
+     methods:{
+         getCategoryWiseProduct(rootDomain,slug){
+            axios.get(rootDomain+'vue/v3/products/category/'+slug)
+            .then((response)=>{
+               console.log(response.data);
+               this.categoryWiseProducts = response.data.data;
+            })
+            .catch((error)=>{
+               console.log(error);
+            })
+         }
+     }
 }
 
 </script>
