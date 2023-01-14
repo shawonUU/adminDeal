@@ -16,7 +16,7 @@
                 <div v-for="(product, index) in products" :key="index" class="col">
                     <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                         <div class="position-relative">
-                        <a href="" class="d-block">
+                        <a  style="cursor:pointer" @click="productDetails(product.slug)" class="d-block">
                             <img class="img-fit lazyload mx-auto h-140px h-md-210px" :src="product.thumbnail_image" :data-src="product.thumbnail_image" :alt="product.name">
                         </a>
                         <div class="absolute-top-right aiz-p-hov-icon">
@@ -47,7 +47,7 @@
                             ***{{ product.rating }} ({{ product.rating }} )
                         </div>
                         <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                            <a href="" class="d-block text-reset">{{product.name}}</a>
+                            <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block text-reset">{{product.name}}</a>
                         </h3> 
                             <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border"> Cashback:0 <span class="fw-700 float-right">{{ product.earn_point }}</span>
                             </div>  -->
@@ -91,7 +91,15 @@ export default {
                 this.links = response.data.links.next;
                 this.buttonIsLoading=false;
             })
+        },
+    productDetails(slug){
+      this.$router.push({
+        name: "singleProduct",
+        params: {
+          slug: slug
         }
+      });
+    }
     }
 }
 </script>
