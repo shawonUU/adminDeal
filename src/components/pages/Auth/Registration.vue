@@ -10,33 +10,33 @@
              </div>
              <div class="px-4 py-3 py-lg-4">
                <div class="">
-                 <form id="reg-form" class="form-default" role="form" action="https://admindeal.com.bd/register" method="POST">
-                   <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ">
+                 <form @submit.prevent="createUser()" id="reg-form" class="form-default" role="form">
+                   <!-- <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ"> -->
                    <div class="form-group">
-                     <input type="text" class="form-control" value="" placeholder="Full Name" name="name">
+                     <input v-model="user.name" type="text" class="form-control" placeholder="Full Name" name="name">
                    </div>
-                   <div class="form-group phone-form-group mb-1">
-                     <input type="tel" id="phone-code" class="form-control" value="" placeholder="" name="phone" autocomplete="off">
+                   <div v-if="user.register_by=='phone'" class="form-group phone-form-group mb-1">
+                     <input  v-model="user.email_or_phone" type="tel" id="phone-code" class="form-control"  placeholder="Phone" name="phone" autocomplete="off">
                    </div>
                    <input type="hidden" name="country_code" value="">
-                   <div class="form-group email-form-group mb-1 d-none">
-                     <input type="email" class="form-control " value="" placeholder="Email" name="email" autocomplete="off">
+                   <div v-if="user.register_by=='email'" class="form-group email-form-group mb-1">
+                     <input  v-model="user.email_or_phone" type="email" class="form-control " placeholder="Email" name="email" autocomplete="off">
                    </div>
                    <div class="form-group text-right">
-                     <button class="btn btn-link p-0 opacity-50 text-reset" type="button" onclick="toggleEmailPhone(this)">Use Email Instead</button>
+                     <button class="btn btn-link p-0 opacity-50 text-reset" type="button" @click="toggleEmailPhone()">{{ user.buttonText }}</button>
                    </div>
                    <div class="form-group">
-                     <input type="password" class="form-control" placeholder="Password" name="password">
+                     <input v-model="user.password" type="password" class="form-control" placeholder="Password" name="password">
                    </div>
                    <div class="form-group">
-                     <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
+                     <input v-model="user.confirmPassword" type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
                    </div>
                    <div class="form-group">
                      <div class="g-recaptcha" data-sitekey="6LdSQTwiAAAAAOhXb8c32WuwGoXIMSq0YqoVS7B5"></div>
                    </div>
                    <div class="mb-3">
                      <label class="aiz-checkbox">
-                       <input type="checkbox" name="checkbox_example_1" required>
+                       <input v-model="user.agery" type="checkbox" name="checkbox_example_1" required>
                        <span class=opacity-60>By signing up you agree to our terms and conditions.</span>
                        <span class="aiz-square-check"></span>
                      </label>
@@ -55,17 +55,17 @@
                  </div>
                  <ul class="list-inline social colored text-center mb-5">
                    <li class="list-inline-item">
-                     <a href="https://admindeal.com.bd/social-login/redirect/facebook" class="facebook">
+                     <a href="#" class="facebook">
                        <i class="lab la-facebook-f"></i>
                      </a>
                    </li>
                    <li class="list-inline-item">
-                     <a href="https://admindeal.com.bd/social-login/redirect/google" class="google">
+                     <a href="#" class="google">
                        <i class="lab la-google"></i>
                      </a>
                    </li>
                    <li class="list-inline-item">
-                     <a href="https://admindeal.com.bd/social-login/redirect/twitter" class="twitter">
+                     <a href="#" class="twitter">
                        <i class="lab la-twitter"></i>
                      </a>
                    </li>
@@ -87,8 +87,60 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data(){
+    return{
+        user: {
+          name: '',
+          email_or_phone:'',
+          password: '',
+          register_by: 'phone',
+          buttonText: 'Use Email Instead',
+          confirmPassword: '',
+          agery: 0,
+        }
+    }
+  },
+  methods:{
+    createUser(){
+      // let token = document.head.querySelector("meta[name='csrf-token']");
 
+      // if (token) {
+      //     axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+      // } else {
+      //     console.error('CSRF token not found');
+      // }
+      axios.get(this.rootDomain+'vue/v3/auth/signup', {params:{
+        name: this.user.name,
+        email_or_phone: this.user.email_or_phone,
+        password: this.user.password,
+        register_by: this.user.register_by,
+        confirmPassword: this.user.confirmPassword,
+        agery: this.user.agery,
+      }})
+      .then((response)=>{
+          console.log(response);
+      })
+    },
+    toggleEmailPhone(){
+      if(this.user.register_by == 'email'){
+        this.user.register_by = 'phone';
+        this.user.buttonText = 'Use Email Instead';
+      }
+      else{
+        this.user.register_by = 'email';
+        this.user.buttonText = 'Use Phone Instead';
+      }
+    }
+  },
+  mounted() {
+      // if (document.getElementById('my-datatable')) return; // was already loaded
+      // var scriptTag = document.createElement("script");
+      // scriptTag.src = "https://cdn.datatables.net/v/dt/dt-1.10.16/sl-1.2.5/datatables.min.js";
+      // scriptTag.id = "my-datatable";
+      // document.getElementsByTagName('head')[0].appendChild(scriptTag);
+  }
 }
 </script>
 
