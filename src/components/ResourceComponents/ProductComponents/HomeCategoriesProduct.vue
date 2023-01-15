@@ -1,12 +1,12 @@
 <template>
-    <section class="mb-4" v-for="(category,indexUp) in categoryName" :key="indexUp">
+    <section class="mb-4" v-for="(category,indexUp) in categoryInfo" :key="indexUp">
       <div class="container">
        <div class="px-2 py-4 px-md-4 py-md-3 bg-white shadow-sm rounded">
          <div class="d-flex mb-3 align-items-baseline border-bottom sectionmenu">
            <h3 class="h5 fw-700 mb-0">
-             <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block" style="font-size:16px;color:black">{{ category }}</span>
+             <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block" style="font-size:16px;color:black">{{ category.name }}</span>
            </h3>
-           <a href="https://admindeal.com.bd/todays_best_deals" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
+           <a style="cursor:pointer" @click="receiveCategorySlug(category.slug)" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
          </div>
          <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
   
@@ -101,7 +101,7 @@
     data(){
       return{
         homeCategoryProducts:[],
-        categoryName:[],
+        categoryInfo:[],
         modules: [FreeMode,Navigation],
         
       }
@@ -124,10 +124,19 @@
       getHomeCategoryProducts(rootDomain){
             axios.get(rootDomain+'vue/v3/home-category-wise-product')
             .then((response)=>{
+                console.log(response.data[1]);
                 this.homeCategoryProducts = response.data[0];
-                this.categoryName = response.data[1];
+                this.categoryInfo = response.data[1];
             })
-      }
+      },
+      receiveCategorySlug(slug){
+            this.$router.push({
+                name:'CategoryWiseProduct',
+                params: {
+                    slug: slug
+                }
+            }); 
+      },
     }
   }
   </script>

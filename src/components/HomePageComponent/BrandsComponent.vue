@@ -4,7 +4,7 @@
       <div class="px-2 py-4 px-md-4  py-md-3 bg-white shadow-sm rounded">
          <div class="d-flex mb-3 align-items-baseline border-bottom sectionmenu">
             <h3 class="h5 fw-700 mb-0"> <span class="text-custom border-primary border-width-2 pb-3 d-inline-block">Top Brands</span> </h3>
-            <a href="https://admindeal.com.bd/brands" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a> 
+            <router-link :to="{name:'AllBrands'}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</router-link> 
          </div>
 
          <ul class="list-unstyled mb-0 row gutters-5">

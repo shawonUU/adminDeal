@@ -6,7 +6,7 @@
            <h3 class="h5 fw-700 mb-0">
              <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block" style="font-size:16px;color:black">Featured Products</span>
            </h3>
-           <a href="https://admindeal.com.bd/todays_best_deals" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
+           <router-link :to="{name:'featuredProductsMore'}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</router-link>
          </div>
          <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
   
@@ -127,7 +127,15 @@
                 this.featuredProducts = response.data.data;
             })
       }
-    }
+    },
+    productDetails(slug){
+      this.$router.push({
+        name: "singleProduct",
+        params: {
+          slug: slug
+        }
+      });
+    },
   }
   </script>
   

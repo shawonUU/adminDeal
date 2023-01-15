@@ -7,7 +7,7 @@
             <h3 class="h5 fw-700 mb-0">
                <span class="text-custom border-primary border-width-2 pb-3 d-inline-block">Top Sellers</span>
             </h3>
-            <a href="https://admindeal.com.bd/sellers" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
+            <router-link :to="{name:'AllShops'}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</router-link>
          </div>
          <ul class="list-unstyled mb-0 row gutters-5">
             <li  v-for="(seller,index) in sellers.slice(0, 8)" :key="index" class="minw-0 col-3 col-md mt-3 text-center">

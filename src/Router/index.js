@@ -22,12 +22,16 @@ import Blog from '../components/pages/FrontEnd/Blog.vue';
 import Categories from '../components/pages/FrontEnd/Categories.vue';
 import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
 import BrandWiseProduct from '../components/ResourceComponents/ProductComponents/BrandWiseProduct.vue';
+import AllBrands from '../components/ResourceComponents/ProductComponents/detailPages/AllBrands.vue';
+import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
+import AllShops from '../components/ResourceComponents/ProductComponents/detailPages/AllShops.vue';
 // Order Routes
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
-import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
 import SingleProduct from '../components/ResourceComponents/ProductComponents/SingleProduct.vue';
-
+import TodaysBestDeals from '../components/ResourceComponents/ProductComponents/detailPages/TodaysDeal.vue';
+import featuredProductsMore from '../components/ResourceComponents/ProductComponents/detailPages/AllFeaturedProduct.vue';
+import auctionProducts from '../components/ResourceComponents/ProductComponents/detailPages/AllAuctionProduct.vue';
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
 import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/ShopWiseProduct.vue';
 
@@ -90,10 +94,31 @@ const routes = [
     component: SingleProduct
   },
   {
+    path:'/todays_best_deals',
+    name: 'todaysBestDealsProducts',
+    component: TodaysBestDeals
+  },
+  {
+    path:'/featured_products_more',
+    name: 'featuredProductsMore',
+    component: featuredProductsMore
+  },
+  {
+    path:'/auction-products',
+    name: 'auctionProducts',
+    component: auctionProducts
+  },
+  {
     path: '/shop',
     name: 'productShop',
     props:true,
     component: Shop
+  },
+  {
+    path: '/all_shops',
+    name: 'AllShops',
+    props:true,
+    component: AllShops
   },
   {
     path: '/brand/:slug?',
@@ -102,11 +127,17 @@ const routes = [
     component: BrandWiseProduct
   },
   {
+    path:'/brands',
+    name:'AllBrands',
+    component: AllBrands
+  },
+  {
     path: '/shops/:slug?',
     name: 'Shop',
     props: true,
     component: ShopWiseProduct
   },
+ 
 //important pages
 {
   path: '/about-us',

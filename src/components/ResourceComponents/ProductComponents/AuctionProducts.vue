@@ -6,7 +6,7 @@
            <h3 class="h5 fw-700 mb-0">
              <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block" style="font-size:16px;color:black">Auction Products</span>
            </h3>
-           <a href="https://admindeal.com.bd/todays_best_deals" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
+           <router-link :to="{name:'auctionProducts'}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</router-link>
          </div>
          <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
   
@@ -58,13 +58,13 @@
                    <span class="fw-700 text-primary">{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-90%</span>
                    </span>
                  </div>
-                 <div class="rating rating-sm mt-1">
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i> ({{ product.rating }})
-                 </div>
+                    <div class="rating rating-sm mt-1">
+                      <template v-for="index in 5" :key="index">
+                          <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                          <i v-else class = 'las la-star'></i>
+                      </template>
+                      ({{ product.rating }})
+                    </div>
                  <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                   <a style="cursor:pointer" @click="productDetails(product.slug)"  :to="{name:'singleProduct'}" class="d-block text-reset">{{ product.name}}</a>
                  </h3>
@@ -89,6 +89,7 @@
   </template>
   
   <script>
+import { ratingGenerator } from '@/HelpersFunction/Helpers';
   import { Swiper, SwiperSlide } from "swiper/vue";
   // Import Swiper styles
   import "swiper/css";
@@ -127,7 +128,10 @@
                 this.auctionProducts = response.data.data;
             })
       }
-    }
+    },
+    getRatings(rating,maxRating=5){
+           return ratingGenerator(rating,maxRating)
+        },
   }
   </script>
   
