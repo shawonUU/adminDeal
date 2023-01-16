@@ -131,6 +131,14 @@ import { ratingGenerator } from '@/HelpersFunction/Helpers';
       getRatings(rating,maxRating=5){
            return ratingGenerator(rating,maxRating)
         },
+        productDetails(slug){
+      this.$router.push({
+        name: "singleProduct",
+        params: {
+          slug: slug
+        }
+      });
+    },
     }
   }
   </script>

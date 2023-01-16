@@ -10,7 +10,7 @@
                      <div class="d-flex d-xl-none justify-content-between align-items-center pl-3 border-bottom">
                         <h3 class="h6 mb-0 fw-600">Filters</h3>
                         <button type="button" class="btn btn-sm p-2 filter-sidebar-thumb" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" >
-                        <i class="las la-times la-2x"></i>
+                           <i class="las la-times la-2x"></i>
                         </button>
                      </div>
                      <div class="bg-white shadow-sm rounded mb-3">
@@ -18,7 +18,20 @@
                            Price range
                         </div>
                         <div class="p-3">
+
                            <div class="aiz-range-slider">
+                              <div @mousemove="getReng()" @mousedown="mouseDownDetector()" id="input-slider-range" data-range-value-min="0" data-range-value-max="1000"></div>
+                               <div class="row mt-2">
+                                 <div class="col-6">
+                                       <span class="range-slider-value value-low fs-14 fw-600 opacity-70" data-range-value-low="0" id="input-slider-range-value-low"></span>
+                                 </div>
+                                 <div class="col-6 text-right">
+                                       <span class="range-slider-value value-high fs-14 fw-600 opacity-70" data-range-value-high="1000" id="input-slider-range-value-high"> </span>
+                                 </div>
+                              </div>          
+                           </div>
+
+                           <!-- <div class="aiz-range-slider">
                               <div
                                  id="input-slider-range"
                                  data-range-value-min=" 0 "
@@ -38,7 +51,7 @@
                                        ></span>
                                  </div>
                               </div>
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                      <div class="bg-white shadow-sm rounded mb-3">
@@ -3740,7 +3753,8 @@
          </div>
       </form>
    </div>
-</section>
+   </section>
+   
 </template>
 
 <script>
@@ -3751,16 +3765,40 @@ export default {
       return{
          categoryWiseProducts:[],
          categoryInfo:[],
-         ShowNotFound:'Loading...'
+         ShowNotFound:'Loading...',
+         maxPrice: null,
+         minPrice: null,
       }
     },
      mounted(){
+
         this.getCategoryWiseProduct(this.rootDomain);
+         if(document.getElementsByTagName("UL")[0]){
+            var baseUrl = window.location.origin;
+
+            var scriptTag = document.createElement("script");
+            scriptTag.src = baseUrl+"/assets/js/vendors.js";
+            document.getElementsByTagName('head')[0].appendChild(scriptTag);
+
+            var scriptTag = document.createElement("script");
+            scriptTag.src = baseUrl+"/assets/js/aiz-core.js";
+            document.getElementsByTagName('head')[0].appendChild(scriptTag);
+         }
      },
      watch:{
 
      },
      methods:{
+        getReng(){
+         let min = $('#input-slider-range-value-low').html();
+         let max = $('#input-slider-range-value-high').html();
+         if(this.minPrice != min || this.maxPrice != max){
+            this.minPrice = min;
+            this.maxPrice = max;
+            console.log(this.minPrice+" "+this.maxPrice);
+         }
+
+        },
          getCategoryWiseProduct(rootDomain,slug){
             this.ShowNotFound  = 'Loading...';
             axios.get(rootDomain+'vue/v3/products/category/'+this.slug)

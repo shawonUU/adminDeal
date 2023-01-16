@@ -1,3 +1,28 @@
+
+var AIZ = AIZ || {};
+AIZ.local = {
+    nothing_selected: 'Nothing selected',
+    nothing_found: 'Nothing found',
+    choose_file: 'Choose File',
+    file_selected: 'File selected',
+    files_selected: 'Files selected',
+    add_more_files: 'Add more files',
+    adding_more_files: 'Adding more files',
+    drop_files_here_paste_or: 'Drop files here, paste or',
+    browse: 'Browse',
+    upload_complete: 'Upload complete',
+    upload_paused: 'Upload paused',
+    resume_upload: 'Resume upload',
+    pause_upload: 'Pause upload',
+    retry_upload: 'Retry upload',
+    cancel_upload: 'Cancel upload',
+    uploading: 'Uploading',
+    processing: 'Processing',
+    complete: 'Complete',
+    file: 'File',
+    files: 'Files',
+}
+
 //custom jquery method for toggle attr
 $.fn.toggleAttr = function (attr, attr1, attr2) {
     return this.each(function () {
@@ -1346,7 +1371,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                         f[b].textContent = a[b];
                     }),
                     c.noUiSlider.on("change", function (a, b) {
-                        rangefilter(a);
+                        // rangefilter(a);
                     });
                 });
             }

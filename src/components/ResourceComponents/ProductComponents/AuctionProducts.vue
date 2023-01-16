@@ -122,16 +122,25 @@ import { ratingGenerator } from '@/HelpersFunction/Helpers';
    
     },
     methods: {
-        getAuctiontProducts(rootDomain){
+      getAuctiontProducts(rootDomain){
             axios.get(rootDomain+'vue/v3/products/all_auction_products')
             .then((response)=>{
                 this.auctionProducts = response.data.data;
             })
-      }
-    },
-    getRatings(rating,maxRating=5){
+      },
+      getRatings(rating,maxRating=5){
            return ratingGenerator(rating,maxRating)
         },
+      productDetails(slug){
+      this.$router.push({
+        name: "singleProduct",
+        params: {
+          slug: slug
+        }
+      });
+  },
+    },
+   
   }
   </script>
   
