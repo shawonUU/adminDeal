@@ -6,7 +6,7 @@
          <div class="aiz-category-menu bg-white rounded  shadow-sm">
            <ul class="list-unstyled categories no-scrollbar py-2 mb-0 text-left">
              <li v-for="(category,index) in categories" :key="index" class="category-nav-element" data-id="{{ category.id }}">
-               <a  href="https://admindeal.com.bd/category/man-woman-baby-fashion" class="text-truncate text-reset py-2 px-3 d-block">
+               <a style="cursor:pointer" @click="receiveCategorySlug(category.slug)" class="text-truncate text-reset py-2 px-3 d-block">
                  <img class="cat-image lazyload mr-2 opacity-60" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/k9PEQwECIZVCZAujoWuvhWvLIdEhlPhFdsGf4HNT.png" width="16" alt="Men&#039;s, Women&#039;s &amp; Baby&#039;s fashion">
                  <span @mouseover="getSubcategory(this.rootDomain,category.id,index)" class="cat-name">{{ category.name }}</span>
                </a>
@@ -19,10 +19,10 @@
                             <div v-for="(subcategory, indexup) in category.subcategories" :key="indexup" class="card shadow-none border-0">
                                 <ul class="list-unstyled mb-3">
                                     <li class="fw-600 border-bottom pb-2 mb-3">
-                                        <a class="text-reset" href="">{{ subcategory.name }}</a>
+                                        <a style="cursor:pointer" class="text-reset" @click="receiveCategorySlug(subcategory.slug)">{{ subcategory.name }}</a>
                                     </li>
                                       <li v-for="(childcategory, indexdn) in subcategory.childCategorys" :key="indexdn" class="mb-2">
-                                          <a class="text-reset" href="">{{ childcategory.name }}</a>
+                                          <a style="cursor:pointer" class="text-reset" @click="receiveCategorySlug(subcategory.slug)">{{ childcategory.name }}</a>
                                       </li>
                                 </ul>
                             </div>

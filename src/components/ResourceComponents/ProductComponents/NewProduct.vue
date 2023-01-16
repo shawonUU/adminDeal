@@ -54,8 +54,8 @@
                </div>
                <div class="p-md-3 p-2 text-left">
                  <div class="fs-15">
-                   <del class="fw-600 opacity-50 mr-1">৳{{ product.stroked_price }}</del>
-                   <span class="fw-700 text-primary">৳{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{ product.discount }}</span>
+                   <del class="fw-600 opacity-50 mr-1">{{ product.stroked_price }}</del>
+                   <span class="fw-700 text-primary">{{ product.main_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{ product.discount }}</span>
                    </span>
                  </div>
                  <div class="rating rating-sm mt-1">

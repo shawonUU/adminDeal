@@ -3730,14 +3730,11 @@
                       </div>
                    </div>
                </div>
+               <div>
+                       <h5 class="text-danger text-center">{{ ShowNotFound }}</h5>
+                </div>
                <div class="aiz-pagination aiz-pagination-center mt-4">
                    <!-- Pagination here -->
-               </div>
-               <div class="bg-white shadow-sm card my-5 px-4">
-                  <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
-                     <p >
-                     </p>
-                  </div>
                </div>
             </div>
          </div>
@@ -3754,6 +3751,7 @@ export default {
       return{
          categoryWiseProducts:[],
          categoryInfo:[],
+         ShowNotFound:'Loading...'
       }
     },
      mounted(){
@@ -3764,10 +3762,16 @@ export default {
      },
      methods:{
          getCategoryWiseProduct(rootDomain,slug){
+            this.ShowNotFound  = 'Loading...';
             axios.get(rootDomain+'vue/v3/products/category/'+this.slug)
             .then((response)=>{
                this.categoryWiseProducts = response.data[0].data;
                this.categoryInfo = response.data[1]
+               if(response.data[0].data<1){
+                  this.ShowNotFound  = 'Product Not Found!';
+               }else{
+                  this.ShowNotFound  = '';
+               }
             })
             .catch((error)=>{
                console.log(error);
@@ -3797,7 +3801,10 @@ export default {
                     slug: slug
                 }
             }); 
-      }
+      },
+      getRatings(rating,maxRating=5){
+           return ratingGenerator(rating,maxRating)
+        },
      },
   
 }

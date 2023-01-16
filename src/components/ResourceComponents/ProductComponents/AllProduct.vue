@@ -44,7 +44,11 @@
                             <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-0%</span>
                         </div>
                         <div class="rating rating-sm mt-1">
-                            ***{{ product.rating }} ({{ product.rating }} )
+                            <template v-for="index in 5" :key="index">
+                                <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                                <i v-else class = 'las la-star'></i>
+                            </template>
+                            ({{ product.rating }})
                         </div>
                         <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                             <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block text-reset">{{product.name}}</a>
@@ -68,6 +72,7 @@
 </template>
 
 <script>
+import { ratingGenerator } from '@/HelpersFunction/Helpers';
  import axios from "axios";
 export default {
     data(){
