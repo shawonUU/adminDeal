@@ -18,7 +18,36 @@
                            Price range
                         </div>
                         <div class="p-3">
+
                            <div class="aiz-range-slider">
+                                            <div
+                                                id="input-slider-range"
+                                                data-range-value-min="0"
+                                                data-range-value-max="1000"
+                                                
+                                            >55555</div>
+
+                                            <div class="row mt-2">
+                                                <div class="col-6">
+                                                    <span class="range-slider-value value-low fs-14 fw-600 opacity-70"
+                                                       
+                                                            data-range-value-low="0"
+                                                       
+                                                        id="input-slider-range-value-low"
+                                                    ></span>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <span class="range-slider-value value-high fs-14 fw-600 opacity-70"
+                                                      
+                                                            data-range-value-high="1000"
+                                                       
+                                                        id="input-slider-range-value-high"
+                                                    ></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                           <!-- <div class="aiz-range-slider">
                               <div
                                  id="input-slider-range"
                                  data-range-value-min=" 0 "
@@ -38,7 +67,7 @@
                                        ></span>
                                  </div>
                               </div>
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                      <div class="bg-white shadow-sm rounded mb-3">
@@ -3730,20 +3759,17 @@
                       </div>
                    </div>
                </div>
+               <div>
+                       <h5 class="text-danger text-center">{{ ShowNotFound }}</h5>
+                </div>
                <div class="aiz-pagination aiz-pagination-center mt-4">
                    <!-- Pagination here -->
-               </div>
-               <div class="bg-white shadow-sm card my-5 px-4">
-                  <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
-                     <p >
-                     </p>
-                  </div>
                </div>
             </div>
          </div>
       </form>
    </div>
-</section>
+   </section>
 </template>
 
 <script>
@@ -3754,6 +3780,7 @@ export default {
       return{
          categoryWiseProducts:[],
          categoryInfo:[],
+         ShowNotFound:'Loading...'
       }
     },
      mounted(){
@@ -3764,10 +3791,16 @@ export default {
      },
      methods:{
          getCategoryWiseProduct(rootDomain,slug){
+            this.ShowNotFound  = 'Loading...';
             axios.get(rootDomain+'vue/v3/products/category/'+this.slug)
             .then((response)=>{
                this.categoryWiseProducts = response.data[0].data;
                this.categoryInfo = response.data[1]
+               if(response.data[0].data<1){
+                  this.ShowNotFound  = 'Product Not Found!';
+               }else{
+                  this.ShowNotFound  = '';
+               }
             })
             .catch((error)=>{
                console.log(error);
@@ -3797,7 +3830,10 @@ export default {
                     slug: slug
                 }
             }); 
-      }
+      },
+      getRatings(rating,maxRating=5){
+           return ratingGenerator(rating,maxRating)
+        },
      },
   
 }

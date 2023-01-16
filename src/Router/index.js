@@ -32,6 +32,7 @@ import SingleProduct from '../components/ResourceComponents/ProductComponents/Si
 import TodaysBestDeals from '../components/ResourceComponents/ProductComponents/detailPages/TodaysDeal.vue';
 import featuredProductsMore from '../components/ResourceComponents/ProductComponents/detailPages/AllFeaturedProduct.vue';
 import auctionProducts from '../components/ResourceComponents/ProductComponents/detailPages/AllAuctionProduct.vue';
+import AllFreelanceProducts from '../components/ResourceComponents/ProductComponents/detailPages/AllFreelanceProducts.vue';
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
 import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/ShopWiseProduct.vue';
 
@@ -107,6 +108,11 @@ const routes = [
     path:'/auction-products',
     name: 'auctionProducts',
     component: auctionProducts
+  },
+  {
+    path:'/freelane-products',
+    name: 'AllFreelanceProducts',
+    component: AllFreelanceProducts
   },
   {
     path: '/shop',

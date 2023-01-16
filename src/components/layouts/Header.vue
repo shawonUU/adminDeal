@@ -487,12 +487,16 @@
         axios.get(rootDomain+'vue/header-category').then(res=>{
           this.navCategoriesName = res.data.name;
           this.navCategoriesLinks = res.data.links;
+          // console.log(this.navCategoriesName);
+          // console.log(this.navCategoriesLinks);
+
         }).catch(err=>{
           console.log(err);
         });
       },
 
       receiveCategorySlug(slug){
+        // alert(slug);
             this.$router.push({
                 name:'CategoryWiseProduct',
                 params: {
