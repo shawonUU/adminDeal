@@ -59,12 +59,12 @@
                    </span>
                  </div>
                  <div class="rating rating-sm mt-1">
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i> ({{ product.rating }})
-                 </div>
+                      <template v-for="index in 5" :key="index">
+                          <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                          <i v-else class = 'las la-star'></i>
+                      </template>
+                      ({{ product.rating }})
+                </div>
                  <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                   <a style="cursor:pointer" @click="productDetails(product.slug)"  :to="{name:'singleProduct'}" class="d-block text-reset">{{ product.name}}</a>
                  </h3>
@@ -90,6 +90,7 @@
   
   <script>
   import { Swiper, SwiperSlide } from "swiper/vue";
+import { ratingGenerator } from '@/HelpersFunction/Helpers';
   // Import Swiper styles
   import "swiper/css";
   import "swiper/css/free-mode";
@@ -126,7 +127,18 @@
             .then((response)=>{
                 this.newestProducts = response.data.data;
             })
-      }
+      },
+      productDetails(slug){
+      this.$router.push({
+        name: "singleProduct",
+        params: {
+          slug: slug
+        }
+      });
+    },
+    getRatings(rating,maxRating=5){
+           return ratingGenerator(rating,maxRating)
+        },
     }
   }
   </script>

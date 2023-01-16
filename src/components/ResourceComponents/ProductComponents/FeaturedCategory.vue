@@ -37,7 +37,7 @@
                <span class="badge-custom">OFF <span class="box ml-1 mr-0">{{ product.discount }}</span>
                </span>
                <div class="position-relative">
-                 <a  style="cursor:pointer" @click="productDetails(product.slug)">
+                 <a style="cursor:pointer" @click="productDetails(product.slug)">
                    <img :src="product.thumbnail_image" class="img-fit lazyload mx-auto h-140px h-md-210px"  :alt="product.name" >
                  </a>
                  <div class="absolute-top-right aiz-p-hov-icon">
@@ -59,12 +59,12 @@
                    </span>
                  </div>
                  <div class="rating rating-sm mt-1">
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i>
-                   <i class='las la-star active'></i> ({{ product.rating }})
-                 </div>
+                      <template v-for="index in 5" :key="index">
+                          <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                          <i v-else class = 'las la-star'></i>
+                      </template>
+                      ({{ product.rating }})
+                  </div>
                  <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
                   <a style="cursor:pointer" @click="productDetails(product.slug)"  :to="{name:'singleProduct'}" class="d-block text-reset">{{ product.name}}</a>
                  </h3>
@@ -90,6 +90,7 @@
   
   <script>
   import { Swiper, SwiperSlide } from "swiper/vue";
+  import { ratingGenerator } from '@/HelpersFunction/Helpers';
   // Import Swiper styles
   import "swiper/css";
   import "swiper/css/free-mode";
@@ -126,9 +127,11 @@
             .then((response)=>{
                 this.featuredProducts = response.data.data;
             })
-      }
-    },
-    productDetails(slug){
+      }, 
+     getRatings(rating,maxRating=5){
+           return ratingGenerator(rating,maxRating)
+      },
+      productDetails(slug){
       this.$router.push({
         name: "singleProduct",
         params: {
@@ -136,6 +139,8 @@
         }
       });
     },
+    },
+ 
   }
   </script>
   
