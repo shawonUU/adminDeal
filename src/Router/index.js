@@ -115,7 +115,7 @@ const routes = [
     component: AllFreelanceProducts
   },
   {
-    path: '/shop',
+    path: '/search/keyword=:keyword?',
     name: 'productShop',
     props:true,
     component: Shop
