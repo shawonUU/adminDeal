@@ -124,7 +124,6 @@
       getHomeCategoryProducts(rootDomain){
             axios.get(rootDomain+'vue/v3/home-category-wise-product')
             .then((response)=>{
-                console.log(response.data[1]);
                 this.homeCategoryProducts = response.data[0];
                 this.categoryInfo = response.data[1];
             })
