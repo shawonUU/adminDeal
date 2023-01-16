@@ -18,7 +18,36 @@
                            Price range
                         </div>
                         <div class="p-3">
+
                            <div class="aiz-range-slider">
+                                            <div
+                                                id="input-slider-range"
+                                                data-range-value-min="0"
+                                                data-range-value-max="1000"
+                                                
+                                            >55555</div>
+
+                                            <div class="row mt-2">
+                                                <div class="col-6">
+                                                    <span class="range-slider-value value-low fs-14 fw-600 opacity-70"
+                                                       
+                                                            data-range-value-low="0"
+                                                       
+                                                        id="input-slider-range-value-low"
+                                                    ></span>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <span class="range-slider-value value-high fs-14 fw-600 opacity-70"
+                                                      
+                                                            data-range-value-high="1000"
+                                                       
+                                                        id="input-slider-range-value-high"
+                                                    ></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                           <!-- <div class="aiz-range-slider">
                               <div
                                  id="input-slider-range"
                                  data-range-value-min=" 0 "
@@ -38,7 +67,7 @@
                                        ></span>
                                  </div>
                               </div>
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                      <div class="bg-white shadow-sm rounded mb-3">
@@ -3743,7 +3772,7 @@
          </div>
       </form>
    </div>
-</section>
+   </section>
 </template>
 
 <script>
