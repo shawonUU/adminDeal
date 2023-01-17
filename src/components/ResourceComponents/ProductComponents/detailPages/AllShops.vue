@@ -21,7 +21,7 @@
 <section class="mb-2">
     <div class="container">
             <div class="row gutters-10 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-1">
-                        <div v-for="(shop,index) in allShops" :key="index" class="col">
+                        <div v-for="(shop,index) in allShops.data" :key="index" class="col">
                             <div class="row no-gutters bg-white align-items-center border border-light rounded hov-shadow-md mb-3 has-transition">
                                 <div class="col-4">
                                     <a style="cursor:pointer" @click="shopSlug(shop.slug)" class="d-block p-3" tabindex="0">
@@ -55,6 +55,13 @@
                         </div>
             </div>
             <div class="aiz-pagination aiz-pagination-center mt-4">
+                        <vue-awesome-paginate
+                            :total-items="total"
+                            :items-per-page="20"
+                            :max-pages-shown="5"
+                            v-model="currentPage"
+                            @click="getAllShop"
+                            />
             </div>
         </div>
     </section>
@@ -67,17 +74,20 @@ export default {
   data(){
       return{
         allShops:[],
+        currentPage:1,
+        total:"",
       }
   },
   mounted(){
-    this.getAllShop(this.rootDomain);
+    this.getAllShop(1);
   },
   methods:{
-    getAllShop(rootDomain){
-        axios.get(rootDomain+'vue/all_shops')
+    getAllShop(page){
+        axios.get(this.rootDomain+'vue/all_shops?page='+page)
         .then((response)=>{
-            console.log( response.data)
-            this.allShops = response.data.data;
+            this.allShops = response.data;
+            this.total = response.data.meta.total;
+            this.scrollToTop();
         })
         .catch((err)=>{
             console.log(err)
@@ -94,6 +104,9 @@ export default {
     getRatings(rating,maxRating=5){
         return ratingGenerator(rating,maxRating)
     },
+    scrollToTop() {
+    window.scrollTo(0,0);
+  }
   }
 }
 </script>
