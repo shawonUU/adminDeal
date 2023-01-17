@@ -69,7 +69,7 @@ const routes = [
     component: Blog
   },
   {
-    path: '/blog/:slug?',
+    path: '/blogs/:slug?',
     name: 'BlogDetails',
     props:true,
     component: BlogDetails
