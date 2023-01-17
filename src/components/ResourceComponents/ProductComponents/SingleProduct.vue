@@ -8,6 +8,7 @@
                   <div class="col order-1 order-md-2">
                      <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
                         <div class="carousel-box img-zoom rounded">
+                           
                            <img
                               class="img-fluid lazyload"
                               :src="productDetails.thumbnail_image?productDetails.thumbnail_image:'https://admindeal.com.bd/public/assets/img/placeholder.jpg'"
@@ -683,6 +684,7 @@ export default {
                      .then((response)=>{
                         console.log(response.data[0].data[0]);
                         this.productDetails = response.data[0].data[0];
+                        // console.log(this.productDetails);
                         this.shopDetails = response.data[1];
                      })
                },
