@@ -278,7 +278,13 @@
                            
                         </div>
                         <div class="aiz-pagination aiz-pagination-center mt-4">
-                            <!-- {{ $products->appends(request()->input())->links() }} -->
+                            <vue-awesome-paginate
+                            :total-items="lastPage"
+                            :items-per-page="12"
+                            :max-pages-shown="5"
+                            v-model="currentPage"
+                            @click="getCategoryWiseProduct"
+                            />
                         </div>
                         
                            <div v-if="currentRouteName == 'products.category'" class="bg-white shadow-sm card my-5 px-4">
@@ -321,6 +327,8 @@ export default {
          color_filter_activation: null,
          colors: [],
          products:[],
+         currentPage:1,
+         lastPage:"",
       }
     },
     created(){
@@ -329,7 +337,7 @@ export default {
     },
      mounted(){
 
-        this.getCategoryWiseProduct(this.rootDomain);
+        this.getCategoryWiseProduct(1);
          this.setJsCdn();
      },
      watch:{
@@ -359,10 +367,11 @@ export default {
          }
 
         },
-         getCategoryWiseProduct(rootDomain){
+         getCategoryWiseProduct(page){
             this.ShowNotFound  = 'Loading...';
-            axios.get(rootDomain+'vue/category/'+this.slug)
+            axios.get(this.rootDomain+'vue/category/'+this.slug+'?page='+page)
             .then((response)=>{
+                console.log(response.data);
                this.currentRouteName = response.data.currentRouteName;
                this.attributes = response.data.attributes;
                this.color_filter_activation = response.data.color_filter_activation;
