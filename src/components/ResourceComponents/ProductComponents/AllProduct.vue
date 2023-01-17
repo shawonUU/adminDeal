@@ -81,7 +81,8 @@ export default {
             links: this.rootDomain+'vue/products/allpost',
             buttonIsLoading:true,
         }
-    },created(){
+    },
+    created(){
         this.loadMore(this.rootDomain);
     },
     mounted(){
