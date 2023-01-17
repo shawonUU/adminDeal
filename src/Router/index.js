@@ -19,6 +19,7 @@ import SellerRegistration from '../components/pages/Auth/SellerRegistration.vue'
 import affiliateRegistration from '../components/pages/Auth/AffiliateRegistration.vue';
 //for resources
 import Blog from '../components/pages/FrontEnd/Blog.vue';
+import BlogDetails from '../components/pages/FrontEnd/BlogDetails.vue';
 import Categories from '../components/pages/FrontEnd/Categories.vue';
 import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
 import BrandWiseProduct from '../components/ResourceComponents/ProductComponents/BrandWiseProduct.vue';
@@ -63,9 +64,15 @@ const routes = [
     component: affiliateRegistration
   },
   {
-    path: '/blog',
+    path: '/blogs',
     name: 'blog',
     component: Blog
+  },
+  {
+    path: '/blog/:slug?',
+    name: 'BlogDetails',
+    props:true,
+    component: BlogDetails
   },
   {
     path: '/categories',

@@ -4,22 +4,22 @@
   <div class="container">
     <div class="card-columns">
       <div v-for="(blog,index) in blogs" class="card mb-3 overflow-hidden shadow-sm">
-        <a href="https://admindeal.com.bd/blog/realme-gaming-phone-price" class="text-reset d-block">
+        <a @click="getBlogSlug(blog.slug)" class="text-reset d-block">
           <img :src="blog.meta_img"  :alt="blog.title" class="img-fluid lazyload ">
         </a>
         <div class="p-4">
           <h2 class="fs-18 fw-600 mb-1">
-            <a href="https://admindeal.com.bd/blog/realme-gaming-phone-price" class="text-reset">{{ blog.name }}</a>
+            <a @click="getBlogSlug(blog.slug)"  class="text-reset">{{ blog.name }}</a>
           </h2>
           <div class="mb-2 opacity-50">
             <i>{{ blog.category }}</i>
           </div>
           <p class="opacity-70 mb-4" v-html="blog.short_description"></p>
-          <a href="https://admindeal.com.bd/blog/realme-gaming-phone-price" class="btn btn-soft-primary"> View More </a>
+          <a @click="getBlogSlug(blog.slug)" class="btn btn-soft-primary"> View More </a>
         </div>
       </div>
     </div>
-    <div class="aiz-pagination aiz-pagination-center mt-4">
+    <!-- <div class="aiz-pagination aiz-pagination-center mt-4">
       <nav>
         <ul class="pagination">
           <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
@@ -45,7 +45,7 @@
           </li>
         </ul>
       </nav>
-    </div>
+    </div> -->
   </div>
 </section>
 </template>
@@ -70,6 +70,14 @@ export default {
       })
       .catch((error)=>{
 
+      });
+    },
+    getBlogSlug(slug){
+      this.$router.push({
+        name: "BlogDetails",
+        params: {
+          slug: slug
+        }
       });
     }
    }
