@@ -119,8 +119,7 @@
                                                       <input
                                                          type="radio"
                                                          name="color"
-                                                         :value="color.code"
-                                                         
+                                                         :value="color.code" 
                                                       >
                                                       <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
                                                          <span class="size-30px d-inline-block rounded" :style="{background:color.code}"></span>
@@ -170,24 +169,23 @@
                             <div class="row gutters-5 flex-wrap align-items-center">
                                 <div class="col-lg col-10">
                                     <h1 v-if="categoryId" class="h6 fw-600 text-body">
-                                       cnameeeee
-                                            <!-- {{ \App\Models\Category::find($category_id)->getTranslation('name') }} -->
+                                            {{ categoryName }}
                                     </h1>
-                                    <h1 v-else-if="$query" class="h6 fw-600 text-body">
+                                    <h1 v-else-if="query" class="h6 fw-600 text-body">
                                        {{ 'Search result for ' }}"{{ query }}"
                                     </h1>
                                     <h1 v-else class="h6 fw-600 text-body">
                                        {{ 'All Products' }}
                                     </h1>
-                                    <input type="hidden" name="keyword" value="{{ query }}">
+                                    <!-- <input type="hidden" name="keyword" value="{{ query }}"> -->
                                 </div>
                                 <div class="col-2 col-lg-auto d-xl-none mb-lg-3 text-right">
                                     <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".aiz-filter-sidebar">
                                         <i class="la la-filter la-2x"></i>
                                     </button>
                                 </div>
-                                <!-- <div class="col-6 col-lg-auto mb-3 w-lg-200px">
-                                    @if (Route::currentRouteName() != 'products.brand')
+                                <div class="col-6 col-lg-auto mb-3 w-lg-200px">
+                                    <!-- @if (Route::currentRouteName() != 'products.brand')
                                         <label class="mb-0 opacity-50">{{ translate('Brands')}}</label>
                                         <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" onchange="filter()">
                                             <option value="">{{ translate('All Brands')}}</option>
@@ -195,16 +193,17 @@
                                                 <option value="{{ $brand->slug }}" @isset($brand_id) @if ($brand_id == $brand->id) selected @endif @endisset>{{ $brand->getTranslation('name') }}</option>
                                             @endforeach
                                         </select>
-                                    @endif
-                                </div> -->
+                                    @endif -->
+                                </div>
                                 <div class="col-6 col-lg-auto mb-3 w-lg-200px">
                                     <label class="mb-0 opacity-50">{{ 'Sort by' }}</label>
-                                    <!-- <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" onchange="filter()">
-                                        <option value="newest" @isset($sort_by) @if ($sort_by == 'newest') selected @endif @endisset>{{ translate('Newest')}}</option>
-                                        <option value="oldest" @isset($sort_by) @if ($sort_by == 'oldest') selected @endif @endisset>{{ translate('Oldest')}}</option>
-                                        <option value="price-asc" @isset($sort_by) @if ($sort_by == 'price-asc') selected @endif @endisset>{{ translate('Price low to high')}}</option>
-                                        <option value="price-desc" @isset($sort_by) @if ($sort_by == 'price-desc') selected @endif @endisset>{{ translate('Price high to low')}}</option>
-                                    </select> -->
+                                    <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" onchange="filter()">
+                                        <option value="newest" :selected="newest == 'newest'" >{{'Newest'}}</option>
+                                        
+                                        <option value="oldest" :selected="newest == 'oldest'" >{{ 'Oldest' }}</option>
+                                        <option value="price-asc" :selected="newest == 'price-asc'" >{{ 'Price low to high'}}</option>
+                                        <option value="price-desc" :selected="newest == 'price-desc'" >{{ 'Price high to low'}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -214,67 +213,57 @@
                             
                                 <div v-for="(product, index) in products" :key="index" class="col">
                                    
-
-
-
-
-
                                  <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                                    
                                        <span v-if="product.discount>0" class="badge-custom">{{ 'OFF' }}<span class="box ml-1 mr-0">&nbsp;{{product.discount}}%</span></span>
                                     
                                     <div class="position-relative">
-                                       <!-- @php
-                                             $product_url = route('product', $product->slug);
-                                             if($product->auction_product == 1) {
-                                                $product_url = route('auction-product', $product->slug);
-                                             }
-                                       @endphp -->
-                                       <a href="{{ #/**$product_url**/ }}" class="d-block">
+                                      
+                                       <a href="javascript:void(0)" @click="productDetails(product.slug, product.auction_product)" class="d-block">
                                              <img
-                                                class="img-fit lazyload mx-auto h-140px h-md-210px"
-                                                src=""
-                                                :data-src="product.thumbnail_image"
+                                                class="img-fit lazyload mx-auto h-140px h-md-210px img-fluid lazyload"
+                                                :src="product.thumbnail_image"
                                                 :alt="product.name"
-                                                onerror="this.onerror=null;this.src='';"
                                              >
                                        </a>
-                                       <!-- @if ($product->wholesale_product)
-                                             <span class="absolute-bottom-left fs-11 text-white fw-600 px-2 lh-1-8" style="background-color: #455a64">
-                                                {{ translate('Wholesale') }}
+                                       <!-- ??'https://admindeal.com.bd/public/assets/img/placeholder.jpg' -->
+
+                                             <span v-if="product.wholesale_product" class="absolute-bottom-left fs-11 text-white fw-600 px-2 lh-1-8" style="background-color: #455a64">
+                                                {{ 'Wholesale' }}
                                              </span>
-                                       @endif -->
+                             
                                        <div class="absolute-top-right aiz-p-hov-icon">
-                                             <!-- <a href="javascript:void(0)" onclick="addToWishList({{ $product->id }})" data-toggle="tooltip" data-title="{{ translate('Add to wishlist') }}" data-placement="left">
+                                             <a href="javascript:void(0)" :onclick="addToWishList(product.id)" data-toggle="tooltip" data-title="{{ 'Add to wishlist' }}" data-placement="left">
                                                 <i class="la la-heart-o"></i>
                                              </a>
-                                             <a href="javascript:void(0)" onclick="addToCompare({{ $product->id }})" data-toggle="tooltip" data-title="{{ translate('Add to compare') }}" data-placement="left">
+                                             <a href="javascript:void(0)" :onclick="addToCompare(product.id)" data-toggle="tooltip" data-title="{{ ('Add to compare') }}" data-placement="left">
                                                 <i class="las la-sync"></i>
                                              </a>
-                                             <a href="javascript:void(0)" onclick="showAddToCartModal({{ $product->id }})" data-toggle="tooltip" data-title="{{ translate('Add to cart') }}" data-placement="left">
+                                             <a href="javascript:void(0)" :onclick="showAddToCartModal(product.id)" data-toggle="tooltip" data-title="{{ translate('Add to cart') }}" data-placement="left">
                                                 <i class="las la-shopping-cart"></i>
-                                             </a> -->
+                                             </a>
                                        </div>
                                     </div>
                                     <div class="p-md-3 p-2 text-left">
-                                       <!-- <div class="fs-15">
-                                             @if(home_base_price($product) != home_discounted_base_price($product))
-                                                <del class="fw-600 opacity-50 mr-1">{{ home_base_price($product) }}</del>
-                                             @endif
-                                             <span class="fw-700 text-primary">{{ home_discounted_base_price($product) }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-{{discount_in_percentage($product)}}%</span> </span> 
+                                       <div class="fs-15">
+                                             <del v-if="product.base_price != product.base_discounted_price" class="fw-600 opacity-50 mr-1">{{ product.base_price }}</del>
+                                             <span class="fw-700 text-primary">{{product.base_discounted_price }} <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;{{product.discount_in_percentage}}</span> </span> 
                                        </div>
                                        <div class="rating rating-sm mt-1">
-                                             {{ renderStarRating($product->rating) }} ({!!$product->reviews->count()??''!!})
-                                       </div>
-                                       <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                                             <a href="{{ $product_url }}" class="d-block text-reset">{{  $product->name  }}</a>
-                                       </h3>
-                                       @if (addon_is_activated('club_point'))
-                                             <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
-                                                Cashback :
-                                                <span class="fw-700 float-right">{{ $product->earn_point }}</span>
+                                             <div v-html="getRatings(product.rating)" style="display: inline;">
                                              </div>
-                                       @endif -->
+                                             ({{product.rating}})
+                                       </div>
+                                       
+                                       <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
+                                             <a href="" class="d-block text-reset">{{  product.name  }}</a>
+                                       </h3>
+                                       <!-- {{ $product_url }} -->
+                                      
+                                             <div v-if="addonIsActivated" class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
+                                                Cashback :
+                                                <span class="fw-700 float-right">{{ product.earn_point }}</span>
+                                             </div>
                                     </div>
                                  </div>
 
@@ -292,25 +281,13 @@
                             <!-- {{ $products->appends(request()->input())->links() }} -->
                         </div>
                         
-                        <!-- @if( Route::currentRouteName()=="products.category")
-                           <div class="bg-white shadow-sm card my-5 px-4">
+                           <div v-if="currentRouteName == 'products.category'" class="bg-white shadow-sm card my-5 px-4">
                               <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
-                                 <p >
-                                       @php
-                                 if(isset($category_id))
-                                 
-                                 $auto_description= \App\Models\Category::find($category_id)->auto_cat_description;
-                                 else {
-                                       $auto_description= null;
-                                 }
-                                       @endphp
-                                       {!!$auto_description!!}
-                                 </p>
-
+                                 <p v-html="autoDescription"></p>
                               </div>
                               <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
                            </div>
-                        @endif -->
+                        
                     </div>
                 </div>
             </form>
@@ -322,6 +299,7 @@
 
 <script>
 import axios from 'axios';
+import { ratingGenerator } from '@/HelpersFunction/Helpers';
 export default {
     props: ['slug'],
     data(){
@@ -332,8 +310,14 @@ export default {
          maxPrice: 0,
          minPrice: 100,
 
-
+         categoryId : null,
+         categoryName: '',
+         currentRouteName: '',
+         autoDescription: null,
+         query: null,
+         sortBy: '',
          attributes: null,
+         addonIsActivated: false,
          color_filter_activation: null,
          colors: [],
          products:[],
@@ -341,26 +325,30 @@ export default {
     },
     created(){
       //   this.loadMore(this.rootDomain);
+       this.setJsCdn();
     },
      mounted(){
 
         this.getCategoryWiseProduct(this.rootDomain);
-         if(document.getElementsByTagName("UL")[0]){
-            var baseUrl = window.location.origin;
-
-            var scriptTag = document.createElement("script");
-            scriptTag.src = baseUrl+"/assets/js/vendors.js";
-            document.getElementsByTagName('head')[0].appendChild(scriptTag);
-
-            var scriptTag = document.createElement("script");
-            scriptTag.src = baseUrl+"/assets/js/aiz-core.js";
-            document.getElementsByTagName('head')[0].appendChild(scriptTag);
-         }
+         this.setJsCdn();
      },
      watch:{
 
      },
      methods:{
+        setJsCdn(){
+           if(document.getElementsByTagName("head")[0]){
+               var baseUrl = window.location.origin;
+
+               var scriptTag = document.createElement("script");
+               scriptTag.src = baseUrl+"/assets/js/vendors.js";
+               document.getElementsByTagName('head')[0].appendChild(scriptTag);
+
+               var scriptTag = document.createElement("script");
+               scriptTag.src = baseUrl+"/assets/js/aiz-core.js";
+               document.getElementsByTagName('head')[0].appendChild(scriptTag);
+           }
+        },
         getReng(){
          let min = $('#input-slider-range-value-low').html();
          let max = $('#input-slider-range-value-high').html();
@@ -375,11 +363,18 @@ export default {
             this.ShowNotFound  = 'Loading...';
             axios.get(rootDomain+'vue/category/'+this.slug)
             .then((response)=>{
+               this.currentRouteName = response.data.currentRouteName;
                this.attributes = response.data.attributes;
                this.color_filter_activation = response.data.color_filter_activation;
                this.colors = response.data.colors;
                this.products = response.data.products.data;
-               console.log(response.data.attributes);
+               this.categoryId = response.data.category_id;
+               this.categoryName = response.data.category_name;
+               this.query = response.data.query;
+               this.sortBy = response.data.sort_by;
+               this.addonIsActivated = response.data.addon_is_activated;
+               this.autoDescription = response.data.auto_description;
+
                // this.categoryWiseProducts = response.data[0].data;
                // this.categoryInfo = response.data[1]
                // if(response.data[0].data<1){
@@ -400,13 +395,15 @@ export default {
                 }
             }); 
       },
-      productDetails(slug){
-         this.$router.push({
-         name: "singleProduct",
-         params: {
-            slug: slug
+      productDetails(slug,auction_product){
+         if(auction_product != 1){
+            this.$router.push({
+               name: "singleProduct",
+               params: {
+                  slug: slug
+               }
+            });
          }
-         });
       },
 
       allCategoryProduct(rootDomain){
@@ -419,8 +416,18 @@ export default {
       },
       getRatings(rating,maxRating=5){
            return ratingGenerator(rating,maxRating)
-        },
-     },
+      },
+      addToWishList(id){
+         
+      },
+      addToCompare(id){
+
+      },
+      showAddToCartModal(){
+
+      },
+
+   },
   
 }
 
