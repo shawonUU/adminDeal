@@ -394,6 +394,7 @@
                 this.categories = response.data.categories;
                 this.brandId = response.data.brand_id;
                 this.brands = response.data.brands;
+                this.lastPage = response.data.productsCount;
  
                 // this.categoryWiseProducts = response.data[0].data;
                 // this.categoryInfo = response.data[1]
