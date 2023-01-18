@@ -148,8 +148,14 @@
                <div>
                        <h5 class="text-danger text-center">{{ ShowNotFound }}</h5>
                 </div>
-      <div class="aiz-pagination aiz-pagination-center mb-4">
-        
+      <div  class="aiz-pagination aiz-pagination-center mb-4" style="text-align: center;">
+         <vue-awesome-paginate
+          :total-items="totalItems"
+          :items-per-page="18"
+          :max-pages-shown="5"
+          v-model="currentPage"
+          @click="getShopWiseProduct"
+        />
       </div>
    </div>
 </section>
@@ -164,26 +170,30 @@ export default{
         return{
             shopWiseProduct:[],
             shopDetails:[],
-            ShowNotFound:'Loading...'
+            ShowNotFound:'Loading...',
+            currentPage:1,
+            totalItems:"",
         }
     },
     mounted(){
         // console.log(this.slug);
-        this.getShopWiseProduct(this.rootDomain,this.slug);
+        this.getShopWiseProduct(1);
     },
     methods:{
-        getShopWiseProduct(rootDomain,slug){
+        getShopWiseProduct(page){
              this.ShowNotFound  = 'Loading...';
-            axios.get(rootDomain+'vue/v3/products/seller/'+slug)
+            axios.get(this.rootDomain+'vue/v3/products/seller/'+this.slug+'?page='+page)
             .then((response)=>{
-               // console.log(response.data);
-                  this.shopWiseProduct = response.data[0]
-                  this.shopDetails = response.data[1]
+               console.log(response.data[3]);
+                  this.shopWiseProduct = response.data[0];
+                  this.shopDetails = response.data[1];
+                  this.totalItems = response.data[2];
                   if(response.data[0]<1){
                   this.ShowNotFound  = 'Product Not Found!';
                   }else{
                      this.ShowNotFound  = '';
                   }
+                  this.scrollToTop();
             })
         },
         getRatings(rating,maxRating=5){
@@ -196,11 +206,14 @@ export default{
             slug: slug
          }
       });
+    },
+    scrollToTop() {
+    window.scrollTo(0,400);
     }
     }
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

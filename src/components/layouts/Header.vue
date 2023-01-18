@@ -86,7 +86,7 @@
           </div>
           <div class="flex-grow-1 front-header-search d-flex align-items-center bg-white" style="max-width: 750px;">
             <div class="position-relative flex-grow-1">
-              <form action="https://admindeal.com.bd/search" method="GET" class="stop-propagation">
+              <form @submit.prevent="searchSubmit()" action="https://admindeal.com.bd/search" method="GET" class="stop-propagation">
                 <div class="d-flex position-relative align-items-center">
                   <div class="d-lg-none" data-toggle="class-toggle" data-target=".front-header-search">
                     <button class="btn px-2" type="button">
@@ -483,6 +483,16 @@
       this.getNavCategories(this.rootDomain);
     },
     methods:{
+      searchSubmit(){
+        var searchKey = $('#search').val();
+        // alert(searchKey);
+        this.$router.push({
+                name:'productShop',
+                params: {
+                  keyword: searchKey
+                }
+            }); 
+      },
       getNavCategories(rootDomain){
         axios.get(rootDomain+'vue/header-category').then(res=>{
           this.navCategoriesName = res.data.name;

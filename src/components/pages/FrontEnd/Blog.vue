@@ -42,7 +42,6 @@ export default {
    data(){
     return{
       blogs:[],
-      value: [0,100],
       currentPage:1,
       lastPage:"",
     }
@@ -83,7 +82,7 @@ export default {
 
 </script>
 
-<style>
+  <style>
   .pagination-container {
     display: flex;
     column-gap: 10px;
@@ -93,13 +92,13 @@ export default {
     width: 40px;
     border-radius: 20px;
     cursor: pointer;
-    background-color: rgb(242, 242, 242);
-    border: 1px solid rgb(217, 217, 217);
-    color: black;
+    background-color: #dfdedd;
+    border: 1px solid #dfdedd;
+    color: rgb(0, 0, 0);
   }
   .paginate-buttons:hover {
     background-color: #f05a22;
-    color:#fff;
+    color: #fff;
   }
   .active-page {
     background-color: #f05a22;
@@ -108,10 +107,9 @@ export default {
   }
   .active-page:hover {
     background-color: #f05a22;
-    color:#fff;
+    color: #fff;
   }
   .aiz-pagination.aiz-pagination-center.mt-4 {
     text-align: center;
 }
-
 </style>

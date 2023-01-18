@@ -3659,7 +3659,6 @@
                     </div>
                 </div>
                 <div class="aiz-pagination aiz-pagination-center mt-4">
-                    <paginate :data="allProducts" @pagination-change-page="getShopProduct"></paginate>
                 </div>
                 <div class="bg-white shadow-sm card my-5 px-4">
                    <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
@@ -3677,7 +3676,7 @@
  <script>
  import axios from 'axios';
  export default {
-     props: ['slug'],
+     props: ['keyword'],
      data(){
        return{
           pageNumber:"",
@@ -3686,22 +3685,22 @@
      },
       mounted(){
          this.getShopProduct(this.rootDomain);
+         console.log(this.keyword);
       },
       watch:{
        
       },
       methods:{
-            getShopProduct(rootDomain, page=1){
+         getShopProduct(rootDomain, page=1){
             this.pageNumber = page;
              axios.get(rootDomain+'vue/v3/products/search?page='+page)
              .then((response)=>{
-                console.log(response.data);
                 this.allProducts = response.data;
              })
              .catch((error)=>{
                 console.log(error);
              })
-          },
+         },
           receiveCategorySlug(slug){
              this.$router.push({
                  name:'CategoryWiseProduct',
