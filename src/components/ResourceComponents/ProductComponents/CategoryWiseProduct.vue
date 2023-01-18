@@ -403,6 +403,7 @@
                 // }else{
                 //    this.ShowNotFound  = '';
                 // }
+                this.scrollToTop();
              })
              .catch((error)=>{
                 console.log(error);
@@ -447,6 +448,9 @@
        showAddToCartModal(){
  
        },
+       scrollToTop() {
+    window.scrollTo(0,0);
+  }
  
     },
    

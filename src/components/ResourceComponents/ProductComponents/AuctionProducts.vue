@@ -133,7 +133,7 @@ import { ratingGenerator } from '@/HelpersFunction/Helpers';
         },
       productDetails(slug){
       this.$router.push({
-        name: "singleProduct",
+        name: "AuctionProductsDetails",
         params: {
           slug: slug
         }

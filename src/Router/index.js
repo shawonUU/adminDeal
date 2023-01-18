@@ -33,6 +33,7 @@ import SingleProduct from '../components/ResourceComponents/ProductComponents/Si
 import TodaysBestDeals from '../components/ResourceComponents/ProductComponents/detailPages/TodaysDeal.vue';
 import featuredProductsMore from '../components/ResourceComponents/ProductComponents/detailPages/AllFeaturedProduct.vue';
 import auctionProducts from '../components/ResourceComponents/ProductComponents/detailPages/AllAuctionProduct.vue';
+import AuctionProductsDetails from '../components/ResourceComponents/ProductComponents/AuctionSingleProduct.vue';
 import AllFreelanceProducts from '../components/ResourceComponents/ProductComponents/detailPages/AllFreelanceProducts.vue';
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
 import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/ShopWiseProduct.vue';
@@ -112,9 +113,15 @@ const routes = [
     component: featuredProductsMore
   },
   {
-    path:'/auction-products',
+    path:'/auction-product',
     name: 'auctionProducts',
     component: auctionProducts
+  },
+  {
+    path:'/auction-products/:slug?',
+    props:true,
+    name: 'AuctionProductsDetails',
+    component: AuctionProductsDetails
   },
   {
     path:'/freelane-products',
