@@ -279,7 +279,7 @@
                          <div class="aiz-pagination aiz-pagination-center mt-4">
                              <vue-awesome-paginate
                              :total-items="lastPage"
-                             :items-per-page="12"
+                             :items-per-page="24"
                              :max-pages-shown="5"
                              v-model="currentPage"
                              @click="getCategoryWiseProduct"
