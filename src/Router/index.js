@@ -38,6 +38,10 @@ import AllFreelanceProducts from '../components/ResourceComponents/ProductCompon
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
 import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/ShopWiseProduct.vue';
 
+// After Authentication Component File
+import UserDashboard from '../components/pages/user/UserLayout.vue';
+import MyDashboard from '../components/pages/UserDashboard/Dashboard.vue';
+
 const routes = [
   {
     path: '/',
@@ -129,10 +133,10 @@ const routes = [
     component: AllFreelanceProducts
   },
   {
-    path: '/search/keyword=:keyword?',
+    path: '/search/keyword=:key_slug?',
     name: 'productShop',
     props:true,
-    component: Shop
+    component: CategoryWiseProduct
   },
   {
     path: '/all_shops',
@@ -141,10 +145,10 @@ const routes = [
     component: AllShops
   },
   {
-    path: '/brand/:slug?',
+    path: '/brand/:brand_slug?',
     name: 'Brand',
     props: true,
-    component: BrandWiseProduct
+    component: CategoryWiseProduct
   },
   {
     path:'/brands',
@@ -211,6 +215,19 @@ const routes = [
   component: ReplacementWarrantyPolicy
 },
 
+//After Authentication routes
+
+{
+  path:'/dashboard',
+  name:'UserDashboard',
+  component: UserDashboard
+},
+
+{
+  path:'/my-dashboard',
+  name:'MyDashboard',
+  components:{userSidebar:MyDashboard}
+},
 
 ]
 const router = createRouter({

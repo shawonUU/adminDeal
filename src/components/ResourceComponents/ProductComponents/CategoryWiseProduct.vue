@@ -307,7 +307,7 @@
  import axios from 'axios';
  import { ratingGenerator } from '@/HelpersFunction/Helpers';
  export default {
-        props: ['slug'],
+        props: ['slug','brand_slug','key_slug'],
         data(){
             return{
 
@@ -351,6 +351,13 @@
         mounted(){
             this.getCategoryWiseProduct(1);
             this.setJsCdn();
+            if(this.key_slug!=null){
+                alert(this.key_slug);
+            }else if(this.brand_slug!=null){
+                alert(this.brand_slug);
+            }else if(this.slug!=null){
+                alert(this.slug);
+            }
         },
         watch:{
     

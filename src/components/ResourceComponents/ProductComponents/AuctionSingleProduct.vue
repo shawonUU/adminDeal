@@ -185,7 +185,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="home" aria-selected="true">Description</button>
                                 </li>
-                                <li v-if="productsInfo.vedio_link != null" class="nav-item" role="presentation">
+                                <li v-if="productsInfo.video_link != null" class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#video" type="button" role="tab" aria-controls="video" aria-selected="false">Video</button>
                                 </li>
                                 <li v-if="productsInfo.pdf != null" class="nav-item" role="presentation">
@@ -197,10 +197,14 @@
                             </ul>
 
                             <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">des</div>
-                            <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">vidd</div>
-                            <div class="tab-pane fade" id="downloads" role="tabpanel" aria-labelledby="downloads-tab">downl</div>
-                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">rev</div>
+                            <div class="tab-pane fade show active" v-html="productsInfo.description" id="description" role="tabpanel" aria-labelledby="description-tab"></div>
+                            <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+                                     
+                                            <iframe class="embed-responsive-item" :src="`https://www.youtube.com/embed/`+productsInfo.video_url"></iframe>
+                                     
+                            </div>
+                            <div class="tab-pane fade" id="downloads" role="tabpanel" aria-labelledby="downloads-tab">Download Here</div>
+                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">reviews</div>
                             </div>
 
 
@@ -208,18 +212,92 @@
                     </div>
                 </div>
             </div>
+
+            <div class="bg-white rounded shadow-sm">
+                        <div class="border-bottom p-3">
+                            <h3 class="fs-16 fw-600 mb-0 text-left">
+                                <span class="">Related products</span>
+                            </h3>
+                        </div>
+                        <div class="p-3">
+                            <div class="aiz-carousel gutters-5 half-outside-arrow" data-items="5" data-xl-items="3" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
+                              <swiper
+                              :slidesPerView="2"
+                              :spaceBetween="10"
+                              :breakpoints="{
+                                 '640': {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                 },
+                                 '768': {
+                                    slidesPerView: 2,
+                                    spaceBetween: 40,
+                                 },
+                                 '1024': {
+                                    slidesPerView: 3,
+                                    spaceBetween: 50,
+                                 },
+                              }"
+                              :navigation="true"
+                              :modules="modules"
+                              class="mySwiper"
+                              >
+                        <swiper-slide v-for="(product, index) in relatedProducts" :key="index">  
+                              <div class="carousel-box">
+                           <div class="aiz-card-box  rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
+                              <div class="position-relative">
+                                 <a  style="cursor:pointer" @click="productDetails(product.slug)">
+                                 <img :src="product.thumbnail_image?product.thumbnail_image:`https://admindeal.com.bd/public/assets/img/placeholder.jpg`" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
+                                 </a>
+                              </div>
+                              <div class="p-md-3 p-2 text-left">
+                                 <div class="fs-15">
+                                 <span class="fw-700 text-primary">{{ product.main_price }} 
+                                 </span>
+                                 </div>
+                                 <div class="rating rating-sm mt-1">
+                                       <template v-for="index in 5" :key="index">
+                                          <i v-if="index<=product.rating" class = 'las la-star active'></i>
+                                          <i v-else class = 'las la-star'></i>
+                                       </template>
+                                       ({{ product.rating }})
+                                 </div>
+                                 <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
+                                 <a style="cursor:pointer" @click="productDetails(product.slug)"  :to="{name:'singleProduct'}" class="d-block text-reset">{{ product.name}}</a>
+                                 </h3>
+                              </div>
+                           </div>
+                           </div> 
+                        </swiper-slide>
+                           
+                        </swiper>
+                            </div>
+                        </div>
+                    </div>
     </section>
   
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { ratingGenerator } from '@/HelpersFunction/Helpers';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import { FreeMode,Navigation } from "swiper";
 import axios from 'axios'
 export default {
     props:['slug'],  
     data(){
     return{
+        modules: [FreeMode,Navigation],
         productsInfo:[],
+        relatedProducts:[],  
     }
+   },
+   components: {
+    Swiper,
+    SwiperSlide,
    },
    mounted(){
     this.getAuctionDetails(this.rootDomain)
@@ -228,8 +306,8 @@ export default {
     getAuctionDetails(rootDomain){
         axios.get(rootDomain+'vue/auction-product/'+this.slug)
         .then((response)=>{
-            // console.log(response.data.data)
-            this.productsInfo = response.data.data;
+            this.productsInfo = response.data[0];
+            this.relatedProducts = response.data[1].data;
         })
         .catch((error)=>{
             console.log(error)
@@ -242,7 +320,23 @@ export default {
                     slug: slug
                 }
             });
-       } 
+       },
+      getRatings(rating,maxRating=5){
+         return ratingGenerator(rating,maxRating)
+      },
+      productDetails(slug){
+      
+      this.$router.push({
+        name: "AuctionProductsDetails",
+        params: {
+          slug: slug
+        },
+      });
+      this.scrollToTop();
+  },
+  scrollToTop() {
+                window.scrollTo(0,0);
+      }
    }
 }
 </script>

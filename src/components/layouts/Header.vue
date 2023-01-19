@@ -64,6 +64,9 @@
             <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
               <router-link :to="{name:'login'}" class="text-reset d-inline-block opacity-60 py-2">Login</router-link>
             </li>
+            <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
+              <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">Dashboard</router-link>
+            </li>
             <li class="list-inline-item">
               <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
             </li>
@@ -86,7 +89,7 @@
           </div>
           <div class="flex-grow-1 front-header-search d-flex align-items-center bg-white" style="max-width: 750px;">
             <div class="position-relative flex-grow-1">
-              <form @submit.prevent="searchSubmit()" action="https://admindeal.com.bd/search" method="GET" class="stop-propagation">
+              <form @submit.prevent="searchSubmit()" method="GET" class="stop-propagation">
                 <div class="d-flex position-relative align-items-center">
                   <div class="d-lg-none" data-toggle="class-toggle" data-target=".front-header-search">
                     <button class="btn px-2" type="button">
@@ -485,11 +488,10 @@
     methods:{
       searchSubmit(){
         var searchKey = $('#search').val();
-        // alert(searchKey);
         this.$router.push({
                 name:'productShop',
                 params: {
-                  keyword: searchKey
+                  key_slug: searchKey
                 }
             }); 
       },

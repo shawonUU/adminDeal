@@ -47,11 +47,11 @@ export default {
             this.brands = response.data.data;
         })
        },
-       brandSlug(slug){
+       brandSlug(brand_slug){
          this.$router.push({
             name: "Brand",
             params: {
-            slug: slug
+            brand_slug: brand_slug
         }
       });
        }
