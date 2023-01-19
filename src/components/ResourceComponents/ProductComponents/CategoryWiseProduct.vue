@@ -21,7 +21,7 @@
                                      </div>
                                      <div class="p-3">
                                          <div class="aiz-range-slider">
-                                           <div id="input-slider-range" @onmousemove="search()" data-range-value-min="0" data-range-value-max="100">
+                                           <div id="input-slider-range" @mousemove="priceRange()" data-range-value-min="0" data-range-value-max="100000">
                                            </div>
  
                                              <div class="row mt-2">
@@ -32,7 +32,7 @@
                                                  </div>
                                                  <div class="col-6 text-right">
                                                     <span class="range-slider-value value-high fs-14 fw-600 opacity-70"
-                                                       data-range-value-high="100" id="input-slider-range-value-high">
+                                                       data-range-value-high="100000" id="input-slider-range-value-high">
                                                     </span>
                                                  </div>
                                              </div>
@@ -95,7 +95,7 @@
                                              <div class="aiz-checkbox-list" style="max-height: 150px; overflow:scroll;overflow-x: hidden;overflow-y:auto;">
                                                  <templete v-for="(attribute_value, indexdn) in attribut.values" :key="indexdn">
                                                     <label class="aiz-checkbox">
-                                                         <input type="checkbox" name="selected_attribute_values[]" :value="attribute_value.value" >
+                                                         <input @click="selectAttribute(attribute_value.value)" type="checkbox" name="selected_attribute_values[]" :value="attribute_value.value" >
                                                          <span class="aiz-square-check"></span>
                                                          <span>{{ attribute_value.value}}</span>
                                                      </label>
@@ -111,8 +111,8 @@
 
 
                                
-                                 
-                                     <div v-if="color_filter_activation" class="bg-white shadow-sm rounded mb-3">
+                                 <!-- v-if="color_filter_activation" -->
+                                     <div v-if="color_filter_activation"  class="bg-white shadow-sm rounded mb-3">
                                          <div class="fs-15 fw-600 p-3 border-bottom">
                                              {{ 'Filter by color'}}
                                          </div>
@@ -120,7 +120,8 @@
                                              <div class="aiz-radio-inline">
                                                  <templete v-for="(color, index) in colors" :key="index">
                                                     <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" :data-title="color.name">
-                                                       <input
+                                                       <input 
+                                                          @click="setColor(color.code)"
                                                           type="radio"
                                                           name="color"
                                                           :value="color.code" 
@@ -189,14 +190,14 @@
                                  </div>
                                  <div class="col-6 col-lg-auto mb-3 w-lg-200px">
                                          <label v-if="currentRouteName != 'products.brand'" class="mb-0 opacity-50">{{ 'Brands'}}</label>
-                                         <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand">
+                                         <select @change="setBrand()" id="brandsId" class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand">
                                             <option value="">{{ 'All Brands' }}</option>
                                             <option v-for="(brand, index) in brands" :key="index" :value="brand.slug" :selected="brandId == brand.id">{{ brand.name }}</option>
                                          </select>
                                  </div>
                                  <div class="col-6 col-lg-auto mb-3 w-lg-200px">
                                      <label class="mb-0 opacity-50">{{ 'Sort by' }}</label>
-                                     <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" onchange="filter()">
+                                     <select id="sortBy" class="form-control form-control-sm aiz-selectpicker" name="sort_by" @change="setSortedBy()">
                                          <option value="newest" :selected="newest == 'newest'" >{{'Newest'}}</option>
                                          
                                          <option value="oldest" :selected="newest == 'oldest'" >{{ 'Oldest' }}</option>
@@ -306,50 +307,56 @@
  import axios from 'axios';
  import { ratingGenerator } from '@/HelpersFunction/Helpers';
  export default {
-     props: ['slug'],
-     data(){
-       return{
-          categoryWiseProducts:[],
-          categoryInfo:[],
-          ShowNotFound:'Loading...',
-          maxPrice: 0,
-          minPrice: 100,
- 
-          brandId: null,
-          categoryId : null,
-          cetegoryLevelZero: [],
-          parentCategory: {},
-          category: {},
-          brands: [],
-          categoryName: '',
-          currentRouteName: '',
-          autoDescription: null,
-          query: null,
-          sortBy: '',
-          attributes: null,
-          addonIsActivated: false,
-          color_filter_activation: null,
-          colors: [],
-          products:[],
-          categories: [],
-          currentPage:1,
-          lastPage:"",
-       }
-     },
-     created(){
-       //   this.loadMore(this.rootDomain);
-        this.setJsCdn();
-     },
-      mounted(){
- 
-         this.getCategoryWiseProduct(1);
-          this.setJsCdn();
-      },
-      watch:{
- 
-      },
-      methods:{
-         setJsCdn(){
+        props: ['slug'],
+        data(){
+            return{
+
+                keyword:'',
+                selected_attribute_values: [],
+                selectedColor: '',
+                sortedBy:'newest',
+                selectedBrand: '',
+
+
+                categoryWiseProducts:[],
+                categoryInfo:[],
+                ShowNotFound:'Loading...',
+                maxPrice: '',
+                minPrice: '',
+                brandId: '',
+                categoryId : '',
+                cetegoryLevelZero: [],
+                parentCategory: {},
+                category: {},
+                brands: [],
+                categoryName: '',
+                currentRouteName: '',
+                autoDescription: '',
+                query: '',
+                sortBy: '',
+                attributes: '',
+                addonIsActivated: false,
+                color_filter_activation: '',
+                colors: [],
+                products:[],
+                categories: [],
+                currentPage:1,
+                lastPage:"",
+            }
+        },
+        created(){
+        //   this.loadMore(this.rootDomain);
+            this.setJsCdn();
+        },
+        mounted(){
+            this.getCategoryWiseProduct(1);
+            this.setJsCdn();
+        },
+        watch:{
+    
+        },
+    methods:{
+        setJsCdn(){
             if(document.getElementsByTagName("head")[0]){
                 var baseUrl = window.location.origin;
  
@@ -361,22 +368,21 @@
                 scriptTag.src = baseUrl+"/assets/js/aiz-core.js";
                 document.getElementsByTagName('head')[0].appendChild(scriptTag);
             }
-         },
-         getReng(){
-          let min = $('#input-slider-range-value-low').html();
-          let max = $('#input-slider-range-value-high').html();
-          if(this.minPrice != min || this.maxPrice != max){
-             this.minPrice = min;
-             this.maxPrice = max;
-            //  console.log(this.minPrice+" "+this.maxPrice);
-          }
- 
-         },
-          getCategoryWiseProduct(page){
+        },
+        getCategoryWiseProduct(page){
              this.ShowNotFound  = 'Loading...';
-             axios.get(this.rootDomain+'vue/category/'+this.slug+'?page='+page)
+             axios.get(this.rootDomain+'vue/category?page='+page, { params: { 
+                category_slug: this.slug,
+                brand_slug: this.selectedBrand,
+                selected_attribute_values: this.selected_attribute_values,
+                keyword: this.keyword,
+                color: this.selectedColor,
+                sort_by: this.sortedBy,
+                min_price: this.minPrice,
+                max_price: this.maxPrice,
+
+             }})
              .then((response)=>{
-                 console.log(response.data.attributes[0].values);
                 this.currentRouteName = response.data.currentRouteName;
                 this.attributes = response.data.attributes;
                 this.color_filter_activation = response.data.color_filter_activation;
@@ -395,62 +401,91 @@
                 this.brandId = response.data.brand_id;
                 this.brands = response.data.brands;
                 this.lastPage = response.data.productsCount;
- 
-                // this.categoryWiseProducts = response.data[0].data;
-                // this.categoryInfo = response.data[1]
-                // if(response.data[0].data<1){
-                //    this.ShowNotFound  = 'Product Not Found!';
-                // }else{
-                //    this.ShowNotFound  = '';
-                // }
                 this.scrollToTop();
              })
              .catch((error)=>{
                 console.log(error);
              })
-          },
-          receiveCategorySlug(slug){
+        },
+        selectAttribute(value){
+            this.selected_attribute_values.push(value);
+            this.getCategoryWiseProduct(1);
+        },
+        setColor(color){
+            this.selectedColor = color;
+            this.getCategoryWiseProduct(1);
+        },
+        setSortedBy(){
+            this.sortedBy = $("#sortBy").val();
+            this.getCategoryWiseProduct(1);
+        },
+        setBrand(){
+            this.selectedBrand = $("#brandsId").val();
+            console.log( this.selectedBrand);
+            this.getCategoryWiseProduct(1);
+        },
+
+
+
+
+
+
+
+        priceRange(){
+            let min = $("#input-slider-range-value-low").html();
+            let max = $("#input-slider-range-value-high").html();
+            if(this.minPrice != min || this.maxPrice != max){
+                this.minPrice = min;
+                this.maxPrice = max;
+                // console.log(this.minPrice+" "+this.maxPrice);
+                this.getCategoryWiseProduct(1);
+            }
+            
+            
+        },
+
+        receiveCategorySlug(slug){
              this.$router.push({
                  name:'CategoryWiseProduct',
                  params: {
                      slug: slug
                  }
              }); 
-       },
-       productDetails(slug,auction_product){
-          if(auction_product != 1){
-             this.$router.push({
-                name: "singleProduct",
-                params: {
-                   slug: slug
-                }
-             });
-          }
-       },
- 
-       allCategoryProduct(rootDomain){
-          this.$router.push({
-                 name:'shop',
-                 params: {
-                     slug: slug
-                 }
-             }); 
-       },
-       getRatings(rating,maxRating=5){
-            return ratingGenerator(rating,maxRating)
-       },
-       addToWishList(id){
-          
-       },
-       addToCompare(id){
- 
-       },
-       showAddToCartModal(){
- 
-       },
-       scrollToTop() {
-    window.scrollTo(0,0);
-  }
+        },
+        productDetails(slug,auction_product){
+            if(auction_product != 1){
+                this.$router.push({
+                    name: "singleProduct",
+                    params: {
+                    slug: slug
+                    }
+                });
+            }
+        },
+    
+        allCategoryProduct(rootDomain){
+            this.$router.push({
+                    name:'shop',
+                    params: {
+                        slug: slug
+                    }
+                }); 
+        },
+        getRatings(rating,maxRating=5){
+                return ratingGenerator(rating,maxRating)
+        },
+        addToWishList(id){
+            
+        },
+        addToCompare(id){
+    
+        },
+        showAddToCartModal(){
+    
+        },
+        scrollToTop() {
+                window.scrollTo(0,0);
+        }
  
     },
    
