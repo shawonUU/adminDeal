@@ -85,7 +85,7 @@
                <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 1410px;">
                   <div>
                      <div class="carousel-box" style="width: 100%; display: inline-block;">
-                        <img :src="shopDetails.sliders?shopDetails.sliders:`https://admindeal.com.bd/public/assets/img/placeholder.jpg`" class="d-block w-100 rounded h-200px h-lg-380px img-fit lazyloaded"  alt="0 offer">
+                        <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="shopDetails.sliders"  class="d-block w-100 rounded h-200px h-lg-380px img-fit lazyloaded"  alt="0 offer">
                      </div>
                   </div>
                </div>
@@ -109,7 +109,7 @@
             <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                <div class="position-relative">
                   <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block">
-                  <img style="cursor:pointer" @click="productDetails(product.slug)" class="img-fit mx-auto h-140px h-md-210px lazyloaded" :src="product.thumbnail_image" data-src="" :alt="product.name">
+                  <img style="cursor:pointer" @click="productDetails(product.slug)" class="img-fit mx-auto h-140px h-md-210px lazyloaded" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image" :alt="product.name">
                   </a>
                   <div class="absolute-top-right aiz-p-hov-icon">
                      <a href="javascript:void(0)" onclick="addToWishList(2395)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">

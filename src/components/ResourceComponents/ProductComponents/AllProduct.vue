@@ -17,7 +17,7 @@
                     <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                         <div class="position-relative">
                         <a  style="cursor:pointer" @click="productDetails(product.slug)" class="d-block">
-                            <img class="img-fit lazyload mx-auto h-140px h-md-210px" :src="product.thumbnail_image" :data-src="product.thumbnail_image" :alt="product.name">
+                            <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image"  class="img-fit lazyload mx-auto h-140px h-md-210px"  :alt="product.name">
                         </a>
                         <div class="absolute-top-right aiz-p-hov-icon">
                             <a href="javascript:void(0)"  data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">

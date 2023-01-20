@@ -14,7 +14,7 @@
                         <div class="carousel-box img-zoom rounded">
                            <img
                               class="img-fluid lazyload"
-                              :src="productsInfo.thumbnail_image"
+                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="productsInfo.thumbnail_image"
                               >
                         </div>
                         <!-- @endforeach -->
@@ -23,7 +23,7 @@
                         <div   class="carousel-box img-zoom rounded">
                            <img
                               class="img-fluid lazyload"
-                              :src="productsInfo.thumbnail_image"
+                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="productsInfo.thumbnail_image"
                               >
                         </div>
                         <!-- @endif
@@ -36,7 +36,8 @@
                         <div v-for="(photo,index) in productsInfo.photos" class="carousel-box c-pointer border p-1 rounded">
                            <img
                               class="lazyload mw-100 size-50px mx-auto"
-                              :src="photo"
+                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="photo"
+
                               >
                         </div>
                         <!-- @endforeach
@@ -45,7 +46,7 @@
                         <div  v-for="(photo,index) in productsInfo.photos" class="carousel-box c-pointer border p-1 rounded" data-variation="{{ $stock->variant }}">
                            <img
                               class="lazyload mw-100 size-50px mx-auto"
-                              :src="photo"
+                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="photo"
                               >
                         </div>
                         <!-- @endif
@@ -247,7 +248,7 @@
                            <div class="aiz-card-box  rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                               <div class="position-relative">
                                  <a  style="cursor:pointer" @click="productDetails(product.slug)">
-                                 <img :src="product.thumbnail_image?product.thumbnail_image:`https://admindeal.com.bd/public/assets/img/placeholder.jpg`" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
+                                 <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
                                  </a>
                               </div>
                               <div class="p-md-3 p-2 text-left">

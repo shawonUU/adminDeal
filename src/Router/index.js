@@ -22,6 +22,7 @@ import Blog from '../components/pages/FrontEnd/Blog.vue';
 import BlogDetails from '../components/pages/FrontEnd/BlogDetails.vue';
 import Categories from '../components/pages/FrontEnd/Categories.vue';
 import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
+import JobDetails from '../components/ResourceComponents/ProductComponents/detailPages/FreelaneServiceDetails.vue';
 import BrandWiseProduct from '../components/ResourceComponents/ProductComponents/BrandWiseProduct.vue';
 import AllBrands from '../components/ResourceComponents/ProductComponents/detailPages/AllBrands.vue';
 import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
@@ -40,7 +41,7 @@ import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/
 
 // After Authentication Component File
 import UserDashboard from '../components/pages/user/UserLayout.vue';
-import MyDashboard from '../components/pages/UserDashboard/Dashboard.vue';
+import MyDashboard from '../components/pages/user/Dashboard.vue';
 
 const routes = [
   {
@@ -88,6 +89,12 @@ const routes = [
     path: '/all_jobs',
     name: 'AllJobs',
     component: AllJobs
+  },
+  {
+    path: '/job/:slug?',
+    props:true,
+    name: 'JobDetails',
+    component: JobDetails
   },
   {
     path: '/track-your-order',

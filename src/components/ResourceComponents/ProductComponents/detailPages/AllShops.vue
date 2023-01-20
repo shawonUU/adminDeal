@@ -26,7 +26,7 @@
                                 <div class="col-4">
                                     <a style="cursor:pointer" @click="shopSlug(shop.slug)" class="d-block p-3" tabindex="0">
                                         <img
-                                            :src="shop.logo"
+                                        src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="shop.logo"
                                             :alt="shop.name"
                                             class="img-fluid lazyload"
                                         >

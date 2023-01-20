@@ -11,7 +11,7 @@
                            
                            <img
                               class="img-fluid lazyload"
-                              :src="productDetails.thumbnail_image?productDetails.thumbnail_image:'https://admindeal.com.bd/public/assets/img/placeholder.jpg'"
+                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="productDetails.thumbnail_image"
                               >
                         </div>
                      </div>
@@ -21,7 +21,7 @@
                         <div class="carousel-box c-pointer border p-1 rounded">
                            <img
                               class="lazyload mw-100 size-50px mx-auto"
-                              :src="productDetails.thumbnail_image?productDetails.thumbnail_image:'https://admindeal.com.bd/public/assets/img/placeholder.jpg'"
+                              src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="productDetails.thumbnail_image"
                               >
                         </div>
                      </div>
@@ -77,7 +77,7 @@
                            </div>
                            <div class="col-auto">
                               <a href="https://admindeal.com.bd/brand/others">
-                              <img :src="productDetails.shop_logo" id='brand_name' alt="Others" height="30">
+                              <img  src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="productDetails.shop_logo" id='brand_name' alt="Others" height="30">
                               </a>
                            </div>
                         </div>

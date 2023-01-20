@@ -25,8 +25,8 @@
                       <div v-for="(brand,index) in allBrands" :key="index" class="col text-center">
                           <a @click="brandSlug(brand.slug)"
                               class="d-block border-light hov-shadow-md mb-3 rounded border p-3">
-                              <img :src="brand.logo" class="lazyload h-70px mw-100 mx-auto"
-                                  alt="">
+                              <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="brand.logo" class="lazyload h-70px mw-100 mx-auto"
+                                  :alt="brand.name">
                           </a>
                       </div>
               
@@ -41,7 +41,7 @@ export default {
   data(){
       return{
         allBrands:[],
-      }
+      } 
   },
   mounted(){
     this.getAllBrands(this.rootDomain);

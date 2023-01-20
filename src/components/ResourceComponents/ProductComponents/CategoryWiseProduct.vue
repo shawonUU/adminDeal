@@ -222,7 +222,7 @@
                                         <a href="javascript:void(0)" @click="productDetails(product.slug, product.auction_product)" class="d-block">
                                               <img
                                                  class="img-fit lazyload mx-auto h-140px h-md-210px img-fluid lazyload"
-                                                 :src="product.thumbnail_image"
+                                                 src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image"
                                                  :alt="product.name"
                                               >
                                         </a>

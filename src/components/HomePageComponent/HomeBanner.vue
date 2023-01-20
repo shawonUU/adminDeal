@@ -49,7 +49,7 @@
                   <swiper-slide  class="" v-for="(slider,index) in sliders" :key="index">
                    <div class="carousel-box">
                     <a href="#">
-                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" :src="slider.photo" alt="Admin Deal promo" height="320">
+                       <img class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden" :src="slider.photo" :data-src="slider.photo" alt="Admin Deal promo" height="320">
                     </a>
                   </div>
                 </swiper-slide>
@@ -58,7 +58,7 @@
          <ul class="list-unstyled mb-0 row gutters-5">
            <li v-for="(featuredCategory, index) in featuredCategories" :key="index" class="minw-0 col-4 col-md mt-3">
               <a @click="receiveCategorySlug(featuredCategory.slug)" class="d-block rounded bg-white p-2 text-reset shadow-sm">
-                <img :src="featuredCategory.banner" alt="Groceries, Lifestyle &amp; Medical" class="lazyload img-fit" height="78">
+                <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="featuredCategory.banner" alt="Groceries, Lifestyle &amp; Medical" class="lazyload img-fit" height="78">
                 <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ featuredCategory.name }}</div>
               </a>
             </li>

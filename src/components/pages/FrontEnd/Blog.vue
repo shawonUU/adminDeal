@@ -4,7 +4,7 @@
     <div class="card-columns">
       <div v-for="(blog,index) in blogs.data" :key="index" class="card mb-3 overflow-hidden shadow-sm">
         <a style="cursor:pointer" @click="getSlug(blog.slug)" class="text-reset d-block">
-          <img :src="blog.banner"  :alt="blog.title" class="img-fluid lazyload ">
+          <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="blog.banner"  :alt="blog.title" class="img-fluid lazyload ">
         </a>
         <div class="p-4">
           <h2 class="fs-18 fw-600 mb-1">

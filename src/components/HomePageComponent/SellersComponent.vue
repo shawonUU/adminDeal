@@ -12,7 +12,7 @@
          <ul class="list-unstyled mb-0 row gutters-5">
             <li  v-for="(seller,index) in sellers.slice(0, 8)" :key="index" class="minw-0 col-3 col-md mt-3 text-center">
                <a style="cursor:pointer" @click="shopSlug(seller.slug)" class="hov-shadow-md border d-block rounded bg-white p-2 text-reset ">
-                  <img  @click="shopSlug(seller.slug)" :src="seller.logo" :alt="seller.name " class="img-fluid img h-60px ls-is-cached lazyloaded" height="78">
+                  <img  @click="shopSlug(seller.slug)" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="seller.logo"  :alt="seller.name " class="img-fluid img h-60px ls-is-cached lazyloaded" height="78">
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ seller.name }}</div>
                </a>
             </li>
@@ -21,7 +21,7 @@
          <ul class="list-unstyled mb-0 row gutters-5">
             <li  v-for="(seller,index) in sellers.slice(8, 16)" :key="index" class="minw-0 col-3 col-md mt-3 text-center">
                <a style="cursor:pointer" @click="shopSlug(seller.slug)" class="hov-shadow-md border d-block rounded bg-white p-2 text-reset ">
-                  <img  @click="shopSlug(seller.slug)" :src="seller.logo" :alt="seller.name " class="img-fluid img h-60px ls-is-cached lazyloaded" height="78">
+                  <img  @click="shopSlug(seller.slug)" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="seller.logo" :alt="seller.name " class="img-fluid img h-60px ls-is-cached lazyloaded" height="78">
                   <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ seller.name }}</div>
                </a>
             </li>

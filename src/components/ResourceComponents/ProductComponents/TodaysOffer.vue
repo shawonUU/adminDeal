@@ -38,7 +38,7 @@
              </span>
              <div class="position-relative">
                <a  style="cursor:pointer" @click="productDetails(product.slug)">
-                 <img :src="product.thumbnail_image?product.thumbnail_image:`https://admindeal.com.bd/public/assets/img/placeholder.jpg`" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
+                 <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
                </a>
                <div class="absolute-top-right aiz-p-hov-icon">
                  <a href="javascript:void(0)" onclick="addToWishList(5931)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">

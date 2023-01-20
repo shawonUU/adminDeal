@@ -3,10 +3,9 @@
    <div class="container">
       <div class="mb-4">
          <img
-            :src="blogDetails.meta_img"
             alt="এডমিন ডিলে কিভাবে অকশন বা নিলাম পণ্য এড করবেন?"
             class="img-fluid lazyload w-100"
-            
+            src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="blogDetails.meta_img"
             >
       </div>
       <div class="row">
