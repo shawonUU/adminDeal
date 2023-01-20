@@ -21,7 +21,7 @@
                                      </div>
                                      <div class="p-3">
                                          <div class="aiz-range-slider">
-                                           <div id="input-slider-range" @mousemove="priceRange()" data-range-value-min="0" data-range-value-max="100000">
+                                           <div id="input-slider-range" @change="priceRange()" data-range-value-min="0" data-range-value-max="100000">
                                            </div>
  
                                              <div class="row mt-2">
@@ -32,7 +32,7 @@
                                                  </div>
                                                  <div class="col-6 text-right">
                                                     <span class="range-slider-value value-high fs-14 fw-600 opacity-70"
-                                                       data-range-value-high="100000" id="input-slider-range-value-high">
+                                                       data-range-value-high="10000" id="input-slider-range-value-high">
                                                     </span>
                                                  </div>
                                              </div>
@@ -48,7 +48,7 @@
                                          <ul class="list-unstyled">
                                              <templete v-if="!categoryId">
                                                      <li v-for="(category, index) in cetegoryLevelZero" :key="index" class="mb-2 ml-2">
-                                                         <a href="javascript:void(0)" @click="receiveCategorySlug(category.slug)" class="text-reset fs-14">{{ $category.name }}</a>
+                                                         <a href="javascript:void(0)" @click="receiveCategorySlug(category.slug)" class="text-reset fs-14">{{ category.name }}</a>
                                                      </li>
                                              </templete>
                                             <template v-else>
@@ -150,17 +150,15 @@
  
                          <ul class="breadcrumb bg-transparent p-0">
                              <li class="breadcrumb-item opacity-50">
-                                 <a class="text-reset" href="javascript:void(0)">{{'Home'}}</a>
+                                <router-link :to="{name:'home'}" class="text-reset" >{{'Home'}}</router-link>
                              </li>
                             
                                  <li v-if="!categoryId" class="breadcrumb-item fw-600  text-dark">
-                                     
-                                     <a @click="receiveCategorySlug()" class="text-reset" href="javascript:void(0)">"{{ 'All Categories'}}"</a>
+                                    <router-link :to="{name:'search'}" class="text-reset" >"{{ 'All Categories'}}"</router-link>
                                  </li>
                              
                                  <li v-else class="breadcrumb-item opacity-50">
-                                  
-                                     <a @click="receiveCategorySlug()" class="text-reset" href="javascript:void(0)">{{ 'All Categories'}}</a>
+                                    <router-link :to="{name:'search'}" class="text-reset" >{{ 'All Categories'}}</router-link>
                                  </li>
                              
                                  <li v-if="categoryId" class="text-dark fw-600 breadcrumb-item">
@@ -188,8 +186,8 @@
                                          <i class="la la-filter la-2x"></i>
                                      </button>
                                  </div>
-                                 <div class="col-6 col-lg-auto mb-3 w-lg-200px">
-                                         <label v-if="currentRouteName != 'products.brand'" class="mb-0 opacity-50">{{ 'Brands'}}</label>
+                                 <div v-if="currentRouteName != 'products.brand'" class="col-6 col-lg-auto mb-3 w-lg-200px">
+                                         <label class="mb-0 opacity-50">{{ 'Brands'}}</label>
                                          <select @change="setBrand()" id="brandsId" class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand">
                                             <option value="">{{ 'All Brands' }}</option>
                                             <option v-for="(brand, index) in brands" :key="index" :value="brand.slug" :selected="brandId == brand.id">{{ brand.name }}</option>
@@ -342,22 +340,29 @@
                 categories: [],
                 currentPage:1,
                 lastPage:"",
+                slugValue: '',
+                url:'',
             }
         },
         created(){
-        //   this.loadMore(this.rootDomain);
+        //   this.loadMore(this.rootDomain); 
             this.setJsCdn();
         },
         mounted(){
-            this.getCategoryWiseProduct(1);
             this.setJsCdn();
             if(this.key_slug!=null){
-                alert(this.key_slug);
+                this.slugValue = this.key_slug;
+                this.url = 'vue/search?keyword='+this.key_slug+'&';
             }else if(this.brand_slug!=null){
-                alert(this.brand_slug);
+                this.slugValue = this.brand_slug;
+                this.url = 'vue/brand/'+this.brand_slug+'?';
             }else if(this.slug!=null){
-                alert(this.slug);
+                this.slugValue = this.slug;
+                this.url = 'vue/category/'+this.slug+'?';
+            }else{
+                this.url = 'vue/search?';
             }
+            this.getCategoryWiseProduct(1);
         },
         watch:{
     
@@ -378,11 +383,10 @@
         },
         getCategoryWiseProduct(page){
              this.ShowNotFound  = 'Loading...';
-             axios.get(this.rootDomain+'vue/category?page='+page, { params: { 
+             axios.get(this.rootDomain+this.url+'page='+page, { params: { 
                 category_slug: this.slug,
                 brand_slug: this.selectedBrand,
                 selected_attribute_values: this.selected_attribute_values,
-                keyword: this.keyword,
                 color: this.selectedColor,
                 sort_by: this.sortedBy,
                 min_price: this.minPrice,
@@ -390,6 +394,7 @@
 
              }})
              .then((response)=>{
+                // console.log(response);return;
                 this.currentRouteName = response.data.currentRouteName;
                 this.attributes = response.data.attributes;
                 this.color_filter_activation = response.data.color_filter_activation;
@@ -433,21 +438,15 @@
         },
 
 
-
-
-
-
-
         priceRange(){
             let min = $("#input-slider-range-value-low").html();
             let max = $("#input-slider-range-value-high").html();
             if(this.minPrice != min || this.maxPrice != max){
                 this.minPrice = min;
                 this.maxPrice = max;
-                // console.log(this.minPrice+" "+this.maxPrice);
-                this.getCategoryWiseProduct(1);
-            }
-            
+                console.log(this.minPrice+" "+this.maxPrice);
+                // this.getCategoryWiseProduct(1);
+            } 
             
         },
 
