@@ -1,10 +1,9 @@
 <template>
-    <section class="mb-4 pt-3">
        <section class="mb-4 pt-3">
          <div class="container sm-px-0">
              <form class="" id="search-form" action="" method="GET">
                  <div class="row">
-                     <div class="col-xl-3">
+                    <div class="col-xl-3">
                          <div class="aiz-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035">
                              <div class="overlay overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" data-same=".filter-sidebar-thumb"></div>
                              <div class="collapse-sidebar c-scrollbar text-left">
@@ -137,16 +136,11 @@
  
                              </div>
                          </div>
-                     </div>
- 
- 
- 
- 
- 
+                    </div>
  
  
                      
-                     <div class="col-xl-9">
+                    <div class="col-xl-9">
  
                          <ul class="breadcrumb bg-transparent p-0">
                              <li class="breadcrumb-item opacity-50">
@@ -173,8 +167,8 @@
                                      <h1 v-if="categoryId" class="h6 fw-600 text-body">
                                              {{ categoryName }}
                                      </h1>
-                                     <h1 v-else-if="query" class="h6 fw-600 text-body">
-                                        {{ 'Search result for ' }}"{{ query }}"
+                                     <h1 v-else-if="key_slug" class="h6 fw-600 text-body">
+                                        {{ 'Search result for ' }}"{{ key_slug }}"
                                      </h1>
                                      <h1 v-else class="h6 fw-600 text-body">
                                         {{ 'All Products' }}
@@ -211,7 +205,7 @@
                              
                                  <div v-for="(product, index) in products" :key="index" class="col">
                                     
-                                  <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
+                                    <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                                     
                                         <span v-if="product.discount>0" class="badge-custom">{{ 'OFF' }}<span class="box ml-1 mr-0">&nbsp;{{product.discount}}%</span></span>
                                      
@@ -267,37 +261,35 @@
  
  
  
- 
- 
- 
- 
- 
+                                  
                                  </div>
+                                 
                             
-                         </div>
-                         <div class="aiz-pagination aiz-pagination-center mt-4">
-                             <vue-awesome-paginate
-                             :total-items="lastPage"
-                             :items-per-page="24"
-                             :max-pages-shown="5"
-                             v-model="currentPage"
-                             @click="getCategoryWiseProduct"
-                             />
-                         </div>
+                        </div>
+                        <div class="text-danger text-center" style="font-weight: bold; font-size: 18px;">{{ ShowNotFound }}</div>
+                        <div v-if="ShowNotFound  == ''" class="aiz-pagination aiz-pagination-center mt-4">
+                            <vue-awesome-paginate
+                            :total-items="lastPage"
+                            :items-per-page="24"
+                            :max-pages-shown="5"
+                            v-model="currentPage"
+                            @click="getCategoryWiseProduct"
+                            />
+                        </div>
                          
-                            <div v-if="currentRouteName == 'products.category'" class="bg-white shadow-sm card my-5 px-4">
-                               <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
-                                  <p v-html="autoDescription"></p>
-                               </div>
-                               <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
+                        <div v-if="currentRouteName == 'products.category'" class="bg-white shadow-sm card my-5 px-4">
+                            <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
+                                <p v-html="autoDescription"></p>
                             </div>
-                         
-                     </div>
-                 </div>
-             </form>
+                            <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
+                        </div>
+
+                           
+                    </div>
+                </div>
+            </form>
          </div>
      </section>
-    </section>
     
  </template>
  
@@ -349,7 +341,7 @@
             this.setJsCdn();
         },
         mounted(){
-            this.setJsCdn();
+            // this.setJsCdn();
             if(this.key_slug!=null){
                 this.slugValue = this.key_slug;
                 this.url = 'vue/search?keyword='+this.key_slug+'&';
@@ -369,23 +361,23 @@
         },
     methods:{
         setJsCdn(){
-            if(document.getElementsByTagName("head")[0]){
-                var baseUrl = window.location.origin;
+            if(document.getElementsByTagName("body")[0]){
+                // var baseUrl = window.location.origin;
  
-                var scriptTag = document.createElement("script");
-                scriptTag.src = baseUrl+"/assets/js/vendors.js";
-                document.getElementsByTagName('head')[0].appendChild(scriptTag);
+                // var scriptTag = document.createElement("script");
+                // scriptTag.src = baseUrl+"/assets/js/vendors.js";
+                // document.getElementsByTagName('body')[0].appendChild(scriptTag);
  
-                var scriptTag = document.createElement("script");
-                scriptTag.src = baseUrl+"/assets/js/aiz-core.js";
-                document.getElementsByTagName('head')[0].appendChild(scriptTag);
+                // var scriptTag = document.createElement("script");
+                // scriptTag.src = baseUrl+"/assets/js/aiz-core.js";
+                // document.getElementsByTagName('body')[0].appendChild(scriptTag);
             }
         },
         getCategoryWiseProduct(page){
              this.ShowNotFound  = 'Loading...';
              axios.get(this.rootDomain+this.url+'page='+page, { params: { 
                 category_slug: this.slug,
-                brand_slug: this.selectedBrand,
+                brand: this.selectedBrand,
                 selected_attribute_values: this.selected_attribute_values,
                 color: this.selectedColor,
                 sort_by: this.sortedBy,
@@ -394,7 +386,7 @@
 
              }})
              .then((response)=>{
-                // console.log(response);return;
+                console.log(response);
                 this.currentRouteName = response.data.currentRouteName;
                 this.attributes = response.data.attributes;
                 this.color_filter_activation = response.data.color_filter_activation;
@@ -414,6 +406,9 @@
                 this.brands = response.data.brands;
                 this.lastPage = response.data.productsCount;
                 this.scrollToTop();
+                if(this.products.length == 0){
+                    this.ShowNotFound  = 'Not Found';
+                }else{this.ShowNotFound  = '';}
              })
              .catch((error)=>{
                 console.log(error);
@@ -425,6 +420,7 @@
         },
         setColor(color){
             this.selectedColor = color;
+            console.log( this.selectedColor);
             this.getCategoryWiseProduct(1);
         },
         setSortedBy(){

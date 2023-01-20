@@ -23,6 +23,7 @@ AIZ.local = {
     files: 'Files',
 }
 
+
 //custom jquery method for toggle attr
 $.fn.toggleAttr = function (attr, attr1, attr2) {
     return this.each(function () {
@@ -1371,7 +1372,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                         f[b].textContent = a[b];
                     }),
                     c.noUiSlider.on("change", function (a, b) {
-                        // rangefilter(a);
+                        rangefilter(a);
                     });
                 });
             }
