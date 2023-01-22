@@ -43,6 +43,20 @@ import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/
 import UserDashboard from '../components/pages/user/UserLayout.vue';
 import MyDashboard from '../components/pages/user/Dashboard.vue';
 
+const auth = (to, from, next) => {
+  // perform actions or run logic here
+  var access_token = localStorage.getItem("access_token");
+  alert(access_token);
+
+  if (access_token) {
+    next('/');
+  } else {
+    next();
+  }
+  
+  // next();
+}
+
 const routes = [
   {
     path: '/',
@@ -52,7 +66,8 @@ const routes = [
   {
     path: '/users/login',
     name: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    beforeEnter: auth
   },
   {
     path: '/users/registration',

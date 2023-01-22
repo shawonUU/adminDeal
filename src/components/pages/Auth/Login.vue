@@ -10,25 +10,25 @@
              </div>
              <div class="px-4 py-3 py-lg-4">
                <div class="">
-                 <form class="form-default" role="form" action="https://admindeal.com.bd/login" method="POST">
+                 <form @submit.prevent="userLogin()" class="form-default" role="form" method="POST">
                    <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ">
-                   <div class="form-group phone-form-group mb-1">
-                     <input type="tel" id="phone-code" class="form-control" value="" placeholder="" name="phone" autocomplete="off">
+                   <div v-if="user.login_by=='phone'" class="form-group phone-form-group mb-1">
+                     <input  v-model="user.email" type="tel" id="phone-code" class="form-control" placeholder="Phone" name="phone" autocomplete="off">
                    </div>
                    <input type="hidden" name="country_code" value="">
-                   <div class="form-group email-form-group mb-1 d-none">
-                     <input type="email" class="form-control " value="" placeholder="Email" name="email" id="email" autocomplete="off">
+                   <div v-if="user.login_by=='email'" class="form-group email-form-group mb-1">
+                     <input  v-model="user.email" type="email" class="form-control " placeholder="Email" name="email" id="email" autocomplete="off">
                    </div>
                    <div class="form-group text-right">
-                     <button class="btn btn-link p-0 opacity-50 text-reset" type="button" onclick="toggleEmailPhone(this)">Use Email Instead</button>
+                     <button class="btn btn-link p-0 opacity-50 text-reset" type="button" @click="toggleEmailPhone()">{{ user.buttonText }}</button>
                    </div>
                    <div class="form-group">
-                     <input type="password" class="form-control " placeholder="Password" name="password" id="password">
+                     <input v-model="user.password" type="password" class="form-control " placeholder="Password" name="password" id="password">
                    </div>
                    <div class="row mb-2">
                      <div class="col-6">
                        <label class="aiz-checkbox">
-                         <input type="checkbox" name="remember">
+                         <input  type="checkbox" name="remember">
                          <span class=opacity-60>Remember Me</span>
                          <span class="aiz-square-check"></span>
                        </label>
@@ -76,8 +76,53 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-
+  data(){
+    return{
+      user: {
+          email:'',
+          password: '',
+          login_by: 'phone',
+          buttonText: 'Use Email Instead',
+          rememberMe: false,
+        }
+    }
+  },created(){
+    
+  },
+  mounted(){
+    
+  },
+  methods:{
+    toggleEmailPhone(){
+      this.user.email = '';
+      if(this.user.login_by == 'email'){
+        this.user.login_by = 'phone';
+        this.user.buttonText = 'Use Email Instead';
+      }
+      else{
+        this.user.login_by = 'email';
+        this.user.buttonText = 'Use Phone Instead';
+      }
+    },
+    userLogin(){
+      axios.get(this.rootDomain+'vue/v3/auth/login', {params:{ name: this.user.name,
+        email: this.user.email,
+        password: this.user.password,
+        login_by: this.user.login_by,
+        rememberMe: this.user.rememberMe,
+      }})
+      .then((response)=>{
+          if(response.status == 200){
+            // console.log(response.data.access_token);
+            localStorage.setItem("access_token", response.data.access_token);
+            var access_token = localStorage.getItem("access_token");
+          }
+          
+      })
+    }
+  }
 }
 </script>
 
