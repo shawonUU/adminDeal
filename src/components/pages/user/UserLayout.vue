@@ -6,7 +6,7 @@
                 <!-- SideBar -->
                 <UserSideBar/>
                 <div class="aiz-user-panel">
-                    <router-view :key="$route.path"></router-view>
+                   <Dashboard/>
                 </div>
             </div>
         </div>
@@ -15,8 +15,9 @@
     
     <script>
     import UserSideBar from "./SideNav.vue";
+    import Dashboard from "./Dashboard.vue";
     export default {
-        components:{UserSideBar},
+        components:{UserSideBar,Dashboard},
     }
     </script>
     

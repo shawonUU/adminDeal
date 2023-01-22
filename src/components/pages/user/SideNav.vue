@@ -16,10 +16,10 @@
             <ul class="aiz-side-nav-list px-2" data-toggle="aiz-side-menu">
 
                 <li class="aiz-side-nav-item">
-                    <router-link :to="{name:'MyDashboard'}"  class="aiz-side-nav-link dashboard">
+                    <a href=""  class="aiz-side-nav-link dashboard">
                         <i class="las la-home aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">My Dashboard</span>
-                    </router-link>
+                    </a>
                 </li>
                 <li class="aiz-side-nav-item">
                     <a href="" class="aiz-side-nav-link">

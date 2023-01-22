@@ -19,10 +19,10 @@
                                          {{ 'Price range'}}
                                      </div>
                                      <div class="p-3">
+                                        <Slider @change="getRangeValue" v-model="rangeValue"></Slider>
                                          <div class="aiz-range-slider">
-                                           <div id="input-slider-range" @change="priceRange()" data-range-value-min="0" data-range-value-max="100000">
-                                           </div>
- 
+                                          
+<!--  
                                              <div class="row mt-2">
                                                  <div class="col-6">
                                                      <span class="range-slider-value value-low fs-14 fw-600 opacity-70"
@@ -34,7 +34,8 @@
                                                        data-range-value-high="10000" id="input-slider-range-value-high">
                                                     </span>
                                                  </div>
-                                             </div>
+                                             </div> -->
+                                             
                                          </div>
                                      </div>
                                  </div>
@@ -295,9 +296,11 @@
  
  <script>
  import axios from 'axios';
+ import Slider from '@vueform/slider'
  import { ratingGenerator } from '@/HelpersFunction/Helpers';
  export default {
         props: ['slug','brand_slug','key_slug'],
+        components:{Slider},
         data(){
             return{
 
@@ -311,8 +314,7 @@
                 categoryWiseProducts:[],
                 categoryInfo:[],
                 ShowNotFound:'Loading...',
-                maxPrice: '',
-                minPrice: '',
+                rangeValue: [0,1000],
                 brandId: '',
                 categoryId : '',
                 cetegoryLevelZero: [],
@@ -487,6 +489,10 @@
         },
         scrollToTop() {
                 window.scrollTo(0,0);
+        },
+
+        getRangeValue(){
+            console.log(this.rangeValue);
         }
  
     },
@@ -495,7 +501,7 @@
  
  </script>
  
- 
+ <style src="@vueform/slider/themes/default.css"></style>
  <style>
  /* width */
  ::-webkit-scrollbar {
