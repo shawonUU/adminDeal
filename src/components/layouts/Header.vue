@@ -36,12 +36,12 @@
             <router-link :to="{name:'trackOrder'}" class="text-reset d-inline-block  py-2">
               <i class=""></i> Track Your Order </router-link>
           </li>
-          <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
+          <li v-if="!isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
             <router-link :to="{name:'affiliateRegistration'}" class="text-reset d-inline-block  py-2">
               <i class=""></i> Affiliate Reg
             </router-link>
           </li>
-          <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
+          <li v-if="!isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
             <router-link :to="{name:'sellerRegistration'}" class="text-reset d-inline-block  py-2">
               <i class=""></i> Seller Reg
             </router-link>
@@ -61,14 +61,17 @@
                          
                    
                    End -->
-          <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
+          <li v-if="!isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
             <router-link :to="{name:'login'}" class="text-reset d-inline-block opacity-60 py-2">Login</router-link>
           </li>
-          <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
+          <li v-if="isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
             <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">Dashboard</router-link>
           </li>
-          <li class="list-inline-item">
+          <li v-if="!isAuthenticated" class="list-inline-item">
             <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
+          </li>
+          <li v-if="isAuthenticated" class="list-inline-item">
+            <a @click="logout()" href="javascript:void(0)" class="text-reset d-inline-block opacity-60 py-2">Logout</a>
           </li>
         </ul>
       </div>
@@ -473,6 +476,7 @@ import axios from 'axios';
 export default {
   data(){
     return{
+      isAuthenticated:false,
       navCategoriesName:[],
       navCategoriesLinks:[],
       categories: [],
@@ -484,6 +488,10 @@ export default {
   },
   mounted(){
     this.getNavCategories(this.rootDomain);
+    var access_token = localStorage.getItem("access_token");
+    if(access_token !== null){
+      this.isAuthenticated = true;
+    }
   },
   methods:{
     searchSubmit(){
@@ -547,9 +555,15 @@ export default {
               $('.typed-search-box').addClass('d-none');
               $('body').removeClass("typed-search-box-shown");
           }
+      },
+      logout() {
+        localStorage.removeItem("access_token");
+        this.isAuthenticated = false;
+        this.$router.push({ name: 'home' });
       }
   
   }
+
 }
 
 </script>
