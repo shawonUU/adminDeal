@@ -71,7 +71,7 @@
             <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
           </li>
           <li v-if="isAuthenticated" class="list-inline-item">
-            <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Logout</router-link>
+            <a @click="logout()" href="javascript:void(0)" class="text-reset d-inline-block opacity-60 py-2">Logout</a>
           </li>
         </ul>
       </div>
@@ -489,7 +489,7 @@ export default {
   mounted(){
     this.getNavCategories(this.rootDomain);
     var access_token = localStorage.getItem("access_token");
-    if(access_token){
+    if(access_token !== null){
       this.isAuthenticated = true;
     }
   },
@@ -555,9 +555,15 @@ export default {
               $('.typed-search-box').addClass('d-none');
               $('body').removeClass("typed-search-box-shown");
           }
+      },
+      logout() {
+        localStorage.removeItem("access_token");
+        this.isAuthenticated = false;
+        this.$router.push({ name: 'home' });
       }
   
   }
+
 }
 
 </script>
