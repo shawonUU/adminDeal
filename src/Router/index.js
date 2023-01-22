@@ -41,7 +41,7 @@ import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/
 
 // After Authentication Component File
 import UserDashboard from '../components/pages/user/UserLayout.vue';
-// import MyDashboard from '../components/pages/UserDashboard/Dashboard.vue';
+import MyDashboard from '../components/pages/user/Dashboard.vue';
 
 const routes = [
   {
@@ -70,7 +70,7 @@ const routes = [
     component: affiliateRegistration
   },
   {
-    path: '/blogs',
+    path: '/blog',
     name: 'blog',
     component: Blog
   },
@@ -236,11 +236,7 @@ const routes = [
   component: UserDashboard
 },
 
-// {
-//   path:'/my-dashboard',
-//   name:'MyDashboard',
-//   components:{userSidebar:MyDashboard}
-// },
+
 
 ]
 const router = createRouter({
