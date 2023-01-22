@@ -19,7 +19,7 @@
                                          {{ 'Price range'}}
                                      </div>
                                      <div class="p-3">
-                                        <Slider @change="getRangeValue" v-model="rangeValue"></Slider>
+                                        <Slider @click="priceRange" v-model="rangeValue" :min="min" :max="max"></Slider>
                                          <div class="aiz-range-slider">
                                           
 <!--  
@@ -314,7 +314,11 @@
                 categoryWiseProducts:[],
                 categoryInfo:[],
                 ShowNotFound:'Loading...',
-                rangeValue: [0,1000],
+                rangeValue: [30,40],
+                min:30,
+                max:17990000,
+                minPrice:'',
+                maxPrice:'',
                 brandId: '',
                 categoryId : '',
                 cetegoryLevelZero: [],
@@ -388,7 +392,6 @@
 
              }})
              .then((response)=>{
-                console.log(response);
                 this.currentRouteName = response.data.currentRouteName;
                 this.attributes = response.data.attributes;
                 this.color_filter_activation = response.data.color_filter_activation;
@@ -422,7 +425,6 @@
         },
         setColor(color){
             this.selectedColor = color;
-            console.log( this.selectedColor);
             this.getCategoryWiseProduct(1);
         },
         setSortedBy(){
@@ -431,19 +433,17 @@
         },
         setBrand(){
             this.selectedBrand = $("#brandsId").val();
-            console.log( this.selectedBrand);
             this.getCategoryWiseProduct(1);
         },
 
 
         priceRange(){
-            let min = $("#input-slider-range-value-low").html();
-            let max = $("#input-slider-range-value-high").html();
+            let min = this.rangeValue[0];
+            let max = this.rangeValue[1];
             if(this.minPrice != min || this.maxPrice != max){
                 this.minPrice = min;
                 this.maxPrice = max;
-                console.log(this.minPrice+" "+this.maxPrice);
-                // this.getCategoryWiseProduct(1);
+                this.getCategoryWiseProduct(1);
             } 
             
         },
@@ -491,9 +491,6 @@
                 window.scrollTo(0,0);
         },
 
-        getRangeValue(){
-            console.log(this.rangeValue);
-        }
  
     },
    
@@ -522,4 +519,9 @@
  ::-webkit-scrollbar-thumb:hover {
    background: #555; 
  }
+ .slider-horizontal .slider-tooltip-top {
+    bottom: 0!important;
+    left: 50%;
+    transform: translate(-50%);
+}
  </style>
