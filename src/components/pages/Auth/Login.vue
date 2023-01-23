@@ -88,7 +88,8 @@ export default {
           rememberMe: false,
         }
     }
-  },created(){
+  },
+  computed(){
     
   },
   mounted(){
@@ -115,9 +116,8 @@ export default {
       }})
       .then((response)=>{
           if(response.status == 200){
-            // console.log(response.data.access_token);
             localStorage.setItem("access_token", response.data.access_token);
-            this.$router.push({ name: 'home' });
+            this.$router.push({path: '/'});
           }
           
       })

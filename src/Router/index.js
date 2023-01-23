@@ -23,7 +23,6 @@ import BlogDetails from '../components/pages/FrontEnd/BlogDetails.vue';
 import Categories from '../components/pages/FrontEnd/Categories.vue';
 import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
 import JobDetails from '../components/ResourceComponents/ProductComponents/detailPages/FreelaneServiceDetails.vue';
-import BrandWiseProduct from '../components/ResourceComponents/ProductComponents/BrandWiseProduct.vue';
 import AllBrands from '../components/ResourceComponents/ProductComponents/detailPages/AllBrands.vue';
 import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
 import AllShops from '../components/ResourceComponents/ProductComponents/detailPages/AllShops.vue';
@@ -42,18 +41,21 @@ import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/
 // After Authentication Component File
 import UserDashboard from '../components/pages/user/UserLayout.vue';
 import MyDashboard from '../components/pages/user/Dashboard.vue';
-
-const auth = (to, from, next) => {
-  // perform actions or run logic here
+const guest = (to, from, next) => {
   var access_token = localStorage.getItem("access_token");
-
   if (access_token !== null) {
     next('/');
   } else {
     next();
   }
-  
-  // next();
+}
+const auth = (to, from, next) => {
+  var access_token = localStorage.getItem("access_token");
+  if (access_token !== null) {
+    next();
+  } else {
+    next('/');
+  }
 }
 
 const routes = [
@@ -66,22 +68,25 @@ const routes = [
     path: '/users/login',
     name: 'login',
     component: LoginComponent,
-    beforeEnter: auth
+    beforeEnter: guest
   },
   {
     path: '/users/registration',
     name: 'registration',
-    component: Registration
+    component: Registration,
+    beforeEnter: guest
   },
   {
     path: '/shops/create',
     name: 'sellerRegistration',
-    component: SellerRegistration
+    component: SellerRegistration,
+    beforeEnter: guest
   },
   {
     path: '/affiliate',
     name: 'affiliateRegistration',
-    component: affiliateRegistration
+    component: affiliateRegistration,
+    beforeEnter: guest
   },
   {
     path: '/blog',
@@ -247,7 +252,8 @@ const routes = [
 {
   path:'/dashboard',
   name:'UserDashboard',
-  component: UserDashboard
+  component: UserDashboard,
+  beforeEnter: auth,
 },
 
 

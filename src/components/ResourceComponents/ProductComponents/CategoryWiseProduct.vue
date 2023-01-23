@@ -20,23 +20,6 @@
                                      </div>
                                      <div class="p-3">
                                         <Slider @click="priceRange" v-model="rangeValue" :min="min" :max="max"></Slider>
-                                         <div class="aiz-range-slider">
-                                          
-<!--  
-                                             <div class="row mt-2">
-                                                 <div class="col-6">
-                                                     <span class="range-slider-value value-low fs-14 fw-600 opacity-70"
-                                                        data-range-value-low="0" id="input-slider-range-value-low">
-                                                    </span>
-                                                 </div>
-                                                 <div class="col-6 text-right">
-                                                    <span class="range-slider-value value-high fs-14 fw-600 opacity-70"
-                                                       data-range-value-high="10000" id="input-slider-range-value-high">
-                                                    </span>
-                                                 </div>
-                                             </div> -->
-                                             
-                                         </div>
                                      </div>
                                  </div>
                                  
@@ -183,14 +166,7 @@
                                  </div>
                                  <div v-if="currentRouteName != 'products.brand'" class="col-6 col-lg-auto mb-3 w-lg-200px">
                                          <label class="mb-0 opacity-50">{{ 'Brands'}}</label>
-                                         <!-- <select @change="setBrand()" id="brandsId" class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand">
-                                            <option value="">{{ 'All Brands' }}</option>
-                                            <option v-for="(brand, index) in brands" :key="index" :value="brand.slug" :selected="brandId == brand.id">{{ brand.name }}</option>
-                                         </select> -->
-                                         <Select2 v-model="myValue"  :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="mySelectEvent($event)">
-                                            <template v-for="option in brands" :key="option.value">
-                                                <option :value="option.id">{{ option.name }}</option>
-                                            </template>
+                                         <Select2 v-model="myValue" :options="brands" :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="setBrand($event)" placeholder="Select Brand">
                                          </Select2>
                                          
                                  </div>
@@ -302,13 +278,7 @@
  
  <script>
  import axios from 'axios';
-<<<<<<< HEAD
- import Slider from '@vueform/slider'
-//  import vendor from '../../../../public/assets/js/vendors';
-//  import aizCore from '../../../../public/assets/js/aiz-core';
-=======
  import Slider from '@vueform/slider';
->>>>>>> 9df29311c7124a5722807977f5bb7c3021ff4a5e
  import { ratingGenerator } from '@/HelpersFunction/Helpers';
  import Select2 from 'vue3-select2-component';
  export default {
@@ -316,15 +286,12 @@
         components:{Slider,Select2},
         data(){
             return{
-                myValue: '',
-                myOptions: ['op1', 'op2', 'op3'],
+                brands: '',
                 keyword:'',
                 selected_attribute_values: [],
                 selectedColor: '',
                 sortedBy:'newest',
                 selectedBrand: '',
-
-
                 categoryWiseProducts:[],
                 categoryInfo:[],
                 ShowNotFound:'Loading...',
@@ -338,7 +305,6 @@
                 cetegoryLevelZero: [],
                 parentCategory: {},
                 category: {},
-                brands: [],
                 categoryName: '',
                 currentRouteName: '',
                 autoDescription: '',
@@ -357,11 +323,8 @@
             }
         },
         created(){
-        //   this.loadMore(this.rootDomain); 
-            this.setJsCdn();
         },
         mounted(){
-            // this.setJsCdn();
             if(this.key_slug!=null){
                 this.slugValue = this.key_slug;
                 this.url = 'vue/search?keyword='+this.key_slug+'&';
@@ -380,25 +343,6 @@
     
         },
     methods:{
-        myChangeEvent(val){
-            console.log(val);
-        },
-        mySelectEvent({id, text}){
-            console.log({id, text})
-        },
-        setJsCdn(){
-            if(document.getElementsByTagName("body")[0]){
-                // var baseUrl = window.location.origin;
- 
-                // var scriptTag = document.createElement("script");
-                // scriptTag.src = baseUrl+"/assets/js/vendors.js";
-                // document.getElementsByTagName('body')[0].appendChild(scriptTag);
- 
-                // var scriptTag = document.createElement("script");
-                // scriptTag.src = baseUrl+"/assets/js/aiz-core.js";
-                // document.getElementsByTagName('body')[0].appendChild(scriptTag);
-            }
-        },
         getCategoryWiseProduct(page){
              this.ShowNotFound  = 'Loading...';
              axios.get(this.rootDomain+this.url+'page='+page, { params: { 
@@ -429,6 +373,7 @@
                 this.categories = response.data.categories;
                 this.brandId = response.data.brand_id;
                 this.brands = response.data.brands;
+                console.log()
                 this.lastPage = response.data.productsCount;
                 this.scrollToTop();
                 if(this.products.length == 0){
@@ -451,8 +396,8 @@
             this.sortedBy = $("#sortBy").val();
             this.getCategoryWiseProduct(1);
         },
-        setBrand(){
-            this.selectedBrand = $("#brandsId").val();
+        setBrand(brand){
+            this.selectedBrand=brand.slug;
             this.getCategoryWiseProduct(1);
         },
 
@@ -543,5 +488,11 @@
     bottom: 0!important;
     left: 50%;
     transform: translate(-50%);
+}
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #e7e5e5!important;
+    border-radius: 4px;
+    height: 38px!important;
 }
  </style>

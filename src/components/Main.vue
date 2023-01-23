@@ -1,8 +1,9 @@
 <template>
         <Header></Header>
-          <router-view :key="$route.path"></router-view>
+          <router-view :key="$route.fullPath"></router-view>
+          <!-- <router-view name="second"></router-view> -->
          <Footer></Footer>
-  </template>
+</template>
   
   <script>
 import axios from "axios";

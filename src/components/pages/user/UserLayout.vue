@@ -6,7 +6,8 @@
                 <!-- SideBar -->
                 <UserSideBar/>
                 <div class="aiz-user-panel">
-                   <Dashboard/>
+                    <router-view name='a'/>
+                    <!-- <router-view name='b'/> -->
                 </div>
             </div>
         </div>
