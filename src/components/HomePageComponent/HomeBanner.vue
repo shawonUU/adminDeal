@@ -72,6 +72,7 @@
   <TodaysOffer></TodaysOffer>
   <BrandComponent></BrandComponent>
   <SellersComponent></SellersComponent>
+  <FlashDeal v-if="isFlashDeal==1"></FlashDeal>
   <NewProduct></NewProduct>
   <FeaturedCategory></FeaturedCategory>
   <BestSellingProduct></BestSellingProduct>
@@ -91,6 +92,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import TodaysOffer from "../ResourceComponents/ProductComponents/TodaysOffer.vue";
+import FlashDeal from "../ResourceComponents/ProductComponents/FlashDealProduct.vue";
 import NewProduct from "../ResourceComponents/ProductComponents/NewProduct.vue";
 import FeaturedCategory from "../ResourceComponents/ProductComponents/FeaturedCategory.vue";
 import AuctionProducts from "../ResourceComponents/ProductComponents/AuctionProducts.vue";
@@ -112,10 +114,12 @@ export default {
       modules: [Autoplay, Pagination, Navigation],
       categories: [],
       featuredCategories:[],
+      isFlashDeal:''
     }
   },
  components:{
   TodaysOffer, 
+  FlashDeal,
   Swiper,
   SwiperSlide,
   SubCategory,
@@ -138,6 +142,7 @@ export default {
  created(){
   this.getSlider(this.rootDomain);
   this.getCat(this.rootDomain);
+  this.checkFlashDeal(this.rootDomain);
  },
  mounted(){
  
@@ -146,7 +151,7 @@ export default {
 methods:{
   // ...mapActions(useCategoryStore,['getCat']),
   // ...mapActions(useCategoryStore,['getSubcategory']),
-  getSlider(rootDomain){
+    getSlider(rootDomain){
     axios.get(rootDomain+'vue/v3/sliders')
     .then((response)=>{
       this.sliders = response.data.data;
@@ -168,9 +173,7 @@ methods:{
     })
   },
   getSubcategory(rootDomain,id,dx){
-
     let temp = JSON.parse(JSON.stringify(this.categories));
-    // alert(('subcategories' in temp[dx]));
     if(('subcategories' in temp[dx])==false){
       axios.get(rootDomain+"category/nav-element-list",{params:{id:id}})
       .then((response)=>{
@@ -179,8 +182,17 @@ methods:{
           this.categories = temp;
       })
     }else{
-      console.log('exist');
+      
     }
+  },
+  checkFlashDeal(rootDomain){
+    axios.get(rootDomain+'vue/check-flash-deal')
+    .then((res)=>{
+      this.isFlashDeal = res.data;
+    })
+    .catch((eror)=>{
+      console.log(error)
+    })
   }
  }
  

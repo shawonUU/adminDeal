@@ -26,6 +26,8 @@ import JobDetails from '../components/ResourceComponents/ProductComponents/detai
 import AllBrands from '../components/ResourceComponents/ProductComponents/detailPages/AllBrands.vue';
 import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
 import AllShops from '../components/ResourceComponents/ProductComponents/detailPages/AllShops.vue';
+import FlashDeals from '../components/pages/FrontEnd/FlashDeals.vue';
+import AllCoupon from '../components/pages/FrontEnd/AllCoupon.vue';
 // Order Routes
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
@@ -114,6 +116,16 @@ const routes = [
     props:true,
     name: 'JobDetails',
     component: JobDetails
+  },
+  {
+    path: '/flash-deals',
+    name: 'FlashDeals',
+    component: FlashDeals
+  },
+  {
+    path: '/all_coupon',
+    name: 'AllCoupon',
+    component: AllCoupon
   },
   {
     path: '/track-your-order',
