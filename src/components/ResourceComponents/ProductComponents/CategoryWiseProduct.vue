@@ -183,10 +183,16 @@
                                  </div>
                                  <div v-if="currentRouteName != 'products.brand'" class="col-6 col-lg-auto mb-3 w-lg-200px">
                                          <label class="mb-0 opacity-50">{{ 'Brands'}}</label>
-                                         <select @change="setBrand()" id="brandsId" class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand">
+                                         <!-- <select @change="setBrand()" id="brandsId" class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand">
                                             <option value="">{{ 'All Brands' }}</option>
                                             <option v-for="(brand, index) in brands" :key="index" :value="brand.slug" :selected="brandId == brand.id">{{ brand.name }}</option>
-                                         </select>
+                                         </select> -->
+                                         <Select2 v-model="myValue"  :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="mySelectEvent($event)">
+                                            <template v-for="option in brands" :key="option.value">
+                                                <option :value="option.id">{{ option.name }}</option>
+                                            </template>
+                                         </Select2>
+                                         
                                  </div>
                                  <div class="col-6 col-lg-auto mb-3 w-lg-200px">
                                      <label class="mb-0 opacity-50">{{ 'Sort by' }}</label>
@@ -296,16 +302,22 @@
  
  <script>
  import axios from 'axios';
+<<<<<<< HEAD
  import Slider from '@vueform/slider'
 //  import vendor from '../../../../public/assets/js/vendors';
 //  import aizCore from '../../../../public/assets/js/aiz-core';
+=======
+ import Slider from '@vueform/slider';
+>>>>>>> 9df29311c7124a5722807977f5bb7c3021ff4a5e
  import { ratingGenerator } from '@/HelpersFunction/Helpers';
+ import Select2 from 'vue3-select2-component';
  export default {
         props: ['slug','brand_slug','key_slug'],
-        components:{Slider},
+        components:{Slider,Select2},
         data(){
             return{
-
+                myValue: '',
+                myOptions: ['op1', 'op2', 'op3'],
                 keyword:'',
                 selected_attribute_values: [],
                 selectedColor: '',
@@ -368,6 +380,12 @@
     
         },
     methods:{
+        myChangeEvent(val){
+            console.log(val);
+        },
+        mySelectEvent({id, text}){
+            console.log({id, text})
+        },
         setJsCdn(){
             if(document.getElementsByTagName("body")[0]){
                 // var baseUrl = window.location.origin;
