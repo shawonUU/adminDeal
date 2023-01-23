@@ -297,6 +297,8 @@
  <script>
  import axios from 'axios';
  import Slider from '@vueform/slider'
+//  import vendor from '../../../../public/assets/js/vendors';
+//  import aizCore from '../../../../public/assets/js/aiz-core';
  import { ratingGenerator } from '@/HelpersFunction/Helpers';
  export default {
         props: ['slug','brand_slug','key_slug'],
