@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import UserRouter from './user'
 //Home Page
 import HomeComponent from '../components/HomePageComponent/HomeBanner.vue';
 //Important Pages Routes
@@ -258,17 +259,14 @@ const routes = [
   name: 'ReplacementWarrantyPolicy',
   component: ReplacementWarrantyPolicy
 },
-
 //After Authentication routes
-
 {
   path:'/dashboard',
   name:'UserDashboard',
   component: UserDashboard,
   beforeEnter: auth,
 },
-
-
+...UserRouter,
 
 ]
 const router = createRouter({
