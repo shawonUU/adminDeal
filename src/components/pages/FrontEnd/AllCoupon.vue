@@ -57,12 +57,13 @@ import axios from 'axios';
             }
         },
         mounted(){
-            this.getFlashDeals();
+            this.getAllCoupon();
         },
         methods:{
-            getFlashDeals(){
-                axios.get(this.rootDomain+'vue/v3/flash-deals')
+            getAllCoupon(){
+                axios.get(this.rootDomain+'vueweb/all_coupon')
                 .then((response)=>{
+                    console.log(response.data);
                     this.coupons = response.data.data;
                 })
                 .catch((error)=>{

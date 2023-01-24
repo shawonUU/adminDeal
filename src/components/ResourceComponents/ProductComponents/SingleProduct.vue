@@ -4,7 +4,7 @@
       <div class="bg-white shadow-sm rounded p-3">
          <div class="row">
             <div class="col-xl-5 col-lg-5 mb-4">
-               <div class="sticky-top z-3 row gutters-10">
+               <!-- <div class="sticky-top z-3 row gutters-10">
                   <div class="col order-1 order-md-2">
                      <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
                         <div class="carousel-box img-zoom rounded">
@@ -26,7 +26,46 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
+               <swiper
+                  :style="{
+                     '--swiper-navigation-color': '#fff',
+                     '--swiper-pagination-color': '#fff',
+                  }"
+                  :loop="true"
+                  :spaceBetween="10"
+                  :navigation="true"
+                  :thumbs="{ swiper: thumbsSwiper }"
+                  :modules="modules"
+                  class="mySwiper2"
+               >
+                  <swiper-slide
+                     ><img width="400"
+                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/r5cHOavzYRBEcZWaq2YXhPLYNA5xgqXOB3zBXZCC.jpg" />
+                     </swiper-slide
+                  ><swiper-slide
+                     ><img width="420"
+                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/2VOYd2MSkrR1iJ6BgdQSaayyEi5q1COavbKMqaAh.png" /></swiper-slide
+                  >
+               </swiper>
+               <swiper
+                  @swiper="setThumbsSwiper"
+                  :loop="true"
+                  :spaceBetween="-100"
+                  :slidesPerView="3"
+                  :freeMode="true"
+                  :watchSlidesProgress="true"
+                  :modules="modules"
+                  class="mySwiper"
+               >
+                  <swiper-slide
+                     ><img width="100"
+                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/r5cHOavzYRBEcZWaq2YXhPLYNA5xgqXOB3zBXZCC.jpg"  /></swiper-slide
+                  ><swiper-slide
+                     ><img width="100"
+                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/2VOYd2MSkrR1iJ6BgdQSaayyEi5q1COavbKMqaAh.png" /></swiper-slide
+                  >
+               </swiper>
             </div>
             <div class="col-xl-7 col-lg-7">
                <!--start -->
@@ -664,15 +703,25 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import TodaysOffer from "./TodaysOffer.vue";
 import axios from "axios";
+import 'swiper/css';
+import "swiper/css/free-mode"
+import "swiper/css/navigation"
+import "swiper/css/thumbs"
+// import './style.css';
+import {FreeMode,Navigation,Thumbs} from 'swiper';
+// let thumbsSwiper = null;
 export default {
    props:['slug'],
-   components:{TodaysOffer},
+   components:{TodaysOffer, Swiper, SwiperSlide,},
        data(){
         return{
            productDetails:[],
-           shopDetails:[]
+           shopDetails:[],
+           thumbsSwiper:null,
+           modules: [FreeMode,Navigation,Thumbs],
         }
        },
        mounted(){
@@ -686,10 +735,20 @@ export default {
                         this.shopDetails = response.data[1];
                      })
                },
+               setThumbsSwiper(swiper){
+                  this.thumbsSwiper = swiper;
+               }      
        }
 }
 </script>
 
 <style>
-
+.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.mySwiper2.swiper-backface-hidden {
+    text-align: center;
+    width: 400px!important;
+    height: 400px;
+}
+.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.swiper-free-mode.swiper-watch-progress.mySwiper.swiper-thumbs.swiper-backface-hidden {
+    width: 399px;
+}
 </style>

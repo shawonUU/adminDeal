@@ -28,6 +28,7 @@ import AllBrands from '../components/ResourceComponents/ProductComponents/detail
 import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
 import AllShops from '../components/ResourceComponents/ProductComponents/detailPages/AllShops.vue';
 import FlashDeals from '../components/pages/FrontEnd/FlashDeals.vue';
+import FlashDealDetails from '../components/pages/FrontEnd/FlashDealDetails.vue';
 import AllCoupon from '../components/pages/FrontEnd/AllCoupon.vue';
 // Order Routes
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
@@ -122,6 +123,12 @@ const routes = [
     path: '/flash-deals',
     name: 'FlashDeals',
     component: FlashDeals
+  },
+  {
+    path: '/flash-deal/:slug?',
+    name: 'FlashDealDetails',
+    component: FlashDealDetails,
+    props:true
   },
   {
     path: '/all_coupon',

@@ -486,11 +486,18 @@ export default {
       vendorSystemActivation: 0,
     }
   },
+  beforeCreated(){
+    if(access_token !== null){
+      this.isAuthenticated = true;
+      alert('true');
+    }
+  },
   mounted(){
     this.getNavCategories(this.rootDomain);
     var access_token = localStorage.getItem("access_token");
     if(access_token !== null){
       this.isAuthenticated = true;
+      alert('true');
     }
   },
   methods:{
@@ -548,7 +555,15 @@ export default {
         },
         "/flash-deals": {
           "component" : "FlashDeals",
+        },
+        "/flash-deal/my-offers-ttPpP": {
+          "component" : "FlashDealDetails",
+          "params":{slug:"my-offers-ttPpP"}
+        },
+        "/all_coupon": {
+          "component" : "AllCoupon",
         }
+      
       };
   
       if( urls[url] != "undefined")
