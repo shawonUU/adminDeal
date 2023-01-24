@@ -680,11 +680,9 @@ export default {
        },
        methods:{
          getProductDetails(rootDomain){
-                     axios.get(rootDomain+'product/'+this.slug)
+                     axios.get(rootDomain+'vueweb/product/'+this.slug)
                      .then((response)=>{
-                        console.log(response.data[0].data[0]);
                         this.productDetails = response.data[0].data[0];
-                        // console.log(this.productDetails);
                         this.shopDetails = response.data[1];
                      })
                },
