@@ -549,7 +549,7 @@ export default {
       };
   
       if( urls[url] != "undefined")
-      this.loadComponent(urls[url]["component"], urls[url]["parems"]);
+        this.loadComponent(urls[url]["component"], urls[url]["parems"]);
          
     },
     loadComponent(componentName, params=null){
