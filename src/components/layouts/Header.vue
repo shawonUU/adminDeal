@@ -256,7 +256,7 @@
 
             <li v-for="(name,indexCateName) in navCategoriesName" :key="indexCateName" class="list-inline-item mr-0">
               <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                <a style="cursor:pointer" @click="receiveCategorySlug(navCategoriesLinks[indexCateName].replace('/category/',''))" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> {{ name }} </a>
+                <a style="cursor:pointer" @click="receiveUrl(navCategoriesLinks[indexCateName].replace('/category/',''))" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> {{ name }} </a>
               </span>
             </li>
 
@@ -483,7 +483,7 @@ export default {
       products: [],
       shops: [],
       keywords:[],
-      vendorSystemActivation: 0, 
+      vendorSystemActivation: 0,
     }
   },
   mounted(){
@@ -515,14 +515,25 @@ export default {
       });
     },
 
-    receiveCategorySlug(slug){
-      // alert(slug);
-          this.$router.push({
-              name:'CategoryWiseProduct',
-              params: {
-                  slug: slug
-              }
-          }); 
+    receiveUrl(slug){
+
+      //******** */
+
+        if(slug == '/flash-deals'){
+          this.routerName('FlashDeals');
+        }else if(slug == '/all_coupon'){
+          this.routerName('AllCoupon');
+        }
+        else{
+          this.routerName('CategoryWiseProduct',{slug: slug});
+        }
+         
+    },
+    routerName(componentName, params={}){
+      this.$router.push({
+          name:componentName,
+          params:params
+      }); 
     },
     search(searchBoxFocus = true){
           var searchKey = $('#search').val();
