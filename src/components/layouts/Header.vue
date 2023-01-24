@@ -256,7 +256,7 @@
 
             <li v-for="(name,indexCateName) in navCategoriesName" :key="indexCateName" class="list-inline-item mr-0">
               <span class="bg-white hov-bg-primary px-2 py-2 hov-text-white">
-                <a style="cursor:pointer" @click="receiveUrl(navCategoriesLinks[indexCateName].replace('/category/',''))" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> {{ name }} </a>
+                <a style="cursor:pointer" @click="receiveUrl(navCategoriesLinks[indexCateName])" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset"> {{ name }} </a>
               </span>
             </li>
 
@@ -515,25 +515,48 @@ export default {
       });
     },
 
-    receiveUrl(slug){
-
-      //******** */
-
-        if(slug == '/flash-deals'){
-          this.routerName('FlashDeals');
-        }else if(slug == '/all_coupon'){
-          this.routerName('AllCoupon');
+    receiveUrl(url){
+      
+      let urls = {
+        "/category/man-woman-baby-fashion" : {
+            "component" : "CategoryWiseProduct",
+           "parems" : {slug: "man-woman-baby-fashion"}
+        },
+        "/category/health-beauty-personal-care" : {
+          "component" : "CategoryWiseProduct",
+          "parems" : {slug: "health-beauty-personal-care"}
+        },
+        "/category/electronic-accessories-gadget" : {
+          "component" : "CategoryWiseProduct",
+          "parems" : {slug: "electronic-accessories-gadget"}
+        },
+        "/category/groceries-lifestyle-medical" : {
+          "component" : "CategoryWiseProduct",
+          "parems" : {slug: "groceries-lifestyle-medical"}
+        },
+        "/category/digital-products-crouse-etc" : {
+          "component" : "CategoryWiseProduct",
+          "parems" : {slug: "digital-products-crouse-etc"}
+        },
+        "/category/dollar-crypto-account-vcard" : {
+          "component" : "CategoryWiseProduct",
+          "parems" : {slug: "dollar-crypto-account-vcard"}
+        },
+        "/category/social-ads-apps-survey" : {
+          "component" : "CategoryWiseProduct",
+          "parems" : {slug: "social-ads-apps-survey"}
         }
-        else{
-          this.routerName('CategoryWiseProduct',{slug: slug});
-        }
+      };
+  
+      if( urls[url] != "undefined")
+      this.loadComponent(urls[url]["component"], urls[url]["parems"]);
          
     },
-    routerName(componentName, params={}){
-      this.$router.push({
-          name:componentName,
-          params:params
-      }); 
+    loadComponent(componentName, params=null){
+      if(params != null)
+        this.$router.push({name:componentName,params:params});
+      else 
+        this.$router.push({name:componentName});
     },
     search(searchBoxFocus = true){
           var searchKey = $('#search').val();
