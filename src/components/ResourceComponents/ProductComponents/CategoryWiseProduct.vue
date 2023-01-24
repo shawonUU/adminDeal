@@ -356,6 +356,7 @@
 
              }})
              .then((response)=>{
+                // console.log(response.data.user);return;
                 this.currentRouteName = response.data.currentRouteName;
                 this.attributes = response.data.attributes;
                 this.color_filter_activation = response.data.color_filter_activation;
@@ -373,7 +374,7 @@
                 this.categories = response.data.categories;
                 this.brandId = response.data.brand_id;
                 this.brands = response.data.brands;
-                console.log()
+                
                 this.lastPage = response.data.productsCount;
                 this.scrollToTop();
                 if(this.products.length == 0){

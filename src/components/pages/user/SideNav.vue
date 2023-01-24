@@ -1,5 +1,5 @@
 <template>
-  <div class="aiz-user-sidenav-wrap position-relative z-1 shadow-sm">
+<div class="aiz-user-sidenav-wrap position-relative z-1 shadow-sm">
     <div class="aiz-user-sidenav rounded overflow-auto c-scrollbar-light pb-5 pb-xl-0">
         <div class="p-4 text-xl-center mb-4 border-bottom bg-primary text-white position-relative">
             <span class="avatar avatar-md mb-3">

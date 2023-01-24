@@ -115,6 +115,7 @@ export default {
         rememberMe: this.user.rememberMe,
       }})
       .then((response)=>{
+          console.log(response);
           if(response.status == 200){
             localStorage.setItem("access_token", response.data.access_token);
             this.$router.push({path: '/'});
