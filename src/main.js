@@ -10,7 +10,7 @@ import "vue-awesome-paginate/dist/style.css";
 const pinia = createPinia()
 var app = createApp(App);
 app.config.globalProperties.rootDomain ='https://localhost/backend/';
-app.config.globalProperties.isAuthenticatedCheck =false;
+app.config.globalProperties.isAuthenticatCheck =false;
 app.use(router);
 app.use(pinia);
 app.use(VueAwesomePaginate);
