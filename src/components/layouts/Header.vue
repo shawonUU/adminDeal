@@ -473,6 +473,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data(){
     return{
@@ -486,11 +487,26 @@ export default {
       vendorSystemActivation: 0,
     }
   },
+  created() {
+    // headers = {"Authorization": "Bearer " + "0|hl7Lo4eXLcLOwNgIoIk16cCRTzjfuStbMKx7qbgO"};
+    // axios.get(this.rootDomain+'vueweb/check', {params: {headers: headers}}).then(res=>{
+    //   console.log(res);
+    // }).catch(err=>{
+
+    // });
+  },
+  beforeCreated(){
+    if(access_token !== null){
+      this.isAuthenticated = true;
+      alert('true');
+    }
+  },
   mounted(){
     this.getNavCategories(this.rootDomain);
     var access_token = localStorage.getItem("access_token");
     if(access_token !== null){
       this.isAuthenticated = true;
+      alert('true');
     }
   },
   methods:{
@@ -548,7 +564,15 @@ export default {
         },
         "/flash-deals": {
           "component" : "FlashDeals",
+        },
+        "/flash-deal/my-offers-ttPpP": {
+          "component" : "FlashDealDetails",
+          "params":{slug:"my-offers-ttPpP"}
+        },
+        "/all_coupon": {
+          "component" : "AllCoupon",
         }
+      
       };
   
       if( urls[url] != "undefined")
