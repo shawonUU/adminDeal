@@ -77,6 +77,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data(){
     return{
@@ -117,8 +118,9 @@ export default {
       .then((response)=>{
           console.log(response);
           if(response.status == 200){
-            localStorage.setItem("access_token", response.data.access_token);
-            this.$router.push({path: '/'});
+            // localStorage.setItem("access_token", response.data.access_token);
+            // this.$router.push({path: '/'});
+            // alert(response.data.access_token);
           }
           
       })

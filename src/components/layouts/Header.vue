@@ -473,6 +473,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data(){
     return{
@@ -485,6 +486,14 @@ export default {
       keywords:[],
       vendorSystemActivation: 0,
     }
+  },
+  created() {
+    // headers = {"Authorization": "Bearer " + "0|hl7Lo4eXLcLOwNgIoIk16cCRTzjfuStbMKx7qbgO"};
+    // axios.get(this.rootDomain+'vueweb/check', {params: {headers: headers}}).then(res=>{
+    //   console.log(res);
+    // }).catch(err=>{
+
+    // });
   },
   mounted(){
     this.getNavCategories(this.rootDomain);
