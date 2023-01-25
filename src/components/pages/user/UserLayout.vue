@@ -24,7 +24,7 @@
                                     </a>
                                 </li>
                                 <li class="aiz-side-nav-item">
-                                    <a href="" class="aiz-side-nav-link">
+                                    <a  @click="setComponent('UserFollowedShop')"  class="aiz-side-nav-link">
                                         <i class="las la-home aiz-side-nav-icon"></i>
                                         <span class="aiz-side-nav-text">Followed Shop</span> <span class="badge badge-inline badge-success">New</span>
                                     </a>
@@ -34,7 +34,7 @@
                                             $conversation = \App\Models\Conversation::where('sender_id', Auth::user()->id)->where('sender_viewed', 0)->get();
                                         @endphp -->
                                 <li class="aiz-side-nav-item">
-                                    <a href="" class="aiz-side-nav-link">
+                                    <a @click="setComponent('Conversation')" class="aiz-side-nav-link">
                                         <i class="las la-comment aiz-side-nav-icon"></i>
                                         <span class="aiz-side-nav-text">Messages</span> <span class="badge badge-inline badge-danger">new</span>
                                         <!-- @if (count($conversation) > 0) -->
@@ -297,17 +297,20 @@
     </template>
     
     <script>
-    import UserSideBar from "./SideNav.vue";
     import Dashboard from "./Dashboard.vue";
+    import UserFollowedShop from "./UserFollowedShop.vue";
+    import Conversation from "./Conversation/index.vue";
     export default {
-        components:{UserSideBar,Dashboard},
+        components:{Dashboard,UserFollowedShop,Conversation},
 
         data(){
             return{
                 selectedComponent:'',
             }
         },
-
+        created(){
+          this.setComponent('Dashboard');
+        },
         methods:{
             setComponent(name) {
                 this.selectedComponent = name

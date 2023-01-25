@@ -108,17 +108,6 @@ export default {
       }
     },
     userLogin(){
-
-      let urls = {
-        "/yggyf-ugghgh/uhhjh-jhj-":{
-          "component" : "myCompo",
-          "parems" : {slug: "sggg-uhuh-hj"},
-        }
-      };
-
-      console.log(urls["/yggyf-ugghgh/uhhjh-jhj-11"]);
-
-      return;
       axios.get(this.rootDomain+'vue/v3/auth/login', {params:{ name: this.user.name,
         email: this.user.email,
         password: this.user.password,

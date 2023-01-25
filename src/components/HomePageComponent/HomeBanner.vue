@@ -135,9 +135,7 @@ export default {
 },
  
  computed:{
-  // ...mapState(useCategoryStore,['categories']),
-  // ...mapState(useCategoryStore,['subcategories']),
-  // ...mapState(useCategoryStore,['featuredCategories']),
+
  },
  created(){
   this.getSlider(this.rootDomain);
@@ -149,8 +147,6 @@ export default {
  },
 
 methods:{
-  // ...mapActions(useCategoryStore,['getCat']),
-  // ...mapActions(useCategoryStore,['getSubcategory']),
     getSlider(rootDomain){
     axios.get(rootDomain+'vue/v3/sliders')
     .then((response)=>{
@@ -158,15 +154,15 @@ methods:{
     })
   },
   receiveCategorySlug(slug){
-            this.$router.push({
-                name:'CategoryWiseProduct',
-                params: {
-                    slug: slug
-                }
-            }); 
-      },
+      this.$router.push({
+          name:'CategoryWiseProduct',
+          params: {
+              slug: slug
+          }
+      }); 
+  },
   getCat(rootDomain){
-    axios.get(rootDomain)
+    axios.get(rootDomain+"vueweb")
     .then((response)=>{
       this.categories = response.data.categories;
       this.featuredCategories = response.data.featured_categories.data;

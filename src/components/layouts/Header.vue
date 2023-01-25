@@ -520,36 +520,39 @@ export default {
       let urls = {
         "/category/man-woman-baby-fashion" : {
             "component" : "CategoryWiseProduct",
-           "parems" : {slug: "man-woman-baby-fashion"}
+           "params" : {slug: "man-woman-baby-fashion"}
         },
         "/category/health-beauty-personal-care" : {
           "component" : "CategoryWiseProduct",
-          "parems" : {slug: "health-beauty-personal-care"}
+          "params" : {slug: "health-beauty-personal-care"}
         },
         "/category/electronic-accessories-gadget" : {
           "component" : "CategoryWiseProduct",
-          "parems" : {slug: "electronic-accessories-gadget"}
+          "params" : {slug: "electronic-accessories-gadget"}
         },
         "/category/groceries-lifestyle-medical" : {
           "component" : "CategoryWiseProduct",
-          "parems" : {slug: "groceries-lifestyle-medical"}
+          "params" : {slug: "groceries-lifestyle-medical"}
         },
         "/category/digital-products-crouse-etc" : {
           "component" : "CategoryWiseProduct",
-          "parems" : {slug: "digital-products-crouse-etc"}
+          "params" : {slug: "digital-products-crouse-etc"}
         },
         "/category/dollar-crypto-account-vcard" : {
           "component" : "CategoryWiseProduct",
-          "parems" : {slug: "dollar-crypto-account-vcard"}
+          "params" : {slug: "dollar-crypto-account-vcard"}
         },
         "/category/social-ads-apps-survey" : {
           "component" : "CategoryWiseProduct",
-          "parems" : {slug: "social-ads-apps-survey"}
+          "params" : {slug: "social-ads-apps-survey"}
+        },
+        "/flash-deals": {
+          "component" : "FlashDeals",
         }
       };
   
       if( urls[url] != "undefined")
-        this.loadComponent(urls[url]["component"], urls[url]["parems"]);
+      this.loadComponent(urls[url]["component"], urls[url]["params"]);
          
     },
     loadComponent(componentName, params=null){

@@ -68,13 +68,53 @@
     </div>
 </div>
 
+<div class="row gutters-10">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Default Shipping Address</h6>
+            </div>
+            <div class="card-body">
+                <!-- @if(Auth::user()->addresses != null)
+                    @php
+                        $address = Auth::user()->addresses->where('set_default', 1)->first();
+                    @endphp
+                    @if($address != null) -->
+                        <ul class="list-unstyled mb-0">
+                            <li class=" py-2"><span>Address : </span></li>
+                            <li class=" py-2"><span>Country : </span></li>
+                            <li class=" py-2"><span>State : </span></li>
+                            <li class=" py-2"><span>City : </span></li>
+                            <li class=" py-2"><span>Postal Code : </span></li>
+                            <li class=" py-2"><span>Phone:</span></li>
+                        </ul>
+                    <!-- @endif
+                @endif -->
+            </div>
+        </div>
+    </div>
+  
+    <div class="col-md-6">
 
+            
+                    
+                    
+                    
+                </div>
+   
+    <div class="p-2 h4 mb-3">Recently Product Viewed</div>
+    
+</div>
     
 </template>
 
 <script>
 export default {
+    props:['data'],
 
+   mounted(){
+        alert(this.data);
+   }
 }
 </script>
 
