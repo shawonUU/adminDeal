@@ -95,26 +95,53 @@
     </div>
   
     <div class="col-md-6">
-
-            
-                    
-                    
-                    
-                </div>
+           
+    </div>
    
     <div class="p-2 h4 mb-3">Recently Product Viewed</div>
     
 </div>
-    
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     props:['data'],
+    data(){
+        return{
+            auth:{
+                isAuthenticated: false,
+                user: {},
+            },
+        }
+    },
+    created(){
+        var user = localStorage.getItem("user");
+        if(user !== null){
+            user = JSON.parse(user);
+            this.auth.isAuthenticated = true;
+            this.auth.user = user;
+        }
 
-   mounted(){
-        alert(this.data);
-   }
+        this.getDashboarddata();
+    },
+    mounted(){
+        
+    },
+    methods:{
+        getDashboarddata(){
+            axios.get(this.rootDomain+'vueweb/dashboard', {
+                params: {
+                    data : "UU",
+                }
+            })
+            .then(res=>{
+                console.log(res.data);
+            }).catch(err=>{
+
+            });
+        },
+    }
 }
 </script>
 

@@ -44,18 +44,18 @@ import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/
 
 // After Authentication Component File
 import UserDashboard from '../components/pages/user/UserLayout.vue';
-import MyDashboard from '../components/pages/user/Dashboard.vue';
+
 const guest = (to, from, next) => {
-  var access_token = localStorage.getItem("access_token");
-  if (access_token !== null) {
+  var user = localStorage.getItem("user");
+  if (user !== null) {
     next('/');
   } else {
     next();
   }
 }
 const auth = (to, from, next) => {
-  var access_token = localStorage.getItem("access_token");
-  if (access_token !== null) {
+  var user = localStorage.getItem("user");
+  if (user !== null) {
     next();
   } else {
     next('/');
