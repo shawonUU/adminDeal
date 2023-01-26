@@ -39,31 +39,27 @@
                   :modules="modules"
                   class="mySwiper2"
                >
-                  <swiper-slide
-                     ><img width="400"
-                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/r5cHOavzYRBEcZWaq2YXhPLYNA5xgqXOB3zBXZCC.jpg" />
-                     </swiper-slide
-                  ><swiper-slide
-                     ><img width="420"
-                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/2VOYd2MSkrR1iJ6BgdQSaayyEi5q1COavbKMqaAh.png" /></swiper-slide
-                  >
+                    <swiper-slide v-for="(photo,index) in productDetails.photos" :key="index">
+                     <img width="400"
+                     :style="zoomStyle"
+                     v-on:mouseover="zoomIn" v-on:mouseout="zoomOut"
+                     :src="photo.path" />
+                     </swiper-slide>
                </swiper>
                <swiper
                   @swiper="setThumbsSwiper"
                   :loop="true"
                   :spaceBetween="-100"
-                  :slidesPerView="3"
+                  :slidesPerView="2"
                   :freeMode="true"
                   :watchSlidesProgress="true"
                   :modules="modules"
                   class="mySwiper"
                >
-                  <swiper-slide
-                     ><img width="100"
-                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/r5cHOavzYRBEcZWaq2YXhPLYNA5xgqXOB3zBXZCC.jpg"  /></swiper-slide
-                  ><swiper-slide
-                     ><img width="100"
-                     src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/2VOYd2MSkrR1iJ6BgdQSaayyEi5q1COavbKMqaAh.png" /></swiper-slide
+                  <swiper-slide v-for="(photo,index) in productDetails.photos" :key="index">
+                     <img width="100"
+                     :src="photo.path"/>
+                     </swiper-slide
                   >
                </swiper>
             </div>
@@ -712,7 +708,6 @@ import "swiper/css/navigation"
 import "swiper/css/thumbs"
 // import './style.css';
 import {FreeMode,Navigation,Thumbs} from 'swiper';
-// let thumbsSwiper = null;
 export default {
    props:['slug'],
    components:{TodaysOffer, Swiper, SwiperSlide,},
@@ -722,23 +717,39 @@ export default {
            shopDetails:[],
            thumbsSwiper:null,
            modules: [FreeMode,Navigation,Thumbs],
+           zoomLevel: 1,
+           photosLength:""
         }
        },
        mounted(){
         this.getProductDetails(this.rootDomain);
        },
+       computed: {
+      zoomStyle() {
+         return {
+         transform: `scale(${this.zoomLevel})`
+         }
+      }
+   },
        methods:{
          getProductDetails(rootDomain){
                      axios.get(rootDomain+'vueweb/product/'+this.slug)
                      .then((response)=>{
                         this.productDetails = response.data[0].data[0];
+                        this.photosLength=this.productDetails.photos.length;
                         this.shopDetails = response.data[1];
                      })
                },
                setThumbsSwiper(swiper){
                   this.thumbsSwiper = swiper;
+               },
+               zoomIn() {
+                  this.zoomLevel += 0.5
+               },
+               zoomOut() {
+                  this.zoomLevel -= 0.5
                }      
-       }
+          }   
 }
 </script>
 

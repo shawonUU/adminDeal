@@ -110,10 +110,9 @@
 
 <script>
 export default {
-    props:['data'],
 
    mounted(){
-        alert(this.data);
+
    }
 }
 </script>

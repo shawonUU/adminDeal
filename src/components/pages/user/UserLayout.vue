@@ -125,7 +125,7 @@
                                     @endphp
                                     @if(Auth::user()->user_type == 'customer') -->
                                         <li class="aiz-side-nav-item">
-                                            <a href="" class="aiz-side-nav-link">
+                                            <a @click="setComponent('PurchaseHistory')" class="aiz-side-nav-link">
                                                 <i class="las la-file-alt aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">Purchase History</span>
                                                 <!-- @if($delivery_viewed > 0 || $payment_status_viewed > 0) -->
@@ -133,7 +133,7 @@
                                                 <!-- @endif -->
                                             </a>
                                         </li>
-
+                                        
                                         <li class="aiz-side-nav-item">
                                             <a href="" class="aiz-side-nav-link">
                                                 <i class="las la-download aiz-side-nav-icon"></i>
@@ -296,8 +296,9 @@
     import Dashboard from "./Dashboard.vue";
     import UserFollowedShop from "./UserFollowedShop.vue";
     import Conversation from "./Conversation/index.vue";
+    import PurchaseHistory from "./purchase_history.vue";
     export default {
-        components:{Dashboard,UserFollowedShop,Conversation},
+        components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory},
 
         data(){
             return{

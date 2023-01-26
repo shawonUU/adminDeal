@@ -1,5 +1,5 @@
 <template>
-  
+  <h3>Purchase History</h3>
 </template>
 
 <script>
