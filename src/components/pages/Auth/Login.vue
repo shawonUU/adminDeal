@@ -116,7 +116,7 @@ export default {
         rememberMe: this.user.rememberMe,
       }})
       .then((response)=>{
-          console.log(response);
+          console.log(response.data);
           if(response.status == 200){
             localStorage.setItem("access_token", response.data.access_token);
             this.isAuthenticatCheck = true;
