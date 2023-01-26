@@ -77,7 +77,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {
   data(){
     return{
@@ -109,17 +108,16 @@ export default {
       }
     },
     userLogin(){
-      axios.get(this.rootDomain+'vue/v3/auth/login', {params:{ name: this.user.name,
+      axios.get(this.rootDomain+'vue/v3/auth/login', {params:{
         email: this.user.email,
         password: this.user.password,
         login_by: this.user.login_by,
         rememberMe: this.user.rememberMe,
       }})
       .then((response)=>{
-          console.log(response);
           if(response.status == 200){
             localStorage.setItem("access_token", response.data.access_token);
-            this.isAuthenticatCheck = true;
+            this.emitter.emit("eventBus", "Hello");
             this.$router.push({path: '/'});
           }
           

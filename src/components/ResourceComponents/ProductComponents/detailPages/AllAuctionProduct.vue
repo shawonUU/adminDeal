@@ -79,14 +79,14 @@
           getRatings(rating,maxRating=5){
              return ratingGenerator(rating,maxRating)
             },
-          productDetails(slug){
-                this.$router.push({
-                    name: "singleProduct",
-                    params: {
-                    slug: slug
-                    }
-                });
-            },
+        productDetails(slug){
+        this.$router.push({
+        name: "AuctionProductsDetails",
+        params: {
+        slug: slug
+        }
+    });
+  },
       }
   }
   </script>

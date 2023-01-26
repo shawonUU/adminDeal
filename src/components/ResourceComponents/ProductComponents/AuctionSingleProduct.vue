@@ -335,6 +335,7 @@ export default {
       });
       this.scrollToTop();
   },
+
   scrollToTop() {
                 window.scrollTo(0,0);
       }

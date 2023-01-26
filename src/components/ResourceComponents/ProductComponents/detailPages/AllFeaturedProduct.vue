@@ -9,7 +9,7 @@
               <div v-for="(product, index) in featuredProducts" :key="index" class="col mb-2">
                       <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
                           <div class="position-relative">
-                          <a  style="cursor:pointer" @click="productDetails(product.slug)" class="d-block">
+                          <a  style="cursor:pointer"  @click="product.digital==0?productDetails(product.slug):digitalProductDetails(product.slug)" class="d-block">
                               <img class="img-fit lazyload mx-auto h-140px h-md-210px" src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image" :alt="product.name">
                           </a>
                           <div class="absolute-top-right aiz-p-hov-icon">
@@ -44,7 +44,7 @@
                                 ({{ product.rating }})
                               </div>
                           <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                              <a style="cursor:pointer" @click="productDetails(product.slug)" class="d-block text-reset">{{product.name}}</a>
+                              <a style="cursor:pointer"  @click="product.digital==0?productDetails(product.slug):digitalProductDetails(product.slug)" class="d-block text-reset">{{product.name}}</a>
                           </h3> 
                               <!-- <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border"> Cashback:0 <span class="fw-700 float-right">{{ product.earn_point }}</span>
                               </div>  -->
@@ -87,6 +87,14 @@
                     }
                 });
             },
+            digitalProductDetails(slug){
+            this.$router.push({
+                name: "DigitalProductDetails",
+                params: {
+                slug: slug
+                }
+            });
+            },  
       }
   }
   </script>

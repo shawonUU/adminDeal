@@ -194,7 +194,9 @@
                                      
                                      <div class="position-relative">
                                        
-                                        <a href="javascript:void(0)" @click="productDetails(product.slug, product.auction_product)" class="d-block">
+                                        <a href="javascript:void(0)"
+                                        @click="product.digital==0?productDetails(product.slug,product.auction_product):digitalProductDetails(product.slug)"
+                                        class="d-block">
                                               <img
                                                  class="img-fit lazyload mx-auto h-140px h-md-210px img-fluid lazyload"
                                                  src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image"
@@ -231,7 +233,7 @@
                                         </div>
                                         
                                         <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                                              <a href="" class="d-block text-reset">{{  product.name  }}</a>
+                                              <a @click="product.digital==0?productDetails(product.slug,product.auction_product):digitalProductDetails(product.slug)" class="d-block text-reset">{{product.name  }}</a>
                                         </h3>
                                         <!-- {{ $product_url }} -->
                                        
@@ -430,7 +432,23 @@
                     slug: slug
                     }
                 });
+            }else{
+                this.$router.push({
+                    name: "AuctionProductsDetails",
+                    params: {
+                    slug: slug
+                    }
+                });
             }
+        },
+
+        digitalProductDetails(slug){
+        this.$router.push({
+            name: "DigitalProductDetails",
+            params: {
+            slug: slug
+            }
+        });
         },
     
         allCategoryProduct(rootDomain){
