@@ -48,7 +48,7 @@
           </li>
           <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
             <router-link :to="{name:'trackOrder'}" class="text-reset d-inline-block  py-2">
-              <i class=""></i> Add Product </router-link>
+              <i class=""></i> Add Product{{ message }} </router-link>
           </li>
           <!-- My code start -->
           <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
@@ -473,7 +473,10 @@
 
 <script>
 import axios from 'axios';
-
+// axios.defaults.headers.common['Content-Type'] = 'application/json'
+// axios.defaults.headers.common['Accept'] = 'application/json'
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+// axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Authorization'
 export default {
   data(){
     return{
@@ -485,29 +488,35 @@ export default {
       shops: [],
       keywords:[],
       vendorSystemActivation: 0,
+      message:'',
     }
   },
   created() {
-    // headers = {"Authorization": "Bearer " + "0|hl7Lo4eXLcLOwNgIoIk16cCRTzjfuStbMKx7qbgO"};
-    // axios.get(this.rootDomain+'vueweb/check', {params: {headers: headers}}).then(res=>{
+    // console.log('jojojio');
+    // axios.get('http://192.168.5.17:8080/vue/v3/auth/user', {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: "Bearer " + "492|Q0XIsMdeUgyv4VfInkYRBNf9DNSXEfxt1Dzz7jVt",
+    //       }
+    // }).then(res=>{
     //   console.log(res);
     // }).catch(err=>{
 
     // });
   },
   beforeCreated(){
-    if(access_token !== null){
-      this.isAuthenticated = true;
-      alert('true');
-    }
+ 
   },
   mounted(){
     this.getNavCategories(this.rootDomain);
     var access_token = localStorage.getItem("access_token");
     if(access_token !== null){
       this.isAuthenticated = true;
-      alert('true');
     }
+
+    this.emitter.on("eventBus", message => {
+      this.isAuthenticated = true;
+    });
   },
   methods:{
     searchSubmit(){

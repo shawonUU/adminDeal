@@ -103,7 +103,6 @@
             })
       },
       getJobSlug(slug){
-      alert(slug);
         this.$router.push({
         name: "JobDetails",
         params: {

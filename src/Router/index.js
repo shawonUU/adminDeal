@@ -25,7 +25,6 @@ import Categories from '../components/pages/FrontEnd/Categories.vue';
 import AllJobs from '../components/pages/FrontEnd/AllJobs.vue';
 import JobDetails from '../components/ResourceComponents/ProductComponents/detailPages/FreelaneServiceDetails.vue';
 import AllBrands from '../components/ResourceComponents/ProductComponents/detailPages/AllBrands.vue';
-import Shop from '../components/ResourceComponents/ProductComponents/Shop.vue';
 import AllShops from '../components/ResourceComponents/ProductComponents/detailPages/AllShops.vue';
 import FlashDeals from '../components/pages/FrontEnd/FlashDeals.vue';
 import FlashDealDetails from '../components/pages/FrontEnd/FlashDealDetails.vue';
@@ -33,7 +32,8 @@ import AllCoupon from '../components/pages/FrontEnd/AllCoupon.vue';
 // Order Routes
 import TrackOrder from '../components/pages/FrontEnd/Order/TrackOrder.vue';
 //Product Routes
-import SingleProduct from '../components/ResourceComponents/ProductComponents/SingleProduct.vue';
+import ProductDetails from '../components/ResourceComponents/ProductComponents/product_details.vue';
+import DigitalProductDetails from '../components/ResourceComponents/ProductComponents/digital_product_details.vue';
 import TodaysBestDeals from '../components/ResourceComponents/ProductComponents/detailPages/TodaysDeal.vue';
 import featuredProductsMore from '../components/ResourceComponents/ProductComponents/detailPages/AllFeaturedProduct.vue';
 import auctionProducts from '../components/ResourceComponents/ProductComponents/detailPages/AllAuctionProduct.vue';
@@ -150,7 +150,13 @@ const routes = [
     path: '/product/:slug?',
     name: 'singleProduct',
     props:true,
-    component: SingleProduct
+    component: ProductDetails
+  },
+  {
+    path: '/product/:slug?',
+    name: 'DigitalProductDetails',
+    props:true,
+    component: DigitalProductDetails
   },
   {
     path:'/todays_best_deals',

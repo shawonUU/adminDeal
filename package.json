@@ -13,6 +13,7 @@
     "axios": "^1.2.2",
     "core-js": "^3.8.3",
     "laravel-vue-pagination": "^4.0.0",
+    "mitt": "^3.0.0",
     "pinia": "^2.0.28",
     "swiper": "^8.4.5",
     "vue": "^3.2.13",

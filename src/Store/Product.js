@@ -12,6 +12,7 @@ export const useProductStore = defineStore('ProductStore',{
                         getTodaysDealProduct(rootDomain){
                                 axios.get(rootDomain+'vue/v3/products/todays-deal')
                                 .then((response)=>{
+                                  // console.log(response.data.data);
                                   this.getTodaysDealProducts = response.data.data;
                                 })
                         },
