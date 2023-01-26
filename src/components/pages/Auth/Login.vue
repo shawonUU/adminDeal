@@ -80,6 +80,10 @@ import axios from 'axios';
 export default {
   data(){
     return{
+      auth:{
+        isAuthenticated: false,
+        user: {},
+      },
       user: {
           email:'',
           password: '',
@@ -114,10 +118,13 @@ export default {
         login_by: this.user.login_by,
         rememberMe: this.user.rememberMe,
       }})
-      .then((response)=>{
+      .then((response)=>{ 
           if(response.status == 200){
-            localStorage.setItem("access_token", response.data.access_token);
-            this.emitter.emit("eventBus", "Hello");
+            response.data.user.access_token = response.data.access_token;
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            this.auth.isAuthenticated = true;
+            this.auth.user = response.data.user;
+            this.emitter.emit("authentication", true);
             this.$router.push({path: '/'});
           }
           

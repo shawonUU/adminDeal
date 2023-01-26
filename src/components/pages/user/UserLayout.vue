@@ -290,9 +290,9 @@
             </div>
         </div>
     </section>
-    </template>
+</template>
     
-    <script>
+<script>
     import Dashboard from "./Dashboard.vue";
     import UserFollowedShop from "./UserFollowedShop.vue";
     import Conversation from "./Conversation/index.vue";
@@ -313,9 +313,9 @@
                 this.selectedComponent = name
             }
         }
-    }
-    </script>
+    } 
+</script>
     
-    <style>
+<style>
     
-    </style>
+</style>

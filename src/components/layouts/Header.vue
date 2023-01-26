@@ -36,12 +36,12 @@
             <router-link :to="{name:'trackOrder'}" class="text-reset d-inline-block  py-2">
               <i class=""></i> Track Your Order </router-link>
           </li>
-          <li v-if="!isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
+          <li v-if="!auth.isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
             <router-link :to="{name:'affiliateRegistration'}" class="text-reset d-inline-block  py-2">
               <i class=""></i> Affiliate Reg
             </router-link>
           </li>
-          <li v-if="!isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
+          <li v-if="!auth.isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
             <router-link :to="{name:'sellerRegistration'}" class="text-reset d-inline-block  py-2">
               <i class=""></i> Seller Reg
             </router-link>
@@ -61,16 +61,16 @@
                          
                    
                    End -->
-          <li v-if="!isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
+          <li v-if="!auth.isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
             <router-link :to="{name:'login'}" class="text-reset d-inline-block opacity-60 py-2">Login</router-link>
           </li>
-          <li v-if="isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
+          <li v-if="auth.isAuthenticated && auth.user.type == 'customer'" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
             <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">Dashboard</router-link>
           </li>
-          <li v-if="!isAuthenticated" class="list-inline-item">
+          <li v-if="!auth.isAuthenticated" class="list-inline-item">
             <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
           </li>
-          <li v-if="isAuthenticated" class="list-inline-item">
+          <li v-if="auth.isAuthenticated" class="list-inline-item">
             <a @click="logout()" href="javascript:void(0)" class="text-reset d-inline-block opacity-60 py-2">Logout</a>
           </li>
         </ul>
@@ -473,14 +473,13 @@
 
 <script>
 import axios from 'axios';
-// axios.defaults.headers.common['Content-Type'] = 'application/json'
-// axios.defaults.headers.common['Accept'] = 'application/json'
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
-// axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Authorization'
 export default {
   data(){
     return{
-      isAuthenticated:false,
+      auth:{
+        isAuthenticated: false,
+        user: {},
+      },
       navCategoriesName:[],
       navCategoriesLinks:[],
       categories: [],
@@ -492,33 +491,41 @@ export default {
     }
   },
   created() {
-    // console.log('jojojio');
-    // axios.get(this.rootDomain+'vue/v3/auth/user', {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: "Bearer " + "487|lGpPojHfmL27LwnLBYjYegSGTVdnCs4HK73BSlIg",
-    //       }
-    // }).then(res=>{
-    //   console.log(res);
-    // }).catch(err=>{
-
-    // });
+    var user = localStorage.getItem("user");
+    if(user !== null){
+      user = JSON.parse(user);
+      this.auth.isAuthenticated = true;
+      this.auth.user = user;
+    }
   },
   beforeCreated(){
  
   },
   mounted(){
     this.getNavCategories(this.rootDomain);
-    var access_token = localStorage.getItem("access_token");
-    if(access_token !== null){
-      this.isAuthenticated = true;
-    }
-
-    this.emitter.on("eventBus", message => {
-      this.isAuthenticated = true;
+    this.emitter.on("authentication", message => {
+      if(message){
+        let user = JSON.parse(localStorage.getItem("user"));
+        this.auth.isAuthenticated = true;
+        this.auth.user = user;
+      }
     });
+
+
   },
   methods:{
+    getData(){
+      console.log(this.selfDomain);
+      axios.get(this.selfDomain+'vue/v3/auth/user', {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            }
+      }).then(res=>{
+        console.log(res);
+      }).catch(err=>{
+
+      });
+    },
     searchSubmit(){
       var searchKey = $('#search').val();
       this.$router.push({
@@ -627,8 +634,8 @@ export default {
           }
       },
       logout() {
-        localStorage.removeItem("access_token");
-        this.isAuthenticated = false;
+        localStorage.removeItem("user");
+        this.auth.isAuthenticated = false;
         this.$router.push({ name: 'home' });
       }
   
