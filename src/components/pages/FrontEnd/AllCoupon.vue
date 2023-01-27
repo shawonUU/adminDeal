@@ -63,7 +63,6 @@ import axios from 'axios';
             getAllCoupon(){
                 axios.get(this.rootDomain+'vueweb/all_coupon')
                 .then((response)=>{
-                    console.log(response.data);
                     this.coupons = response.data.data;
                 })
                 .catch((error)=>{

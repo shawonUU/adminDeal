@@ -95,7 +95,7 @@ export default {
     },
     methods:{
       getConversations(){
-        axios.get("http://192.168.0.105:8080/vueweb/conversations?page=1", {
+        axios.get("http://localhost:8080/vueweb/conversations?page=1", {
             headers: {
               token: this.auth.user.access_token,
               Authorization: "Bearer " + this.auth.user.access_token,

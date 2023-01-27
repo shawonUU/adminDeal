@@ -418,158 +418,28 @@
                  </div>
                  <div class="p-3">
                     <ul class="list-group list-group-flush">
-                       <li class="py-3 px-0 list-group-item border-light">
+                       <li v-for="(product,index) in topSellingProducts" class="py-3 px-0 list-group-item border-light">
                           <div class="row gutters-10 align-items-center">
                              <div class="col-5">
                                 <a href="https://admindeal.com.bd/product/black-plated-finger-ring-for-mens"
                                    class="d-block text-reset">
                                 <img class="img-fit lazyload h-xxl-110px h-xl-80px h-120px"
                                    src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                                   data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/6jd31Jllm3wilh5bOOEQf35TP9twopPJFHfszYIC.png"
-                                   alt="Black Plated Finger Ring For Mens">
+                                   :data-src="product.thumbnail_image"
+                                   :alt="product.name">
                                 </a>
                              </div>
                              <div class="col-7 text-left">
                                 <h4 class="fs-13 text-truncate-2">
                                    <a href="https://admindeal.com.bd/product/black-plated-finger-ring-for-mens"
-                                      class="d-block text-reset">Black Plated Finger Ring For Mens</a>
+                                      class="d-block text-reset">{{ product.name }}</a>
                                 </h4>
                                 <div class="rating rating-sm mt-1">
-                                   <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
+                                   <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> ({{ product.rating }})
                                 </div>
                                 <div class="mt-2">
                                    <span
-                                      class="fs-17 fw-600 text-primary">৳80</span>
-                                </div>
-                             </div>
-                          </div>
-                       </li>
-                       <li class="py-3 px-0 list-group-item border-light">
-                          <div class="row gutters-10 align-items-center">
-                             <div class="col-5">
-                                <a href="https://admindeal.com.bd/product/luxury-black-ceramic-magnetic-therapy-germanium-health-link-bracelet"
-                                   class="d-block text-reset">
-                                <img class="img-fit lazyload h-xxl-110px h-xl-80px h-120px"
-                                   src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                                   data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/cqA8ferm933lc7TfidTPaQFd08enXWHliyyUKC7G.jpg"
-                                   alt="Luxury Black Ceramic Magnetic Therapy Germanium Health Link Bracelet">
-                                </a>
-                             </div>
-                             <div class="col-7 text-left">
-                                <h4 class="fs-13 text-truncate-2">
-                                   <a href="https://admindeal.com.bd/product/luxury-black-ceramic-magnetic-therapy-germanium-health-link-bracelet"
-                                      class="d-block text-reset">Luxury Black Ceramic Magnetic Therapy Germanium Health Link Bracelet</a>
-                                </h4>
-                                <div class="rating rating-sm mt-1">
-                                   <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
-                                </div>
-                                <div class="mt-2">
-                                   <span
-                                      class="fs-17 fw-600 text-primary">৳1,500</span>
-                                </div>
-                             </div>
-                          </div>
-                       </li>
-                       <li class="py-3 px-0 list-group-item border-light">
-                          <div class="row gutters-10 align-items-center">
-                             <div class="col-5">
-                                <a href="https://admindeal.com.bd/product/mini-star-mirror"
-                                   class="d-block text-reset">
-                                <img class="img-fit lazyload h-xxl-110px h-xl-80px h-120px"
-                                   src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                                   data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/CCpYpanPqwGAjgnYxqiZOVfPCB4h66LD9k8CqEgs.jpg"
-                                   alt="MINI STAR MIRROR">
-                                </a>
-                             </div>
-                             <div class="col-7 text-left">
-                                <h4 class="fs-13 text-truncate-2">
-                                   <a href="https://admindeal.com.bd/product/mini-star-mirror"
-                                      class="d-block text-reset">MINI STAR MIRROR</a>
-                                </h4>
-                                <div class="rating rating-sm mt-1">
-                                   <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
-                                </div>
-                                <div class="mt-2">
-                                   <span
-                                      class="fs-17 fw-600 text-primary">৳500</span>
-                                </div>
-                             </div>
-                          </div>
-                       </li>
-                       <li class="py-3 px-0 list-group-item border-light">
-                          <div class="row gutters-10 align-items-center">
-                             <div class="col-5">
-                                <a href="https://admindeal.com.bd/product/solid-polished-stainless-steel-square-black-fancy-rings"
-                                   class="d-block text-reset">
-                                <img class="img-fit lazyload h-xxl-110px h-xl-80px h-120px"
-                                   src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                                   data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/djX01lYPGimBMeFMt8zRftNcwKWQRKGceXKWFWFY.jpg"
-                                   alt="Solid Polished Stainless Steel Square Black Fancy Rings">
-                                </a>
-                             </div>
-                             <div class="col-7 text-left">
-                                <h4 class="fs-13 text-truncate-2">
-                                   <a href="https://admindeal.com.bd/product/solid-polished-stainless-steel-square-black-fancy-rings"
-                                      class="d-block text-reset">Solid Polished Stainless Steel Square Black Fancy Rings</a>
-                                </h4>
-                                <div class="rating rating-sm mt-1">
-                                   <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
-                                </div>
-                                <div class="mt-2">
-                                   <span
-                                      class="fs-17 fw-600 text-primary">৳200</span>
-                                </div>
-                             </div>
-                          </div>
-                       </li>
-                       <li class="py-3 px-0 list-group-item border-light">
-                          <div class="row gutters-10 align-items-center">
-                             <div class="col-5">
-                                <a href="https://admindeal.com.bd/product/black-luxurious-bracelet-for-men"
-                                   class="d-block text-reset">
-                                <img class="img-fit lazyload h-xxl-110px h-xl-80px h-120px"
-                                   src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                                   data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/FQfgJxNCGwDti2zC2mgHWUw0trmNpSOhKpdaOek1.jpg"
-                                   alt="Black Luxurious Bracelet For Men">
-                                </a>
-                             </div>
-                             <div class="col-7 text-left">
-                                <h4 class="fs-13 text-truncate-2">
-                                   <a href="https://admindeal.com.bd/product/black-luxurious-bracelet-for-men"
-                                      class="d-block text-reset">Black Luxurious Bracelet For Men</a>
-                                </h4>
-                                <div class="rating rating-sm mt-1">
-                                   <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
-                                </div>
-                                <div class="mt-2">
-                                   <span
-                                      class="fs-17 fw-600 text-primary">৳3,000</span>
-                                </div>
-                             </div>
-                          </div>
-                       </li>
-                       <li class="py-3 px-0 list-group-item border-light">
-                          <div class="row gutters-10 align-items-center">
-                             <div class="col-5">
-                                <a href="https://admindeal.com.bd/product/morphe-x-jaclyn-hill-all-the-blends-5-piece-bruh-set"
-                                   class="d-block text-reset">
-                                <img class="img-fit lazyload h-xxl-110px h-xl-80px h-120px"
-                                   src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                                   data-src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/LUgOM4uttfhGNTsyknoZ5RKIK9RcNOxMqRfa5IC9.jpg"
-                                   alt="MORPHE X JACLYN HILL ALL THE BLENDS 5-PIECE BRUH SET">
-                                </a>
-                             </div>
-                             <div class="col-7 text-left">
-                                <h4 class="fs-13 text-truncate-2">
-                                   <a href="https://admindeal.com.bd/product/morphe-x-jaclyn-hill-all-the-blends-5-piece-bruh-set"
-                                      class="d-block text-reset">MORPHE X JACLYN HILL ALL THE BLENDS 5-PIECE BRUH SET</a>
-                                </h4>
-                                <div class="rating rating-sm mt-1">
-                                   <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i> (1)
-                                </div>
-                                <div class="mt-2">
-                                   <span
-                                      class="fs-17 fw-600 text-primary">৳2,500</span>
+                                      class="fs-17 fw-600 text-primary">৳{{ product.base_price }}</span>
                                 </div>
                              </div>
                           </div>
@@ -716,6 +586,7 @@
              productDetails:[],
              shopDetails:[],
              relatedProducts:[],
+             topSellingProducts:[],
              thumbsSwiper:null,
              modules: [FreeMode,Navigation,Thumbs],
              zoomLevel: 1,
@@ -740,6 +611,7 @@
                           this.photosLength=this.productDetails.photos.length;
                           this.shopDetails = response.data[1];
                           this.relatedProducts = response.data[2].data;
+                          this.topSellingProducts = response.data[3].data;
                           // console.log(response.data[2].data);
                        })
                  },
