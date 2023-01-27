@@ -106,12 +106,6 @@
 <script>
 import axios from 'axios';
 export default {
-<<<<<<< HEAD
-
-   mounted(){
-
-   }
-=======
     props:['data'],
     data(){
         return{
@@ -148,7 +142,6 @@ export default {
             });
         },
     }
->>>>>>> 493906d939c92e586b88c9173be41e2cbc03a55e
 }
 </script>
 
