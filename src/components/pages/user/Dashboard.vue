@@ -10,19 +10,11 @@
     <div class="col-md-4">
         <div class="bg-grad-1 text-white rounded-lg mb-4 overflow-hidden">
             <div class="px-3 pt-3">
-                <!-- @php
-                    $user_id = Auth::user()->id;
-                    $cart = \App\Models\Cart::where('user_id', $user_id)->get();
-                @endphp
-                @if(count($cart) > 0)
+               
                 <div class="h3 fw-700">
-                    {{ count($cart) }} {{ translate('Product(s)') }}
+                    {{ totalProductInCart }} {{ 'Product(s)' }}
                 </div>
-                @else -->
-                <div class="h3 fw-700">
-                    0 Product
-                </div>
-                <!-- @endif -->
+                
                 <div class="opacity-50">in your cart</div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -33,14 +25,8 @@
     <div class="col-md-4">
         <div class="bg-grad-2 text-white rounded-lg mb-4 overflow-hidden">
             <div class="px-3 pt-3">
-                <!-- @php
-                    $orders = \App\Models\Order::where('user_id', Auth::user()->id)->get();
-                    $total = 0;
-                    foreach ($orders as $key => $order) {
-                        $total += count($order->orderDetails);
-                    }
-                @endphp -->
-                <div class="h3 fw-700">0 Product(s)</div>
+                
+                <div class="h3 fw-700">{{ wishlistCount }} Product(s)</div>
                 <div class="opacity-50">in your wishlist</div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -51,14 +37,8 @@
     <div class="col-md-4">
         <div class="bg-grad-3 text-white rounded-lg mb-4 overflow-hidden">
             <div class="px-3 pt-3">
-                <!-- @php
-                    $orders = \App\Models\Order::where('user_id', Auth::user()->id)->get();
-                    $total = 0;
-                    foreach ($orders as $key => $order) {
-                        $total += count($order->orderDetails);
-                    }
-                @endphp -->
-                <div class="h3 fw-700">total Product(s)</div>
+                
+                <div class="h3 fw-700">{{ totalOrder }} Product(s)</div>
                 <div class="opacity-50">you ordered</div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -75,12 +55,8 @@
                 <h6 class="mb-0">Default Shipping Address</h6>
             </div>
             <div class="card-body">
-                <!-- @if(Auth::user()->addresses != null)
-                    @php
-                        $address = Auth::user()->addresses->where('set_default', 1)->first();
-                    @endphp
-                    @if($address != null) -->
-                        <ul class="list-unstyled mb-0">
+                
+                        <ul v-if="adress !== null" class="list-unstyled mb-0">
                             <li class=" py-2"><span>Address : </span></li>
                             <li class=" py-2"><span>Country : </span></li>
                             <li class=" py-2"><span>State : </span></li>
@@ -88,8 +64,7 @@
                             <li class=" py-2"><span>Postal Code : </span></li>
                             <li class=" py-2"><span>Phone:</span></li>
                         </ul>
-                    <!-- @endif
-                @endif -->
+                 
             </div>
         </div>
     </div>
@@ -106,12 +81,6 @@
 <script>
 import axios from 'axios';
 export default {
-<<<<<<< HEAD
-
-   mounted(){
-
-   }
-=======
     props:['data'],
     data(){
         return{
@@ -119,6 +88,10 @@ export default {
                 isAuthenticated: false,
                 user: {},
             },
+            totalProductInCart: 0,
+            wishlistCount: 0,
+            totalOrder: 0,
+            adress: null,
         }
     },
     created(){
@@ -127,28 +100,30 @@ export default {
             user = JSON.parse(user);
             this.auth.isAuthenticated = true;
             this.auth.user = user;
+            this.getDashboardData();
         }
-
-        this.getDashboarddata();
     },
     mounted(){
         
     },
     methods:{
-        getDashboarddata(){
+        getDashboardData(){
             axios.get(this.rootDomain+'vueweb/dashboard', {
                 params: {
-                    data : "UU",
+                    token: this.auth.user.access_token,
                 }
             })
             .then(res=>{
                 console.log(res.data);
+                this.totalProductInCart = res.data.cartCount;
+                this.wishlistCount = res.data.wishlistCount;
+                this.totalOrder = res.data.totalOrder;
+                this.adress = res.data.adress;
             }).catch(err=>{
 
             });
         },
     }
->>>>>>> 493906d939c92e586b88c9173be41e2cbc03a55e
 }
 </script>
 

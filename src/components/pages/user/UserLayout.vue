@@ -9,9 +9,11 @@
                             <span class="avatar avatar-md mb-3">
                                 <img src="assets/img/avatar-place.png" class="image rounded-circle">
                             </span>
-                            <h4 class="h5 fs-16 mb-1 fw-600">User name </h4>
-                                <div class="text-truncate opacity-60">phone</div>
-                                <div class="text-truncate opacity-60">Or email</div>
+                            <template v-if="auth.user">
+                                <h4 class="h5 fs-16 mb-1 fw-600">{{ auth.user.name }} </h4>
+                                <div v-if="auth.user.phone" class="text-truncate opacity-60">{{ auth.user.phone }}</div>
+                                <div v-if="auth.user.email" class="text-truncate opacity-60">{{ auth.user.email }}</div>
+                            </template>
                             </div>
 
                         <div class="sidemnenu mb-3">
@@ -302,11 +304,23 @@
 
         data(){
             return{
+                auth:{
+                    isAuthenticated: false,
+                    user: {},
+                },
                 selectedComponent:'',
             }
         },
         created(){
-          this.setComponent('Dashboard');
+            var user = localStorage.getItem("user");
+            if(user !== null){
+                user = JSON.parse(user);
+                this.auth.isAuthenticated = true;
+                this.auth.user = user;
+
+                this.setComponent('Dashboard');
+            }
+          
         },
         methods:{
             setComponent(name) {
