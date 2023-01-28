@@ -53,8 +53,9 @@
           </li>
           <!-- My code start -->
           <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0 text-hover">
-            <a href="https://admindeal.com.bd/conversations" class="text-reset d-inline-block  py-2">
-              <i class=""></i> Inbox </a>
+            <router-link :to="{name: 'UserConversations'}" class="text-reset d-inline-block  py-2">
+              <i class=""></i> Inbox 
+            </router-link>
           </li>
           <!-- My code end -->
           <!-- Mostak vai code hide for Computer header inbox  start

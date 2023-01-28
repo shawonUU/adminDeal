@@ -20,29 +20,29 @@
                             <ul class="aiz-side-nav-list px-2" data-toggle="aiz-side-menu">
 
                                 <li class="aiz-side-nav-item">
-                                    <a @click="setComponent('Dashboard')" href="javascript:void(0)"  class="aiz-side-nav-link dashboard">
+                                    <router-link :to="{name: 'UserDashboard'}"  href="javascript:void(0)"  class="aiz-side-nav-link dashboard">
                                         <i class="las la-home aiz-side-nav-icon"></i>
                                         <span class="aiz-side-nav-text">My Dashboard</span>
-                                    </a>
+                                    </router-link>
                                 </li>
                                 <li class="aiz-side-nav-item">
-                                    <a  @click="setComponent('UserFollowedShop')"  class="aiz-side-nav-link">
+                                    <router-link :to="{name: 'UserFollowedShop'}" class="aiz-side-nav-link">
                                         <i class="las la-home aiz-side-nav-icon"></i>
                                         <span class="aiz-side-nav-text">Followed Shop</span> <span class="badge badge-inline badge-success">New</span>
-                                    </a>
+                                    </router-link>
                                 </li>
                                 <!-- @if (get_setting('conversation_system') == 1)
                                         @php
                                             $conversation = \App\Models\Conversation::where('sender_id', Auth::user()->id)->where('sender_viewed', 0)->get();
                                         @endphp -->
                                 <li class="aiz-side-nav-item">
-                                    <a @click="setComponent('Conversation')" class="aiz-side-nav-link">
+                                    <router-link :to="{name:'UserConversations'}" class="aiz-side-nav-link">
                                         <i class="las la-comment aiz-side-nav-icon"></i>
                                         <span class="aiz-side-nav-text">Messages</span> <span class="badge badge-inline badge-danger">new</span>
                                         <!-- @if (count($conversation) > 0) -->
                                             <span class="badge badge-success">(10)</span>
                                         <!-- @endif -->
-                                    </a>
+                                    </router-link>
                                 </li>
                                     <!-- @endif -->
 
@@ -127,13 +127,13 @@
                                     @endphp
                                     @if(Auth::user()->user_type == 'customer') -->
                                         <li class="aiz-side-nav-item">
-                                            <a @click="setComponent('PurchaseHistory')" class="aiz-side-nav-link">
+                                            <router-link :to="{name: 'PurchaseHistory'}" class="aiz-side-nav-link">
                                                 <i class="las la-file-alt aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">Purchase History</span>
                                                 <!-- @if($delivery_viewed > 0 || $payment_status_viewed > 0) -->
                                                 <span class="badge badge-inline badge-success">New</span>
                                                 <!-- @endif -->
-                                            </a>
+                                            </router-link>
                                         </li>
                                         
                                         <li class="aiz-side-nav-item">
@@ -300,6 +300,7 @@
     import Conversation from "./Conversation/index.vue";
     import PurchaseHistory from "./purchase_history.vue";
     export default {
+        props: ['componentName'],
         components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory},
 
         data(){
@@ -318,7 +319,7 @@
                 this.auth.isAuthenticated = true;
                 this.auth.user = user;
 
-                this.setComponent('Dashboard');
+                this.setComponent(this.componentName);
             }
           
         },

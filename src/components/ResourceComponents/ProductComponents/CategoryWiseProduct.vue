@@ -252,25 +252,23 @@
                             
                         </div>
                         <div class="text-danger text-center" style="font-weight: bold; font-size: 18px;">{{ ShowNotFound }}</div>
-                        <div v-if="ShowNotFound  == ''" class="aiz-pagination aiz-pagination-center mt-4">
-                            <vue-awesome-paginate
-                            :total-items="lastPage"
-                            :items-per-page="24"
-                            :max-pages-shown="5"
-                            v-model="currentPage"
-                            @click="getCategoryWiseProduct"
-                            />
-                        </div>
-                         
-                        <div v-if="currentRouteName == 'products.category'" class="bg-white shadow-sm card my-5 px-4">
-                            <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
-                                <p v-html="autoDescription"></p>
+                            <div v-if="ShowNotFound  == ''" class="aiz-pagination aiz-pagination-center mt-4">
+                                <vue-awesome-paginate
+                                :total-items="lastPage"
+                                :items-per-page="24"
+                                :max-pages-shown="5"
+                                v-model="currentPage"
+                                @click="getCategoryWiseProduct"
+                                />
                             </div>
-                            <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
+                         
+                            <div v-if="currentRouteName == 'products.category'" class="bg-white shadow-sm card my-5 px-4">
+                                <div class="mb-3 pt-3 h-250px" style="overflow: hidden;" id="description">
+                                    <p v-html="autoDescription"></p>
+                                </div>
+                                <span class="more text-center p-2 m-2 bg-primary w-100px" onclick="more()">More..</span>
+                            </div>
                         </div>
-
-                           
-                    </div>
                 </div>
             </form>
          </div>
@@ -278,212 +276,211 @@
     
  </template>
  
- <script>
- import axios from 'axios';
- import Slider from '@vueform/slider';
- import { ratingGenerator } from '@/HelpersFunction/Helpers';
- import Select2 from 'vue3-select2-component';
- export default {
-        props: ['slug','brand_slug','key_slug'],
-        components:{Slider,Select2},
-        data(){
-            return{
-                brands: '',
-                keyword:'',
-                selected_attribute_values: [],
-                selectedColor: '',
-                sortedBy:'newest',
-                selectedBrand: '',
-                categoryWiseProducts:[],
-                categoryInfo:[],
-                ShowNotFound:'Loading...',
-                rangeValue: [30,1000],
-                min:30,
-                max:100000,
-                minPrice:'',
-                maxPrice:'',
-                brandId: '',
-                categoryId : '',
-                cetegoryLevelZero: [],
-                parentCategory: {},
-                category: {},
-                categoryName: '',
-                currentRouteName: '',
-                autoDescription: '',
-                query: '',
-                sortBy: '',
-                attributes: '',
-                addonIsActivated: false,
-                color_filter_activation: '',
-                colors: [],
-                products:[],
-                categories: [],
-                currentPage:1,
-                lastPage:"",
-                slugValue: '',
-                url:'',
-            }
-        },
-        created(){
-        },
-        mounted(){
-            if(this.key_slug!=null){
-                this.slugValue = this.key_slug;
-                this.url = 'vue/search?keyword='+this.key_slug+'&';
-            }else if(this.brand_slug!=null){
-                this.slugValue = this.brand_slug;
-                this.url = 'vue/brand/'+this.brand_slug+'?';
-            }else if(this.slug!=null){
-                this.slugValue = this.slug;
-                this.url = 'vue/category/'+this.slug+'?';
-            }else{
-                this.url = 'vue/search?';
-            }
-            this.getCategoryWiseProduct(1);
-        },
-        watch:{
-    
-        },
-    methods:{
-        getCategoryWiseProduct(page){
-             this.ShowNotFound  = 'Loading...';
-             axios.get(this.rootDomain+this.url+'page='+page, { params: { 
-                category_slug: this.slug,
-                brand: this.selectedBrand,
-                selected_attribute_values: this.selected_attribute_values,
-                color: this.selectedColor,
-                sort_by: this.sortedBy,
-                min_price: this.minPrice,
-                max_price: this.maxPrice,
-
-             }})
-             .then((response)=>{
-                // console.log(response.data.user);return;
-                this.currentRouteName = response.data.currentRouteName;
-                this.attributes = response.data.attributes;
-                this.color_filter_activation = response.data.color_filter_activation;
-                this.colors = response.data.colors;
-                this.products = response.data.products.data;
-                this.categoryId = response.data.category_id;
-                this.categoryName = response.data.category_name;
-                this.query = response.data.query;
-                this.sortBy = response.data.sort_by;
-                this.addonIsActivated = response.data.addon_is_activated;
-                this.autoDescription = response.data.auto_description;
-                this.cetegoryLevelZero = response.data.cetegoryLevelZero;
-                this.parentCategory = response.data.parentCategory;
-                this.category = response.data.category;
-                this.categories = response.data.categories;
-                this.brandId = response.data.brand_id;
-                this.brands = response.data.brands;
-                
-                this.lastPage = response.data.productsCount;
-                this.scrollToTop();
-                if(this.products.length == 0){
-                    this.ShowNotFound  = 'Not Found';
-                }else{this.ShowNotFound  = '';}
-             })
-             .catch((error)=>{
-                console.log(error);
-             })
-        },
-        selectAttribute(value){
-            this.selected_attribute_values.push(value);
-            this.getCategoryWiseProduct(1);
-        },
-        setColor(color){
-            this.selectedColor = color;
-            this.getCategoryWiseProduct(1);
-        },
-        setSortedBy(){
-            this.sortedBy = $("#sortBy").val();
-            this.getCategoryWiseProduct(1);
-        },
-        setBrand(brand){
-            this.selectedBrand=brand.slug;
-            this.getCategoryWiseProduct(1);
-        },
-
-
-        priceRange(){
-            let min = this.rangeValue[0];
-            let max = this.rangeValue[1];
-            if(this.minPrice != min || this.maxPrice != max){
-                this.minPrice = min;
-                this.maxPrice = max;
+<script>
+    import axios from 'axios';
+    import Slider from '@vueform/slider';
+    import { ratingGenerator } from '@/HelpersFunction/Helpers';
+    import Select2 from 'vue3-select2-component';
+    export default {
+            props: ['slug','brand_slug','key_slug'],
+            components:{Slider,Select2},
+            data(){
+                return{
+                    brands: '',
+                    keyword:'',
+                    selected_attribute_values: [],
+                    selectedColor: '',
+                    sortedBy:'newest',
+                    selectedBrand: '',
+                    categoryWiseProducts:[],
+                    categoryInfo:[],
+                    ShowNotFound:'Loading...',
+                    rangeValue: [30,1000],
+                    min:30,
+                    max:100000,
+                    minPrice:'',
+                    maxPrice:'',
+                    brandId: '',
+                    categoryId : '',
+                    cetegoryLevelZero: [],
+                    parentCategory: {},
+                    category: {},
+                    categoryName: '',
+                    currentRouteName: '',
+                    autoDescription: '',
+                    query: '',
+                    sortBy: '',
+                    attributes: '',
+                    addonIsActivated: false,
+                    color_filter_activation: '',
+                    colors: [],
+                    products:[],
+                    categories: [],
+                    currentPage:1,
+                    lastPage:"",
+                    slugValue: '',
+                    url:'',
+                }
+            },
+            created(){
+            },
+            mounted(){
+                if(this.key_slug!=null){
+                    this.slugValue = this.key_slug;
+                    this.url = 'vue/search?keyword='+this.key_slug+'&';
+                }else if(this.brand_slug!=null){
+                    this.slugValue = this.brand_slug;
+                    this.url = 'vue/brand/'+this.brand_slug+'?';
+                }else if(this.slug!=null){
+                    this.slugValue = this.slug;
+                    this.url = 'vue/category/'+this.slug+'?';
+                }else{
+                    this.url = 'vue/search?';
+                }
                 this.getCategoryWiseProduct(1);
-            } 
-            
-        },
+            },
+            watch:{
+        
+            },
+        methods:{
+            getCategoryWiseProduct(page){
+                this.ShowNotFound  = 'Loading...';
+                axios.get(this.rootDomain+this.url+'page='+page, { params: { 
+                    category_slug: this.slug,
+                    brand: this.selectedBrand,
+                    selected_attribute_values: this.selected_attribute_values,
+                    color: this.selectedColor,
+                    sort_by: this.sortedBy,
+                    min_price: this.minPrice,
+                    max_price: this.maxPrice,
 
-        receiveCategorySlug(slug){
-             this.$router.push({
-                 name:'CategoryWiseProduct',
-                 params: {
-                     slug: slug
-                 }
-             }); 
-        },
-        productDetails(slug,auction_product){
-            if(auction_product != 1){
-                this.$router.push({
-                    name: "singleProduct",
-                    params: {
-                    slug: slug
-                    }
-                });
-            }else{
-                this.$router.push({
-                    name: "AuctionProductsDetails",
-                    params: {
-                    slug: slug
-                    }
-                });
-            }
-        },
+                }})
+                .then((response)=>{
+                    // console.log(response.data.user);return;
+                    this.currentRouteName = response.data.currentRouteName;
+                    this.attributes = response.data.attributes;
+                    this.color_filter_activation = response.data.color_filter_activation;
+                    this.colors = response.data.colors;
+                    this.products = response.data.products.data;
+                    this.categoryId = response.data.category_id;
+                    this.categoryName = response.data.category_name;
+                    this.query = response.data.query;
+                    this.sortBy = response.data.sort_by;
+                    this.addonIsActivated = response.data.addon_is_activated;
+                    this.autoDescription = response.data.auto_description;
+                    this.cetegoryLevelZero = response.data.cetegoryLevelZero;
+                    this.parentCategory = response.data.parentCategory;
+                    this.category = response.data.category;
+                    this.categories = response.data.categories;
+                    this.brandId = response.data.brand_id;
+                    this.brands = response.data.brands;
+                    
+                    this.lastPage = response.data.productsCount;
+                    this.scrollToTop();
+                    if(this.products.length == 0){
+                        this.ShowNotFound  = 'Not Found';
+                    }else{this.ShowNotFound  = '';}
+                })
+                .catch((error)=>{
+                    console.log(error);
+                })
+            },
+            selectAttribute(value){
+                this.selected_attribute_values.push(value);
+                this.getCategoryWiseProduct(1);
+            },
+            setColor(color){
+                this.selectedColor = color;
+                this.getCategoryWiseProduct(1);
+            },
+            setSortedBy(){
+                this.sortedBy = $("#sortBy").val();
+                this.getCategoryWiseProduct(1);
+            },
+            setBrand(brand){
+                this.selectedBrand=brand.slug;
+                this.getCategoryWiseProduct(1);
+            },
 
-        digitalProductDetails(slug){
-        this.$router.push({
-            name: "DigitalProductDetails",
-            params: {
-            slug: slug
-            }
-        });
-        },
-    
-        allCategoryProduct(rootDomain){
-            this.$router.push({
-                    name:'shop',
+
+            priceRange(){
+                let min = this.rangeValue[0];
+                let max = this.rangeValue[1];
+                if(this.minPrice != min || this.maxPrice != max){
+                    this.minPrice = min;
+                    this.maxPrice = max;
+                    this.getCategoryWiseProduct(1);
+                } 
+                
+            },
+
+            receiveCategorySlug(slug){
+                this.$router.push({
+                    name:'CategoryWiseProduct',
                     params: {
                         slug: slug
                     }
                 }); 
-        },
-        getRatings(rating,maxRating=5){
-                return ratingGenerator(rating,maxRating)
-        },
-        addToWishList(id){
-            
-        },
-        addToCompare(id){
-    
-        },
-        showAddToCartModal(){
-    
-        },
-        scrollToTop() {
-                window.scrollTo(0,0);
-        },
+            },
+            productDetails(slug,auction_product){
+                if(auction_product != 1){
+                    this.$router.push({
+                        name: "singleProduct",
+                        params: {
+                        slug: slug
+                        }
+                    });
+                }else{
+                    this.$router.push({
+                        name: "AuctionProductsDetails",
+                        params: {
+                        slug: slug
+                        }
+                    });
+                }
+            },
 
+            digitalProductDetails(slug){
+            this.$router.push({
+                name: "DigitalProductDetails",
+                params: {
+                slug: slug
+                }
+            });
+            },
+        
+            allCategoryProduct(rootDomain){
+                this.$router.push({
+                        name:'shop',
+                        params: {
+                            slug: slug
+                        }
+                    }); 
+            },
+            getRatings(rating,maxRating=5){
+                    return ratingGenerator(rating,maxRating)
+            },
+            addToWishList(id){
+                
+            },
+            addToCompare(id){
+        
+            },
+            showAddToCartModal(){
+        
+            },
+            scrollToTop() {
+                    window.scrollTo(0,0);
+            },
+
+    
+        },
+    
+    }
+</script>
  
-    },
-   
- }
- 
- </script>
- 
- <style src="@vueform/slider/themes/default.css"></style>
- <style>
+<style src="@vueform/slider/themes/default.css"></style>
+<style>
  /* width */
  ::-webkit-scrollbar {
    width: 5px;
@@ -514,4 +511,4 @@
     border-radius: 4px;
     height: 38px!important;
 }
- </style>
+</style>
