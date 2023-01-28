@@ -72,10 +72,16 @@
     <div class="col-md-6">
            
     </div>
+  
+   
     
-    <div class="p-2 h4 mb-3">Recently Product Viewed</div>
-    <div class="row">               
-            <div v-for="(product,index) in recentlyViewProducts"  class="col-3" style="padding-left: 5px !important; padding-right: 5px !important;">
+    </div>
+     <div>
+        <span class="h4 mb-3" style="font-size: large; text-decoration: underline; color: #ff6b02;">My Recently Product(s) Viewed</span> 
+        <div class="p-2 h4 mb-3" style="margin-bottom: -.54rem!important;"></div>
+     </div>
+    <div class="row">   
+            <div v-for="(product,index) in recentlyViewProducts" :key="index"  class="col-md-3" style="padding-left: 5px !important; padding-right: 5px !important;">
             <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
             <span class="badge-custom">OFF<span class="box ml-1 mr-0">&nbsp;20%</span></span>
             <div class="position-relative">
@@ -113,7 +119,6 @@
             </div>
             </div>                      
     </div>
-    </div>
 </template>
 
 <script>
@@ -145,6 +150,9 @@ export default {
     mounted(){
         this.recentlyViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
         console.log(this.recentlyViewProducts);
+        setTimeout(() => {
+            localStorage.removeItem('recentlyViewProduct')
+        }, 60000);
     },
     methods:{
         getDashboardData(){

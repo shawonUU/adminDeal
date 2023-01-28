@@ -105,7 +105,9 @@ export default {
     },
   mounted(){
     // Set expiration time to one hour
-  
+    var retrievedCookie = document.cookie.split("=")[1];
+    // var myArray = JSON.parse(retrievedCookie);
+    console.log(retrievedCookie);
   },
   methods:{
     productDetails(slug,product){
@@ -117,14 +119,20 @@ export default {
       });
 
       // this.global.recentlyViewProducts.push(product);
-      let recentViewProducts = [];
-      if(localStorage.getItem("recentlyViewProduct") !== null){
-        recentViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
-      }
-      recentViewProducts.push(product);
+      // let recentViewProducts = [];
+      // var retrievedCookie = document.cookie.split("=")[1];
+      // var myArray = JSON.parse(retrievedCookie);
+      // if(myArray !== null){
+      //   recentViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
+      // }
+      // recentViewProducts.push(product);
       // localStorage.setItem('recentlyViewProduct',product)
-      localStorage.setItem("recentlyViewProduct", JSON.stringify(recentViewProducts));
-
+      // document.cookie = ("recentlyViewProduct", JSON.stringify(recentViewProducts));
+      let products = JSON.stringify(product)
+      let date = new Date();
+      date.setTime(date.getTime() + (6000));
+      let expires = "expires="+ date.toUTCString();
+      document.cookie ="myProducts="+"Hello sajib"+";"+expires+";path=/";
 
     },
     digitalProductDetails(slug,product){

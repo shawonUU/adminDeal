@@ -638,6 +638,7 @@ export default {
         localStorage.removeItem("user");
         this.auth.isAuthenticated = false;
         this.$router.push({ name: 'home' });
+        localStorage.removeItem("recentlyViewProduct");
       }
   
   }
