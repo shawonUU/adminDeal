@@ -10,19 +10,11 @@
     <div class="col-md-4">
         <div class="bg-grad-1 text-white rounded-lg mb-4 overflow-hidden">
             <div class="px-3 pt-3">
-                <!-- @php
-                    $user_id = Auth::user()->id;
-                    $cart = \App\Models\Cart::where('user_id', $user_id)->get();
-                @endphp
-                @if(count($cart) > 0)
+               
                 <div class="h3 fw-700">
-                    {{ count($cart) }} {{ translate('Product(s)') }}
+                    {{ totalProductInCart }} {{ 'Product(s)' }}
                 </div>
-                @else -->
-                <div class="h3 fw-700">
-                    0 Product
-                </div>
-                <!-- @endif -->
+                
                 <div class="opacity-50">in your cart</div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -33,14 +25,8 @@
     <div class="col-md-4">
         <div class="bg-grad-2 text-white rounded-lg mb-4 overflow-hidden">
             <div class="px-3 pt-3">
-                <!-- @php
-                    $orders = \App\Models\Order::where('user_id', Auth::user()->id)->get();
-                    $total = 0;
-                    foreach ($orders as $key => $order) {
-                        $total += count($order->orderDetails);
-                    }
-                @endphp -->
-                <div class="h3 fw-700">0 Product(s)</div>
+                
+                <div class="h3 fw-700">{{ wishlistCount }} Product(s)</div>
                 <div class="opacity-50">in your wishlist</div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -51,14 +37,8 @@
     <div class="col-md-4">
         <div class="bg-grad-3 text-white rounded-lg mb-4 overflow-hidden">
             <div class="px-3 pt-3">
-                <!-- @php
-                    $orders = \App\Models\Order::where('user_id', Auth::user()->id)->get();
-                    $total = 0;
-                    foreach ($orders as $key => $order) {
-                        $total += count($order->orderDetails);
-                    }
-                @endphp -->
-                <div class="h3 fw-700">total Product(s)</div>
+                
+                <div class="h3 fw-700">{{ totalOrder }} Product(s)</div>
                 <div class="opacity-50">you ordered</div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -75,12 +55,8 @@
                 <h6 class="mb-0">Default Shipping Address</h6>
             </div>
             <div class="card-body">
-                <!-- @if(Auth::user()->addresses != null)
-                    @php
-                        $address = Auth::user()->addresses->where('set_default', 1)->first();
-                    @endphp
-                    @if($address != null) -->
-                        <ul class="list-unstyled mb-0">
+                
+                        <ul v-if="adress !== null" class="list-unstyled mb-0">
                             <li class=" py-2"><span>Address : </span></li>
                             <li class=" py-2"><span>Country : </span></li>
                             <li class=" py-2"><span>State : </span></li>
@@ -88,8 +64,7 @@
                             <li class=" py-2"><span>Postal Code : </span></li>
                             <li class=" py-2"><span>Phone:</span></li>
                         </ul>
-                    <!-- @endif
-                @endif -->
+                 
             </div>
         </div>
     </div>
@@ -97,21 +72,53 @@
     <div class="col-md-6">
            
     </div>
-   
-    <div class="p-2 h4 mb-3">Recently Product Viewed</div>
     
-</div>
+    <div class="p-2 h4 mb-3">Recently Product Viewed</div>
+    <div class="row">               
+            <div v-for="(product,index) in recentlyViewProducts"  class="col-3" style="padding-left: 5px !important; padding-right: 5px !important;">
+            <div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
+            <span class="badge-custom">OFF<span class="box ml-1 mr-0">&nbsp;20%</span></span>
+            <div class="position-relative">
+            <a href="https://admindeal.com.bd/product/blauj-pis-sh-printed-silk-sadiprinted-silk-saree-with-blouse-piece-27" class="d-block">
+            <img class="img-fit mx-auto h-140px h-md-210px lazyloaded" :src="product.thumbnail_image"  :data-src="product.thumbnail_image" :alt="product.name" >
+            </a>
+            <div class="absolute-top-right aiz-p-hov-icon">
+            <a href="javascript:void(0)" onclick="addToWishList(8572)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
+            <i class="la la-heart-o"></i>
+            </a>
+            <a href="javascript:void(0)" onclick="addToCompare(8572)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
+            <i class="las la-sync"></i>
+            </a>
+            <a href="javascript:void(0)" onclick="showAddToCartModal(8572)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
+            <i class="las la-shopping-cart"></i>
+            </a>
+            </div>
+            </div>
+            <div class="p-md-3 p-2 text-left">
+            <div class="fs-15">
+            <del class="fw-600 opacity-50 mr-1">৳3,500</del>
+            <span class="fw-700 text-primary">৳2,800 <span class="my-danger" style="color: #000 !important; font-size: 12px;">&nbsp;-20%</span> </span> 
+            </div>
+            <div class="rating rating-sm mt-1">
+            <i class="las la-star active"></i><i class="las la-star active"></i><i class="las la-star active"></i><i class="las la-star active"></i><i class="las la-star active"></i> (1)
+            </div>
+            <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
+            <a href="https://admindeal.com.bd/product/blauj-pis-sh-printed-silk-sadiprinted-silk-saree-with-blouse-piece-27" class="d-block text-reset">{{ product.name }}</a>
+            </h3>
+            <div class="rounded px-2 mt-2 bg-soft-primary border-soft-primary border">
+            Cashback :
+            <span class="fw-700 float-right">0</span>
+            </div>
+            </div>
+            </div>
+            </div>                      
+    </div>
+    </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-<<<<<<< HEAD
-
-   mounted(){
-
-   }
-=======
     props:['data'],
     data(){
         return{
@@ -119,6 +126,11 @@ export default {
                 isAuthenticated: false,
                 user: {},
             },
+            totalProductInCart: 0,
+            wishlistCount: 0,
+            totalOrder: 0,
+            adress: null,
+            recentlyViewProducts:[]
         }
     },
     created(){
@@ -127,28 +139,31 @@ export default {
             user = JSON.parse(user);
             this.auth.isAuthenticated = true;
             this.auth.user = user;
+            this.getDashboardData();
         }
-
-        this.getDashboarddata();
     },
     mounted(){
-        
+        this.recentlyViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
+        console.log(this.recentlyViewProducts);
     },
     methods:{
-        getDashboarddata(){
+        getDashboardData(){
             axios.get(this.rootDomain+'vueweb/dashboard', {
                 params: {
-                    data : "UU",
+                    token: this.auth.user.access_token,
                 }
             })
             .then(res=>{
                 console.log(res.data);
+                this.totalProductInCart = res.data.cartCount;
+                this.wishlistCount = res.data.wishlistCount;
+                this.totalOrder = res.data.totalOrder;
+                this.adress = res.data.adress;
             }).catch(err=>{
 
             });
         },
     }
->>>>>>> 493906d939c92e586b88c9173be41e2cbc03a55e
 }
 </script>
 
