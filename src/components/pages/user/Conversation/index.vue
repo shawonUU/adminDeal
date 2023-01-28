@@ -1,4 +1,7 @@
 <template>
+
+  
+
   <div class="aiz-titlebar mt-2 mb-4">
   <div class="row align-items-center">
     <div class="col-md-6">
@@ -14,6 +17,11 @@
               <div class="row gutters-10">
                 <div class="col-auto">
                   <div class="media">
+                    <!-- <h1>{{ conversation.sender_id }}= {{ conversation.receiver.avatar_original }}</h1> -->
+                    <!-- <templete v-if="auth.user.id == conversation.sender_id">
+                        <img v-if="conversation.receiver.avatar_original == null" :src="rootDomain+'assets/img/avatar-place.png'">
+                        <img v-else :src="conversation.receiver.avatar_original" >
+                    </templete> -->
                     <!-- <span class="avatar avatar-sm flex-shrink-0">
                       @if (Auth::user()->id == $conversation->sender_id) 
                       <img @if ($conversation->receiver->avatar_original == null) src="{{ static_asset('assets/img/avatar-place.png') }}" 
@@ -95,14 +103,14 @@ export default {
     },
     methods:{
       getConversations(){
-        axios.get("http://192.168.0.105:8080/vueweb/conversations?page=1", {
+        axios.get(this.selfDomain+"vueweb/conversations?page=1", {
             headers: {
               token: this.auth.user.access_token,
               Authorization: "Bearer " + this.auth.user.access_token,
             }
         }).then(res=>{
             this.conversations =  res.data.conversations.data;
-            console.log(this.conversations);
+            console.log(this.conversations[0]);
         }).catch(err=>{
 
         });
