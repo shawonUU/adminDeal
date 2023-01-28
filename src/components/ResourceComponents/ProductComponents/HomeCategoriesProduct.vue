@@ -9,7 +9,7 @@
            <a style="cursor:pointer" @click="receiveCategorySlug(category.slug)" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View All</a>
          </div>
          <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4" data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
-  
+<!--   
           <swiper
                 :slidesPerView="2"
                 :spaceBetween="10"
@@ -74,9 +74,9 @@
            </div> 
           </swiper-slide>
            
-        </swiper>
+        </swiper> -->
          
-          
+        <ProductBox :products="homeCategoryProducts[indexUp].data"></ProductBox>
          </div>
        </div>
      </div>
@@ -88,38 +88,34 @@
   </template>
   
   <script>
-  import { Swiper, SwiperSlide } from "swiper/vue";
-  import { ratingGenerator } from '@/HelpersFunction/Helpers';
-  // Import Swiper styles
-  import "swiper/css";
-  import "swiper/css/free-mode";
-  import "swiper/css/pagination";
-  import { FreeMode,Navigation } from "swiper";
-  import { useProductStore } from "@/Store/Product";
-  import { mapState, mapActions} from "pinia";
+  // import { Swiper, SwiperSlide } from "swiper/vue";
+  // import { ratingGenerator } from '@/HelpersFunction/Helpers';
+  // // Import Swiper styles
+  // import "swiper/css";
+  // import "swiper/css/free-mode";
+  // import "swiper/css/pagination";
+  // import { FreeMode,Navigation } from "swiper";
+  // import { useProductStore } from "@/Store/Product";
+  // import { mapState, mapActions} from "pinia";
+  import ProductBox from "./product_box.vue";
   import axios from "axios";
   export default {
     data(){
       return{
         homeCategoryProducts:[],
         categoryInfo:[],
-        modules: [FreeMode,Navigation],
+        // modules: [FreeMode,Navigation],
         
       }
     },
     components: {
-      Swiper,
-      SwiperSlide,
+      // Swiper,
+      // SwiperSlide,
+       ProductBox
     },
   
-    computed:{
-   
-    },
-    created(){
-        this.getHomeCategoryProducts(this.rootDomain);
-    },
     mounted(){
-   
+      this.getHomeCategoryProducts(this.rootDomain);
     },
     methods: {
       getHomeCategoryProducts(rootDomain){
@@ -137,25 +133,25 @@
                 }
             }); 
       },
-      getRatings(rating,maxRating=5){
-           return ratingGenerator(rating,maxRating)
-      },
-      productDetails(slug){
-      this.$router.push({
-        name: "singleProduct",
-        params: {
-          slug: slug
-        }
-      });
-    },
-    digitalProductDetails(slug){
-      this.$router.push({
-        name: "DigitalProductDetails",
-        params: {
-          slug: slug
-        }
-      });
-    },
+    //   getRatings(rating,maxRating=5){
+    //        return ratingGenerator(rating,maxRating)
+    //   },
+    //   productDetails(slug){
+    //   this.$router.push({
+    //     name: "singleProduct",
+    //     params: {
+    //       slug: slug
+    //     }
+    //   });
+    // },
+    // digitalProductDetails(slug){
+    //   this.$router.push({
+    //     name: "DigitalProductDetails",
+    //     params: {
+    //       slug: slug
+    //     }
+    //   });
+    // },
     }
   }
   </script>
