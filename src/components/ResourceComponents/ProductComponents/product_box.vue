@@ -104,10 +104,7 @@ export default {
         
     },
   mounted(){
-    // Set expiration time to one hour
-    var retrievedCookie = document.cookie.split("=")[1];
-    // var myArray = JSON.parse(retrievedCookie);
-    console.log(retrievedCookie);
+    console.log(this.$cookies.get('recentViewProducts'))
   },
   methods:{
     productDetails(slug,product){
@@ -117,22 +114,15 @@ export default {
           slug: slug
         }
       });
+      console.log(product.id);
 
-      // this.global.recentlyViewProducts.push(product);
-      // let recentViewProducts = [];
-      // var retrievedCookie = document.cookie.split("=")[1];
-      // var myArray = JSON.parse(retrievedCookie);
-      // if(myArray !== null){
-      //   recentViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
-      // }
-      // recentViewProducts.push(product);
-      // localStorage.setItem('recentlyViewProduct',product)
-      // document.cookie = ("recentlyViewProduct", JSON.stringify(recentViewProducts));
-      let products = JSON.stringify(product)
-      let date = new Date();
-      date.setTime(date.getTime() + (6000));
-      let expires = "expires="+ date.toUTCString();
-      document.cookie ="myProducts="+"Hello sajib"+";"+expires+";path=/";
+     let recentViewProduct=[]
+     if(this.$cookies.get('recentViewProducts') !== null){
+        recentViewProduct = this.$cookies.get('recentViewProducts')
+     }
+      recentViewProduct.push(product);
+      let products =Object.setPrototypeOf(recentViewProduct, Object.prototype);
+      this.$cookies.set('recentViewProducts',products);
 
     },
     digitalProductDetails(slug,product){
@@ -142,7 +132,15 @@ export default {
           slug: slug
         }
       });
-      this.global.recentlyViewProducts.push(product);
+      let recentViewProduct=[]
+     if(this.$cookies.get('recentViewProducts') !== null){
+        recentViewProduct = this.$cookies.get('recentViewProducts')
+      }
+      console.log(product.id);
+      recentViewProduct.push(product);
+      let products =Object.setPrototypeOf(recentViewProduct, Object.prototype);
+      this.$cookies.set('recentViewProducts',products);
+
     },
     getRatings(rating,maxRating=5){
            return ratingGenerator(rating,maxRating)
