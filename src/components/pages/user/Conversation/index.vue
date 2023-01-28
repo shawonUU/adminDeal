@@ -103,11 +103,7 @@ export default {
     },
     methods:{
       getConversations(){
-<<<<<<< HEAD
         axios.get(this.selfDomain+"vueweb/conversations?page=1", {
-=======
-        axios.get("http://localhost:8080/vueweb/conversations?page=1", {
->>>>>>> 6a0d49787eeedabd3340876d63fcfa7f51475708
             headers: {
               token: this.auth.user.access_token,
               Authorization: "Bearer " + this.auth.user.access_token,
