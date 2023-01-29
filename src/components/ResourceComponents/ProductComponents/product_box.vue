@@ -141,9 +141,7 @@ export default {
       recentViewProduct[product.id] = product;
       this.$cookies.set('recentViewProducts',recentViewProduct);
     },
-    getRatings(rating,maxRating=5){
-        return ratingGenerator(rating,maxRating)
-    },
+  
     addToWishList(id){
       if(this.auth.isAuthenticated){
         axios.get(this.selfDomain+"vue/v3/wishlists-add-product", {
