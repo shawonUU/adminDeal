@@ -30,7 +30,7 @@
                  <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
                </a>
                <div class="absolute-top-right aiz-p-hov-icon">
-                 <a href="javascript:void(0)" onclick="addToWishList(5931)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
+                 <a href="javascript:void(0)" @click="addToWishList(product.id)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                    <i class="la la-heart-o"></i>
                  </a>
                  <a href="javascript:void(0)" onclick="addToCompare(5931)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
@@ -83,10 +83,10 @@ export default {
     props:['products'],
     data(){
     return{
-     auth:{
-            isAuthenticated: false,
-            user: {},
-        },
+      auth:{
+        isAuthenticated: false,
+        user: {},
+      },
       modules: [FreeMode,Navigation],
     }
   },
@@ -104,7 +104,7 @@ export default {
         
     },
   mounted(){
-    console.log(this.$cookies.get('recentViewProducts'))
+    // console.log(this.$cookies.get('recentViewProducts'))
   },
   methods:{
     productDetails(slug,product){
@@ -114,15 +114,16 @@ export default {
           slug: slug
         }
       });
-      console.log(product.id);
+      
 
-     let recentViewProduct=[]
-     if(this.$cookies.get('recentViewProducts') !== null){
-        recentViewProduct = this.$cookies.get('recentViewProducts')
-     }
-      recentViewProduct.push(product);
-      let products =Object.setPrototypeOf(recentViewProduct, Object.prototype);
-      this.$cookies.set('recentViewProducts',products);
+    let recentViewProduct={};
+    if(this.$cookies.get('recentViewProducts') !== null){
+      recentViewProduct = this.$cookies.get('recentViewProducts')
+    }
+    recentViewProduct[product.id] = product;
+    console.log(product.id);
+    console.log(recentViewProduct);
+    this.$cookies.set('recentViewProducts',recentViewProduct);
 
     },
     digitalProductDetails(slug,product){
@@ -132,19 +133,34 @@ export default {
           slug: slug
         }
       });
-      let recentViewProduct=[]
-     if(this.$cookies.get('recentViewProducts') !== null){
+
+      let recentViewProduct={};
+      if(this.$cookies.get('recentViewProducts') !== null){
         recentViewProduct = this.$cookies.get('recentViewProducts')
       }
-      console.log(product.id);
-      recentViewProduct.push(product);
-      let products =Object.setPrototypeOf(recentViewProduct, Object.prototype);
-      this.$cookies.set('recentViewProducts',products);
-
+      recentViewProduct[product.id] = product;
+      this.$cookies.set('recentViewProducts',recentViewProduct);
     },
     getRatings(rating,maxRating=5){
-           return ratingGenerator(rating,maxRating)
-        },
+        return ratingGenerator(rating,maxRating)
+    },
+    addToWishList(id){
+      if(this.auth.isAuthenticated){
+        axios.get(this.selfDomain+"vue/v3/wishlists-add-product", {
+          params: {product_id: id},
+          headers: {
+              Authorization: "Bearer " + this.auth.user.access_token,
+          }
+          
+        }).then(res=>{
+            console.log(res.data);
+        }).catch(err=>{
+
+        });
+      }else{
+        alert('Please Login');
+      }
+    },
   }
 }
 </script>

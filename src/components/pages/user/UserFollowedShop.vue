@@ -6,7 +6,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="container">
         <div class="rounded bg-white px-3 pt-3 shadow-sm">
             <div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 gutters-10">
