@@ -135,7 +135,7 @@ export default {
             wishlistCount: 0,
             totalOrder: 0,
             adress: null,
-            recentlyViewProducts:[]
+            recentlyViewProducts:{}
         }
     },
     created(){
@@ -145,14 +145,17 @@ export default {
             this.auth.isAuthenticated = true;
             this.auth.user = user;
             this.getDashboardData();
+            if(this.$cookies.get('recentViewProducts') !== null){
+                this.recentlyViewProducts = this.$cookies.get('recentViewProducts')
+            }
+            console.log(this.recentlyViewProducts);
         }
     },
     mounted(){
-        this.recentlyViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
-        console.log(this.recentlyViewProducts);
-        setTimeout(() => {
-            localStorage.removeItem('recentlyViewProduct')
-        }, 60000);
+       
+        // setTimeout(() => {
+        //     localStorage.removeItem('recentlyViewProduct')
+        // }, 60000);
     },
     methods:{
         getDashboardData(){

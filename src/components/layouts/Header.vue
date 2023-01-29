@@ -498,6 +498,7 @@ export default {
       user = JSON.parse(user);
       this.auth.isAuthenticated = true;
       this.auth.user = user;
+      this.getNavData();
     }
   },
   beforeCreated(){
@@ -510,20 +511,23 @@ export default {
         let user = JSON.parse(localStorage.getItem("user"));
         this.auth.isAuthenticated = true;
         this.auth.user = user;
+        this.getNavData();
       }
     });
 
 
   },
   methods:{
-    getData(){
-      console.log(this.selfDomain);
-      axios.get(this.selfDomain+'vue/v3/auth/user', {
+    getNavData(){
+      alert(this.auth.user.access_token);
+      axios.get(this.selfDomain+'vue/v3/auth/get_nave_data', {
             headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
+              Authorization: "Bearer " + this.auth.user.access_token,
             }
       }).then(res=>{
         console.log(res);
+
+
       }).catch(err=>{
 
       });

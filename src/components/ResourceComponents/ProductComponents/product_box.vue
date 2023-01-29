@@ -30,7 +30,7 @@
                  <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
                </a>
                <div class="absolute-top-right aiz-p-hov-icon">
-                 <a href="javascript:void(0)" onclick="addToWishList(5931)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
+                 <a href="javascript:void(0)" @click="addToWishList(product.id)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                    <i class="la la-heart-o"></i>
                  </a>
                  <a href="javascript:void(0)" onclick="addToCompare(5931)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
@@ -83,10 +83,10 @@ export default {
     props:['products'],
     data(){
     return{
-     auth:{
-            isAuthenticated: false,
-            user: {},
-        },
+      auth:{
+        isAuthenticated: false,
+        user: {},
+      },
       modules: [FreeMode,Navigation],
     }
   },
@@ -104,10 +104,7 @@ export default {
         
     },
   mounted(){
-    // Set expiration time to one hour
-    var retrievedCookie = document.cookie.split("=")[1];
-    // var myArray = JSON.parse(retrievedCookie);
-    console.log(retrievedCookie);
+    // console.log(this.$cookies.get('recentViewProducts'))
   },
   methods:{
     productDetails(slug,product){
@@ -117,22 +114,16 @@ export default {
           slug: slug
         }
       });
+      
 
-      // this.global.recentlyViewProducts.push(product);
-      // let recentViewProducts = [];
-      // var retrievedCookie = document.cookie.split("=")[1];
-      // var myArray = JSON.parse(retrievedCookie);
-      // if(myArray !== null){
-      //   recentViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
-      // }
-      // recentViewProducts.push(product);
-      // localStorage.setItem('recentlyViewProduct',product)
-      // document.cookie = ("recentlyViewProduct", JSON.stringify(recentViewProducts));
-      let products = JSON.stringify(product)
-      let date = new Date();
-      date.setTime(date.getTime() + (6000));
-      let expires = "expires="+ date.toUTCString();
-      document.cookie ="myProducts="+"Hello sajib"+";"+expires+";path=/";
+    let recentViewProduct={};
+    if(this.$cookies.get('recentViewProducts') !== null){
+      recentViewProduct = this.$cookies.get('recentViewProducts')
+    }
+    recentViewProduct[product.id] = product;
+    console.log(product.id);
+    console.log(recentViewProduct);
+    this.$cookies.set('recentViewProducts',recentViewProduct);
 
     },
     digitalProductDetails(slug,product){
@@ -142,11 +133,34 @@ export default {
           slug: slug
         }
       });
-      this.global.recentlyViewProducts.push(product);
+
+      let recentViewProduct={};
+      if(this.$cookies.get('recentViewProducts') !== null){
+        recentViewProduct = this.$cookies.get('recentViewProducts')
+      }
+      recentViewProduct[product.id] = product;
+      this.$cookies.set('recentViewProducts',recentViewProduct);
     },
     getRatings(rating,maxRating=5){
-           return ratingGenerator(rating,maxRating)
-        },
+        return ratingGenerator(rating,maxRating)
+    },
+    addToWishList(id){
+      if(this.auth.isAuthenticated){
+        axios.get(this.selfDomain+"vue/v3/wishlists-add-product", {
+          params: {product_id: id},
+          headers: {
+              Authorization: "Bearer " + this.auth.user.access_token,
+          }
+          
+        }).then(res=>{
+            console.log(res.data);
+        }).catch(err=>{
+
+        });
+      }else{
+        alert('Please Login');
+      }
+    },
   }
 }
 </script>
