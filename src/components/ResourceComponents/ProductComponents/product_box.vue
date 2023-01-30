@@ -1,4 +1,5 @@
 <template>
+  <div>
    <swiper
               :slidesPerView="2"
               :spaceBetween="10"
@@ -30,7 +31,7 @@
                  <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="product.thumbnail_image" class="img-fit lazyload mx-auto h-140px h-md-210px"  alt="Black Plated Finger Ring For Mens" >
                </a>
                <div class="absolute-top-right aiz-p-hov-icon">
-                 <a href="javascript:void(0)" onclick="addToWishList(5931)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
+                 <a href="javascript:void(0)" @click="addToWishList(product.id)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                    <i class="la la-heart-o"></i>
                  </a>
                  <a href="javascript:void(0)" onclick="addToCompare(5931)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
@@ -68,9 +69,15 @@
         </swiper-slide>
          
       </swiper>
+
+      <AddToCartModal></AddToCartModal>
+
+    </div>
 </template>
 
 <script>
+
+import AddToCartModal from "../../layouts/Modal/AddToCartModal.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { ratingGenerator } from '@/HelpersFunction/Helpers';
 // Import Swiper styles
@@ -83,14 +90,16 @@ export default {
     props:['products'],
     data(){
     return{
-     auth:{
-            isAuthenticated: false,
-            user: {},
-        },
+      auth:{
+        isAuthenticated: false,
+        user: {},
+      },
       modules: [FreeMode,Navigation],
+      viewAddToCartModal: true,
     }
   },
   components: {
+    AddToCartModal,
     Swiper,
     SwiperSlide,
   },
@@ -104,7 +113,7 @@ export default {
         
     },
   mounted(){
-    console.log(this.$cookies.get('recentViewProducts'))
+    // console.log(this.$cookies.get('recentViewProducts'))
   },
   methods:{
     productDetails(slug,product){
@@ -114,23 +123,16 @@ export default {
           slug: slug
         }
       });
+      
 
-    //  let recentViewProduct=[]
-     if(this.$cookies.get('recentViewProducts') !== null){
-      var check = this.$cookies.get('recentViewProducts').filter(products => products === product);
-      console.log(check); //returns true
-      // if (check)
-      // {
-      //   console.log('already exits')
-      // }else{
-      //   console.log('Not exists')
-      // }
-        // recentViewProduct = this.$cookies.get('recentViewProducts')
-        // console.log(this.$cookies.get('recentViewProducts'));
-     }
-      recentViewProduct.push(product);
-      let products =Object.setPrototypeOf(recentViewProduct, Object.prototype);
-      this.$cookies.set('recentViewProducts',products);
+    let recentViewProduct={};
+    if(this.$cookies.get('recentViewProducts') !== null){
+      recentViewProduct = this.$cookies.get('recentViewProducts')
+    }
+    recentViewProduct[product.id] = product;
+    console.log(product.id);
+    console.log(recentViewProduct);
+    this.$cookies.set('recentViewProducts',recentViewProduct);
 
     },
     digitalProductDetails(slug,product){
@@ -140,19 +142,32 @@ export default {
           slug: slug
         }
       });
-      let recentViewProduct=[]
-     if(this.$cookies.get('recentViewProducts') !== null){
+
+      let recentViewProduct={};
+      if(this.$cookies.get('recentViewProducts') !== null){
         recentViewProduct = this.$cookies.get('recentViewProducts')
       }
-      console.log(product.id);
-      recentViewProduct.push(product);
-      let products =Object.setPrototypeOf(recentViewProduct, Object.prototype);
-      this.$cookies.set('recentViewProducts',products);
-
+      recentViewProduct[product.id] = product;
+      this.$cookies.set('recentViewProducts',recentViewProduct);
     },
-    getRatings(rating,maxRating=5){
-           return ratingGenerator(rating,maxRating)
-        },
+  
+    addToWishList(id){
+      if(this.auth.isAuthenticated){
+        axios.get(this.selfDomain+"vue/v3/wishlists-add-product", {
+          params: {product_id: id},
+          headers: {
+              Authorization: "Bearer " + this.auth.user.access_token,
+          }
+          
+        }).then(res=>{
+            console.log(res.data);
+        }).catch(err=>{
+
+        });
+      }else{
+        alert('Please Login');
+      }
+    },
   }
 }
 </script>

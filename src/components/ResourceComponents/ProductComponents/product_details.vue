@@ -81,14 +81,17 @@
                            <div class="col-12 " style="color: #2abbe8;">
                               Positive Seller Ratings: (100%)
                            </div>
-                           <div class="col-auto ml" style="color: #2abbe8;">
-                              <small class="mr-2 opacity-50">Estimate Shipping Time: </small>1 Days
+                           <div v-if="productDetails.est_shipping_days" class="col-auto ml" style="color: #2abbe8;">
+                              <small class="mr-2 opacity-50">Estimate Shipping Time: </small>{{ productDetails.est_shipping_days }}
                            </div>
                            <div class="col-12 " style="color: #2abbe8;">
-                              <span class="rating">
-                              <i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i><i class = 'las la-star active'></i>
+                              <span class="rating">                                
+                                 <template v-for="index in 5" :key="index">
+                                    <i v-if="index<=productDetails.rating" class='las la-star active'></i>
+                                    <i v-else class = 'las la-star'></i>
+                                 </template>
                               </span>
-                              <span class="ml-1 opacity-50" id='review'>(1 </span>reviews) <br>
+                              <span class="ml-1 opacity-50" id='review'>({{ productDetails.reviews==0?'0':productDetails.reviews }}</span>reviews) <br>
                            </div>
                            <div class="my-offer-banner-physical">
                               <br> <img src="https://admindeal.com.bd/Admin-Deal-Product-Details-Discount.png#width=480&height=72">
@@ -102,49 +105,101 @@
                         <div class="row align-items-center">
                            <div class="col-auto">
                               <small class="mr-2 opacity-50">Sold by: </small><br>
-                              <a href="" v-if="productDetails.added_by=='seller'" class="text-reset" id='shop_name'>{{ productDetails.shop_name }}</a>
+                              <a href="" v-if="productDetails.added_by=='seller' && vendorActivation==1" class="text-reset" id='shop_name'>{{ productDetails.shop_name }}</a>
                               <span v-else>
                                  Admin store
                               </span>
                            </div>
-                           <div class="col-auto">
+                           
+                           <div v-if="coversationSystem==1" class="col-auto">
                               <button class="btn btn-sm btn-secondary" onclick="show_chat_modal()">Chat With Seller</button>
                            </div>
-                           <div class="col-auto">
-                              <a href="https://admindeal.com.bd/brand/others">
-                              <img  src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="productDetails.shop_logo" id='brand_name' alt="Others" height="30">
+                          
+                           <div v-if="brandData!==null" class="col-auto">
+                              <a style="cursor:pointer" @click="brandSlug(brandData.slug)">
+                              <img  src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="brandData.logo" id='brand_name' alt="Others" height="30">
                               </a>
                            </div>
                         </div>
                         <br>
                         <div> <a href="https://www.admindeal.com.bd/support_ticket"> ❌ Report to Admin incorrect product information!</a></div>
                         <hr>
-                        <div class="row no-gutters mt-3">
-                           <div class="col-2">
-                              <div class="opacity-50 my-2">Price:</div>
-                           </div>
-                           <div class="col-10">
-                              <div class="fs-20 opacity-60">
-                                 <del>
-                                 {{ productDetails.main_price }}
-                                 <span>/{{ productDetails.stroked_price }}</span>
-                                 </del>
+                              <template v-if="productDetails.wholesale_product">
+                                 <table class="aiz-table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Min Qty</th>
+                                            <th>Max Qty</th>
+                                            <th>Unit Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                            <tr v-for="(wholesalePrice,index) in productDetails.wholesalePrices" :key="index">
+                                                <td>{{ wholesalePrice.min_qty }}</td>
+                                                <td>{{ wholesalePrice.max_qty }}</td>
+                                                <td>{{ wholesalePrice.price }}</td>
+                                            </tr>
+                                       
+                                    </tbody>
+                                </table>
+                              </template>
+                              <template v-else>
+                                 <div v-if="productDetails.home_price != productDetails.home_discounted_price">
+
+                                 <div  class="row no-gutters mt-3">
+                                    <div class="col-2">
+                                       <div class="opacity-50 my-2">Price:</div>
+                                    </div>
+                                    <div class="col-10">
+                                       <div class="fs-20 opacity-60">
+                                          <del>
+                                          {{ productDetails.home_price }}
+                                          <span v-if="productDetails.unit!=null">/{{ productDetails.unit }}</span>
+                                          </del>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row no-gutters my-2">
+                                    <div class="col-2">
+                                       <div class="opacity-50">Discount Price:</div>
+                                    </div>
+                                    <div class="col-10">
+                                       <div class="">
+                                          <strong class="h2 fw-600 text-primary" id='discount_price' >
+                                          {{ productDetails.home_discounted_price }}
+                                          </strong>
+                                          <span  class="opacity-70" v-if="productDetails.unit!=null">/{{ productDetails.unit }}</span>
+                                       </div>
+                                    </div>
+                                 </div>                              
+                              </div>
+                                 <div v-else class="row no-gutters mt-3">
+                              <div class="col-2">
+                                 <div class="opacity-50 my-2">Price:</div>
+                              </div>
+                              <div class="col-10">
+                                 <div class="">
+                                    <strong class="h2 fw-600 text-primary" id='price'>
+                                       {{ productDetails.home_discounted_price }}      
+                                    </strong>
+                                    <span  class="opacity-70" v-if="productDetails.unit!=null">/{{ productDetails.unit }}</span>
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                        <div class="row no-gutters my-2">
-                           <div class="col-2">
-                              <div class="opacity-50">Discount Price:</div>
-                           </div>
-                           <div class="col-10">
-                              <div class="">
-                                 <strong class="h2 fw-600 text-primary" id='discount_price' >
-                                 {{ productDetails.main_price }}
-                                 </strong>
-                                 <span class="opacity-70">/{{ productDetails.stroked_price }}</span>
-                              </div>
-                           </div>
-                        </div>
+                              </template>
+                              <!-- @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
+                                <div v-if="club_point==1&&productDetails" class="row no-gutters mt-4">
+                                    <div class="col-3">
+                                        <div class="opacity-50 my-2">{{--  translate('Club Point') --}}Cashback:</div>
+                                    </div> 
+                                    <div class="col-9">
+                                        <div class="d-inline-block rounded px-2 bg-soft-primary border-soft-primary border">
+                                            <span class="strong-700">{{ $detailedProduct->earn_point }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif -->
                         <hr>
                         <form id="option-choice-form">
                            <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ">                                
@@ -418,7 +473,7 @@
                </div>
                <div class="p-3">
                   <ul class="list-group list-group-flush">
-                     <li v-for="(product,index) in topSellingProducts" class="py-3 px-0 list-group-item border-light">
+                     <li v-for="(product,index) in topSellingProducts" :key="index"  class="py-3 px-0 list-group-item border-light">
                         <div class="row gutters-10 align-items-center">
                            <div class="col-5">
                               <a href="https://admindeal.com.bd/product/black-plated-finger-ring-for-mens"
@@ -571,6 +626,7 @@
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import RelatedProduct from "./RelatedProducts.vue";
+import { ratingGenerator } from '@/HelpersFunction/Helpers';
 import axios from "axios";
 import 'swiper/css';
 import "swiper/css/free-mode"
@@ -591,6 +647,10 @@ export default {
            modules: [FreeMode,Navigation,Thumbs],
            zoomLevel: 1,
            photosLength:"",
+           vendorActivation:"",
+           coversationSystem:"",
+           brandData:"",
+           club_point:""
         }
        },
        mounted(){
@@ -612,10 +672,21 @@ export default {
                         this.shopDetails = response.data[1];
                         this.relatedProducts = response.data[2].data;
                         this.topSellingProducts = response.data[3].data;
-                        // console.log(response.data[2].data);
+                        this.vendorActivation = response.data[4];
+                        this.coversationSystem = response.data[5];         
+                        this.brandData = response.data[0].data[0].brand;
+                        this.club_point = response.data[6]
                      })
                },
-               setThumbsSwiper(swiper){
+               brandSlug(brand_slug){
+                  this.$router.push({
+                     name: "Brand",
+                     params: {
+                     brand_slug: brand_slug
+               }
+               });
+               },
+                setThumbsSwiper(swiper){
                   this.thumbsSwiper = swiper;
                },
                zoomIn() {

@@ -169,6 +169,7 @@ export default{
     data(){
         return{
             shopWiseProduct:[],
+            shopWiseProductHolder:[],
             shopDetails:[],
             ShowNotFound:'Loading...',
             currentPage:1,
@@ -181,20 +182,27 @@ export default{
     },
     methods:{
         getShopWiseProduct(page){
-             this.ShowNotFound  = 'Loading...';
-            axios.get(this.rootDomain+'vue/v3/products/seller/'+this.slug+'?page='+page)
-            .then((response)=>{
-               console.log(response.data[3]);
-                  this.shopWiseProduct = response.data[0];
-                  this.shopDetails = response.data[1];
-                  this.totalItems = response.data[2];
-                  if(response.data[0]<1){
-                  this.ShowNotFound  = 'Product Not Found!';
-                  }else{
-                     this.ShowNotFound  = '';
-                  }
-                  this.scrollToTop();
-            })
+            if(!this.shopWiseProductHolder[page]){
+               this.ShowNotFound  = 'Loading...';
+               axios.get(this.rootDomain+'vue/v3/products/seller/'+this.slug+'?page='+page)
+               .then((response)=>{
+                  console.log(response.data[3]);
+                     this.shopWiseProductHolder[page] = response.data[0];
+                     this.shopWiseProduct = this.shopWiseProductHolder[page];
+                     this.shopDetails = response.data[1];
+                     this.totalItems = response.data[2];
+                     if(response.data[0]<1){
+                     this.ShowNotFound  = 'Product Not Found!';
+                     }else{
+                        this.ShowNotFound  = '';
+                     }
+                     this.scrollToTop();
+               }).catch((err)=>{console.log(err)})
+            }else{
+               this.shopWiseProduct = this.shopWiseProductHolder[page];
+               this.scrollToTop();
+            }
+            
         },
         getRatings(rating,maxRating=5){
            return ratingGenerator(rating,maxRating)

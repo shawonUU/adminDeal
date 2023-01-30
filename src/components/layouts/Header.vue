@@ -67,7 +67,7 @@
             <router-link :to="{name:'login'}" class="text-reset d-inline-block opacity-60 py-2">Login</router-link>
           </li>
           <li v-if="auth.isAuthenticated && auth.user.type == 'customer'" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
-            <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">Dashboard</router-link>
+            <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">My Account</router-link>
           </li>
           <li v-if="!auth.isAuthenticated" class="list-inline-item">
             <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
@@ -270,7 +270,7 @@
               <a href="https://admindeal.com.bd/compare" class="d-flex align-items-center text-reset">
                 <i class="la la-refresh la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill">{{ 0 }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Compare</span>
                 </span>
               </a>
@@ -281,7 +281,7 @@
               <a href="https://admindeal.com.bd/wishlists" class="d-flex align-items-center text-reset">
                 <i class="la la-heart-o la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill">{{ totalWishlist }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Wishlist</span>
                 </span>
               </a>
@@ -292,7 +292,7 @@
               <a href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
                 <i class="la la-shopping-cart la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill cart-count">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill cart-count">{{ totalCart }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
                 </span>
               </a>
@@ -490,6 +490,8 @@ export default {
       keywords:[],
       vendorSystemActivation: 0,
       message:'',
+      totalCart: 0,
+      totalWishlist: 0,
     }
   },
   created() {
@@ -498,7 +500,9 @@ export default {
       user = JSON.parse(user);
       this.auth.isAuthenticated = true;
       this.auth.user = user;
+      this.getNavData();
     }
+    this.setNavData();
   },
   beforeCreated(){
  
@@ -510,23 +514,34 @@ export default {
         let user = JSON.parse(localStorage.getItem("user"));
         this.auth.isAuthenticated = true;
         this.auth.user = user;
+        this.getNavData();
+      }else{
+        setNavData();
       }
     });
 
 
   },
   methods:{
-    getData(){
-      console.log(this.selfDomain);
-      axios.get(this.selfDomain+'vue/v3/auth/user', {
+    getNavData(){
+      axios.get(this.selfDomain+'vue/v3/auth/get_nav_data', {
             headers: {
-              Authorization: "Bearer " + localStorage.getItem("access_token"),
+              Authorization: "Bearer " + this.auth.user.access_token,
             }
       }).then(res=>{
         console.log(res);
+        this.totalCart = res.data.totalCart;
+        this.totalWishlist = res.data.totalWishlist;
+        this.setNavData();
+
       }).catch(err=>{
 
       });
+    },
+    setNavData(){
+      if(!this.auth.isAuthenticated){
+
+      }
     },
     searchSubmit(){
       var searchKey = $('#search').val();

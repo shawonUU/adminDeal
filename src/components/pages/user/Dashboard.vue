@@ -135,7 +135,7 @@ export default {
             wishlistCount: 0,
             totalOrder: 0,
             adress: null,
-            recentlyViewProducts:[]
+            recentlyViewProducts:{}
         }
     },
     created(){
@@ -145,14 +145,13 @@ export default {
             this.auth.isAuthenticated = true;
             this.auth.user = user;
             this.getDashboardData();
+            if(this.$cookies.get('recentViewProducts') !== null){
+                this.recentlyViewProducts = this.$cookies.get('recentViewProducts')
+            }
         }
     },
     mounted(){
-        this.recentlyViewProducts = JSON.parse(localStorage.getItem("recentlyViewProduct"));
-        console.log(this.recentlyViewProducts);
-        setTimeout(() => {
-            localStorage.removeItem('recentlyViewProduct')
-        }, 60000);
+       
     },
     methods:{
         getDashboardData(){
@@ -162,7 +161,6 @@ export default {
                 }
             })
             .then(res=>{
-                console.log(res.data);
                 this.totalProductInCart = res.data.cartCount;
                 this.wishlistCount = res.data.wishlistCount;
                 this.totalOrder = res.data.totalOrder;
