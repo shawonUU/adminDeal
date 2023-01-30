@@ -270,7 +270,7 @@
               <a href="https://admindeal.com.bd/compare" class="d-flex align-items-center text-reset">
                 <i class="la la-refresh la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill">{{ 0 }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Compare</span>
                 </span>
               </a>
@@ -281,7 +281,7 @@
               <a href="https://admindeal.com.bd/wishlists" class="d-flex align-items-center text-reset">
                 <i class="la la-heart-o la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill">{{ totalWishlist }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Wishlist</span>
                 </span>
               </a>
@@ -292,7 +292,7 @@
               <a href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
                 <i class="la la-shopping-cart la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill cart-count">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill cart-count">{{ totalCart }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
                 </span>
               </a>
@@ -490,6 +490,8 @@ export default {
       keywords:[],
       vendorSystemActivation: 0,
       message:'',
+      totalCart: 0,
+      totalWishlist: 0,
     }
   },
   created() {
@@ -500,6 +502,7 @@ export default {
       this.auth.user = user;
       this.getNavData();
     }
+    this.setNavData();
   },
   beforeCreated(){
  
@@ -512,6 +515,8 @@ export default {
         this.auth.isAuthenticated = true;
         this.auth.user = user;
         this.getNavData();
+      }else{
+        setNavData();
       }
     });
 
@@ -519,18 +524,24 @@ export default {
   },
   methods:{
     getNavData(){
-      alert(this.auth.user.access_token);
-      axios.get(this.selfDomain+'vue/v3/auth/get_nave_data', {
+      axios.get(this.selfDomain+'vue/v3/auth/get_nav_data', {
             headers: {
               Authorization: "Bearer " + this.auth.user.access_token,
             }
       }).then(res=>{
         console.log(res);
-
+        this.totalCart = res.data.totalCart;
+        this.totalWishlist = res.data.totalWishlist;
+        this.setNavData();
 
       }).catch(err=>{
 
       });
+    },
+    setNavData(){
+      if(!this.auth.isAuthenticated){
+
+      }
     },
     searchSubmit(){
       var searchKey = $('#search').val();

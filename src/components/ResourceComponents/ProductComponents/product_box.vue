@@ -1,4 +1,5 @@
 <template>
+  <div>
    <swiper
               :slidesPerView="2"
               :spaceBetween="10"
@@ -68,9 +69,15 @@
         </swiper-slide>
          
       </swiper>
+
+      <AddToCartModal></AddToCartModal>
+
+    </div>
 </template>
 
 <script>
+
+import AddToCartModal from "../../layouts/Modal/AddToCartModal.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { ratingGenerator } from '@/HelpersFunction/Helpers';
 // Import Swiper styles
@@ -88,9 +95,11 @@ export default {
         user: {},
       },
       modules: [FreeMode,Navigation],
+      viewAddToCartModal: true,
     }
   },
   components: {
+    AddToCartModal,
     Swiper,
     SwiperSlide,
   },
