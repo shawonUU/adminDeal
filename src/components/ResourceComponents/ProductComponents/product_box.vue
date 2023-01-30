@@ -114,11 +114,19 @@ export default {
           slug: slug
         }
       });
-      console.log(product.id);
 
-     let recentViewProduct=[]
+    //  let recentViewProduct=[]
      if(this.$cookies.get('recentViewProducts') !== null){
-        recentViewProduct = this.$cookies.get('recentViewProducts')
+      var check = this.$cookies.get('recentViewProducts').filter(products => products === product);
+      console.log(check); //returns true
+      // if (check)
+      // {
+      //   console.log('already exits')
+      // }else{
+      //   console.log('Not exists')
+      // }
+        // recentViewProduct = this.$cookies.get('recentViewProducts')
+        // console.log(this.$cookies.get('recentViewProducts'));
      }
       recentViewProduct.push(product);
       let products =Object.setPrototypeOf(recentViewProduct, Object.prototype);
