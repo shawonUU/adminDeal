@@ -148,7 +148,6 @@ export default {
             if(this.$cookies.get('recentViewProducts') !== null){
                 this.recentlyViewProducts = this.$cookies.get('recentViewProducts')
             }
-            console.log(this.recentlyViewProducts);
         }
     },
     mounted(){

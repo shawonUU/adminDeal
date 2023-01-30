@@ -188,18 +188,18 @@
                               </div>
                            </div>
                               </template>
-                              <!-- @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
-                                <div v-if="club_point==1&&productDetails" class="row no-gutters mt-4">
+                              
+                                <div v-if="club_point==1&&productDetails.earn_point > 0" class="row no-gutters mt-4">
                                     <div class="col-3">
-                                        <div class="opacity-50 my-2">{{--  translate('Club Point') --}}Cashback:</div>
+                                        <div class="opacity-50 my-2">Club Point--Cashback:</div>
                                     </div> 
                                     <div class="col-9">
                                         <div class="d-inline-block rounded px-2 bg-soft-primary border-soft-primary border">
-                                            <span class="strong-700">{{ $detailedProduct->earn_point }}</span>
+                                            <span class="strong-700">{{ productDetails.earn_point }}</span>
                                         </div>
                                     </div>
                                 </div>
-                            @endif -->
+                          
                         <hr>
                         <form id="option-choice-form">
                            <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ">                                
@@ -221,10 +221,18 @@
                                        </button>
                                     </div>
                                     <div class="avialable-amount opacity-60">
-                                       (<span id="available-quantity">{{ productDetails.current_stock }}</span> available)
-                                    </div>
+                                    <template v-if="productDetails.stock_visibility_state=='quantity'" id="available-quantity">
+                                       (<span>{{ productDetails.stocks }}</span> available)
+                                    </template>
+                                   
+                                    <template v-else-if="productDetails.stock_visibility_state=='text' && productDetails.stocks >= 1">
+                                       (<span id="available-quantity">In Stock</span>)
+                                    </template>
+                                 
                                  </div>
-                              </div>
+                                 </div>
+                             
+                              </div> 
                            </div>
                            <hr>
                            <div class="row no-gutters pb-3 d-none" id="chosen_price_div">
@@ -255,9 +263,22 @@
                               <div class="fw-600 mb-3" style="color: #f05a22;">
                                  মাত্র ১০০০ টাকার পণ্য কিনলেই হোম ডেলিভারি  ফ্রী 
                               </div>
+                                 <!-- <a v-if="productDetails.external_link!=null" type="button" class="btn btn-primary buy-now fw-600" :href="productDetails.external_link">
+                                    <i class="la la-share"></i> {{productDetails.external_link_btn}}
+                                 </a> -->
+                                          
                               <div class="avialable-amount opacity-60">
                                  In Stock: <b> Qty-</b>
-                                 <b> <span id="available-quantity">{{ productDetails.current_stock }}</span> </b>
+                                 <b> 
+                                    <template v-if="productDetails.stock_visibility_state=='quantity'" id="available-quantity">
+                                       (<span>{{ productDetails.stocks }}</span>)
+                                    </template>
+                                   
+                                    <template v-else-if="productDetails.stock_visibility_state=='text' && productDetails.stocks >= 1">
+                                       (<span id="available-quantity">In Stock</span>)
+                                    </template>
+                                 
+                                  </b>
                                  <span>; Cash On Delivery: <b>Yes</b></span>
                               </div>
                               <button type="button" class="btn btn-primary mr-2 w-100 block fw-600" onclick="addToCart()">
@@ -281,6 +302,9 @@
                                  <button type="button" class="btn btn-link btn-icon-left fw-600" onclick="addToCompare(5931)">
                                  <small>   Add to compare</small> 
                                  </button>
+                                 <div v-if="auth.isAuthenticated==true&&affiliteCheck==1&&user_status!=null&&user_status.status==1">
+                                    <button type=button id="ref-cpurl-btn" class="btn btn-sm btn-secondary" data-attrcpy="Copied" onclick="CopyToClipboard(this)" data-url="">Copy The affliate link</button>
+                                 </div>
                               </div>
                            </div>
                            <div class="row no-gutters mt-3">
@@ -639,6 +663,10 @@ export default {
    components:{RelatedProduct, Swiper, SwiperSlide,},
        data(){
         return{
+          auth:{
+                isAuthenticated: false,
+                user: {},
+            },
            productDetails:[],
            shopDetails:[],
            relatedProducts:[],
@@ -650,8 +678,17 @@ export default {
            vendorActivation:"",
            coversationSystem:"",
            brandData:"",
-           club_point:""
+           club_point:"",
+           affiliteCheck:"",
+           user_status:""
         }
+       },
+       created(){
+         var user = localStorage.getItem("user");
+        if(user !== null){
+            user = JSON.parse(user);
+            this.auth.isAuthenticated = true;
+           }   this.auth.user = user;
        },
        mounted(){
         this.getProductDetails(this.rootDomain);
@@ -676,6 +713,8 @@ export default {
                         this.coversationSystem = response.data[5];         
                         this.brandData = response.data[0].data[0].brand;
                         this.club_point = response.data[6]
+                        this.affiliteCheck = response.data[7]
+                        this.user_status = this.auth.user.user_status;
                      })
                },
                brandSlug(brand_slug){
