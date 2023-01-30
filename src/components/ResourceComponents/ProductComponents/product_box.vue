@@ -37,7 +37,7 @@
                  <a href="javascript:void(0)" onclick="addToCompare(5931)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
                    <i class="las la-sync"></i>
                  </a>
-                 <a href="javascript:void(0)" onclick="showAddToCartModal(5931)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
+                 <a href="javascript:void(0)" @click="addTocartModal()" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
                    <i class="las la-shopping-cart"></i>
                  </a>
                </div>
@@ -70,7 +70,7 @@
          
       </swiper>
 
-      <AddToCartModal></AddToCartModal>
+      <AddToCartModal v-if="viewAddToCartModal"></AddToCartModal>
 
     </div>
 </template>
@@ -95,7 +95,7 @@ export default {
         user: {},
       },
       modules: [FreeMode,Navigation],
-      viewAddToCartModal: true,
+      viewAddToCartModal: false,
     }
   },
   components: {
@@ -113,7 +113,10 @@ export default {
         
     },
   mounted(){
-    // console.log(this.$cookies.get('recentViewProducts'))
+    this.emitter.on("viewAddToCartModal", message => {
+      this.viewAddToCartModal = message;
+    });
+
   },
   methods:{
     productDetails(slug,product){
@@ -168,6 +171,11 @@ export default {
         alert('Please Login');
       }
     },
+    addTocartModal(){
+      this.viewAddToCartModal = true;
+      let ele = document.getElementsByTagName('body');
+      ele[0].classList.add("modal-open");
+    }
   }
 }
 </script>
@@ -175,3 +183,64 @@ export default {
 <style>
 
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
