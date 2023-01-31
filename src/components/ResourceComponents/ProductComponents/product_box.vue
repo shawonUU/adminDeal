@@ -70,7 +70,7 @@
          
       </swiper>
 
-      <AddToCartModal v-if="viewAddToCartModal"></AddToCartModal>
+      <AddToCartModal v-if="viewAddToCartModal" ></AddToCartModal>
 
     </div>
 </template>
@@ -96,6 +96,7 @@ export default {
       },
       modules: [FreeMode,Navigation],
       viewAddToCartModal: false,
+      productId: null,
     }
   },
   components: {
@@ -172,6 +173,7 @@ export default {
       }
     },
     addTocartModal(){
+      // this.productId = productId;
       this.viewAddToCartModal = true;
       let ele = document.getElementsByTagName('body');
       ele[0].classList.add("modal-open");

@@ -188,18 +188,18 @@
                               </div>
                            </div>
                               </template>
-                              <!-- @if (addon_is_activated('club_point') && $detailedProduct->earn_point > 0)
-                                <div v-if="club_point==1&&productDetails" class="row no-gutters mt-4">
+                              
+                                <div v-if="club_point==1&&productDetails.earn_point > 0" class="row no-gutters mt-4">
                                     <div class="col-3">
-                                        <div class="opacity-50 my-2">{{--  translate('Club Point') --}}Cashback:</div>
+                                        <div class="opacity-50 my-2">Club Point--Cashback:</div>
                                     </div> 
                                     <div class="col-9">
                                         <div class="d-inline-block rounded px-2 bg-soft-primary border-soft-primary border">
-                                            <span class="strong-700">{{ $detailedProduct->earn_point }}</span>
+                                            <span class="strong-700">{{ productDetails.earn_point }}</span>
                                         </div>
                                     </div>
                                 </div>
-                            @endif -->
+                          
                         <hr>
                         <form id="option-choice-form">
                            <input type="hidden" name="_token" value="g23HdCifgj7mR2HpZBvYm1R9ojfXGsI5ZWHPmpzZ">                                
@@ -221,10 +221,18 @@
                                        </button>
                                     </div>
                                     <div class="avialable-amount opacity-60">
-                                       (<span id="available-quantity">{{ productDetails.current_stock }}</span> available)
-                                    </div>
+                                    <template v-if="productDetails.stock_visibility_state=='quantity'" id="available-quantity">
+                                       (<span>{{ productDetails.stocks }}</span> available)
+                                    </template>
+                                   
+                                    <template v-else-if="productDetails.stock_visibility_state=='text' && productDetails.stocks >= 1">
+                                       (<span id="available-quantity">In Stock</span>)
+                                    </template>
+                                 
                                  </div>
-                              </div>
+                                 </div>
+                             
+                              </div> 
                            </div>
                            <hr>
                            <div class="row no-gutters pb-3 d-none" id="chosen_price_div">
@@ -255,9 +263,22 @@
                               <div class="fw-600 mb-3" style="color: #f05a22;">
                                  মাত্র ১০০০ টাকার পণ্য কিনলেই হোম ডেলিভারি  ফ্রী 
                               </div>
+                                 <!-- <a v-if="productDetails.external_link!=null" type="button" class="btn btn-primary buy-now fw-600" :href="productDetails.external_link">
+                                    <i class="la la-share"></i> {{productDetails.external_link_btn}}
+                                 </a> -->
+                                          
                               <div class="avialable-amount opacity-60">
                                  In Stock: <b> Qty-</b>
-                                 <b> <span id="available-quantity">{{ productDetails.current_stock }}</span> </b>
+                                 <b> 
+                                    <template v-if="productDetails.stock_visibility_state=='quantity'" id="available-quantity">
+                                       (<span>{{ productDetails.stocks }}</span>)
+                                    </template>
+                                   
+                                    <template v-else-if="productDetails.stock_visibility_state=='text' && productDetails.stocks >= 1">
+                                       (<span id="available-quantity">In Stock</span>)
+                                    </template>
+                                 
+                                  </b>
                                  <span>; Cash On Delivery: <b>Yes</b></span>
                               </div>
                               <button type="button" class="btn btn-primary mr-2 w-100 block fw-600" onclick="addToCart()">
@@ -281,17 +302,24 @@
                                  <button type="button" class="btn btn-link btn-icon-left fw-600" onclick="addToCompare(5931)">
                                  <small>   Add to compare</small> 
                                  </button>
+                                 <div v-if="auth.isAuthenticated==true&&affiliteCheck==1&&user_status!=null&&user_status.status==1">
+
+                                    <button type="button" @click="CopyToClipboard(refarral_code_url)" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" :title="copyMsg">
+                                       Copy The affliate link
+                                    </button>
+
+                                    </div>
                               </div>
                            </div>
-                           <div class="row no-gutters mt-3">
+                           <div v-if="refundCheck==1"  class="d-none row no-gutters mt-3">
                               <div class="col-2">
                                  <div class="opacity-50 mt-2">Refund:</div>
                               </div>
                               <div class="col-10">
-                                 <a href="https://admindeal.com.bd/return-policy" target="_blank"> 
-                                 <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/kusQW2StA1ew5dmPKCxaWQ8Ss8kUP6yFtiUSriik.jpg" height="36"> 
-                                 </a>
-                                 <a href="https://admindeal.com.bd/return-policy" class="ml-2" target="_blank">View Policy</a>
+                                 <router-link :to="{name:'ReturnPolicy'}" target="_blank"> 
+                                 <img v-if="refundImage!=null" :src="refundImage" height="36"> 
+                                 </router-link>
+                                 <router-link :to="{name:'ReturnPolicy'}" class="ml-2" target="_blank">View Policy</router-link>
                               </div>
                            </div>
                            <div class="fw-600 mb-2">
@@ -323,30 +351,7 @@
                                  </div>
                               </div>
                            </div>
-                           <!-- For pc start
-                              <div class="d-none d-lg-block"">
-                                     <div class="row">
-                                      <div class="col-sm-5">
-                                          <b>Ships from:</b> AdminDeal.com.bd
-                                      </div>
-                                      
-                                     </div>
-                                     <div class="row">
-                                      <div class="col-sm-5">
-                                          <b>Sold By:</b> AdminDeal.com.bd
-                                      </div>
-                                      
-                                      </div>
-                                   <div class="row mb-3">
-                                      <div class="col-sm-5">
-                                     <b> Packaging from:</b> Shows what’s inside. 
-                              
-                                      </div>
-                                      
-                                   </div>
-                              </div>
-                                    For pc end-->
-                           <!-- For Mpbile start-->
+                          
                            <div class="d-lg-none">
                               <div class="row">
                                  <div class="col-sm-5">
@@ -504,83 +509,85 @@
             </div>
          </div>
          <div class="col-xl-9 order-0 order-xl-1">
+          
             <div class="bg-white mb-3 shadow-sm rounded">
-               <div class="nav border-bottom aiz-nav-tabs">
-                  <a href="#tab_default_1" data-toggle="tab"
-                     class="p-3 fs-16 fw-600 text-reset active show">Description</a>
-                  <a href="#tab_default_2" data-toggle="tab"
-                     class="p-3 fs-16 fw-600 text-reset">Video</a>
-                  <a href="#tab_default_4" data-toggle="tab"
-                     class="p-3 fs-16 fw-600 text-reset">reviews</a>
-               </div>
-               <div class="tab-content pt-0">
-                  <div class="tab-pane fade active show" id="tab_default_1">
-                     <div class="p-4">
-                        <div v-html="productDetails.description" class="mw-100 overflow-hidden text-left aiz-editor-data">
-                        </div>
-                     </div>
-                  </div>
-                  <div class="tab-pane fade" id="tab_default_2">
-                     <div class="p-4">
-                        <div class="embed-responsive embed-responsive-16by9">
-                           <iframe class="embed-responsive-item"
-                              src="https://www.youtube.com/embed/_AGP-KEyEJE"></iframe>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="tab-pane fade" id="tab_default_3">
-                     <div class="p-4 text-center ">
-                        <a href="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                           class="btn btn-primary">Download</a>
-                     </div>
-                  </div>
-                  <div class="tab-pane fade" id="tab_default_4">
-                     <div class="p-4">
-                        <ul class="list-group list-group-flush">
-                           <li class="media list-group-item d-flex">
-                              <span class="avatar avatar-md mr-3">
-                              <img class="lazyload"
-                                 src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"
-                                
-                                 data-src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" >
-                              </span>
-                              <div class="media-body text-left">
-                                 <div class="d-flex justify-content-between">
-                                    <h3 class="fs-15 fw-600 mb-0">
-                                       Mrs. Azimon Begum  <span style="color:green;"> ☑ Verified Purchase</span>
-                                       <p class="rating rating-sm">
-                                          <i class="las la-star active"></i>
-                                          <i class="las la-star active"></i>
-                                          <i class="las la-star active"></i>
-                                          <i class="las la-star active"></i>
-                                          <i class="las la-star active"></i>
-                                          <span class="opacity-60 mb-2"> (Rated:
-                                          27-09-2022)</span>
-                                       </p>
-                                    </h3>
-                                    <!-- my style Review <span class="rating rating-sm">
-                                       <i class="las la-star active"></i>
-                                       <i class="las la-star active"></i>
-                                       <i class="las la-star active"></i>
-                                       <i class="las la-star active"></i>
-                                       <i class="las la-star active"></i>
-                                         </span> --> 
-                                 </div>
-                                 <!-- my review design <div class="opacity-60 mb-2">
-                                    27-09-2022</div> --> 
-                                 <p class="comment-text">
-                                    অসাধারণ এক্সিলেন্ট। খুব ভালো একটা প্রোডাক্টক। আমি খুব খুশি হলাম। আপনারা চাইলে নিতে পারেন।
-                                 </p>
-                                 <div class="">
-                                    <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" class="lazyload h-300px mw-100 mx-auto"/>
+                           <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="home" aria-selected="true">Description</button>
+                                </li>
+                                <li v-if="productDetails.video_link != null" class="nav-item" role="presentation">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#video" type="button" role="tab" aria-controls="video" aria-selected="false">Video</button>
+                                </li>
+                                <li v-if="productDetails.pdf != null" class="nav-item" role="presentation">
+                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#downloads" type="button" role="tab" aria-controls="downloads" aria-selected="false">Downloads</button>
+                                </li>
+                                <li  class="nav-item" role="presentation">
+                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                              <div class="tab-pane fade show active" v-html="productDetails.description" id="description" role="tabpanel" aria-labelledby="description-tab">
+                              </div>
+                              <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+                                       
+                                             <iframe class="embed-responsive-item" :src="`https://www.youtube.com/embed/`+productDetails.video_url"></iframe>
+                                       
+                              </div>
+                              <div class="tab-pane fade" id="downloads" role="tabpanel" aria-labelledby="downloads-tab">
+                                 <div class="p-4 text-center ">
+                                    <a :href="productDetails.pdfLink"
+                                        class="btn btn-primary">Download</a>
                                  </div>
                               </div>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
+                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                           <div class="p-4">
+                              <ul class="list-group list-group-flush">
+                                 
+                                    
+                                       <template v-for="(review,index) in productDetails.reviewsDatas" :key="index">
+                                       <li v-if="review.user_id!=null" class="media list-group-item d-flex">
+                                                <span class="avatar avatar-md mr-3">
+                                                        <img class="lazyload"
+                                                            src="https://admindeal.com.bd/public/assets/img/placeholder.jpg"             
+                                                           :data-src="review.image"
+                                                         >
+                                                    </span>
+                                                <div class="media-body text-left">
+                                                   <div class="d-flex justify-content-between">
+                                                      <h3 class="fs-15 fw-600 mb-0">{{ review.user_name }}  <span style="color:green;"> ☑ Verified Purchase</span>      
+                                                         <p class="rating rating-sm">
+                                                         <template v-for="index in 5" :key="index">
+                                                            <i v-if="index<=review.rating" class = 'las la-star active'></i>
+                                                            <i v-else class = 'las la-star'></i>
+                                                         </template>
+                                                      <span class="opacity-60 mb-2"> (Rated:{{ review.created}}  )</span>
+                                                         </p>
+                                                      </h3>
+                                                   </div>
+                                                   <p class="comment-text">
+                                                      {{review.comment}}
+                                                   </p>
+                                                   <div class="">
+                                                   <img :src="review.image" class="lazyload h-300px mw-100 mx-auto"/>
+                                                </div>
+                                                </div>
+                                          </li>
+                                       </template>
+                                       
+                              </ul>
+
+                  
+                                    <div v-if="productDetails.reviews <= 0" class="text-center fs-18 opacity-70">
+                                       There have been no reviews for this product yet.
+                                    </div>
+                              
+                           </div>
+                        </div>
+                        </div>
+
+
+                        </div>
             <div class="bg-white rounded shadow-sm">
                <div class="border-bottom p-3">
                   <h3 class="fs-16 fw-600 mb-0">
@@ -634,11 +641,16 @@ import "swiper/css/navigation"
 import "swiper/css/thumbs"
 // import './style.css';
 import {FreeMode,Navigation,Thumbs} from 'swiper';
+import { ref } from 'vue'
 export default {
    props:['slug'],
    components:{RelatedProduct, Swiper, SwiperSlide,},
        data(){
         return{
+          auth:{
+                isAuthenticated: false,
+                user: {},
+            },
            productDetails:[],
            shopDetails:[],
            relatedProducts:[],
@@ -650,8 +662,21 @@ export default {
            vendorActivation:"",
            coversationSystem:"",
            brandData:"",
-           club_point:""
+           club_point:"",
+           affiliteCheck:"",
+           user_status:"",
+           refarral_code_url:"",
+           copyMsg:"Copy the link",
+           refundCheck:"",
+           refundImage:"",
         }
+       },
+       created(){
+         var user = localStorage.getItem("user");
+        if(user !== null){
+            user = JSON.parse(user);
+            this.auth.isAuthenticated = true;
+           }   this.auth.user = user;
        },
        mounted(){
         this.getProductDetails(this.rootDomain);
@@ -665,7 +690,16 @@ export default {
    },
        methods:{
          getProductDetails(rootDomain){
-                     axios.get(rootDomain+'vueweb/product/'+this.slug)
+                    let token='';
+                    if(this.auth.isAuthenticated==true){
+                      token = this.auth.user.access_token;
+                    }
+                     axios.get(rootDomain+'vueweb/product/'+this.slug,{
+                        params:{
+                           token:token,
+                           selfDomain:this.selfDomain
+                        }
+                     })
                      .then((response)=>{
                         this.productDetails = response.data[0].data[0];
                         this.photosLength=this.productDetails.photos.length;
@@ -675,7 +709,13 @@ export default {
                         this.vendorActivation = response.data[4];
                         this.coversationSystem = response.data[5];         
                         this.brandData = response.data[0].data[0].brand;
-                        this.club_point = response.data[6]
+                        this.club_point = response.data[6];
+                        this.affiliteCheck = response.data[7];
+                        this.user_status = this.auth.user.user_status;
+                        this.refarral_code_url = response.data[8];
+                        this.refundCheck = response.data[9];
+                        this.refundImage = response.data[10];
+                        console.log(response.data);
                      })
                },
                brandSlug(brand_slug){
@@ -694,7 +734,22 @@ export default {
                },
                zoomOut() {
                   this.zoomLevel -= 0.5
-               }      
+               },
+               async CopyToClipboard(url){
+                  // navigator.clipboard.writeText(url);
+                  // try {
+                  //    await navigator.clipboard.writeText(url);
+                  // } catch (e) {
+                  //    console.log(e);
+                  // }
+                  const dummy = document.createElement("textarea");
+                  document.body.appendChild(dummy);
+                  dummy.value = url;
+                  dummy.select();
+                  document.execCommand("copy");
+                  document.body.removeChild(dummy);
+                  this.copyMsg = 'copied';
+               }  
           }   
 }
 </script>
