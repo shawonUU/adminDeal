@@ -320,6 +320,7 @@
                     lastPage:"",
                     slugValue: '',
                     url:'',
+                    responseHolder:[],
                 }
             },
             created(){
@@ -345,65 +346,77 @@
         methods:{
             getCategoryWiseProduct(page){
                 this.ShowNotFound  = 'Loading...';
-                axios.get(this.rootDomain+this.url+'page='+page, { params: { 
-                    category_slug: this.slug,
-                    brand: this.selectedBrand,
-                    selected_attribute_values: this.selected_attribute_values,
-                    color: this.selectedColor,
-                    sort_by: this.sortedBy,
-                    min_price: this.minPrice,
-                    max_price: this.maxPrice,
+                if(!this.responseHolder[page]){
+                    axios.get(this.rootDomain+this.url+'page='+page, { params: { 
+                        category_slug: this.slug,
+                        brand: this.selectedBrand,
+                        selected_attribute_values: this.selected_attribute_values,
+                        color: this.selectedColor,
+                        sort_by: this.sortedBy,
+                        min_price: this.minPrice,
+                        max_price: this.maxPrice,
 
-                }})
-                .then((response)=>{
-                    // console.log(response.data.user);return;
-                    this.currentRouteName = response.data.currentRouteName;
-                    this.attributes = response.data.attributes;
-                    this.color_filter_activation = response.data.color_filter_activation;
-                    this.colors = response.data.colors;
-                    this.products = response.data.products.data;
-                    this.categoryId = response.data.category_id;
-                    this.categoryName = response.data.category_name;
-                    this.query = response.data.query;
-                    this.sortBy = response.data.sort_by;
-                    this.addonIsActivated = response.data.addon_is_activated;
-                    this.autoDescription = response.data.auto_description;
-                    this.cetegoryLevelZero = response.data.cetegoryLevelZero;
-                    this.parentCategory = response.data.parentCategory;
-                    this.category = response.data.category;
-                    this.categories = response.data.categories;
-                    this.brandId = response.data.brand_id;
-                    this.brands = response.data.brands;
-                    
-                    this.lastPage = response.data.productsCount;
-                    this.scrollToTop();
-                    if(this.products.length == 0){
-                        this.ShowNotFound  = 'Not Found';
-                    }else{this.ShowNotFound  = '';}
-                })
-                .catch((error)=>{
-                    console.log(error);
-                })
+                    }})
+                    .then((response)=>{
+                        // console.log(response.data.user);return;
+                        this.responseHolder[page] = response;
+                        this.setResponseData(this.responseHolder[page]);
+                    })
+                    .catch((error)=>{
+                        console.log(error);
+                    })
+                }else{
+                    this.setResponseData(this.responseHolder[page]);
+                }
+            },
+            setResponseData(response){
+                this.currentRouteName = response.data.currentRouteName;
+                this.attributes = response.data.attributes;
+                this.color_filter_activation = response.data.color_filter_activation;
+                this.colors = response.data.colors;
+                this.products = response.data.products.data;
+                this.categoryId = response.data.category_id;
+                this.categoryName = response.data.category_name;
+                this.query = response.data.query;
+                this.sortBy = response.data.sort_by;
+                this.addonIsActivated = response.data.addon_is_activated;
+                this.autoDescription = response.data.auto_description;
+                this.cetegoryLevelZero = response.data.cetegoryLevelZero;
+                this.parentCategory = response.data.parentCategory;
+                this.category = response.data.category;
+                this.categories = response.data.categories;
+                this.brandId = response.data.brand_id;
+                this.brands = response.data.brands;
+                this.lastPage = response.data.productsCount;
+                this.scrollToTop();
+                if(this.products.length == 0){
+                    this.ShowNotFound  = 'Not Found';
+                }else{this.ShowNotFound  = '';}
             },
             selectAttribute(value){
+                this.responseHolder = [];
                 this.selected_attribute_values.push(value);
                 this.getCategoryWiseProduct(1);
             },
             setColor(color){
+                this.responseHolder = [];
                 this.selectedColor = color;
                 this.getCategoryWiseProduct(1);
             },
             setSortedBy(){
+                this.responseHolder = [];
                 this.sortedBy = $("#sortBy").val();
                 this.getCategoryWiseProduct(1);
             },
             setBrand(brand){
+                this.responseHolder = [];
                 this.selectedBrand=brand.slug;
                 this.getCategoryWiseProduct(1);
             },
 
 
             priceRange(){
+                this.responseHolder = [];
                 let min = this.rangeValue[0];
                 let max = this.rangeValue[1];
                 if(this.minPrice != min || this.maxPrice != max){

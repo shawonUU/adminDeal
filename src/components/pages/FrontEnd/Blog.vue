@@ -44,6 +44,7 @@ export default {
       blogs:[],
       currentPage:1,
       lastPage:"",
+      blogHolder:[]
     }
    },
    mounted(){
@@ -51,15 +52,22 @@ export default {
    },
    methods:{
     getBlogs(page){
-      axios.get(this.rootDomain+'vue/blog?page='+page)
-      .then((response)=>{
-          this.blogs = response.data;
-          this.lastPage = response.data.meta.total
-          this.scrollToTop();
-      })
-      .catch((error)=>{
+      if(!this.blogHolder[page]){
+          axios.get(this.rootDomain+'vue/blog?page='+page)
+        .then((response)=>{
+            this.blogHolder[page] = response.data;
+            this.blogs =  this.blogHolder[page];
+            this.lastPage = response.data.meta.total
+            this.scrollToTop();
+        })
+        .catch((error)=>{
 
-      });
+        });
+      }else{
+        this.blogs =  this.blogHolder[page];
+        this.scrollToTop();
+      }
+    
     },
     getSlug(slug){
         this.$router.push({

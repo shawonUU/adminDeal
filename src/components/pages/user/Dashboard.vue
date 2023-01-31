@@ -152,9 +152,6 @@ export default {
     },
     mounted(){
        
-        // setTimeout(() => {
-        //     localStorage.removeItem('recentlyViewProduct')
-        // }, 60000);
     },
     methods:{
         getDashboardData(){
@@ -164,7 +161,6 @@ export default {
                 }
             })
             .then(res=>{
-                console.log(res.data);
                 this.totalProductInCart = res.data.cartCount;
                 this.wishlistCount = res.data.wishlistCount;
                 this.totalOrder = res.data.totalOrder;

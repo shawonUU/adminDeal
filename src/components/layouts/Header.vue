@@ -67,7 +67,7 @@
             <router-link :to="{name:'login'}" class="text-reset d-inline-block opacity-60 py-2">Login</router-link>
           </li>
           <li v-if="auth.isAuthenticated && auth.user.type == 'customer'" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
-            <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">Dashboard</router-link>
+            <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">My Account</router-link>
           </li>
           <li v-if="!auth.isAuthenticated" class="list-inline-item">
             <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
