@@ -37,7 +37,7 @@
                  <a href="javascript:void(0)" onclick="addToCompare(5931)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
                    <i class="las la-sync"></i>
                  </a>
-                 <a href="javascript:void(0)" @click="addTocartModal()" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
+                 <a href="javascript:void(0)" @click="addTocartModal(product.id)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
                    <i class="las la-shopping-cart"></i>
                  </a>
                </div>
@@ -70,7 +70,7 @@
          
       </swiper>
 
-      <AddToCartModal v-if="viewAddToCartModal" ></AddToCartModal>
+      <AddToCartModal v-if="viewAddToCartModal" :productId="productId"></AddToCartModal>
 
     </div>
 </template>
@@ -156,6 +156,7 @@ export default {
     },
   
     addToWishList(id){
+      
       if(this.auth.isAuthenticated){
         axios.get(this.selfDomain+"vue/v3/wishlists-add-product", {
           params: {product_id: id},
@@ -172,8 +173,8 @@ export default {
         alert('Please Login');
       }
     },
-    addTocartModal(){
-      // this.productId = productId;
+    addTocartModal(productId){
+      this.productId = productId;
       this.viewAddToCartModal = true;
       let ele = document.getElementsByTagName('body');
       ele[0].classList.add("modal-open");

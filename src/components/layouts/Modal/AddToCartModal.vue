@@ -6,15 +6,12 @@
     <div  class="modal fade show" id="addToCart" style="z-index: 99999; display: block; padding-right: 17px;" aria-modal="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-zoom product-modal modal-lg" id="modal-size" role="document">
             <div class="modal-content position-relative">
-                <div class="c-preloader text-center p-3" style="display: none;">
+                <div v-if="preLoader" class="c-preloader text-center p-3" >
                     <i class="las la-spinner la-spin la-3x"></i>
                 </div>
                 <button type="button" class="close absolute-top-right btn-icon close z-1" data-dismiss="modal" aria-label="Close">
                     <span @click="hidModal()" aria-hidden="true" class="la-2x">×</span>
                 </button>
-                
-                
-<div class="modal-body p-4 c-scrollbar-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, numquam?</div>
 
 <templete v-if="productDetails != null">
 <div class="modal-body p-4 c-scrollbar-light">
@@ -28,8 +25,8 @@
                         <div v-for="(photo, index) in productDetails.photos" :key="index" class="carousel-box img-zoom rounded">
                             <img v-if="photo.path != null"
                                 class="img-fluid lazyload"
-                                :src="rootDomain+'assets/img/placeholder.jpg'"
-                                :data-src="photo.path"
+                                
+                                :src="photo.path"
                             >
                         </div>
                     </div>
@@ -151,8 +148,9 @@
                                 </div>
                                 <div class="col-10">
                                     <div class="aiz-radio-inline">
-                                        <label v-for="(color, index) in productDetails.colors" :key="index" class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
+                                        <label v-for="(color, index) in productDetails.colors" :key="index" class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" :ref="color.name">
                                             <input
+                                                @click="changeColor(color.name)"
                                                 type="radio"
                                                 name="color"
                                                 :value="color.name"
@@ -176,17 +174,17 @@
                             <div class="col-10">
                                 <div class="product-quantity d-flex align-items-center">
                                     <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
-                                        <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity" disabled="">
+                                        <button @click="decresQuantity()" class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity">
                                             <i class="las la-minus"></i>
                                         </button>
-                                        <input type="number" name="quantity" class="col border-0 text-center flex-grow-1 fs-16 input-number" placeholder="1" :value="productDetails.min_qty" :min="productDetails.min_qty" max="10" lang="en">
-                                        <button class="btn  col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="plus" data-field="quantity">
+                                        <input @change="setQuantity()" id="quantity" type="number" name="quantity" class="col border-0 text-center flex-grow-1 fs-16 input-number" placeholder="1" :value="quantity"  lang="en">
+                                        <button @click="incresQuantity()" class="btn  col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="plus" data-field="quantity">
                                             <i class="las la-plus"></i>
                                         </button>
                                     </div>
                                     <div class="avialable-amount opacity-60">
                                         <templete v-if="productDetails.stock_visibility_state == 'quantity'">
-                                        (<span id="available-quantity">{{ $qty }}</span> {{ 'available' }})
+                                        (<span id="available-quantity">{{ productDetails.stocksQty }}</span> {{ 'available' }})
                                         </templete>
                                         <templete v-if="productDetails.stock_visibility_state == 'text' && productDetails.stocksQty >= 1">
                                             (<span id="available-quantity">{{ 'In Stock' }}</span>)
@@ -199,7 +197,7 @@
                         <hr>
                     </templete>
 
-                    <div class="row no-gutters pb-3 d-none" id="chosen_price_div">
+                    <div class="row no-gutters pb-3 " id="chosen_price_div">
                         <div class="col-2">
                             <div class="opacity-50">{{ 'Total Price' }}:</div>
                         </div>
@@ -256,7 +254,7 @@
 <script>
 import axios from "axios";
 export default {
-
+    props:['productId'],
     data(){
         return{
             auth:{
@@ -264,15 +262,18 @@ export default {
                 user: {},
             },
             productDetails: null,
+            color: null,
+            quantity: 0,
+            preLoader: false,
         }
     },
     created(){
-        // var user = localStorage.getItem("user");
-        // if(user !== null){
-        //     user = JSON.parse(user);
-        //     this.auth.isAuthenticated = true;
-        //     this.auth.user = user;
-        // }
+        var user = localStorage.getItem("user");
+        if(user !== null){
+            user = JSON.parse(user);
+            this.auth.isAuthenticated = true;
+            this.auth.user = user;
+        }
         this.getProductDetails();
     },
     methods:{
@@ -282,18 +283,100 @@ export default {
            ele[0].classList.remove("modal-open");
         },
         getProductDetails(){
-            alert('okkk');
-            axios.get('https://localhost/backend/vueweb/cart/show-cart-modal?id=8256')
+            this.preLoader = true;
+            axios.get(this.rootDomain+'vueweb/cart/show-cart-modal?id='+this.productId)
             .then(res=>{
                 console.log(res.data.productCollection.data[0]);
                 // console.log(res.data);
                 this.productDetails = res.data.productCollection.data[0];
+                this.quantity = this.productDetails.min_qty;
                 // console,log(res.data)
+                
+                this.preLoader = false;
+                this.getVariantPrice();
 
             }).catch(err=>{
 
             });
+        },
+
+        getVariantPrice(){
+            let data;
+            if(this.color != null){data = {id: this.productDetails.id, quantity: this.quantity, color:this.color};}
+            else{data = {id: this.productDetails.id, quantity: this.quantity};}
+          
+            if(this.productDetails.min_qty > 0 && this.checkAddToCartValidity()){
+                $.ajax({
+                   type:"get",
+                   url: this.rootDomain+'vueweb/product-variant_price',
+                   data: data,
+                   success: function(data){
+                        $('.product-gallery-thumb .carousel-box').each(function (i) {
+                            if($(this).data('variation') && data.variation == $(this).data('variation')){
+                                $('.product-gallery-thumb').slick('slickGoTo', i);
+                            }
+                        })
+
+                        $('#option-choice-form #chosen_price_div').removeClass('d-none');
+                        $('#option-choice-form #chosen_price_div #chosen_price').html(data.price);
+                        $('#available-quantity').html(data.quantity);
+                        $('.input-number').prop('max', data.max_limit);
+                        if(parseInt(data.in_stock) == 0 && data.digital  == 0){
+                           $('.buy-now').addClass('d-none');
+                           $('.add-to-cart').addClass('d-none');
+                           $('.out-of-stock').removeClass('d-none');
+                        }
+                        else{
+                           $('.buy-now').removeClass('d-none');
+                           $('.add-to-cart').removeClass('d-none');
+                           $('.out-of-stock').addClass('d-none');
+                        }
+                   }
+               });
+            }
+        },
+        checkAddToCartValidity(){
+            var names = {};
+            $('#option-choice-form input:radio').each(function() { // find unique names
+                names[$(this).attr('name')] = true;
+            });
+            var count = 0;
+            $.each(names, function() { // then count them
+                count++;
+            });
+
+            if($('#option-choice-form input:radio:checked').length == count){
+                return true;
+            }
+            return false;
+        },
+        incresQuantity(){
+             this.quantity = this.quantity + 1;
+            if( this.quantity > this.productDetails.stocksQty)  
+                this.quantity = this.productDetails.stocksQty;
+            this.getVariantPrice();
+        },
+        decresQuantity(){
+            this.quantity = this.quantity - 1;
+            if( this.quantity<1)  this.quantity = 1;
+            this.getVariantPrice();
+        },
+        setQuantity(){
+            let qty = $("#quantity").val();
+            if(qty<1) qty = 1;
+            if(qty > this.productDetails.stocksQty) 
+                qty = this.productDetails.stocksQty;
+            this.quantity = qty;
+            this.getVariantPrice();
+        },
+        changeColor(color){
+            this.color = color;
+             this.getVariantPrice();
         }
+
+        
+
+
     }
 }
 </script>

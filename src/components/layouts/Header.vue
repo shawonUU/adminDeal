@@ -91,6 +91,7 @@
              <p>Logo Here</p>
             <!-- <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/wX5s4T1KUanpH8wLrFqzcOtElCZ7w2WNYf1MPIGq.webp" alt="Admin Deal" class="mw-100 h-20px h-md-40px" height="40"> -->
           </router-link>
+           <div><button @click="check()">check</button></div>
         </div>
         <div class="flex-grow-1 front-header-search d-flex align-items-center bg-white" style="max-width: 750px;">
           <div class="position-relative flex-grow-1">
@@ -311,6 +312,9 @@
               </router-link>
             </div>
           </div>
+
+         
+
         </div>
       </div>
     </div>
@@ -655,7 +659,22 @@ export default {
         this.auth.isAuthenticated = false;
         this.$router.push({ name: 'home' });
         localStorage.removeItem("recentlyViewProduct");
+      },
+
+      check(){
+        axios.get(this.selfDomain+'vueweb/check', {
+          headers: {
+            Authorization: "Bearer " + this.auth.user.access_token,
+          }
+        })
+        .then((response)=>{
+              console.log(response.data);
+        }).catch(err=>{
+          alert('');
+        });
       }
+
+
   
   }
 
