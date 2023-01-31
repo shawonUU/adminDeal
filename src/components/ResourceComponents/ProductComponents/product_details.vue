@@ -602,16 +602,28 @@
                   </div>
                </div>
             </div>
-            <div class="bg-white rounded shadow-sm mt-3">
+
+            <div v-if="product_query_activation==1" class="bg-white rounded shadow-sm mt-3">
                <div class="border-bottom p-3">
                   <h3 class="fs-18 fw-600 mb-0">
-                     <span>Product Queries (0)</span>
+                     <span>Product Queries ({{ totalQuery }})</span>
                   </h3>
                </div>
-               <p class="fs-14 fw-400 mb-0 ml-3 mt-2"><a
-                  href="https://admindeal.com.bd/users/login">Login</a> or <a class="mr-1"
-                  href="https://admindeal.com.bd/users/registration">Register</a>to submit your questions to seller
+               <p v-if="auth.isAuthenticated==false" class="fs-14 fw-400 mb-0 ml-3 mt-2">
+                  <router-link :to="{name:'login'}">Login</router-link> or
+                  <router-link :to="{name:'registration'}" class="mr-1">Register</router-link>to submit your questions to seller
                </p>
+               <div v-if="product_query_activation==1" class="query form p-3">
+                  <form @submit.prevent="postQuery">
+                        <input type="hidden" name="product" value="{{ $detailedProduct->id }}">
+                        <div class="form-group">
+                           <textarea class="form-control" rows="3" v-model="query" cols="40" name="question"
+                              placeholder="Write your question here..." style="resize: none;"></textarea>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+               </div>
                <div class="pagination-area my-4 mb-0 ml-3">
                   <div class="border-bottom py-3">
                      <h3 class="fs-18 fw-600 mb-0">
@@ -669,6 +681,10 @@ export default {
            copyMsg:"Copy the link",
            refundCheck:"",
            refundImage:"",
+           product_query_activation:"",
+           totalQuery:"",
+           queries:"",
+           query:""
         }
        },
        created(){
@@ -694,10 +710,12 @@ export default {
                     if(this.auth.isAuthenticated==true){
                       token = this.auth.user.access_token;
                     }
+                 
                      axios.get(rootDomain+'vueweb/product/'+this.slug,{
                         params:{
                            token:token,
-                           selfDomain:this.selfDomain
+                           selfDomain:this.selfDomain,
+
                         }
                      })
                      .then((response)=>{
@@ -715,7 +733,10 @@ export default {
                         this.refarral_code_url = response.data[8];
                         this.refundCheck = response.data[9];
                         this.refundImage = response.data[10];
-                        console.log(response.data);
+                        this.product_query_activation = response.data[11];
+                        this.totalQuery = response.data[12];
+                        this.queries = response.data[13];
+                        console.log(response);
                      })
                },
                brandSlug(brand_slug){
@@ -749,7 +770,22 @@ export default {
                   document.execCommand("copy");
                   document.body.removeChild(dummy);
                   this.copyMsg = 'copied';
-               }  
+               },
+               postQuery(){
+                  // const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+                  // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
+                  axios.get(this.selfDomain+'vueweb/product-queries',{
+                     headers: {
+                        // 'X-CS RF-TOKEN': csrfToken
+                        query:this.query
+                     }
+                  })
+                  .then((response) =>{
+                     console.log(response.data)
+                  }).catch((err)=>{
+                     console.log(err)
+                  })
+               }
           }   
 }
 </script>
