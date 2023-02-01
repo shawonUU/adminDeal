@@ -22,14 +22,12 @@
       <div class="container">
           <div class="rounded bg-white px-3 pt-3 shadow-sm">
               <div class="row row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 gutters-10">
-                      <div v-for="(brand,index) in allBrands" :key="index" class="col text-center">
-                          <a @click="brandSlug(brand.slug)"
-                              class="d-block border-light hov-shadow-md mb-3 rounded border p-3">
-                              <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="brand.logo" class="lazyload h-70px mw-100 mx-auto"
-                                  :alt="brand.name">
-                          </a>
-                      </div>
-              
+                <div v-for="(brand,index) in allBrands" :key="index" class="col text-center">
+                    <a @click="brandSlug(brand.slug)"
+                        class="d-block border-light hov-shadow-md mb-3 rounded border p-3">
+                        <img src="https://admindeal.com.bd/public/assets/img/placeholder.jpg" :data-src="brand.logo" class="lazyload h-70px mw-100 mx-auto" :alt="brand.name">
+                    </a>
+                </div>
               </div>
           </div>
       </div>
