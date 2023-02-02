@@ -220,15 +220,84 @@
               <a href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
                 <i class="la la-shopping-cart la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill cart-count">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill cart-count">{{ totalCart }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
                 </span>
               </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation">
-                <div class="text-center p-3">
-                  <i class="las la-frown la-3x opacity-60 mb-3"></i>
-                  <h3 class="h6 fw-700">Your Cart is empty</h3>
-                </div>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation" style="display: block;">
+               
+
+
+
+
+                <templete v-if="totalCart>0">
+                  <div  class="p-3 fs-15 fw-600 p-3 border-bottom">
+                      {{ 'Cart Items' }}
+                  </div>
+                  <ul class="h-250px overflow-auto c-scrollbar-light list-group list-group-flush">
+                      <template v-for="(item, index) in cart" :key="index">
+                          
+                              <li v-if="item.product != null" class="list-group-item">
+                                  <span class="d-flex align-items-center">
+                                      <a href="javascript:void(0)"
+                                          class="text-reset d-flex align-items-center flex-grow-1">
+                                          <img :src="item.product.data[0].thumbnail_image"
+                                              class="img-fit lazyload size-60px rounded"
+                                              :alt="item.product.data[0].name">
+                                          <span class="minw-0 pl-2 flex-grow-1">
+                                              <span class="fw-600 mb-1 text-truncate-2">
+                                                  {{ item.product.data[0].name }}
+                                              </span>
+                                              <span class="">{{ item.quantity }}x</span>
+                                              
+                                              <span class="">{{ item.cart_product_price }}</span>
+                                          </span>
+                                      </a>
+                                      <span class="">
+                                          <button 
+                                              class="btn btn-sm btn-icon stop-propagation">
+                                              <i class="la la-close"></i>
+                                          </button>
+                                      </span>
+                                  </span>
+                              </li>
+                            
+                      </template>
+                  </ul>
+                  <div class="px-3 py-2 fs-15 border-top d-flex justify-content-between">
+                      <span class="opacity-60">{{ 'Subtotal' }}</span>
+                      <span class="fw-600">{{ single_price }}</span>
+                  </div>
+                  <div class="px-3 py-2 text-center border-top">
+                      <ul class="list-inline mb-0">
+                          <li class="list-inline-item">
+                              <a href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
+                                  {{ 'View cart' }}
+                              </a>
+                          </li>
+                         
+                              <li v-if="auth.isAuthenticated == true" class="list-inline-item">
+                                  <a href="javascript:void(0)" class="btn btn-primary btn-sm">
+                                      {{ 'Checkout' }}
+                                  </a>
+                              </li>
+                          
+                      </ul>
+                  </div>
+              </templete>
+              <templete v-else>
+                  <div  class="text-center p-3">
+                      <i class="las la-frown la-3x opacity-60 mb-3"></i>
+                      <h3 class="h6 fw-700">{{ 'Your Cart is empty' }}</h3>
+                  </div>
+              </templete>
+
+
+
+
+
+
+
               </div>
             </div>
           </div>
@@ -297,11 +366,77 @@
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
                 </span>
               </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation">
-                <div class="text-center p-3">
-                  <i class="las la-frown la-3x opacity-60 mb-3"></i>
-                  <h3 class="h6 fw-700">Your Cart is empty</h3>
-                </div>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation " style="display: block;">
+                
+
+
+
+              <templete v-if="totalCart>0">
+                  <div  class="p-3 fs-15 fw-600 p-3 border-bottom">
+                      {{ 'Cart Items' }}
+                  </div>
+                  <ul class="h-250px overflow-auto c-scrollbar-light list-group list-group-flush">
+                      <template v-for="(item, index) in cart" :key="index">
+                          
+                              <li v-if="item.product != null" class="list-group-item">
+                                  <span class="d-flex align-items-center">
+                                      <a href="javascript:void(0)"
+                                          class="text-reset d-flex align-items-center flex-grow-1">
+                                          <img :src="item.product.data[0].thumbnail_image"
+                                              class="img-fit lazyload size-60px rounded"
+                                              :alt="item.product.data[0].name">
+                                          <span class="minw-0 pl-2 flex-grow-1">
+                                              <span class="fw-600 mb-1 text-truncate-2">
+                                                  {{ item.product.data[0].name }}
+                                              </span>
+                                              <span class="">{{ item.quantity }}x</span>
+                                              
+                                              <span class="">{{ item.cart_product_price }}</span>
+                                          </span>
+                                      </a>
+                                      <span class="">
+                                          <button 
+                                              class="btn btn-sm btn-icon stop-propagation">
+                                              <i class="la la-close"></i>
+                                          </button>
+                                      </span>
+                                  </span>
+                              </li>
+                            
+                      </template>
+                  </ul>
+                  <div class="px-3 py-2 fs-15 border-top d-flex justify-content-between">
+                      <span class="opacity-60">{{ 'Subtotal' }}</span>
+                      <span class="fw-600">{{ single_price }}</span>
+                  </div>
+                  <div class="px-3 py-2 text-center border-top">
+                      <ul class="list-inline mb-0">
+                          <li class="list-inline-item">
+                              <a href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
+                                  {{ 'View cart' }}
+                              </a>
+                          </li>
+                         
+                              <li v-if="auth.isAuthenticated == true" class="list-inline-item">
+                                  <a href="javascript:void(0)" class="btn btn-primary btn-sm">
+                                      {{ 'Checkout' }}
+                                  </a>
+                              </li>
+                          
+                      </ul>
+                  </div>
+              </templete>
+              <templete v-else>
+                  <div  class="text-center p-3">
+                      <i class="las la-frown la-3x opacity-60 mb-3"></i>
+                      <h3 class="h6 fw-700">{{ 'Your Cart is empty' }}</h3>
+                  </div>
+              </templete>
+
+
+
+
+
               </div>
             </div>
           </div>
@@ -496,57 +631,63 @@ export default {
       message:'',
       totalCart: 0,
       totalWishlist: 0,
+      single_price: '',
+      cart: '',
     }
   },
   created() {
-    var user = localStorage.getItem("user");
-    if(user !== null){
-      user = JSON.parse(user);
-      this.auth.isAuthenticated = true;
-      this.auth.user = user;
-      this.getNavData();
-    }
-    this.setNavData();
+    this.createPro();
   },
   beforeCreated(){
  
   },
   mounted(){
     this.getNavCategories(this.rootDomain);
-    this.emitter.on("authentication", message => {
-      if(message){
-        let user = JSON.parse(localStorage.getItem("user"));
-        this.auth.isAuthenticated = true;
-        this.auth.user = user;
-        this.getNavData();
-      }else{
-        setNavData();
-      }
+    this.emitter.on("reload", message => {
+        this.createPro();
     });
 
 
   },
   methods:{
+    createPro(){
+      var user = localStorage.getItem("user");
+      if(user !== null){
+        user = JSON.parse(user);
+        this.auth.isAuthenticated = true;
+        this.auth.user = user;
+      }
+      this.getNavData();
+    },
     getNavData(){
-      axios.get(this.selfDomain+'vue/v3/auth/get_nav_data', {
-            headers: {
-              Authorization: "Bearer " + this.auth.user.access_token,
+      var token = "";
+      var temp_user = "";
+      if(this.auth.isAuthenticated==true){
+          token = this.auth.user.access_token;
+      }else{
+          var temp_user = localStorage.getItem("temp_user");
+          if(!temp_user) temp_user = "";
+          
+      }
+     
+      axios.get(this.rootDomain+'vue/v3/auth/get_nav_data', {
+            params: {
+              token: token,
+              temp_user: temp_user,
             }
       }).then(res=>{
-        console.log(res);
+        console.log("NAV");
+        console.log(res.data);
         this.totalCart = res.data.totalCart;
         this.totalWishlist = res.data.totalWishlist;
-        this.setNavData();
+        this.single_price = res.data.single_price;
+        this.cart = res.data.cart;
 
       }).catch(err=>{
 
       });
     },
-    setNavData(){
-      if(!this.auth.isAuthenticated){
-
-      }
-    },
+    
     searchSubmit(){
       var searchKey = $('#search').val();
       this.$router.push({
@@ -662,7 +803,31 @@ export default {
       },
 
       check(){
-        axios.get(this.selfDomain+'vueweb/check', {
+
+        /*axios.get(this.rootDomain+'vueweb/session/set', {params:
+            {
+              key: 'xxx',
+              value: 'yyy',
+          }
+        })
+        .then(response => {
+            console.log(response.data);
+        });
+
+        axios.get(this.rootDomain+'vueweb/session/get',{params:
+            {
+              key: 'xxx',
+             
+          }
+        })
+        .then(response => {
+            console.log(response.data);
+        });*/
+
+
+
+
+        /*axios.get(this.selfDomain+'vueweb/check', {
           headers: {
             Authorization: "Bearer " + this.auth.user.access_token,
           }
@@ -671,7 +836,7 @@ export default {
               console.log(response.data);
         }).catch(err=>{
           alert('');
-        });
+        });*/
       }
 
 

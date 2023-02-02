@@ -124,7 +124,7 @@ export default {
             localStorage.setItem("user", JSON.stringify(response.data.user));
             this.auth.isAuthenticated = true;
             this.auth.user = response.data.user;
-            this.emitter.emit("authentication", true);
+            this.emitter.emit("reload", true);
             this.$router.push({path: '/'});
           }
           
