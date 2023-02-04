@@ -517,7 +517,8 @@ export default {
 
                 
 
-                axios.get(this.rootDomain+'vueweb/cart/addtocart',{params: data})
+                // axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                axios.get(this.selfDomain+'vueweb/cart/addtocart',{params: data})
                 .then(res=>{
                     this.productDetails = false;
                     this.preLoader = false;

@@ -224,12 +224,8 @@
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
                 </span>
               </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation" style="display: block;">
+              <div id="cartView" v-if="cartView==true"  class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation" style="display: block;">
                
-
-
-
-
                 <templete v-if="totalCart>0">
                   <div  class="p-3 fs-15 fw-600 p-3 border-bottom">
                       {{ 'Cart Items' }}
@@ -284,13 +280,13 @@
                           
                       </ul>
                   </div>
-              </templete>
-              <templete v-else>
-                  <div  class="text-center p-3">
-                      <i class="las la-frown la-3x opacity-60 mb-3"></i>
-                      <h3 class="h6 fw-700">{{ 'Your Cart is empty' }}</h3>
-                  </div>
-              </templete>
+                </templete>
+                <templete v-else>
+                    <div  class="text-center p-3">
+                        <i class="las la-frown la-3x opacity-60 mb-3"></i>
+                        <h3 class="h6 fw-700">{{ 'Your Cart is empty' }}</h3>
+                    </div>
+                </templete>
 
 
 
@@ -359,14 +355,14 @@
           </div>
           <div class="d-none d-lg-block  align-self-stretch ml-3 mr-0" data-hover="dropdown">
             <div class="nav-cart-box dropdown h-100" id="cart_items">
-              <a href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
+              <a @click="viewCart()" href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
                 <i class="la la-shopping-cart la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
                   <span class="badge badge-primary badge-inline badge-pill cart-count">{{ totalCart }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
                 </span>
               </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation " style="display: block;">
+              <div id="cartView" v-if="cartView==true" class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation " style="display: block;">
                 
 
 
@@ -613,6 +609,9 @@
 </template>
 
 <script>
+  // document.addEventListener('click', function (event) {
+  //   this.hidCart(event);
+  // });
 import axios from 'axios';
 export default {
   data(){
@@ -633,6 +632,7 @@ export default {
       totalWishlist: 0,
       single_price: '',
       cart: '',
+      cartView: false,
     }
   },
   created() {
@@ -658,6 +658,29 @@ export default {
         this.auth.user = user;
       }
       this.getNavData();
+     
+    },
+    viewCart(){
+      alert('lkojo');
+      this.cartView = true;
+    },
+    hidCart(event){
+        console.log(event.target);
+        
+        const childElement = event.target;
+        const parentId = 'cartView';
+
+        const parentExists = !!childElement.closest(`#${parentId}`);
+
+          if (!parentExists) {
+            alert(this.cartView);
+            if(this.cartView == true){
+              this.cartView = false;
+            }
+          }else{
+            alert('inside');
+          }
+
     },
     getNavData(){
       var token = "";
