@@ -500,6 +500,7 @@ export default {
             }
 
             if(this.checkAddToCartValidity()) {
+                // console.log('##################');
                 this.preLoader = true;
 
                 var temp_user = "";
@@ -510,21 +511,24 @@ export default {
                     var temp_user = localStorage.getItem("temp_user");
                     if(!temp_user) temp_user = "";
                 }
+                
 
                 let data;
                 if(this.color != null){data = {id: this.productId, quantity: this.quantity, color: this.color, token:token, temp_user:temp_user};}
                 else{data = {id: this.productId, quantity: this.quantity, token:token, temp_user:temp_user};}
 
-                
+                // console.log(data);
 
                 // axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 axios.get(this.selfDomain+'vueweb/cart/addtocart',{params: data})
                 .then(res=>{
                     this.productDetails = false;
                     this.preLoader = false;
+                    // console.log("********************");
+                    // console.log(res.data);return;
                     localStorage.setItem("temp_user", res.data.temp_user);
-                    console.log("ADDED");
-                    console.log(res.data);
+                    // console.log("ADDED");
+                    // console.log(res.data);
                     this.addedTocart = res.data;
                     this.addedTocart.product = this.addedTocart.product.data[0];
                     this.addedTocart.reletedProducts = this.addedTocart.reletedProducts.data;

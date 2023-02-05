@@ -217,8 +217,8 @@
           </div>
           <div class="d-lg-none align-self-stretch  mr-0" data-hover="dropdown">
             <div class="nav-cart-box dropdown h-100" id="cart_items">
-              <a href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
-                <i class="la la-shopping-cart la-2x opacity-80"></i>
+              <a  href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
+                <i id="cartIcon" class="la la-shopping-cart la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
                   <span class="badge badge-primary badge-inline badge-pill cart-count">{{ totalCart }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
@@ -355,8 +355,8 @@
           </div>
           <div class="d-none d-lg-block  align-self-stretch ml-3 mr-0" data-hover="dropdown">
             <div class="nav-cart-box dropdown h-100" id="cart_items">
-              <a @click="viewCart()" href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
-                <i class="la la-shopping-cart la-2x opacity-80"></i>
+              <a  @click="viewCart()" href="javascript:void(0)" class="d-flex align-items-center text-reset h-100" data-toggle="dropdown" data-display="static">
+                <i id="cartIcon" class="la la-shopping-cart la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
                   <span class="badge badge-primary badge-inline badge-pill cart-count">{{ totalCart }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Cart</span>
@@ -609,9 +609,7 @@
 </template>
 
 <script>
-  // document.addEventListener('click', function (event) {
-  //   this.hidCart(event);
-  // });
+  
 import axios from 'axios';
 export default {
   data(){
@@ -646,7 +644,8 @@ export default {
     this.emitter.on("reload", message => {
         this.createPro();
     });
-
+   
+    document.addEventListener("click", this.hidCart);
 
   },
   methods:{
@@ -661,25 +660,27 @@ export default {
      
     },
     viewCart(){
-      alert('lkojo');
-      this.cartView = true;
+      if(this.cartView==true){
+        this.cartView = false;
+      }else{
+        this.cartView = true;
+      }
+      
     },
     hidCart(event){
-        console.log(event.target);
-        
+
         const childElement = event.target;
         const parentId = 'cartView';
 
         const parentExists = !!childElement.closest(`#${parentId}`);
 
-          if (!parentExists) {
-            alert(this.cartView);
+          if ((!parentExists) && childElement.id != "cartIcon") {
+            
             if(this.cartView == true){
               this.cartView = false;
             }
-          }else{
-            alert('inside');
           }
+
 
     },
     getNavData(){
@@ -692,15 +693,15 @@ export default {
           if(!temp_user) temp_user = "";
           
       }
-     
+      console.log("************");
       axios.get(this.rootDomain+'vue/v3/auth/get_nav_data', {
             params: {
               token: token,
               temp_user: temp_user,
             }
       }).then(res=>{
-        console.log("NAV");
-        console.log(res.data);
+         console.log("NAV");
+         console.log(res.data);
         this.totalCart = res.data.totalCart;
         this.totalWishlist = res.data.totalWishlist;
         this.single_price = res.data.single_price;
@@ -728,7 +729,7 @@ export default {
         // console.log(this.navCategoriesLinks);
 
       }).catch(err=>{
-        console.log(err);
+        // console.log(err);
       });
     },
 

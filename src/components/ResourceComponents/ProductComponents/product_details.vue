@@ -698,7 +698,7 @@
 
                                     <div class="ml-3 mt-0 p-0">
                                        <div class="fs-14">{{ otherQuery.question }}</div>
-                                       <span class="text-secondary">{{ otherQuery.user_id }}</span>
+                                       <span class="text-secondary">{{ otherQuery.user_name }}</span>
                                     </div>
                               </div>
                               <div class="answer d-flex  my-4">
@@ -714,9 +714,9 @@
                                     </span>
                                     <div class="ml-3 mt-0 p-0">
                                        <div class="fs-14">
-                                          {{ query.reply?query.reply:"Seller did not respond yet" }}
+                                          {{ otherQuery.reply?otherQuery.reply:"Seller did not respond yet" }}
                                        </div>
-                                       <span class=" text-secondary"> {{ shopDetails.name  }} 
+                                       <span class=" text-secondary"> {{ otherQuery.seller_name  }} 
                                        </span>
                                     </div>
                               </div>
@@ -840,7 +840,7 @@ export default {
                         this.totalQuery = response.data[12];
                         this.queries = response.data[13];
                         this.own_questions = response.data[14];
-                        console.log(response.data[13]);
+
                         
                      })
                },

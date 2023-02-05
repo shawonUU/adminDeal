@@ -112,11 +112,16 @@ export default {
       }
     },
     userLogin(){
+
+      var temp_user = localStorage.getItem("temp_user");
+      if(!temp_user) temp_user = "";
+
       axios.get(this.rootDomain+'vue/v3/auth/login', {params:{
         email: this.user.email,
         password: this.user.password,
         login_by: this.user.login_by,
         rememberMe: this.user.rememberMe,
+        temp_user: temp_user,
       }})
       .then((response)=>{ 
           if(response.status == 200){
@@ -126,6 +131,7 @@ export default {
             this.auth.user = response.data.user;
             this.emitter.emit("reload", true);
             this.$router.push({path: '/'});
+            localStorage.removeItem("temp_user");
           }
           
       })

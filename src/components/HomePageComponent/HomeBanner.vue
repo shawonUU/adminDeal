@@ -187,7 +187,7 @@ methods:{
       this.isFlashDeal = res.data;
     })
     .catch((eror)=>{
-      console.log(error)
+      // console.log(error)
     })
   }
  }
