@@ -693,7 +693,7 @@ export default {
           if(!temp_user) temp_user = "";
           
       }
-     
+      console.log("************");
       axios.get(this.rootDomain+'vue/v3/auth/get_nav_data', {
             params: {
               token: token,

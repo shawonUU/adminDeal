@@ -613,9 +613,10 @@
                   <router-link :to="{name:'login'}">Login</router-link> or
                   <router-link :to="{name:'registration'}" class="mr-1">Register</router-link>to submit your questions to seller
                </p>
-               <div v-if="product_query_activation==1" class="query form p-3">
-                  <form @submit.prevent="postQuery">
-                        <input type="hidden" name="product" value="{{ $detailedProduct->id }}">
+               <template v-if="auth.isAuthenticated==true">
+                  <div v-if="product_query_activation==1" class="query form p-3">
+                  <form @submit.prevent="postQuery(productDetails.id)">
+                       
                         <div class="form-group">
                            <textarea class="form-control" rows="3" v-model="query" cols="40" name="question"
                               placeholder="Write your question here..." style="resize: none;"></textarea>
@@ -624,18 +625,116 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
                </div>
-               <div class="pagination-area my-4 mb-0 ml-3">
-                  <div class="border-bottom py-3">
-                     <h3 class="fs-18 fw-600 mb-0">
-                        <span>Other Questions</span>
-                     </h3>
-                  </div>
-                  <p>No none asked to seller yet</p>
-                  <div class="aiz-pagination py-2">
+            </template>
+      <div class="question-area my-4   mb-0 ml-3">
+         <div class="border-bottom py-3">
+            <h3 class="fs-18 fw-600 mb-0">
+               <span class="mr-4">My Questions</span>
+            </h3>
+         </div>
+         <!-- @foreach ($own_product_queries as $product_query) -->
+            <div v-for="(query, index) in own_questions" :key="index" class="produc-queries border-bottom">
+               <div class="query d-flex my-4">
+                     <span class="mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24.994"
+                           height="24.981" viewBox="0 0 24.994 24.981">
+                           <g id="Group_23909" data-name="Group 23909"
+                                 transform="translate(18392.496 11044.037)">
+                                 <path id="Subtraction_90" data-name="Subtraction 90"
+                                    d="M1830.569-117.742a.4.4,0,0,1-.158-.035.423.423,0,0,1-.252-.446c0-.84,0-1.692,0-2.516v-2.2a5.481,5.481,0,0,1-2.391-.745,5.331,5.331,0,0,1-2.749-4.711c-.034-2.365-.018-4.769,0-7.094l0-.649a5.539,5.539,0,0,1,4.694-5.513,5.842,5.842,0,0,1,.921-.065q3.865,0,7.73,0l5.035,0a5.539,5.539,0,0,1,5.591,5.57c.01,2.577.01,5.166,0,7.693a5.54,5.54,0,0,1-4.842,5.506,6.5,6.5,0,0,1-.823.046l-3.225,0c-1.454,0-2.753,0-3.97,0a.555.555,0,0,0-.435.182c-1.205,1.214-2.435,2.445-3.623,3.636l-.062.062-1.005,1.007-.037.037-.069.069A.464.464,0,0,1,1830.569-117.742Zm7.37-11.235h0l1.914,1.521.817-.754-1.621-1.273a3.517,3.517,0,0,0,1.172-1.487,5.633,5.633,0,0,0,.418-2.267v-.58a5.629,5.629,0,0,0-.448-2.323,3.443,3.443,0,0,0-1.282-1.525,3.538,3.538,0,0,0-1.93-.53,3.473,3.473,0,0,0-1.905.534,3.482,3.482,0,0,0-1.288,1.537,5.582,5.582,0,0,0-.454,2.314v.654a5.405,5.405,0,0,0,.471,2.261,3.492,3.492,0,0,0,1.287,1.5,3.492,3.492,0,0,0,1.9.527,3.911,3.911,0,0,0,.947-.112Zm-.948-.9a2.122,2.122,0,0,1-1.812-.9,4.125,4.125,0,0,1-.652-2.457v-.667a4.008,4.008,0,0,1,.671-2.4,2.118,2.118,0,0,1,1.78-.863,2.138,2.138,0,0,1,1.824.869,4.145,4.145,0,0,1,.639,2.473v.673a4.07,4.07,0,0,1-.655,2.423A2.125,2.125,0,0,1,1836.991-129.881Z"
+                                    transform="translate(-20217 -10901.814)" fill="#e62e04"
+                                    stroke="rgba(0,0,0,0)" stroke-miterlimit="6"
+                                    stroke-width="1" />
+                           </g>
+                        </svg></span>
+
+                     <div class="ml-3">
+                        <div class="fs-14">{{ query.question }}</div>
+                        <span class="text-secondary">{{  auth.user.name  }}</span>
+                     </div>
+               </div>
+               <div class="answer d-flex my-4">
+               <span class="mt-1"> <svg xmlns="http://www.w3.org/2000/svg" width="24.99"
+                     height="24.98" viewBox="0 0 24.99 24.98">
+                     <g id="Group_23908" data-name="Group 23908"
+                           transform="translate(17952.169 11072.5)">
+                           <path id="Subtraction_89" data-name="Subtraction 89"
+                              d="M2162.9-146.2a.4.4,0,0,1-.159-.035.423.423,0,0,1-.251-.446q0-.979,0-1.958V-151.4a5.478,5.478,0,0,1-2.39-.744,5.335,5.335,0,0,1-2.75-4.712c-.034-2.355-.018-4.75,0-7.065l0-.678a5.54,5.54,0,0,1,4.7-5.513,5.639,5.639,0,0,1,.92-.064c2.527,0,5.029,0,7.437,0l5.329,0a5.538,5.538,0,0,1,5.591,5.57c.01,2.708.01,5.224,0,7.692a5.539,5.539,0,0,1-4.843,5.506,6,6,0,0,1-.822.046l-3.234,0c-1.358,0-2.691,0-3.96,0a.556.556,0,0,0-.436.182c-1.173,1.182-2.357,2.367-3.5,3.514l-1.189,1.192-.047.048-.058.059A.462.462,0,0,1,2162.9-146.2Zm5.115-12.835h3.559l.812,2.223h1.149l-3.25-8.494h-.98l-3.244,8.494h1.155l.8-2.222Zm3.226-.915h-2.888l1.441-3.974,1.447,3.972Z"
+                              transform="translate(-20109 -10901.815)" fill="#f7941d"
+                              stroke="rgba(0,0,0,0)" stroke-miterlimit="6"
+                              stroke-width="1" />
+                     </g>
+                  </svg>
+               </span>
+
+                  <div class="ml-3">
+                     <div class="fs-14">
+                        {{ query.reply?query.reply:"Seller did not respond yet" }}
+                     </div>
+                     <span class=" text-secondary">
+                        {{ shopDetails.name  }} </span>
                   </div>
                </div>
+                     </div>
+                  </div>
+                     <div class="pagination-area my-4 mb-0 ml-3">
+                        <div class="border-bottom py-3">
+                           <h3 class="fs-18 fw-600 mb-0">
+                              <span>Other Questions</span>
+                           </h3>
+                        </div>
+                        <!-- @forelse ($product_queries as $product_query) -->
+                        <template  v-if="queries.data!=null">
+                           <div v-for="(otherQuery, index) in queries.data" :key="index" class="produc-queries border-bottom">
+                              <div class="query d-flex  my-4">
+                                    <span class="mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24.994" height="24.981"
+                                          viewBox="0 0 24.994 24.981">
+                                          <g id="Group_23909" data-name="Group 23909" transform="translate(18392.496 11044.037)">
+                                                <path id="Subtraction_90" data-name="Subtraction 90"
+                                                   d="M1830.569-117.742a.4.4,0,0,1-.158-.035.423.423,0,0,1-.252-.446c0-.84,0-1.692,0-2.516v-2.2a5.481,5.481,0,0,1-2.391-.745,5.331,5.331,0,0,1-2.749-4.711c-.034-2.365-.018-4.769,0-7.094l0-.649a5.539,5.539,0,0,1,4.694-5.513,5.842,5.842,0,0,1,.921-.065q3.865,0,7.73,0l5.035,0a5.539,5.539,0,0,1,5.591,5.57c.01,2.577.01,5.166,0,7.693a5.54,5.54,0,0,1-4.842,5.506,6.5,6.5,0,0,1-.823.046l-3.225,0c-1.454,0-2.753,0-3.97,0a.555.555,0,0,0-.435.182c-1.205,1.214-2.435,2.445-3.623,3.636l-.062.062-1.005,1.007-.037.037-.069.069A.464.464,0,0,1,1830.569-117.742Zm7.37-11.235h0l1.914,1.521.817-.754-1.621-1.273a3.517,3.517,0,0,0,1.172-1.487,5.633,5.633,0,0,0,.418-2.267v-.58a5.629,5.629,0,0,0-.448-2.323,3.443,3.443,0,0,0-1.282-1.525,3.538,3.538,0,0,0-1.93-.53,3.473,3.473,0,0,0-1.905.534,3.482,3.482,0,0,0-1.288,1.537,5.582,5.582,0,0,0-.454,2.314v.654a5.405,5.405,0,0,0,.471,2.261,3.492,3.492,0,0,0,1.287,1.5,3.492,3.492,0,0,0,1.9.527,3.911,3.911,0,0,0,.947-.112Zm-.948-.9a2.122,2.122,0,0,1-1.812-.9,4.125,4.125,0,0,1-.652-2.457v-.667a4.008,4.008,0,0,1,.671-2.4,2.118,2.118,0,0,1,1.78-.863,2.138,2.138,0,0,1,1.824.869,4.145,4.145,0,0,1,.639,2.473v.673a4.07,4.07,0,0,1-.655,2.423A2.125,2.125,0,0,1,1836.991-129.881Z"
+                                                   transform="translate(-20217 -10901.814)" fill="#e62e04" stroke="rgba(0,0,0,0)"
+                                                   stroke-miterlimit="10" stroke-width="1" />
+                                          </g>
+                                       </svg></span>
+
+                                    <div class="ml-3 mt-0 p-0">
+                                       <div class="fs-14">{{ otherQuery.question }}</div>
+                                       <span class="text-secondary">{{ otherQuery.user_name }}</span>
+                                    </div>
+                              </div>
+                              <div class="answer d-flex  my-4">
+                                    <span class="mt-1"> <svg xmlns="http://www.w3.org/2000/svg" width="24.99" height="24.98"
+                                          viewBox="0 0 24.99 24.98">
+                                          <g id="Group_23908" data-name="Group 23908" transform="translate(17952.169 11072.5)">
+                                                <path id="Subtraction_89" data-name="Subtraction 89"
+                                                   d="M2162.9-146.2a.4.4,0,0,1-.159-.035.423.423,0,0,1-.251-.446q0-.979,0-1.958V-151.4a5.478,5.478,0,0,1-2.39-.744,5.335,5.335,0,0,1-2.75-4.712c-.034-2.355-.018-4.75,0-7.065l0-.678a5.54,5.54,0,0,1,4.7-5.513,5.639,5.639,0,0,1,.92-.064c2.527,0,5.029,0,7.437,0l5.329,0a5.538,5.538,0,0,1,5.591,5.57c.01,2.708.01,5.224,0,7.692a5.539,5.539,0,0,1-4.843,5.506,6,6,0,0,1-.822.046l-3.234,0c-1.358,0-2.691,0-3.96,0a.556.556,0,0,0-.436.182c-1.173,1.182-2.357,2.367-3.5,3.514l-1.189,1.192-.047.048-.058.059A.462.462,0,0,1,2162.9-146.2Zm5.115-12.835h3.559l.812,2.223h1.149l-3.25-8.494h-.98l-3.244,8.494h1.155l.8-2.222Zm3.226-.915h-2.888l1.441-3.974,1.447,3.972Z"
+                                                   transform="translate(-20109 -10901.815)" fill="#f7941d" stroke="rgba(0,0,0,0)"
+                                                   stroke-miterlimit="10" stroke-width="1" />
+                                          </g>
+                                       </svg>
+                                    </span>
+                                    <div class="ml-3 mt-0 p-0">
+                                       <div class="fs-14">
+                                          {{ otherQuery.reply?otherQuery.reply:"Seller did not respond yet" }}
+                                       </div>
+                                       <span class=" text-secondary"> {{ otherQuery.seller_name  }} 
+                                       </span>
+                                    </div>
+                              </div>
+                           </div>
+                        </template>
+                          
+                        <!-- @empty -->
+                           <template v-else>
+                              <p>No none asked to seller yet</p>
+                           </template>
+                        <!-- @endforelse -->
+                        <div class="aiz-pagination py-2">
+                           <!-- {{ $product_queries->links() }} -->
+                        </div>
+                    </div>
             </div>
          </div>
+           
       </div>
    </div>
 </section> 
@@ -684,7 +783,8 @@ export default {
            product_query_activation:"",
            totalQuery:"",
            queries:"",
-           query:""
+           query:"",
+           own_questions:[],
         }
        },
        created(){
@@ -729,14 +829,19 @@ export default {
                         this.brandData = response.data[0].data[0].brand;
                         this.club_point = response.data[6];
                         this.affiliteCheck = response.data[7];
-                        this.user_status = this.auth.user.user_status;
+
+                        if(this.auth.isAuthenticated){
+                           this.user_status = this.auth.user.user_status;
+                        }
                         this.refarral_code_url = response.data[8];
                         this.refundCheck = response.data[9];
                         this.refundImage = response.data[10];
                         this.product_query_activation = response.data[11];
                         this.totalQuery = response.data[12];
                         this.queries = response.data[13];
-                        console.log(response);
+                        this.own_questions = response.data[14];
+
+                        
                      })
                },
                brandSlug(brand_slug){
@@ -771,17 +876,18 @@ export default {
                   document.body.removeChild(dummy);
                   this.copyMsg = 'copied';
                },
-               postQuery(){
-                  // const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-                  // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
+               postQuery(productId){
                   axios.get(this.selfDomain+'vueweb/product-queries',{
                      headers: {
-                        // 'X-CS RF-TOKEN': csrfToken
-                        query:this.query
+                        token: this.auth.user.access_token,
+                        Authorization: "Bearer " + this.auth.user.access_token,
+                        question:this.query,
+                        productId:productId
                      }
                   })
                   .then((response) =>{
-                     console.log(response.data)
+                     this.getProductDetails(this.rootDomain);
+                     this.query = "";
                   }).catch((err)=>{
                      console.log(err)
                   })
