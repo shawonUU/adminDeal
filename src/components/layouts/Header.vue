@@ -822,8 +822,9 @@ export default {
       logout() {
         localStorage.removeItem("user");
         this.auth.isAuthenticated = false;
-        this.$router.push({ name: 'home' });
         localStorage.removeItem("recentlyViewProduct");
+        this.emitter.emit("reload", true);
+        this.$router.push({ name: 'home' });
       },
 
       check(){
