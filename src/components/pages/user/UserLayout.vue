@@ -31,17 +31,17 @@
                                         <span class="aiz-side-nav-text">Followed Shop</span> <span class="badge badge-inline badge-success">New</span>
                                     </router-link>
                                 </li>
-                                <!-- @if (get_setting('conversation_system') == 1)
+                                     <!-- @if (get_setting('conversation_system') == 1)
                                         @php
                                             $conversation = \App\Models\Conversation::where('sender_id', Auth::user()->id)->where('sender_viewed', 0)->get();
                                         @endphp -->
-                                <li class="aiz-side-nav-item">
+                                <li v-if="isConversation==1" class="aiz-side-nav-item">
                                     <router-link :to="{name:'UserConversations'}" class="aiz-side-nav-link">
                                         <i class="las la-comment aiz-side-nav-icon"></i>
                                         <span class="aiz-side-nav-text">Messages</span> <span class="badge badge-inline badge-danger">new</span>
-                                        <!-- @if (count($conversation) > 0) -->
-                                            <span class="badge badge-success">(10)</span>
-                                        <!-- @endif -->
+                                 
+                                    <span v-if="conversation > 0" class="badge badge-success">({{conversation.length}})</span>
+                        
                                     </router-link>
                                 </li>
                                     <!-- @endif -->
@@ -120,39 +120,30 @@
                                         </a>
                                     </li>
                                 @else -->
-                                <!-- 
-                                    @php
-                                        $delivery_viewed = App\Models\Order::where('user_id', Auth::user()->id)->where('delivery_viewed', 0)->get()->count();
-                                        $payment_status_viewed = App\Models\Order::where('user_id', Auth::user()->id)->where('payment_status_viewed', 0)->get()->count();
-                                    @endphp
-                                    @if(Auth::user()->user_type == 'customer') -->
+                                    <template v-if="auth.user.type=='customer'">
                                         <li class="aiz-side-nav-item">
                                             <router-link :to="{name: 'PurchaseHistory'}" class="aiz-side-nav-link">
                                                 <i class="las la-file-alt aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">Purchase History</span>
-                                                <!-- @if($delivery_viewed > 0 || $payment_status_viewed > 0) -->
-                                                <span class="badge badge-inline badge-success">New</span>
-                                                <!-- @endif -->
+                                                <span v-if="delivery_viewed>0||payment_status_viewed>0" class="badge badge-inline badge-success">New</span>
+                                            
                                             </router-link>
                                         </li>
-                                        
+                                    
                                         <li class="aiz-side-nav-item">
                                             <a href="" class="aiz-side-nav-link">
                                                 <i class="las la-download aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">My Downloads</span> <span class="badge badge-inline badge-success">digi</span>
                                             </a>
                                         </li>
-                                    <!-- @endif -->
-
-                                        <!-- @if (addon_is_activated('refund_request')) -->
-                                            <li class="aiz-side-nav-item">
-                                                <a href="" class="aiz-side-nav-link ">
-                                                    <i class="las la-backward aiz-side-nav-icon"></i>
-                                                    <span class="aiz-side-nav-text">Refund / Exchange </span> <span class="badge badge-inline badge-success">New</span>
-                                                </a>
-                                            </li>
-                                        <!-- @endif -->
-
+                                    </template>
+    
+                                        <li v-if="refund_request==true" class="aiz-side-nav-item">
+                                            <a href="" class="aiz-side-nav-link ">
+                                                <i class="las la-backward aiz-side-nav-icon"></i>
+                                                <span class="aiz-side-nav-text">Refund / Exchange </span> <span class="badge badge-inline badge-success">New</span>
+                                            </a>
+                                        </li>                              
                                         <li class="aiz-side-nav-item">
                                             <router-link :to="{name:'Wishlist'}" href="" class="aiz-side-nav-link">
                                                 <i class="la la-heart-o aiz-side-nav-icon"></i>
@@ -167,39 +158,33 @@
                                             </a>
                                         </li>
 
-                                    <!-- @if(get_setting('classified_product') == 1) -->
-                                        <li class="aiz-side-nav-item">
+                                        <li v-if="classified_product==1" class="aiz-side-nav-item">
                                             <a href="" class="aiz-side-nav-link">
                                                 <i class="lab la-sketch aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">Classified Products</span>
                                             </a>
-                                        </li>
-                                    <!-- @endif -->
-                                    <!-- 
-                                    @if(addon_is_activated('auction'))
-                                        <li class="aiz-side-nav-item">
+                                        </li>   
+
+                                        <li v-if="auction==true"  class="aiz-side-nav-item">
                                             <a href="javascript:void(0);" class="aiz-side-nav-link">
                                                 <i class="las la-gavel aiz-side-nav-icon"></i>
-                                                <span class="aiz-side-nav-text">{{ translate('Auction') }}</span>
-                                                <span class="aiz-side-nav-arrow"></span>
+                                                <span class="aiz-side-nav-text">Auction</span>
+                                                <span class="aiz-side-nav-arrow" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></span>
                                             </a>
-                                            <ul class="aiz-side-nav-list level-2">
+                                            <ul class="aiz-side-nav-list level-2 collapse"  id="collapseExample">
                                                 <li class="aiz-side-nav-item">
-                                                    <a href="{{ route('auction_product_bids.index') }}" class="aiz-side-nav-link">
-                                                        <span class="aiz-side-nav-text">{{ translate('Bidded Products') }}</span>
+                                                    <a href="" class="aiz-side-nav-link">
+                                                        <span class="aiz-side-nav-text">Bidded Products</span>
                                                     </a>
                                                 </li>
                                                 <li class="aiz-side-nav-item">
-                                                    <a href="{{ route('auction_product.purchase_history') }}" class="aiz-side-nav-link">
-                                                        <span class="aiz-side-nav-text">{{ translate('Purchase History') }}</span>
+                                                    <a href="" class="aiz-side-nav-link">
+                                                        <span class="aiz-side-nav-text">Purchase History</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
-                                    @endif
-
-
-
+<!-- 
 
                                     @if (get_setting('wallet_system') == 1)
                                         <li class="aiz-side-nav-item">
@@ -281,6 +266,10 @@
                             <i class="las la-times la-2x"></i>
                         </button>
                     </div>
+
+ 
+
+
                 </div>
 
 
@@ -289,6 +278,7 @@
                     <component :is="selectedComponent" />
                     <!-- <router-view name='b'/> -->
                 </div>
+      
             </div>
         </div>
     </section>
@@ -299,10 +289,20 @@
     import UserFollowedShop from "./UserFollowedShop.vue";
     import Conversation from "./Conversation/index.vue";
     import PurchaseHistory from "./purchase_history.vue";
+<<<<<<< HEAD
     import Wishlist from "../user/wishlist.vue";
     export default {
         props: ['componentName'],
         components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory,Wishlist},
+=======
+   
+
+    
+    import axios from 'axios';
+    export default {
+        props: ['componentName'],
+        components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory },
+>>>>>>> 2d207a68b76dbc684a8a2d9518c9892aab7f345f
 
         data(){
             return{
@@ -311,6 +311,14 @@
                     user: {},
                 },
                 selectedComponent:'',
+                isConversation:"",
+                conversation:"",
+                delivery_viewed:"",
+                payment_status_viewed:"",
+                refund_request:"",
+                classified_product:"",
+                auction:""
+
             }
         },
         created(){
@@ -319,15 +327,40 @@
                 user = JSON.parse(user);
                 this.auth.isAuthenticated = true;
                 this.auth.user = user;
-
+                console.log(this.auth.user);
                 this.setComponent(this.componentName);
             }
           
         },
+        mounted(){
+            this.getDataForSideNav();
+        },
         methods:{
             setComponent(name) {
                 this.selectedComponent = name
-            }
+            },
+
+            getDataForSideNav(){
+                axios.get(this.selfDomain+'vue/data-userdashboard',{
+                    params: {
+                                token: this.auth.user.access_token,
+                             }
+                })
+                .then((response) => {
+                    this.isConversation = response.data[0];
+                    this.conversation = response.data[1];
+                    this.delivery_viewed = response.data[2];
+                    this.payment_status_viewed = response.data[3];
+                    this.refund_request = response.data[4];
+                    this.classified_product = response.data[5];
+                    this.auction = response.data[6];
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+            },
+  
         }
     } 
 </script>

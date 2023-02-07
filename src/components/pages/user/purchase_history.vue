@@ -14,81 +14,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- @foreach ($orders as $key => $order)
-                            @if (count($order->orderDetails) > 0) -->
+                    
                                 <tr v-for="(purchaseHistory,index) in purchaseHistories" :key="index">
-                                    <!-- <td>
-                                        <a href="{{route('purchase_history.details', encrypt($order->id))}}">{{ $order->code }}</a>
-                                    </td> -->
                                     <td>
                                         <a href="">{{ purchaseHistory.code }}</a>
-                                    </td>
-                                    <!-- <td>{{ date('d-m-Y', $order->date) }}</td> -->
+                                    </td>        
                                     <td>{{ purchaseHistory.date }}</td>
-
-                                    <!-- <td>
-                                        {{ single_price($order->grand_total) }}
-                                    </td> -->
                                     <td>
                                         {{ purchaseHistory.grand_total }}
                                     </td>
-                                    <!-- <td>
-                                        {{ translate(ucfirst(str_replace('_', ' ', $order->delivery_status))) }}
-                                        @if($order->delivery_viewed == 0)
-                                            <span class="ml-2" style="color:green"><strong>*</strong></span>
-                                        @endif
-                                    </td> -->
-                                      <td>
-                                       {{ purchaseHistory.delivery_status   }}                                   
-                                        <span class="ml-2" style="color:green"><strong>*</strong></span>                                      
-                                     </td>
-                                    <!-- <td>
-                                        @if ($order->payment_status == 'paid')
-                                            <span class="badge badge-inline badge-success">{{translate('Paid')}}</span>
-                                        @else
-                                            <span class="badge badge-inline badge-danger">{{translate('Unpaid')}}</span>
-                                        @endif
-                                        @if($order->payment_status_viewed == 0)
-                                            <span class="ml-2" style="color:green"><strong>*</strong></span>
-                                        @endif
-                                    </td> -->
+                                    <td>
+                                    {{ purchaseHistory.delivery_status   }}                                   
+                                    <span v-if="purchaseHistory.delivery_viewed==0" class="ml-2" style="color:green"><strong>*</strong></span>                                      
+                                    </td>
                                      <td>
-                                         <span class="badge badge-inline badge-success">Paid</span>                               
+                                         <span :class="purchaseHistory.payment_status=='unpaid'?'badge badge-inline badge-danger':'badge badge-inline badge-success'">{{ purchaseHistory.payment_status=='unpaid'?'unpaid':'paid' }}</span>                               
                                          <span class="ml-2" style="color:green"><strong>*</strong></span>                                     
                                     </td>
                                     <td>
-
+                                        <a  v-if="purchaseHistory.dontpay==null&&purchaseHistory.payment_status=='paid'&&purchaseHistory.delivery_status== 'delivered' && purchaseHistory.diffdate<2" href="">
+                                            <b>Dont Pay Seller</b> 
+                                        </a> 
+                                          <a class="text-success" v-if="purchaseHistory.dontpay!=null&&purchaseHistory.payment_status=='paid' && purchaseHistory.delivery_status== 'delivered' && purchaseHistory.diffdate<2" href=""> <span class="text-reset fw-600"> Withdraw Objection</span> 
+                                        </a>                                         
                                     </td>
-                                    <td>
-                                      
-                                    </td>
-                                    <!-- <td>
-                                        @php
-                                           $today= Carbon\Carbon::today();
-                                           $diffdate = $today->diffInDays($order->updated_at);
-                                        @endphp
-
-                                        @if($order->dontpay==null && $order->payment_status == 'paid' &&  $order->delivery_status== 'delivered' && $diffdate<2) <a href="{{route('purchase_history.dontpay',$order->id)}}"><b>Dont Pay Seller</b> </a> @endif @if($order->dontpay!=null && $order->payment_status == 'paid' &&  $order->delivery_status== 'delivered' && $diffdate<2) <a class="text-success" href="{{route('purchase_history.dontpay',$order->id)}}"> <span class="text-reset fw-600"> Withdraw Objection</span> </a> @endif </a>
-                                    </td> -->
-                                    <!-- <td class="text-right">
-                                        @if ($order->delivery_status == 'pending' && $order->payment_status == 'unpaid')
-                                            <a href="javascript:void(0)" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('purchase_history.destroy', $order->id)}}" title="{{ translate('Cancel') }}">
-                                               <i class="las la-trash"></i>
-                                           </a>
-                                        @endif
-                                        <a href="{{route('purchase_history.details', encrypt($order->id))}}" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="{{ translate('Order Details') }}">
+                                    <td class="text-right">                                        
+                                        <a v-if="purchaseHistory.delivery_status== 'pending' && purchaseHistory.payment_status=='unpaid'" href="javascript:void(0)" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="" title="Cancel">
+                                            <i class="las la-trash"></i>
+                                        </a>
+                                        <a href="" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="Order Details">
                                             <i class="las la-eye"></i>
                                         </a>
-                                        <a class="btn btn-soft-warning btn-icon btn-circle btn-sm" href="{{ route('invoice.download', $order->id) }}" title="{{ translate('Download Invoice') }}">
+                                        <a class="btn btn-soft-warning btn-icon btn-circle btn-sm" href="" title="Download Invoice">
                                             <i class="las la-download"></i>
                                         </a>
-                                    </td> -->
-                                </tr>
-                           
+                                    </td>
+                                </tr>                           
                     </tbody>
                 </table>
                 <div class="aiz-pagination">
-                    <!-- {{ $orders->links() }} -->
+                    <vue-awesome-paginate
+                    :total-items="totalItems"
+                    :items-per-page="12"
+                    :max-pages-shown="5"
+                    v-model="currentPage"
+                    @click="getPurchaseHistory"
+                    />
               	</div>
             </div>
 </template>
@@ -103,6 +74,10 @@ export default {
               user: {},
           },
         purchaseHistories:[],
+        currentPage:1,
+        lastPage:"",
+        historyHolder:[],
+        totalItems:""
         
     }
   },
@@ -116,21 +91,33 @@ export default {
         this.getPurchaseHistory();
     },
   methods: {
-    getPurchaseHistory(){
+    getPurchaseHistory(page){
         const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
-      axios.get(this.selfDomain+"vueweb/purchase_history",{
+    if(!this.historyHolder[page]){
+        axios.get(this.selfDomain+"vueweb/purchase_history?page="+page,{
         headers: {
                     token: this.auth.user.access_token,
                     Authorization: "Bearer " + this.auth.user.access_token,
                 }
       }).then((res)=>{
-        this.purchaseHistories = res.data.data
-        console.log(res.data.data);
+        this.historyHolder[page] = res.data[0].data;
+        this.purchaseHistories = this.historyHolder[page];
+        this.lastPage = res.data[0].data.length;
+        this.totalItems = res.data[1];
+        this.scrollToTop();
       }).catch((err)=>{
          console.log(err)
       })
+    }else{
+        this.purchaseHistories = this.historyHolder[page];
+        this.scrollToTop();
     }
+      
+    },
+    scrollToTop() {
+    window.scrollTo(0,0);
+  }
   }
 }
 </script>
