@@ -281,6 +281,13 @@ const routes = [
   beforeEnter: auth,
 },
 {
+  path:'/wishlist',
+  name:'Wishlist',
+  component: UserDashboard,
+  props: () => ({ componentName: 'Wishlist' }),
+  beforeEnter: auth,
+},
+{
   path:'/user-followed-shop',
   name:'UserFollowedShop',
   component: UserDashboard,

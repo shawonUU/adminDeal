@@ -700,8 +700,8 @@ export default {
               temp_user: temp_user,
             }
       }).then(res=>{
-         console.log("NAV");
-         console.log(res.data);
+        //  console.log("NAV");
+        //  console.log(res.data);
         this.totalCart = res.data.totalCart;
         this.totalWishlist = res.data.totalWishlist;
         this.single_price = res.data.single_price;

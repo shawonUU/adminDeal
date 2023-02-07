@@ -1,0 +1,125 @@
+<template>
+ 
+            <div class="aiz-titlebar mt-2 mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <b class="h4">{{ 'Wishlist'}}</b>
+            </div>
+        </div>
+    </div>
+
+    <div class="row gutters-5">
+            <div v-for="(wishItem, index) in wishlist" :key="index" class="col-xxl-3 col-xl-4 col-lg-3 col-md-4 col-sm-6" id="wishlist_{{  }}">
+                <!-- <templete> -->
+                    <div  class="card mb-2 shadow-sm">
+                        <div class="card-body">
+                            <a href="javascript:void(0)" class="d-block mb-3">
+                                <img :src="wishItem.productData.data[0].thumbnail_image" class="img-fit h-140px h-md-200px">
+                            </a>
+
+                            <h5 class="fs-14 mb-0 lh-1-5 fw-600 text-truncate-2">
+                                <a href="javascript:void(0)" class="text-reset">{{ wishItem.productData.data[0].name }}</a>
+                            </h5>
+                            <div class="rating rating-sm mb-1">
+                                ****{{ wishItem.productData.data[0].rating }}
+                            </div>
+                            <div class=" fs-14">
+                              
+                                    <templete v-if="wishItem.productData.data[0].base_price != wishItem.productData.data[0].base_discounted_price">
+                                        <del class="opacity-60 mr-1">{{ wishItem.productData.data[0].base_price }}</del>
+                                    </templete>
+                                <templete v-else>
+                                    <span class="fw-600 text-primary">{{ wishItem.productData.data[0].base_discounted_price }}</span>
+                                </templete>
+                                    
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="javascript:void(0)" class="link link--style-3" data-toggle="tooltip" data-placement="top" title="Remove from wishlist">
+                                <i class="la la-trash la-2x"></i>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-block btn-primary ml-3" >
+                                <i class="la la-shopping-cart mr-2"></i>{{ 'Add to cart'}}
+                            </button>
+                        </div>
+                    </div>
+                <!-- </templete> -->
+          
+           </div>
+           
+           
+            <!-- <div v-else class="col">
+                <div class="text-center bg-white p-4 rounded shadow">
+                    <img class="mw-100 h-200px" :src="rootDomain+'assets/img/nothing.svg'" alt="Image">
+                    <h5 class="mb-0 h5 mt-3">{{ "There isn't anything added yet"}}</h5>
+                </div>
+            </div> -->
+
+    </div>
+
+
+    
+    
+
+</template>
+    
+<script>
+   import axios from 'axios';
+    export default {
+     
+
+        data(){
+            return{
+                auth:{
+                    isAuthenticated: false,
+                    user: {},
+                },
+                wishlist:{},
+            }
+        },
+        created(){
+           var user = localStorage.getItem("user");
+            if(user !== null){
+                user = JSON.parse(user);
+                this.auth.isAuthenticated = true;
+                this.auth.user = user;
+                this.getWishList();
+            }
+        },
+        methods:{
+            
+          getWishList(){
+              console.log("############################");
+             axios.get(this.selfDomain+'vueweb/wishlists', {
+                headers: {
+                    Authorization: "Bearer " + this.auth.user.access_token,
+                }    
+            }).then(res=>{
+             
+               this.wishlist = res.data.wishlists.data;
+               console.log(res.data.wishlists.data);
+                 console.log("ComeEEEEEE");
+            }).catch(err=>{
+                 console.log(err);
+            });
+          },
+        }
+    } 
+</script>
+    
+<style>
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
