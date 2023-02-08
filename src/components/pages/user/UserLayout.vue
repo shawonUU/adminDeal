@@ -131,13 +131,12 @@
                                         </li>
                                     
                                         <li class="aiz-side-nav-item">
-                                            <a href="" class="aiz-side-nav-link">
+                                            <router-link :to="{ name:'digital_purchase_history'}" class="aiz-side-nav-link">
                                                 <i class="las la-download aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">My Downloads</span> <span class="badge badge-inline badge-success">digi</span>
-                                            </a>
+                                            </router-link>
                                         </li>
-                                    </template>
-    
+                                        
                                         <li v-if="refund_request==true" class="aiz-side-nav-item">
                                             <a href="" class="aiz-side-nav-link ">
                                                 <i class="las la-backward aiz-side-nav-icon"></i>
@@ -166,92 +165,84 @@
                                         </li>   
 
                                         <li v-if="auction==true"  class="aiz-side-nav-item">
-                                            <a href="javascript:void(0);" class="aiz-side-nav-link">
+                                            <a @click="auctionToggle=!auctionToggle" href="javascript:void(0);" class="aiz-side-nav-link">
                                                 <i class="las la-gavel aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">Auction</span>
-                                                <span class="aiz-side-nav-arrow" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></span>
-                                            </a>
-                                            <ul class="aiz-side-nav-list level-2 collapse"  id="collapseExample">
-                                                <li class="aiz-side-nav-item">
-                                                    <a href="" class="aiz-side-nav-link">
-                                                        <span class="aiz-side-nav-text">Bidded Products</span>
-                                                    </a>
-                                                </li>
-                                                <li class="aiz-side-nav-item">
-                                                    <a href="" class="aiz-side-nav-link">
-                                                        <span class="aiz-side-nav-text">Purchase History</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                                <span class="aiz-side-nav-arrow"  data-toggle="collapse"></span>
+                                            </a>                                        
+                                            <transition name="fade">
+                                                <ul v-if="auctionToggle">
+                                                    <li class="aiz-side-nav-item">
+                                                        <a href="" class="aiz-side-nav-link">
+                                                            <span class="aiz-side-nav-text">Bidded Products</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="aiz-side-nav-item">
+                                                        <a href="" class="aiz-side-nav-link">
+                                                            <span class="aiz-side-nav-text">Purchase History</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </transition>
+                                            
                                         </li>
-<!-- 
 
-                                    @if (get_setting('wallet_system') == 1)
-                                        <li class="aiz-side-nav-item">
-                                            <a href="{{ route('wallet.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['wallet.index'])}}">
+                                        <li v-if="wallet_system==1" class="aiz-side-nav-item">
+                                            <a href="" class="aiz-side-nav-link">
                                                 <i class="las la-dollar-sign aiz-side-nav-icon"></i>
-                                                <span class="aiz-side-nav-text">{{translate('My Wallet')}}</span>
+                                                <span class="aiz-side-nav-text">My Wallet</span>
+                                            </a>
+                                        </li>    
+
+                                        <li v-if="club_point==true" class="aiz-side-nav-item">
+                                            <a href="" class="aiz-side-nav-link">
+                                                <i class="las la-dollar-sign aiz-side-nav-icon"></i>
+                                                <span class="aiz-side-nav-text">Cashback Balance</span> <span class="badge badge-inline badge-success">New</span>
                                             </a>
                                         </li>
-                                    @endif
 
-                                    @if (addon_is_activated('club_point'))
-                                        <li class="aiz-side-nav-item">
-                                            <a href="{{ route('earnng_point_for_user') }}" class="aiz-side-nav-link {{ areActiveRoutes(['earnng_point_for_user'])}}">
+                                   
+                                        <li v-if="affiliate_system==true" class="aiz-side-nav-item">
+                                            <a @click="affiliationToggle=!affiliationToggle" href="javascript:void(0);"  class="aiz-side-nav-link ">
                                                 <i class="las la-dollar-sign aiz-side-nav-icon"></i>
-                                                <span class="aiz-side-nav-text">{{translate('Cashback Balance')}}</span> <span class="badge badge-inline badge-success">{{ translate('New') }}</span>
-                                            </a>
-                                        </li>
-                                    @endif
-
-                                    @if (addon_is_activated('affiliate_system') && Auth::user()->affiliate_user != null && Auth::user()->affiliate_user->status)
-                                        <li class="aiz-side-nav-item">
-                                            <a href="javascript:void(0);" class="aiz-side-nav-link {{ areActiveRoutes(['affiliate.user.index', 'affiliate.payment_settings'])}}">
-                                                <i class="las la-dollar-sign aiz-side-nav-icon"></i>
-                                                <span class="aiz-side-nav-text">{{ translate('My Affiliation') }}</span>
+                                                <span class="aiz-side-nav-text">My Affiliation</span>
                                                 <span class="aiz-side-nav-arrow"></span>
                                             </a>
-                                            <ul class="aiz-side-nav-list level-2">
+                                            <transition name="fade">
+                                            <ul v-if="affiliationToggle" class="">
                                                 <li class="aiz-side-nav-item">
-                                                    <a href="{{ route('affiliate.user.index') }}" class="aiz-side-nav-link">
-                                                        <span class="aiz-side-nav-text">{{ translate('Affiliate System') }}</span>
+                                                    <a href="affiliate.user.index" class="aiz-side-nav-link">
+                                                        <span class="aiz-side-nav-text">Affiliate System</span>
                                                     </a>
                                                 </li>
                                                 <li class="aiz-side-nav-item">
-                                                    <a href="{{ route('affiliate.user.payment_history') }}" class="aiz-side-nav-link">
-                                                        <span class="aiz-side-nav-text">{{ translate('Payment History') }}</span>
+                                                    <a href="" class="aiz-side-nav-link">
+                                                        <span class="aiz-side-nav-text">Payment History</span>
                                                     </a>
                                                 </li>
                                                 <li class="aiz-side-nav-item">
-                                                    <a href="{{ route('affiliate.user.withdraw_request_history') }}" class="aiz-side-nav-link">
-                                                        <span class="aiz-side-nav-text">{{ translate('Withdraw request history') }}</span>
+                                                    <a href="" class="aiz-side-nav-link">
+                                                        <span class="aiz-side-nav-text">Withdraw request history</span>
                                                     </a>
                                                 </li>
                                             </ul>
+                                            </transition>
                                         </li>
-                                    @endif
-
-                                    @php
-                                        $support_ticket = DB::table('tickets')
-                                                    ->where('client_viewed', 0)
-                                                    ->where('user_id', Auth::user()->id)
-                                                    ->count();
-                                    @endphp
-
+                                        <li class="aiz-side-nav-item">
+                                            <a href="" class="aiz-side-nav-link">
+                                                <i class="las la-atom aiz-side-nav-icon"></i>
+                                                <span class="aiz-side-nav-text">Support / Report</span> <span class="badge badge-inline badge-success">New</span>
+                                            <span v-if="support_ticket > 0" class="badge badge-inline badge-success">{{ support_ticket }}</span>
+                                            </a>
+                                        </li>
+                               
+                                    </template>
                                     <li class="aiz-side-nav-item">
-                                        <a href="{{ route('support_ticket.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['support_ticket.index'])}}">
-                                            <i class="las la-atom aiz-side-nav-icon"></i>
-                                            <span class="aiz-side-nav-text">{{translate('Support / Report')}}</span> <span class="badge badge-inline badge-success">{{ translate('New') }}</span>
-                                            @if($support_ticket > 0)<span class="badge badge-inline badge-success">{{ $support_ticket }}</span> @endif
+                                        <a href="" class="aiz-side-nav-link">
+                                            <i class="las la-user aiz-side-nav-icon"></i>
+                                            <span class="aiz-side-nav-text">Manage Profile</span>
                                         </a>
                                     </li>
-                                @endif
-                                <li class="aiz-side-nav-item">
-                                    <a href="{{ route('profile') }}" class="aiz-side-nav-link {{ areActiveRoutes(['profile'])}}">
-                                        <i class="las la-user aiz-side-nav-icon"></i>
-                                        <span class="aiz-side-nav-text">{{translate('Manage Profile')}}</span>
-                                    </a>
-                                </li> -->
                             </ul>
                         </div>
 
@@ -291,9 +282,10 @@
     import Conversation from "./Conversation/index.vue";
     import PurchaseHistory from "./purchase_history.vue";
     import Wishlist from "../user/wishlist.vue";
+    import digital_purchase_history from "../user/digital_purchase_history.vue";
     export default {
         props: ['componentName'],
-        components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory,Wishlist},
+        components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory,Wishlist,digital_purchase_history},
 
         data(){
             return{
@@ -308,7 +300,13 @@
                 payment_status_viewed:"",
                 refund_request:"",
                 classified_product:"",
-                auction:""
+                auction:"",
+                auctionToggle:false,
+                affiliationToggle:false,
+                wallet_system:"",
+                club_point:"",
+                affiliate_system:"",
+                support_ticket:""
 
             }
         },
@@ -318,7 +316,7 @@
                 user = JSON.parse(user);
                 this.auth.isAuthenticated = true;
                 this.auth.user = user;
-                console.log(this.auth.user);
+                // console.log(this.auth.user);
                 this.setComponent(this.componentName);
             }
           
@@ -338,6 +336,7 @@
                              }
                 })
                 .then((response) => {
+                    // console.log(response); return;
                     this.isConversation = response.data[0];
                     this.conversation = response.data[1];
                     this.delivery_viewed = response.data[2];
@@ -345,17 +344,28 @@
                     this.refund_request = response.data[4];
                     this.classified_product = response.data[5];
                     this.auction = response.data[6];
-                    console.log(response.data);
+                    this.wallet_system = response.data[7];
+                    this.club_point = response.data[8];
+                    this.affiliate_system = response.data[9];
+                    this.support_ticket = response.data[10];
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
                 })
             },
+
+         
   
         }
     } 
 </script>
     
 <style>
-    
-</style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>>

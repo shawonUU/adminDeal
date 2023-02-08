@@ -50,9 +50,9 @@
                     </div>
             
         
-            <div v-if="!wishlist" class="col">
+            <div v-if="wishlist<1" class="col">
                 <div class="text-center bg-white p-4 rounded shadow">
-                    <img class="mw-100 h-200px" :src="rootDomain+'assets/img/nothing.svg'" alt="Image">
+                    <img class="mw-100 h-200px" src="https://admindeal.com.bd/public/assets/img/nothing.svg" alt="Image">
                     <h5 class="mb-0 h5 mt-3">{{ "There isn't anything added yet"}}</h5>
                 </div>
             </div>

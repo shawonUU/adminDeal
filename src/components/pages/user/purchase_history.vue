@@ -75,7 +75,6 @@ export default {
           },
         purchaseHistories:[],
         currentPage:1,
-        lastPage:"",
         historyHolder:[],
         totalItems:""
         
@@ -103,7 +102,6 @@ export default {
       }).then((res)=>{
         this.historyHolder[page] = res.data[0].data;
         this.purchaseHistories = this.historyHolder[page];
-        this.lastPage = res.data[0].data.length;
         this.totalItems = res.data[1];
         this.scrollToTop();
       }).catch((err)=>{

@@ -308,6 +308,13 @@ const routes = [
   props: () => ({ componentName: 'PurchaseHistory' }),
   beforeEnter: auth,
 },
+{
+  path:'/digital-purchase-history',
+  name:'digital_purchase_history',
+  component: UserDashboard,
+  props: () => ({ componentName: 'digital_purchase_history' }),
+  beforeEnter: auth,
+},
 ...UserRouter,
 
 ]
