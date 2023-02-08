@@ -344,13 +344,13 @@
           </div>
           <div class="d-none d-lg-block ml-3 mr-0">
             <div class="" id="wishlist">
-              <a href="https://admindeal.com.bd/wishlists" class="d-flex align-items-center text-reset">
+              <router-link :to="{name:'Wishlist'}" class="d-flex align-items-center text-reset">
                 <i class="la la-heart-o la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
                   <span class="badge badge-primary badge-inline badge-pill">{{ totalWishlist }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Wishlist</span>
                 </span>
-              </a>
+              </router-link>
             </div>
           </div>
           <div class="d-none d-lg-block  align-self-stretch ml-3 mr-0" data-hover="dropdown">

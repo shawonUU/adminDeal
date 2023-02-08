@@ -104,7 +104,7 @@
       SwiperSlide,
     },
     mounted(){
-        console.log(this.relatedProducts);
+        // console.log(this.relatedProducts);
     },
     methods: {
       productDetails(slug){

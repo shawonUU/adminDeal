@@ -494,20 +494,23 @@ export default {
              this.getVariantPrice();
         },
         addToCart(){
+            // console.log('##################');
             if(this.auth.isAuthenticated==true &&  this.auth.user.type != 'customer'){
                 alert('Please Login as a customer to add products to the Cart.');
                 return false;
             }
 
             if(this.checkAddToCartValidity()) {
-                // console.log('##################');
+               
                 this.preLoader = true;
 
                 var temp_user = "";
                 var token = "";
                 if(this.auth.isAuthenticated==true){
+                    // alert('athentic');
                     token = this.auth.user.access_token;
                 }else{
+                    // alert('');
                     var temp_user = localStorage.getItem("temp_user");
                     if(!temp_user) temp_user = "";
                 }
@@ -522,7 +525,7 @@ export default {
                 // axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 axios.get(this.selfDomain+'vueweb/cart/addtocart',{params: data})
                 .then(res=>{
-                    console.log(res);
+                    // console.log(res);
                     this.productDetails = false;
                     this.preLoader = false;
                     // console.log("********************");

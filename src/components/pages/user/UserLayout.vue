@@ -145,7 +145,7 @@
                                             </a>
                                         </li>                              
                                         <li class="aiz-side-nav-item">
-                                            <router-link :to="{name:'Wishlist'}" href="" class="aiz-side-nav-link">
+                                            <router-link :to="{name:'Wishlist'}" class="aiz-side-nav-link">
                                                 <i class="la la-heart-o aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">Wishlist</span>
                                             </router-link >
@@ -285,24 +285,15 @@
 </template>
     
 <script>
+    import axios from "axios";
     import Dashboard from "./Dashboard.vue";
     import UserFollowedShop from "./UserFollowedShop.vue";
     import Conversation from "./Conversation/index.vue";
     import PurchaseHistory from "./purchase_history.vue";
-<<<<<<< HEAD
     import Wishlist from "../user/wishlist.vue";
     export default {
         props: ['componentName'],
         components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory,Wishlist},
-=======
-   
-
-    
-    import axios from 'axios';
-    export default {
-        props: ['componentName'],
-        components:{Dashboard,UserFollowedShop,Conversation,PurchaseHistory },
->>>>>>> 2d207a68b76dbc684a8a2d9518c9892aab7f345f
 
         data(){
             return{

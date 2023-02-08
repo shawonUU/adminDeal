@@ -134,8 +134,8 @@ export default {
       recentViewProduct = this.$cookies.get('recentViewProducts')
     }
     recentViewProduct[product.id] = product;
-    console.log(product.id);
-    console.log(recentViewProduct);
+    // console.log(product.id);
+    // console.log(recentViewProduct);
     this.$cookies.set('recentViewProducts',recentViewProduct);
 
     },
@@ -165,7 +165,8 @@ export default {
           }
           
         }).then(res=>{
-            console.log(res.data);
+            // console.log(res.data);
+            this.emitter.emit("reload", true);
         }).catch(err=>{
 
         });

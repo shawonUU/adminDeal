@@ -9,51 +9,53 @@
     </div>
 
     <div class="row gutters-5">
-            <div v-for="(wishItem, index) in wishlist" :key="index" class="col-xxl-3 col-xl-4 col-lg-3 col-md-4 col-sm-6" id="wishlist_{{  }}">
-                <!-- <templete> -->
-                    <div  class="card mb-2 shadow-sm">
-                        <div class="card-body">
-                            <a href="javascript:void(0)" class="d-block mb-3">
-                                <img :src="wishItem.productData.data[0].thumbnail_image" class="img-fit h-140px h-md-200px">
-                            </a>
+                    <div v-for="(wishItem, index) in wishlist" :key="index" class="col-xxl-3 col-xl-4 col-lg-3 col-md-4 col-sm-6" id="wishlist_{{  }}">
+                        <div  class="card mb-2 shadow-sm">
+                            <div class="card-body">
+                                <a href="javascript:void(0)" class="d-block mb-3">
+                                    <img :src="wishItem.productData.data[0].thumbnail_image" class="img-fit h-140px h-md-200px">
+                                </a>
 
-                            <h5 class="fs-14 mb-0 lh-1-5 fw-600 text-truncate-2">
-                                <a href="javascript:void(0)" class="text-reset">{{ wishItem.productData.data[0].name }}</a>
-                            </h5>
-                            <div class="rating rating-sm mb-1">
-                                ****{{ wishItem.productData.data[0].rating }}
-                            </div>
-                            <div class=" fs-14">
-                              
+                                <h5 class="fs-14 mb-0 lh-1-5 fw-600 text-truncate-2">
+                                    <a href="javascript:void(0)" @click="wishItem.productData.data[0].digital==0?productDetails(wishItem.productData.data[0].slug,wishItem.productData.data[0]):digitalProductDetails(wishItem.productData.data[0].slug, wishItem.productData.data[0])" class="text-reset">{{ wishItem.productData.data[0].name }}</a>
+                                </h5>
+                                <div class="rating rating-sm mb-1">
+                                    <template v-for="index in 5" :key="index">
+                                        <i v-if="index<=wishItem.productData.data[0].rating" class = 'las la-star active'></i>
+                                        <i v-else class = 'las la-star'></i>
+                                    </template>
+                                    ({{ wishItem.productData.data[0].rating }})
+                                </div>
+                                <div class=" fs-14">
+                                
                                     <templete v-if="wishItem.productData.data[0].base_price != wishItem.productData.data[0].base_discounted_price">
                                         <del class="opacity-60 mr-1">{{ wishItem.productData.data[0].base_price }}</del>
                                     </templete>
-                                <templete v-else>
-                                    <span class="fw-600 text-primary">{{ wishItem.productData.data[0].base_discounted_price }}</span>
-                                </templete>
-                                    
+                                    <templete v-else>
+                                        <span class="fw-600 text-primary">{{ wishItem.productData.data[0].base_discounted_price }}</span>
+                                    </templete>
+                                        
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="javascript:void(0)" @click="removeWishlistItem(wishItem.id, index)" class="link link--style-3" data-toggle="tooltip" data-placement="top" title="Remove from wishlist">
+                                    <i class="la la-trash la-2x"></i>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-block btn-primary ml-3" >
+                                    <i class="la la-shopping-cart mr-2"></i>{{ 'Add to cart'}}
+                                </button>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <a href="javascript:void(0)" class="link link--style-3" data-toggle="tooltip" data-placement="top" title="Remove from wishlist">
-                                <i class="la la-trash la-2x"></i>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-block btn-primary ml-3" >
-                                <i class="la la-shopping-cart mr-2"></i>{{ 'Add to cart'}}
-                            </button>
-                        </div>
+            
                     </div>
-                <!-- </templete> -->
-          
-           </div>
-           
-           
-            <!-- <div v-else class="col">
+            
+        
+            <div v-if="!wishlist" class="col">
                 <div class="text-center bg-white p-4 rounded shadow">
                     <img class="mw-100 h-200px" :src="rootDomain+'assets/img/nothing.svg'" alt="Image">
                     <h5 class="mb-0 h5 mt-3">{{ "There isn't anything added yet"}}</h5>
                 </div>
-            </div> -->
+            </div>
 
     </div>
 
@@ -88,21 +90,75 @@
         },
         methods:{
             
-          getWishList(){
-              console.log("############################");
-             axios.get(this.selfDomain+'vueweb/wishlists', {
-                headers: {
-                    Authorization: "Bearer " + this.auth.user.access_token,
-                }    
-            }).then(res=>{
-             
-               this.wishlist = res.data.wishlists.data;
-               console.log(res.data.wishlists.data);
-                 console.log("ComeEEEEEE");
-            }).catch(err=>{
-                 console.log(err);
-            });
-          },
+            getWishList(){
+                // console.log("############################");
+                axios.get(this.selfDomain+'vueweb/wishlists', {
+                    // axios.get(this.selfDomain+'vue/v3/wishlists', {
+                    headers: {
+                        Authorization: "Bearer " + this.auth.user.access_token,
+                    }    
+                }).then(res=>{
+                
+                this.wishlist = res.data.wishlists.data;
+                // console.log(res.data);
+                //     console.log("ComeEEEEEE");
+                }).catch(err=>{
+                    console.log(err);
+                });
+            },
+
+            productDetails(slug,product){
+                this.$router.push({
+                    name: "singleProduct",
+                    params: {
+                    slug: slug
+                    }
+                });
+                
+
+                let recentViewProduct={};
+                if(this.$cookies.get('recentViewProducts') !== null){
+                    recentViewProduct = this.$cookies.get('recentViewProducts')
+                }
+                recentViewProduct[product.id] = product;
+                // console.log(product.id);
+                // console.log(recentViewProduct);
+                this.$cookies.set('recentViewProducts',recentViewProduct);
+
+            },
+            digitalProductDetails(slug,product){
+                this.$router.push({
+                    name: "DigitalProductDetails",
+                    params: {
+                    slug: slug
+                    }
+                });
+
+                let recentViewProduct={};
+                if(this.$cookies.get('recentViewProducts') !== null){
+                    recentViewProduct = this.$cookies.get('recentViewProducts')
+                }
+                recentViewProduct[product.id] = product;
+                this.$cookies.set('recentViewProducts',recentViewProduct);
+            },
+            removeWishlistItem(id, index){
+                axios.get(this.selfDomain+'vueweb/wishlists_remove', {  
+                    params: {
+                        id:id,
+                    },
+                    headers: {
+                        Authorization: "Bearer " + this.auth.user.access_token,
+                     }
+                })
+                .then((response) =>{
+                       this.wishlist.splice(index, 1);
+                       this.emitter.emit("reload", true);
+
+                }).catch((err)=>{
+                    console.log(err)
+                })
+            }
+
         }
     } 
 </script>
