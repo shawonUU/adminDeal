@@ -53,7 +53,7 @@ export default {
     },
     methods:{
         getFollowedShop(){
-            // alert('');
+            console.log("flowed shop");
             axios.get(this.selfDomain+"vueweb/user_followed_shop", {
                 headers: {
                     token: this.auth.user.access_token,
@@ -61,7 +61,8 @@ export default {
                 }
             }).then(res=>{
                 this.shops = res.data.shops.data;
-                // console.log(this.shops);
+                console.log(this.shops);
+                console.log("===end====");
             }).catch(err=>{
 
             });

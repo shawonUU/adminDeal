@@ -13,27 +13,27 @@
                         <div  class="card mb-2 shadow-sm">
                             <div class="card-body">
                                 <a href="javascript:void(0)" class="d-block mb-3">
-                                    <img :src="wishItem.productData.data[0].thumbnail_image" class="img-fit h-140px h-md-200px">
+                                    <img :src="wishItem.thumbnail_image" class="img-fit h-140px h-md-200px">
                                 </a>
 
                                 <h5 class="fs-14 mb-0 lh-1-5 fw-600 text-truncate-2">
-                                    <a href="javascript:void(0)" @click="wishItem.productData.data[0].digital==0?productDetails(wishItem.productData.data[0].slug,wishItem.productData.data[0]):digitalProductDetails(wishItem.productData.data[0].slug, wishItem.productData.data[0])" class="text-reset">{{ wishItem.productData.data[0].name }}</a>
+                                    <a href="javascript:void(0)" @click="wishItem.digital==0?productDetails(wishItem.slug,wishItem):digitalProductDetails(wishItem.slug, wishItem)" class="text-reset">{{ wishItem.name }}</a>
                                 </h5>
                                 <div class="rating rating-sm mb-1">
                                     <template v-for="index in 5" :key="index">
-                                        <i v-if="index<=wishItem.productData.data[0].rating" class = 'las la-star active'></i>
+                                        <i v-if="index<=wishItem.rating" class = 'las la-star active'></i>
                                         <i v-else class = 'las la-star'></i>
                                     </template>
-                                    ({{ wishItem.productData.data[0].rating }})
+                                    ({{ wishItem.rating }})
                                 </div>
                                 <div class=" fs-14">
                                 
-                                    <templete v-if="wishItem.productData.data[0].base_price != wishItem.productData.data[0].base_discounted_price">
-                                        <del class="opacity-60 mr-1">{{ wishItem.productData.data[0].base_price }}</del>
+                                    <templete v-if="wishItem.base_price != wishItem.base_discounted_price">
+                                        <del class="opacity-60 mr-1">{{ wishItem.base_price }}</del>
                                     </templete>
-                                    <templete v-else>
-                                        <span class="fw-600 text-primary">{{ wishItem.productData.data[0].base_discounted_price }}</span>
-                                    </templete>
+                                    <!-- <templete v-else> -->
+                                        <span class="fw-600 text-primary">{{ wishItem.base_discounted_price }}</span>
+                                    <!-- </templete> -->
                                         
                                 </div>
                             </div>
@@ -91,17 +91,17 @@
         methods:{
             
             getWishList(){
-                // console.log("############################");
-                axios.get(this.selfDomain+'vueweb/wishlists', {
-                    // axios.get(this.selfDomain+'vue/v3/wishlists', {
+                console.log("############################");
+                // axios.get(this.selfDomain+'vueweb/wishlists', {
+                axios.get(this.selfDomain+'vue/v3/wishlists', {
                     headers: {
                         Authorization: "Bearer " + this.auth.user.access_token,
                     }    
                 }).then(res=>{
                 
-                this.wishlist = res.data.wishlists.data;
-                // console.log(res.data);
-                //     console.log("ComeEEEEEE");
+                this.wishlist = res.data.data;
+                console.log(res.data.data);
+                    console.log("ComeEEEEEE");
                 }).catch(err=>{
                     console.log(err);
                 });
