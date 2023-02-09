@@ -152,10 +152,10 @@
                                         </li>
 
                                         <li class="aiz-side-nav-item">
-                                            <a href="" class="aiz-side-nav-link">
+                                            <router-link :to="{name:'Compare'}"  href="" class="aiz-side-nav-link">
                                                 <i class="la la-refresh aiz-side-nav-icon"></i>
                                                 <span class="aiz-side-nav-text">Compare</span>
-                                            </a>
+                                            </router-link>
                                         </li>
 
                                         <li v-if="classified_product==1" class="aiz-side-nav-item">
