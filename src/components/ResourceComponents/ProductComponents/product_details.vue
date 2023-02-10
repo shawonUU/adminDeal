@@ -511,6 +511,7 @@
          <div class="col-xl-9 order-0 order-xl-1">
           
             <div class="bg-white mb-3 shadow-sm rounded">
+           
                            <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="home" aria-selected="true">Description</button>

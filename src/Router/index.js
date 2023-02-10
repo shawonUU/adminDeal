@@ -41,6 +41,7 @@ import AuctionProductsDetails from '../components/ResourceComponents/ProductComp
 import AllFreelanceProducts from '../components/ResourceComponents/ProductComponents/detailPages/AllFreelanceProducts.vue';
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
 import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/ShopWiseProduct.vue';
+import Compare from '../components/pages/user/comper.vue';
 
 // After Authentication Component File
 import UserDashboard from '../components/pages/user/UserLayout.vue';
@@ -107,6 +108,11 @@ const routes = [
     path: '/categories',
     name: 'Categories',
     component: Categories
+  },
+  {
+    path: '/compare',
+    name: 'Compare',
+    component: Compare
   },
   {
     path: '/all_jobs',
@@ -278,6 +284,13 @@ const routes = [
   name:'UserDashboard',
   component: UserDashboard,
   props: () => ({ componentName: 'Dashboard' }),
+  beforeEnter: auth,
+},
+{
+  path:'/wishlist',
+  name:'Wishlist',
+  component: UserDashboard,
+  props: () => ({ componentName: 'Wishlist' }),
   beforeEnter: auth,
 },
 {

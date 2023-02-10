@@ -209,7 +209,7 @@
               <a href="https://admindeal.com.bd/wishlists" class="d-flex align-items-center text-reset">
                 <i class="la la-heart-o la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill">0</span>
+                  <span class="badge badge-primary badge-inline badge-pill">{{ totalWishlist }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Wishlist</span>
                 </span>
               </a>
@@ -333,24 +333,24 @@
         <div class="col-lg-3 col-md-3 d-flex   align-items-center d-none ">
           <div class="d-none d-lg-block ml-3 mr-0">
             <div class="" id="compare">
-              <a href="https://admindeal.com.bd/compare" class="d-flex align-items-center text-reset">
+              <router-link :to="{name:'Compare'}" class="d-flex align-items-center text-reset">
                 <i class="la la-refresh la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
-                  <span class="badge badge-primary badge-inline badge-pill">{{ 0 }}</span>
+                  <span class="badge badge-primary badge-inline badge-pill">{{ totalCompare }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Compare</span>
                 </span>
-              </a>
+              </router-link>
             </div>
           </div>
           <div class="d-none d-lg-block ml-3 mr-0">
             <div class="" id="wishlist">
-              <a href="https://admindeal.com.bd/wishlists" class="d-flex align-items-center text-reset">
+              <router-link :to="{name:'Wishlist'}" class="d-flex align-items-center text-reset">
                 <i class="la la-heart-o la-2x opacity-80"></i>
                 <span class="flex-grow-1 ml-1">
                   <span class="badge badge-primary badge-inline badge-pill">{{ totalWishlist }}</span>
                   <span class="nav-box-text d-none d-xl-block opacity-70">Wishlist</span>
                 </span>
-              </a>
+              </router-link>
             </div>
           </div>
           <div class="d-none d-lg-block  align-self-stretch ml-3 mr-0" data-hover="dropdown">
@@ -628,6 +628,7 @@ export default {
       message:'',
       totalCart: 0,
       totalWishlist: 0,
+      totalCompare:0,
       single_price: '',
       cart: '',
       cartView: false,
@@ -693,15 +694,12 @@ export default {
           if(!temp_user) temp_user = "";
           
       }
-      console.log("************");
       axios.get(this.rootDomain+'vue/v3/auth/get_nav_data', {
             params: {
               token: token,
               temp_user: temp_user,
             }
       }).then(res=>{
-         console.log("NAV");
-         console.log(res.data);
         this.totalCart = res.data.totalCart;
         this.totalWishlist = res.data.totalWishlist;
         this.single_price = res.data.single_price;
@@ -710,6 +708,9 @@ export default {
       }).catch(err=>{
 
       });
+      var compareItem = localStorage.getItem("compare");
+      compareItem = JSON.parse(compareItem);
+      this.totalCompare = compareItem.length;
     },
     
     searchSubmit(){
