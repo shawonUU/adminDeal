@@ -22,7 +22,7 @@
                         >
                         <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ shop.name }}</div>
                     </a><br>
-                    <a class="text-reset d-inline-block fw-600 fs-15 p-3" href="javascript:void(0)"><button class="btn btn-sm btn-secondary">Unfollow</button></a>
+                    <a @click="unfollow(shop.id)" class="text-reset d-inline-block fw-600 fs-15 p-3" href="javascript:void(0)"><button class="btn btn-sm btn-secondary">Unfollow</button></a>
                 </div>
 
             </div>
@@ -53,7 +53,6 @@ export default {
     },
     methods:{
         getFollowedShop(){
-            console.log("flowed shop");
             axios.get(this.selfDomain+"vueweb/user_followed_shop", {
                 headers: {
                     token: this.auth.user.access_token,
@@ -67,6 +66,20 @@ export default {
 
             });
         },
+        unfollow(id){
+            if(this.auth.isAuthenticated){
+                axios.get(this.selfDomain+"vueweb/followed_shop/"+id, {
+                    headers: {
+                        Authorization: "Bearer " + this.auth.user.access_token,
+                    }
+                }).then(res=>{
+                // console.log(res.data);
+                    this.getFollowedShop();
+                }).catch(err=>{
+
+                });
+            }
+        }
     }
 }
 </script>
