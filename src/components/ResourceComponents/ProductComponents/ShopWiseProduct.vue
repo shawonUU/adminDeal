@@ -38,7 +38,7 @@
                   <a class="text-reset d-inline-block fw-600 fs-15 p-3 " href="https://admindeal.com.bd/shop/Skin-Paradise-112/all-products">All products</a>
                </li>
                <li class="list-inline-item ">
-                  <a class="text-reset d-inline-block fw-600 fs-15 p-3" href="https://admindeal.com.bd/followed_shop/112"><button class="btn btn-sm btn-primary">Follow Shop</button></a>                        
+                  <a @click="followShop(shopDetails.id)" class="text-reset d-inline-block fw-600 fs-15 p-3" href="javascript:void(0)"><button class="btn btn-sm btn-primary">Follow Shop</button></a>                        
                </li>
                <li class="list-inline-item "> 
                   <button class="btn btn-sm btn-soft-primary" onclick="show_chat_modal()">Message Seller</button>
@@ -168,12 +168,24 @@ export default{
     props:['slug'],
     data(){
         return{
+            auth:{
+               isAuthenticated: false,
+               user: {},
+            },
             shopWiseProduct:[],
             shopWiseProductHolder:[],
             shopDetails:[],
             ShowNotFound:'Loading...',
             currentPage:1,
             totalItems:"",
+        }
+    },
+    created(){
+        var user = localStorage.getItem("user");
+        if(user !== null){
+            user = JSON.parse(user);
+            this.auth.isAuthenticated = true;
+            this.auth.user = user;
         }
     },
     mounted(){
@@ -207,7 +219,7 @@ export default{
         getRatings(rating,maxRating=5){
            return ratingGenerator(rating,maxRating)
         },
-        productDetails(slug){
+      productDetails(slug){
             this.$router.push({
             name: "singleProduct",
             params: {
@@ -223,8 +235,23 @@ export default{
         }
       });
     },
+    followShop(id){
+      // alert(this.auth.user.access_token);return;
+      if(this.auth.isAuthenticated){
+            axios.get(this.selfDomain+"vueweb/followed_shop/"+id, {
+               headers: {
+                  Authorization: "Bearer " + this.auth.user.access_token,
+               }
+            }).then(res=>{
+               console.log(res.data);
+               // this.getFollowedShop();
+            }).catch(err=>{
+
+            });
+      }
+   },
     scrollToTop() {
-    window.scrollTo(0,400);
+      window.scrollTo(0,400);
     }
     }
 }
