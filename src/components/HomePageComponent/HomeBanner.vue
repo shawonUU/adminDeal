@@ -138,6 +138,7 @@ export default {
 
  },
  created(){
+  this.emitter.emit("headerFooter", true);
   this.getSlider(this.rootDomain);
   this.getCat(this.rootDomain);
   this.checkFlashDeal(this.rootDomain);
