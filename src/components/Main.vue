@@ -1,8 +1,8 @@
 <template>
-        <Header v-if="isSeller"></Header>
-          <router-view :key="$route.fullPath"></router-view>
+        <Header v-if="headerFooter"></Header>
+        <router-view :key="$route.fullPath"></router-view>
           <!-- <router-view name="second"></router-view> -->
-         <Footer v-if="isSeller"></Footer>
+         <Footer v-if="headerFooter"></Footer>
 </template>
   
 <script>
@@ -19,7 +19,7 @@ import Footer from "./layouts//Footer.vue";
         isAuthenticated: false,
         user: {},
       },
-      isSeller:true
+      headerFooter:true
     };
   },
   created(){    
@@ -31,12 +31,8 @@ import Footer from "./layouts//Footer.vue";
       }
   },
   mounted(){
-    this.emitter.on("sellerDashboardUrl", message => {
-       if(message=='seller'){
-        this.isSeller= false;
-       }else{
-        this.isSeller= true;
-       }
+    this.emitter.on("headerFooter", message => {
+        this.headerFooter= message;
     });
   }
 };
