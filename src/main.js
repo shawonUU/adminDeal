@@ -1,6 +1,7 @@
 
 import { createApp } from "vue";
 import App from "./App.vue";
+// import SellerLayout from "./components/pages/sellers/SellerLayout.vue"
 import router from './Router';
 import { createPinia } from 'pinia';
 import globalData from '../global';
@@ -12,6 +13,7 @@ import VueCookies from 'vue-cookies';
 import "vue-awesome-paginate/dist/style.css";
 const pinia = createPinia()
 var app = createApp(App);
+// var app2 = createApp(SellerLayout);
 const emitter = mitt();
 app.config.globalProperties.global = globalData;
 app.config.globalProperties.rootDomain ='https://localhost/backend/';
@@ -22,3 +24,4 @@ app.use(pinia);
 app.use(VueCookies);
 app.use(VueAwesomePaginate);
 app.mount("#app");
+// app2.mount("#app2");
