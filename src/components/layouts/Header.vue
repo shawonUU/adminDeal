@@ -66,8 +66,9 @@
           <li v-if="!auth.isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
             <router-link :to="{name:'login'}" class="text-reset d-inline-block opacity-60 py-2">Login</router-link>
           </li>
-          <li v-if="auth.isAuthenticated && auth.user.type == 'customer'" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
-            <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">My Account</router-link>
+          <li v-if="auth.isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
+            <router-link v-if="auth.user.type == 'customer'" :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">My Account</router-link>
+            <router-link v-else-if="auth.user.type == 'seller'" :to="{name:'SellerDashboard'}" class="text-reset d-inline-block opacity-60 py-2">Dashboard</router-link>
           </li>
           <li v-if="!auth.isAuthenticated" class="list-inline-item">
             <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
@@ -710,7 +711,9 @@ export default {
       });
       var compareItem = localStorage.getItem("compare");
       compareItem = JSON.parse(compareItem);
-      this.totalCompare = compareItem.length;
+      if(compareItem){
+        this.totalCompare = compareItem.length;
+      }
     },
     
     searchSubmit(){

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import UserRouter from './user'
+import UserRouter from './user';
+import SellerRouter from './seller';
 //Home Page
 import HomeComponent from '../components/HomePageComponent/HomeBanner.vue';
 //Important Pages Routes
@@ -315,6 +316,9 @@ const routes = [
   beforeEnter: auth,
 },
 ...UserRouter,
+
+//SellerRoutes
+...SellerRouter,
 
 ]
 const router = createRouter({
