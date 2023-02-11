@@ -42,6 +42,7 @@ import AllFreelanceProducts from '../components/ResourceComponents/ProductCompon
 import CategoryWiseProduct from '../components/ResourceComponents/ProductComponents/CategoryWiseProduct.vue';
 import ShopWiseProduct from '../components/ResourceComponents/ProductComponents/ShopWiseProduct.vue';
 import Compare from '../components/pages/user/comper.vue';
+import Cart from '../components/pages/user/cartView.vue';
 
 // After Authentication Component File
 import UserDashboard from '../components/pages/user/UserLayout.vue';
@@ -114,6 +115,14 @@ const routes = [
     name: 'Compare',
     component: Compare
   },
+
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
+  },
+
+
   {
     path: '/all_jobs',
     name: 'AllJobs',

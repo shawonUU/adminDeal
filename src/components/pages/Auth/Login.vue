@@ -131,7 +131,7 @@ export default {
             this.auth.user = response.data.user;
             this.emitter.emit("reload", true);
             this.$router.push({path: '/'});
-            localStorage.removeItem("temp_user");
+            // localStorage.removeItem("temp_user");
           }
           
       })

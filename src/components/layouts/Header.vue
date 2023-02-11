@@ -267,9 +267,9 @@
                   <div class="px-3 py-2 text-center border-top">
                       <ul class="list-inline mb-0">
                           <li class="list-inline-item">
-                              <a href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
+                              <router-link :to="{name: 'Cart'}" href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
                                   {{ 'View cart' }}
-                              </a>
+                              </router-link>
                           </li>
                          
                               <li v-if="auth.isAuthenticated == true" class="list-inline-item">
@@ -408,9 +408,9 @@
                   <div class="px-3 py-2 text-center border-top">
                       <ul class="list-inline mb-0">
                           <li class="list-inline-item">
-                              <a href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
+                              <router-link :to="{name: 'Cart'}" href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
                                   {{ 'View cart' }}
-                              </a>
+                              </router-link>
                           </li>
                          
                               <li v-if="auth.isAuthenticated == true" class="list-inline-item">
