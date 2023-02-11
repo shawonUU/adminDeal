@@ -322,7 +322,7 @@
             </div>
             <div class="text-center">
                 <button class="btn btn-outline-primary mb-3 mb-sm-0" data-dismiss="modal">{{ 'Back to shopping'}}</button>
-                <a href="javascript:void(0)" class="btn btn-primary mb-3 mb-sm-0">{{ 'Proceed to Checkout'}}</a>
+                <router-link :to="{name: 'Cart'}" href="javascript:void(0)" class="btn btn-primary mb-3 mb-sm-0">{{ 'Proceed to Checkout'}}</router-link>
                 <!-- {{ route('cart') }} -->
             </div>
         </div>

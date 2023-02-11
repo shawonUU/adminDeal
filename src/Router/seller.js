@@ -1,4 +1,4 @@
-import SellerDashboard from '../components/pages/seller/SellerDashboard.vue';
+import SellerDashboard from '../components/pages/sellers/SellerLayout.vue';
 export default [
     {
       path: '/seller/dashboard',

@@ -125,13 +125,14 @@ export default {
       }})
       .then((response)=>{ 
           if(response.status == 200){
+            console.log(response.data);
             response.data.user.access_token = response.data.access_token;
             localStorage.setItem("user", JSON.stringify(response.data.user));
             this.auth.isAuthenticated = true;
             this.auth.user = response.data.user;
             this.emitter.emit("reload", true);
             this.$router.push({path: '/'});
-            localStorage.removeItem("temp_user");
+            // localStorage.removeItem("temp_user");
           }
           
       })
