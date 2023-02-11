@@ -1,11 +1,11 @@
 <template>
-        <Header></Header>
+        <Header v-if="isSeller"></Header>
           <router-view :key="$route.fullPath"></router-view>
           <!-- <router-view name="second"></router-view> -->
-         <Footer></Footer>
+         <Footer v-if="isSeller"></Footer>
 </template>
   
-  <script>
+<script>
 import axios from "axios";
 import Header from "./layouts/Header.vue";
 import HomeBanner from "./HomePageComponent/HomeBanner.vue";
@@ -13,21 +13,33 @@ import Footer from "./layouts//Footer.vue";
 
  export default {
   components:{Header,HomeBanner,Footer},
-  // data() {
-  //   return {
-  //     activityTimestamps: []
-  //   };
-  // },
-  // created(){
-  //   let lastTime = localStorage.getItem("lastActivity");
-  //   alert(lastTime);
-  // },
-  // destroyed() {
-  //   localStorage.setItem("lastActivity","55555555");
-  //   alert("The component has been destroyed");
-  // }
+  data() {
+    return {
+      auth:{
+        isAuthenticated: false,
+        user: {},
+      },
+      isSeller:true
+    };
+  },
+  created(){    
+    var user = localStorage.getItem("user");
+      if(user !== null){
+        user = JSON.parse(user);
+        this.auth.isAuthenticated = true;
+        this.auth.user = user;
+      }
+  },
+  mounted(){
+    this.emitter.on("sellerDashboardUrl", message => {
+       if(message=='seller'){
+        this.isSeller= false;
+       }else{
+        this.isSeller= true;
+       }
+    });
+  }
 };
-
   </script>
   
   <style scoped>

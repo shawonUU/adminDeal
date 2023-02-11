@@ -361,6 +361,7 @@
                         // console.log(response.data.user);return;
                         this.responseHolder[page] = response;
                         this.setResponseData(this.responseHolder[page]);
+                        console.log(response.data);
                     })
                     .catch((error)=>{
                         console.log(error);

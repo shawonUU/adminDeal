@@ -66,8 +66,9 @@
           <li v-if="!auth.isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
             <router-link :to="{name:'login'}" class="text-reset d-inline-block opacity-60 py-2">Login</router-link>
           </li>
-          <li v-if="auth.isAuthenticated && auth.user.type == 'customer'" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
-            <router-link :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">My Account</router-link>
+          <li v-if="auth.isAuthenticated" class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
+            <router-link v-if="auth.user.type=='customer'" :to="{name:'UserDashboard'}" class="text-reset d-inline-block opacity-60 py-2">My Account</router-link>
+            <router-link v-else :to="{name:'SellerDashboard'}" @click="forSellerDashboard(auth.user.type)" class="text-reset d-inline-block opacity-60 py-2">Dashboard</router-link>
           </li>
           <li v-if="!auth.isAuthenticated" class="list-inline-item">
             <router-link :to="{name:'registration'}" class="text-reset d-inline-block opacity-60 py-2">Join Now</router-link>
@@ -91,7 +92,6 @@
              <p>Logo Here</p>
             <!-- <img src="https://admindeal.s3.ap-southeast-1.amazonaws.com/uploads/all/wX5s4T1KUanpH8wLrFqzcOtElCZ7w2WNYf1MPIGq.webp" alt="Admin Deal" class="mw-100 h-20px h-md-40px" height="40"> -->
           </router-link>
-           <div><button @click="check()">check</button></div>
         </div>
         <div class="flex-grow-1 front-header-search d-flex align-items-center bg-white" style="max-width: 750px;">
           <div class="position-relative flex-grow-1">
@@ -648,6 +648,8 @@ export default {
    
     document.addEventListener("click", this.hidCart);
 
+    // console.log(this.auth.user);
+
   },
   methods:{
     createPro(){
@@ -710,7 +712,10 @@ export default {
       });
       var compareItem = localStorage.getItem("compare");
       compareItem = JSON.parse(compareItem);
-      this.totalCompare = compareItem.length;
+      if(compareItem){
+        this.totalCompare = compareItem.length;
+      }
+      
     },
     
     searchSubmit(){
@@ -863,6 +868,10 @@ export default {
         }).catch(err=>{
           alert('');
         });*/
+      },
+
+      forSellerDashboard(type){
+        this.emitter.emit("sellerDashboardUrl", type);
       }
 
 

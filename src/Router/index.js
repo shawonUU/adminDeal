@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import UserRouter from './user'
+import { createRouter, createWebHistory } from 'vue-router';
+import UserRouter from './user';
+import SellerRouter from './seller';
 //Home Page
 import HomeComponent from '../components/HomePageComponent/HomeBanner.vue';
 //Important Pages Routes
@@ -323,7 +324,15 @@ const routes = [
   props: () => ({ componentName: 'PurchaseHistory' }),
   beforeEnter: auth,
 },
+{
+  path:'/digital-purchase-history',
+  name:'digital_purchase_history',
+  component: UserDashboard,
+  props: () => ({ componentName: 'digital_purchase_history' }),
+  beforeEnter: auth,
+},
 ...UserRouter,
+...SellerRouter,
 
 ]
 const router = createRouter({
