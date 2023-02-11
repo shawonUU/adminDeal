@@ -49,10 +49,15 @@
             
                     </div>
             
+            <h1>{{wishlist.nowishlist_image}}</h1>
+
+            <div v-if="preLoader" class="c-preloader text-center p-3" style="height: 100%; width: 100%; text-align: center; font-size: 30px;">
+                <i class="las la-spinner la-spin la-3x"></i>
+            </div>
         
-            <div v-if="wishlist<1" class="col">
+            <div v-if="wishlist.length == 0 && preLoader == false" class="col">
                 <div class="text-center bg-white p-4 rounded shadow">
-                    <img class="mw-100 h-200px" src="https://admindeal.com.bd/public/assets/img/nothing.svg" alt="Image">
+                    <img class="mw-100 h-200px" :src="nowishlist_image" alt="Image">
                     <h5 class="mb-0 h5 mt-3">{{ "There isn't anything added yet"}}</h5>
                 </div>
             </div>
@@ -76,7 +81,9 @@
                     isAuthenticated: false,
                     user: {},
                 },
-                wishlist:{},
+                wishlist:[],
+                nowishlist_image:'',
+                preLoader:true,
             }
         },
         created(){
@@ -98,9 +105,10 @@
                         Authorization: "Bearer " + this.auth.user.access_token,
                     }    
                 }).then(res=>{
-                
-                this.wishlist = res.data.data;
-                console.log(res.data.data);
+                this.preLoader = false;
+                console.log(res.data);
+                this.wishlist = res.data.wishlist.data;
+                this.nowishlist_image = res.data.nowishlist_image;
                     console.log("ComeEEEEEE");
                 }).catch(err=>{
                     console.log(err);

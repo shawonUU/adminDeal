@@ -34,7 +34,7 @@
                  <a href="javascript:void(0)" @click="addToWishList(product.id)" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                    <i class="la la-heart-o"></i>
                  </a>
-                 <a href="javascript:void(0)" onclick="addToCompare(5931)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
+                 <a href="javascript:void(0)" @click="addToCompare(product.id)" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
                    <i class="las la-sync"></i>
                  </a>
                  <a href="javascript:void(0)" @click="addTocartModal(product.id)" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
@@ -179,6 +179,20 @@ export default {
       this.viewAddToCartModal = true;
       let ele = document.getElementsByTagName('body');
       ele[0].classList.add("modal-open");
+    },
+    addToCompare(id){
+      var compareItem = localStorage.getItem("compare");
+      if(compareItem != null){
+            compareItem = JSON.parse(compareItem);
+            if(!compareItem.indexOf(id) > -1){
+                if(compareItem.length == 3){
+                    compareItem.splice(0, 1);
+                }
+                compareItem.push(id);
+            }
+      }
+      else{compareItem = [id];}
+      localStorage.setItem("compare", JSON.stringify(compareItem));
     }
   }
 }
