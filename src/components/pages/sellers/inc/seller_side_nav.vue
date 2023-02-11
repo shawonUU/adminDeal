@@ -298,8 +298,46 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-
+    data(){
+        return{
+            auth:{
+                isAuthenticated: false,
+                user: {},
+                },
+                shop:[],
+                shop_logo:"",
+                header_logo:""
+        }
+    },
+    created(){
+        var user = localStorage.getItem("user");
+            if(user !== null){
+                user = JSON.parse(user);
+                this.auth.isAuthenticated = true;
+                this.auth.user = user;
+                // console.log(this.auth.user);
+                // this.setComponent(this.componentName);
+            }
+            this.getDashboardSideNavData();
+    },
+    methods:{
+        getDashboardSideNavData(){
+            axios.get(this.selfDomain+'vue/get-dashboard-data',{
+                params: {
+                            token: this.auth.user.access_token,
+                         }
+            })
+            .then((response) => {
+                console.log(response.data)
+                this.shop = response.data[0];
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+    }
 }
 </script>
 
