@@ -3,15 +3,14 @@
     <div class="aiz-sidebar left c-scrollbar">
         <div class="aiz-side-nav-logo-wrap">
             <div class="d-block text-center my-3">
-                <!-- @if (optional(Auth::user()->shop)->logo != null)
-                    <img class="mw-100 mb-3" src="{{ uploaded_asset(optional(Auth::user()->shop)->logo) }}" class="brand-icon"
-                        alt="{{ get_setting('site_name') }}">
-                @else
-                    <img class="mw-100 mb-3" src="{{ uploaded_asset(get_setting('header_logo')) }}" class="brand-icon"
-                        alt="{{ get_setting('site_name') }}">
-                @endif
-                <h3 class="fs-16  m-0 text-primary">{{ optional(Auth::user()->shop)->name }}</h3>
-                <p class="text-primary">{{ Auth::user()->email }}</p> -->
+
+                    <img  v-if="shop_logo!=null" class="mw-100 mb-3 brand-icon" :src="shop_logo" 
+                        alt="">
+                    <img v-else class="mw-100 mb-3 brand-icon" :src="header_logo" 
+                        alt="">
+           
+                <h3 class="fs-16  m-0 text-primary">{{ shop.name }}</h3>
+                <p class="text-primary">{{ auth.user.email }}</p>
             </div>
         </div>
         <div class="aiz-side-nav-wrap">
@@ -24,10 +23,10 @@
             </ul>
             <ul class="aiz-side-nav-list" id="main-menu" data-toggle="aiz-side-menu">
                 <li class="aiz-side-nav-item">
-                    <a href="seller.dashboard" class="aiz-side-nav-link">
+                    <router-link :to="{name: 'SellerDashboard'}" class="aiz-side-nav-link">
                         <i class="las la-home aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">Dashboard</span>
-                    </a>
+                    </router-link>
                 </li>
                 <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
