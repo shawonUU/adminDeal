@@ -3935,7 +3935,7 @@ input[type="number"] {
 .aiz-side-nav-list .aiz-side-nav-link.level-3-active,
 .aiz-side-nav-list .aiz-side-nav-link.active {
     color: #2E294E;
-    /* background-color: #181827; */
+   
     font-weight: 600;
 }
 .aiz-side-nav-list .level-2 .aiz-side-nav-link:hover:after,
