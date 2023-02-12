@@ -33,6 +33,12 @@ export default {
     destroyed() { 
        console.log('destroyed hook called')
     },
+    beforeUnmount() {
+        console.log('beforeUnmount has been called'); 
+    },
+    unmounted() {
+        console.log('unmounted has been called'); 
+    },
     methods:{
        
     }
