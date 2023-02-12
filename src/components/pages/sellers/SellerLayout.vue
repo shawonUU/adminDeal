@@ -11,7 +11,13 @@ export default {
     components:{seller_nav,seller_side_nav},
     created(){
         this.emitter.emit("headerFooter", false);
-    }
+    },
+    beforeDestroy() {
+        console.log("Instance is about to be befour destroy");
+    },
+    destroyed() {
+        console.log("Instance is about to be destroyed");
+    },
 }
 </script>
 
