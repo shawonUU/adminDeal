@@ -77,7 +77,7 @@
                             <tr>
                                 <th scope="row"></th>
                                     <td v-for="(product, index) in products" :key="index" class="text-center py-4">
-                                        <button @click="addTocart(product.id)" type="button" class="btn btn-primary fw-600">
+                                        <button @click="addTocartModal(product.id)" type="button" class="btn btn-primary fw-600">
                                             {{ 'Add to cart'}}
                                         </button>
                                     </td>
@@ -135,11 +135,12 @@
 
                 });
             },
-            addTocart(id){
-                // alert(id);
-                 this.productId = id;
-                 this.viewAddToCartModal = true;
-            }
+            addTocartModal(productId){
+                this.productId = productId;
+                this.viewAddToCartModal = true;
+                let ele = document.getElementsByTagName('body');
+                ele[0].classList.add("modal-open");
+            },
         }
     }
 </script>
