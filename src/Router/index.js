@@ -332,6 +332,8 @@ const routes = [
   beforeEnter: auth,
 },
 ...UserRouter,
+
+//SellerRoutes
 ...SellerRouter,
 
 ]

@@ -28,6 +28,8 @@
             </div>
         </div>
     </div>
+
+   
 </template>
 
 <script>
@@ -40,6 +42,7 @@ export default {
                 user: {},
             },
             shops: [],
+            load: false,
         }
     },
     created(){
@@ -52,6 +55,7 @@ export default {
         }
     },
     methods:{
+       
         getFollowedShop(){
             axios.get(this.selfDomain+"vueweb/user_followed_shop", {
                 headers: {

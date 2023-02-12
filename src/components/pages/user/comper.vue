@@ -77,7 +77,7 @@
                             <tr>
                                 <th scope="row"></th>
                                     <td v-for="(product, index) in products" :key="index" class="text-center py-4">
-                                        <button type="button" class="btn btn-primary fw-600">
+                                        <button @click="addTocart(product.id)" type="button" class="btn btn-primary fw-600">
                                             {{ 'Add to cart'}}
                                         </button>
                                     </td>
@@ -92,18 +92,22 @@
                
             </div>
         </div>
+
+        <AddToCartModal v-if="viewAddToCartModal" :productId="productId"></AddToCartModal>
     </section>
-    
 </template>
 
 <script>
-  
+    import AddToCartModal from "../../layouts/Modal/AddToCartModal.vue";
     import axios from "axios";
     export default {
+        components:{AddToCartModal},
         data(){
             return{
                
                 products:[],
+                productId:'',
+                viewAddToCartModal: false,
             }
         },
         created(){
@@ -130,6 +134,11 @@
                 }).catch(err=>{
 
                 });
+            },
+            addTocart(id){
+                // alert(id);
+                 this.productId = id;
+                 this.viewAddToCartModal = true;
             }
         }
     }
