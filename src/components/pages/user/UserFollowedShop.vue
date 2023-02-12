@@ -29,15 +29,12 @@
         </div>
     </div>
 
-    <Temp v-if="load"></Temp>
-    <button @click="loadCompo()">Load</button>
+   
 </template>
 
 <script>
-import Temp from './temp.vue';
 import axios from 'axios';
 export default {
-    components:{Temp},
     data(){
         return{
              auth:{
@@ -58,9 +55,7 @@ export default {
         }
     },
     methods:{
-        loadCompo(){
-            this.load = !this.load;
-        },
+       
         getFollowedShop(){
             axios.get(this.selfDomain+"vueweb/user_followed_shop", {
                 headers: {

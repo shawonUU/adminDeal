@@ -34,7 +34,8 @@ import Footer from "./layouts//Footer.vue";
     this.emitter.on("headerFooter", message => {
         this.headerFooter= message;
     });
-  }
+  },
+ 
 };
   </script>
   

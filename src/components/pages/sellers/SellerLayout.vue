@@ -31,11 +31,15 @@ export default {
         this.emitter.emit("headerFooter", false);
         this.setComponent(this.componentName);
     },
+    unmounted() {
+        this.emitter.emit("headerFooter", true);
+        console.log('unmounted has been called'); 
+    },
 
     methods:{
         setComponent(name) {
-                this.selectedComponent = name
-            },
+            this.selectedComponent = name
+        },
     }
 }
 </script>

@@ -9,33 +9,33 @@ export default {
             
         }
     },
-    beforeCreate() {
-      console.log('beforeCreate hook called');
-    },
-    created(){
-      console.log('create hook called');
-    },
-    beforeMount() {
-      console.log('beforeMount hook called');
-    },
-    mounted() {
-        console.log('mounted has been called'); 
-    },
-    beforeUpdate(){
-        console.log('beforeUpdate hook called');
-    },
-    updated(){
-        console.log('updated hook called');
-    },
-    beforeDestroy() {
-       console.log('beforeDestroy hook called');
-    },
-    destroyed() { 
-       console.log('destroyed hook called')
-    },
-    beforeUnmount() {
-        console.log('beforeUnmount has been called'); 
-    },
+    // beforeCreate() {
+    //   console.log('beforeCreate hook called');
+    // },
+    // created(){
+    //   console.log('create hook called');
+    // },
+    // beforeMount() {
+    //   console.log('beforeMount hook called');
+    // },
+    // mounted() {
+    //     console.log('mounted has been called'); 
+    // },
+    // beforeUpdate(){
+    //     console.log('beforeUpdate hook called');
+    // },
+    // updated(){
+    //     console.log('updated hook called');
+    // },
+    // beforeDestroy() {
+    //    console.log('beforeDestroy hook called');
+    // },
+    // destroyed() { 
+    //    console.log('destroyed hook called')
+    // },
+    // beforeUnmount() {
+    //     console.log('beforeUnmount has been called'); 
+    // },
     unmounted() {
         console.log('unmounted has been called'); 
     },

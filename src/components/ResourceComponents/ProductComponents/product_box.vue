@@ -89,15 +89,15 @@ import axios from "axios";
 export default {
     props:['products'],
     data(){
-    return{
-      auth:{
-        isAuthenticated: false,
-        user: {},
-      },
-      modules: [FreeMode,Navigation],
-      viewAddToCartModal: false,
-      productId: null,
-    }
+      return{
+        auth:{
+          isAuthenticated: false,
+          user: {},
+        },
+        modules: [FreeMode,Navigation],
+        viewAddToCartModal: false,
+        productId: null,
+      }
   },
   components: {
     AddToCartModal,

@@ -77,7 +77,7 @@
                             <tr>
                                 <th scope="row"></th>
                                     <td v-for="(product, index) in products" :key="index" class="text-center py-4">
-                                        <button type="button" class="btn btn-primary fw-600">
+                                        <button @click="addTocartModal(product.id)" type="button" class="btn btn-primary fw-600">
                                             {{ 'Add to cart'}}
                                         </button>
                                     </td>
@@ -86,31 +86,36 @@
                     </table>
                 </div>
             
-                <div v-else="products.length == 0" class="text-center p-4">
+                <div v-else class="text-center p-4">
                     <p class="fs-17">{{ 'Your comparison list is empty'}}</p>
                 </div>
                
             </div>
         </div>
+
+        <add-to-cart-modal v-if="viewAddToCartModal" :productId="productId"/>
     </section>
-    
 </template>
 
 <script>
-  
     import axios from "axios";
     export default {
         data(){
             return{
                
                 products:[],
+                productId:'',
+                viewAddToCartModal: false,
             }
         },
         created(){
             this.getCompareItem();
         },
-        components: {},
-       
+        mounted(){
+            this.emitter.on("viewAddToCartModal", message => {
+            this.viewAddToCartModal = message;
+            });
+        },   
         methods: {
            getCompareItem(){
                 var compareItem = localStorage.getItem("compare");
@@ -130,7 +135,13 @@
                 }).catch(err=>{
 
                 });
-            }
+            },
+            addTocartModal(productId){
+                this.productId = productId;
+                this.viewAddToCartModal = true;
+                let ele = document.getElementsByTagName('body');
+                ele[0].classList.add("modal-open");
+            },
         }
     }
 </script>
