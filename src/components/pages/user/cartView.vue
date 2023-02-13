@@ -126,7 +126,7 @@
                                                         class="fw-600 fs-16 text-primary">{{ item.single_price }}</span>
                                                 </div>
                                                 <div class="col-lg-auto col-6 order-5 order-lg-0 text-right">
-                                                    <a href="javascript:void(0)"
+                                                    <a @click="removeFromCart(item.id)" href="javascript:void(0)"
                                                         class="btn btn-icon btn-sm btn-soft-primary btn-circle">
                                                         <i class="las la-trash"></i>
                                                     </a>
@@ -440,6 +440,20 @@
 
             }).catch(err=>{
 
+            });
+
+        },
+
+        removeFromCart(key){
+            axios.get(this.rootDomain+'vueweb/cart/removeFromCart', {
+                params: {
+                    id:key
+                }
+            }).then(res=>{
+                this.emitter.emit("reload", true);
+                this.getCart();
+            }).catch(err=>{
+                
             });
 
         },

@@ -114,7 +114,6 @@
                     console.log(err);
                 });
             },
-
             productDetails(slug,product){
                 this.$router.push({
                     name: "singleProduct",
