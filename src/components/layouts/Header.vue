@@ -244,13 +244,13 @@
                                               <span class="fw-600 mb-1 text-truncate-2">
                                                   {{ item.product.data[0].name }}
                                               </span>
-                                              <span class="">{{ item.quantity }}x</span>
+                                              <span  class="">{{ item.quantity }}x</span>
                                               
                                               <span class="">{{ item.cart_product_price }}</span>
                                           </span>
                                       </a>
                                       <span class="">
-                                          <button 
+                                          <button @click="removeFromCart(item.id)" 
                                               class="btn btn-sm btn-icon stop-propagation">
                                               <i class="la la-close"></i>
                                           </button>
@@ -267,7 +267,7 @@
                   <div class="px-3 py-2 text-center border-top">
                       <ul class="list-inline mb-0">
                           <li class="list-inline-item">
-                              <router-link :to="{name: 'Cart'}" href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
+                              <router-link :to="{name: 'Cart'}" @click="cartView = false;" href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
                                   {{ 'View cart' }}
                               </router-link>
                           </li>
@@ -385,13 +385,13 @@
                                               <span class="fw-600 mb-1 text-truncate-2">
                                                   {{ item.product.data[0].name }}
                                               </span>
-                                              <span class="">{{ item.quantity }}x</span>
+                                              <span  class="">{{ item.quantity }}x</span>
                                               
                                               <span class="">{{ item.cart_product_price }}</span>
                                           </span>
                                       </a>
                                       <span class="">
-                                          <button 
+                                          <button @click="removeFromCart(item.id)"
                                               class="btn btn-sm btn-icon stop-propagation">
                                               <i class="la la-close"></i>
                                           </button>
@@ -408,7 +408,7 @@
                   <div class="px-3 py-2 text-center border-top">
                       <ul class="list-inline mb-0">
                           <li class="list-inline-item">
-                              <router-link :to="{name: 'Cart'}" href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
+                              <router-link :to="{name: 'Cart'}" @click="cartView = false;" href="javascript:void(0)" class="btn btn-soft-primary btn-sm">
                                   {{ 'View cart' }}
                               </router-link>
                           </li>
@@ -684,6 +684,19 @@ export default {
             }
           }
 
+
+    },
+    removeFromCart(key){
+      
+        axios.get(this.rootDomain+'vueweb/cart/removeFromCart', {
+            params: {
+              id:key
+            }
+        }).then(res=>{
+          this.getNavData();
+        }).catch(err=>{
+          
+        });
 
     },
     getNavData(){
