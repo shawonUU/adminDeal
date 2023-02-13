@@ -1,6 +1,6 @@
 <template>
   <div>
-   <swiper
+    <swiper
               :slidesPerView="2"
               :spaceBetween="10"
               :breakpoints="{
@@ -68,7 +68,7 @@
          </div> 
         </swiper-slide>
          
-      </swiper>
+    </swiper>
 
       <AddToCartModal v-if="viewAddToCartModal" :productId="productId"></AddToCartModal>
 

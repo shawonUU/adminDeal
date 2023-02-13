@@ -93,15 +93,19 @@
             </div>
         </div>
 
-        <AddToCartModal v-if="viewAddToCartModal" :productId="productId"></AddToCartModal>
+        <!-- <AddToCartModal v-if="viewAddToCartModal" :productId="productId"></AddToCartModal> -->
+
     </section>
+
+    <AddToCartModalkk v-if="viewAddToCartModal" :productId="productId"></AddToCartModalkk>
+
+
 </template>
 
 <script>
-    import AddToCartModal from "../../layouts/Modal/AddToCartModal.vue";
+    import AddToCartModalkk from "../../layouts/Modal/AddToCartModal.vue";
     import axios from "axios";
     export default {
-        components:{AddToCartModal},
         data(){
             return{
                
@@ -109,6 +113,9 @@
                 productId:'',
                 viewAddToCartModal: false,
             }
+        },
+        components: {
+            AddToCartModalkk,
         },
         created(){
             this.getCompareItem();
