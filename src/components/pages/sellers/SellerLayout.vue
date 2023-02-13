@@ -19,9 +19,10 @@
 import seller_nav from './inc/seller_nav.vue';
 import seller_side_nav from './inc/seller_side_nav.vue';
 import Dashboard from "./pages/Dashboard.vue";
+import SellerProducts from "./pages/seller_products.vue";
 export default {
     props: ['componentName'],
-    components:{seller_nav,seller_side_nav,Dashboard},
+    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts},
     data(){
         return{
         selectedComponent:'',
@@ -32,6 +33,7 @@ export default {
         this.setComponent(this.componentName);
     },
     unmounted() {
+
         this.emitter.emit("headerFooter", true);
         console.log('unmounted has been called'); 
     },
@@ -40,6 +42,7 @@ export default {
         setComponent(name) {
             this.selectedComponent = name
         },
+
     }
 }
 </script>

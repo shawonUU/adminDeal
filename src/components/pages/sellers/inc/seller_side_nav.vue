@@ -38,10 +38,10 @@
                
                         <ul v-if="ProductsToggle">
                         <li class="aiz-side-nav-item">
-                            <a href="seller.products"
+                            <router-link  :to="{name: 'SellerProducts'}"
                                 class="aiz-side-nav-link">
                                 <span class="aiz-side-nav-text">Products</span>
-                            </a>
+                            </router-link>
                         </li>
 
                         <li class="aiz-side-nav-item">
@@ -294,14 +294,16 @@ export default {
                 user = JSON.parse(user);
                 this.auth.isAuthenticated = true;
                 this.auth.user = user;
-                // console.log(this.auth.user);
-                // this.setComponent(this.componentName);
             }
             this.getDashboardSideNavData();
     },
+    unmounted() {
+    this.emitter.emit("headerFooter", false);
+    console.log('unmounted has been called'); 
+    },
     methods:{
         getDashboardSideNavData(){
-            axios.get(this.selfDomain+'vue/get-dashboard-data',{
+            axios.get(this.selfDomain+'vue/get-sidenav-data',{
                 params: {
                             token: this.auth.user.access_token,
                          }
@@ -321,7 +323,6 @@ export default {
                 this.refund_request = response.data.refund_request;
                 this.product_query_activation = response.data.product_query_activation;
                 this.support_ticket = response.data.support_ticket;
-                console.log(response.data);
             })
             .catch((err)=>{
                 console.log(err)

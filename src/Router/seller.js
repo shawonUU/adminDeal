@@ -15,4 +15,11 @@ export default [
     props: () => ({ componentName: 'Dashboard' }),
     beforeEnter: auth,
   },
+  {
+    path:'/seller/products',
+    name:'SellerProducts',
+    component: SellerLayout,
+    props: () => ({ componentName: 'SellerProducts' }),
+    beforeEnter: auth,
+  }
    ]

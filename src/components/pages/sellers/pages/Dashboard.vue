@@ -18,8 +18,8 @@
                                 <span class="fs-14 text-light">Products</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                <!-- {{ \App\Models\Product::where('user_id', Auth::user()->id)->count() }} -->
-                                10
+                               
+                              {{ product }}
                             </h3>
 
                         </div>
@@ -44,7 +44,7 @@
                                 <span class="fs-14 text-light">Rating</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                <!-- {{ Auth::user()->shop->rating }} --> rating
+                               {{ rating }}
                             </h3>
 
                         </div>
@@ -69,8 +69,7 @@
                                 <span class="fs-14 text-light">Total Order</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                <!-- {{ \App\Models\Order::where('seller_id', Auth::user()->id)->where('delivery_status', 'delivered')->count() }} -->
-                                5
+                               {{ total_order }}
                             </h3>
                         </div>
                         <div class="col-auto text-right">
@@ -126,16 +125,8 @@
                                 <span class="fs-14 text-light">Total Sales</span>
                             </p>
                             <h3 class="mb-0 text-white fs-30">
-                                <!-- @php
-                                    $orderDetails = \App\Models\OrderDetail::where('seller_id', Auth::user()->id)->get();
-                                    $total = 0;
-                                    foreach ($orderDetails as $key => $orderDetail) {
-                                        if ($orderDetail->order != null && $orderDetail->order->payment_status == 'paid') {
-                                            $total += $orderDetail->price;
-                                        }
-                                    }
-                                @endphp -->
-                                 total
+                                
+                              {{ total_sales }}
                             </h3>
 
                         </div>
@@ -176,13 +167,13 @@
             <div class="card shadow-none bg-soft-primary mb-0">
 
                 <!-- @php
-                    $date = date('Y-m-d');
-                    $days_ago_30 = date('Y-m-d', strtotime('-30 days', strtotime($date)));
-                    $days_ago_60 = date('Y-m-d', strtotime('-60 days', strtotime($date)));
+                    this.date = date('Y-m-d');
+                    this.days_ago_30 = date('Y-m-d', strtotime('-30 days', strtotime(this.date)));
+                    this.days_ago_60 = date('Y-m-d', strtotime('-60 days', strtotime(this.date)));
 
-                    $orderTotal = \App\Models\Order::where('seller_id', Auth::user()->id)
+                    this.orderTotal = \App\Models\Order::where('seller_id', Auth::user()->id)
                         ->where('payment_status', 'paid')
-                        ->where('created_at', '>=', $days_ago_30)
+                        ->where('created_at', '>=', this.days_ago_30)
                         ->sum('grand_total');
                 @endphp -->
 
@@ -192,17 +183,18 @@
                     </div>
                     <p>Your Sold Amount (Current month)</p>
                     <h3 class="text-primary fw-600 fs-30">
-                       orderTotal
+                        ৳{{ orderTotalCurrentMonth }}
                     </h3>
                     <p class="mt-4">
                         <!-- @php
-                            $orderTotal = \App\Models\Order::where('seller_id', Auth::user()->id)
+                            this.orderTotal = \App\Models\Order::where('seller_id', Auth::user()->id)
                                 ->where('payment_status', 'paid')
-                                ->where('created_at', '>=', $days_ago_60)
-                                ->where('created_at', '<=', $days_ago_30)
+                                ->where('created_at', '>=', this.days_ago_60)
+                                ->where('created_at', '<=', this.days_ago_30)
                                 ->sum('grand_total');
                         @endphp -->
-                        Last Month: orderTotal
+                        Last Month: ৳{{ orderTotalLastMonth }}
+
                     </p>
                 </div>
             </div>
@@ -252,8 +244,7 @@
                                 <span class="fs-13 text-primary fw-600">New Order</span>
                             </p>
                             <h3 class="mb-0" style="color: #A9A3CC">
-                                <!-- {{ \App\Models\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'pending')->count() }} -->
-                                10
+                               {{ new_order }}
                             </h3>
                         </div>
                     </div>
@@ -292,8 +283,7 @@
                                 <span class="fs-13 text-primary fw-600">Cancelled</span>
                             </p>
                             <h3 class="mb-0" style="color: #A9A3CC">
-                                <!-- {{ \App\Models\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'cancelled')->count() }} -->
-                                10
+                                {{ cancelled_order }}
                             </h3>
                         </div>
                     </div>
@@ -335,8 +325,7 @@
                                 <span class="fs-13 text-primary fw-600">On Delivery</span>
                             </p>
                             <h3 class="mb-0" style="color: #A9A3CC">
-                                <!-- {{ \App\Models\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'on_the_way')->count() }} -->
-                                5
+                                {{ onDelivery }}
                             </h3>
                         </div>
                     </div>
@@ -366,8 +355,7 @@
                                 <span class="fs-13 text-primary fw-600">Delivered</span>
                             </p>
                             <h3 class="mb-0" style="color: #A9A3CC">
-                                <!-- {{ \App\Models\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'delivered')->count() }} -->
-                                5
+                                {{ delivered }}
                             </h3>
                         </div>
                     </div>
@@ -375,59 +363,51 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
-            @if (addon_is_activated('seller_subscription'))
-                <div class="card">
+         <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+                <div v-if="seller_subscription==true" class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h6 class="mb-0">{{ translate('Purchased Package') }}</h6>
+                            <h6 class="mb-0">Purchased Package</h6>
                         </div>
-                        @if (Auth::user()->shop->seller_package)
-                            <div class="d-flex">
+                            <div v-if="sellerPackageDetails!=null" class="d-flex">
                                 <div class="col-3">
-                                    <img src="{{ uploaded_asset(Auth::user()->shop->seller_package->logo) }}"
+                                    <img :src="seller_package_logo"
                                         class="img-fluid mb-4 w-64px">
                                 </div>
                                 <div class="col-9">
-                                    <a class="fw-600 mb-3 text-primary">{{ translate('Current Package') }}:</a>
-                                    <h6 class="text-primary">
-                                        {{ Auth::user()->shop->seller_package->name }}
+                                    <a class="fw-600 mb-3 text-primary">Current Package:</a>
+                                    <h3 class="text-primary">
+                                        {{ sellerPackageDetails.name }}
                                         </h3>
-                                        <p class="mb-1 text-muted">{{ translate('Product Upload Limit') }}:
-                                            {{ Auth::user()->shop->product_upload_limit }} {{ translate('Times') }}
+                                        <p class="mb-1 text-muted">Product Upload Limit:
+                                            {{ sellerPackageDetails.product_upload_limit }} Times
                                         </p>
-                                        <p class="text-muted mb-4">{{ translate('Package Expires at') }}:
-                                            {{ Auth::user()->shop->package_invalid_at }}
+                                        <p class="text-muted mb-4">Package Expires at:
+                                            {{ shop.package_invalid_at }}
                                         </p>
                                         <div class="">
-                                            <a href="{{ route('seller.seller_packages_list') }}"
-                                                class="btn btn-soft-primary">{{ translate('Upgrade Package') }}</a>
+                                            <a href="seller.seller_packages_list"
+                                                class="btn btn-soft-primary">Upgrade Package</a>
                                         </div>
                                 </div>
                             </div>
-                        @else
-                            <h6 class="fw-600 mb-3 text-primary">{{ translate('Package Not Found') }}</h6>
-                        @endif
-
+                            <h6 v-else class="fw-600 mb-3 text-primary">Package Not Found</h6>
+                  
                     </div>
                 </div>
-            @endif
             <div
-                class="card mb-0 @if (addon_is_activated('seller_subscription')) px-4 py-5 @else p-5 h-100 @endif d-flex align-items-center justify-content-center">
-                @if (Auth::user()->shop->verification_status == 0)
-                    <div class="my-n4 py-1 text-center">
-                        <img src="{{ static_asset('assets/img/non_verified.png') }}" alt=""
+                class="card mb-0 d-flex align-items-center justify-content-center">
+                    <div v-if="shop.verification_status==0" class="my-n4 py-1 text-center">
+                        <img src="" alt=""
                             class="w-xxl-130px w-90px d-block">
-                        <a href="{{ route('seller.shop.verify') }}"
-                            class="btn btn-sm btn-primary">{{ translate('Verify Now') }}</a>
+                        <a href="{seller.shop.verify"
+                            class="btn btn-sm btn-primary">Verify Now</a>
                     </div>
-                @else
-                    <div class="my-2 py-1">
-                        <img src="{{ static_asset('assets/img/verified.png') }}" alt="" width="">
+                    <div v-else class="my-2 py-1">
+                        <img src="https://localhost/backend/public/assets/img/verified.png" alt="" width="">
                     </div>
-                @endif
             </div>
-        </div> -->
+        </div> 
     </div>
 
     <div class="row">
@@ -536,38 +516,8 @@
             </div>
             <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"
                 data-md-items="3" data-sm-items="2" data-arrows='true'>
-                <!-- @foreach ($products as $key => $product) -->
-                    <div class="carousel-box">
-                        <div
-                            class="aiz-card-box border border-light rounded shadow-sm hov-shadow-md mb-2 has-transition bg-white">
-                            <div class="position-relative">
-                                <a href="" class="d-block">
-                                    <img class="img-fit lazyload mx-auto h-210px"
-                                        src="assets/img/placeholder.jpg"
-                                        data-src="thumbnail_img"
-                                        alt=""
-                                        >
-                                </a>
-                            </div>
-                            <div class="p-md-3 p-2 text-left">
-                                <div class="fs-15">
-                                    <!-- @if (home_base_price($product) != home_discounted_base_price($product)) -->
-                                        <!-- <del class="fw-600 opacity-50 mr-1">{{ home_base_price($product) }}</del> -->
-                                        <del class="fw-600 opacity-50 mr-1">100</del>
-                                    <!-- @endif -->
-                                    <!-- <span class="fw-700 text-primary">{{ home_discounted_base_price($product) }}</span> -->
-                                    <span class="fw-700 text-primary">200</span>
-                                </div>
-                                <div class="rating rating-sm mt-1">
-                                    rating
-                                </div>
-                                <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0">
-                                    <a href=""
-                                        class="d-block text-reset">name</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                <!-- @foreach (this.products as this.key => this.product) -->
+                    <product_box :products="data"></product_box>
                 <!-- @endforeach -->
             </div>
         </div>
@@ -575,8 +525,81 @@
 </template>
 
 <script>
+import axios from 'axios';
+import product_box from '@/components/ResourceComponents/ProductComponents/product_box.vue';
 export default {
-
+    components:{product_box},
+ data(){
+    return{
+        auth:{
+                isAuthenticated: false,
+                user: {},
+                },
+                product:"",
+                rating:"",
+                total_order:"",
+                total_sales:"",
+                orderTotalCurrentMonth:"",
+                orderTotalLastMonth:"",
+                new_order:"",
+                cancelled_order:"",
+                onDelivery:"",
+                delivered:"",
+                seller_subscription:"",
+                sellerPackageDetails:"",
+                seller_package_logo:"",
+                shop:"",
+                data:[]             
+    }
+ },
+ mounted() {
+this.emitter.emit("headerFooter", false);
+console.log('unmounted has been called'); 
+},
+mounted() {
+this.emitter.emit("headerFooter", false);
+console.log('unmounted has been called'); 
+},
+ created(){
+        var user = localStorage.getItem("user");
+            if(user !== null){
+                user = JSON.parse(user);
+                this.auth.isAuthenticated = true;
+                this.auth.user = user;
+            }
+            this.getDashboardData();
+    },
+ methods:{
+    getDashboardData(){
+            axios.get(this.selfDomain+'vue/get-dashboard-data',{
+                params: {
+                            token: this.auth.user.access_token,
+                         }
+            })
+            .then((response) => {  
+                console.log(response.data)       
+                this.product = response.data.product;
+                this.rating = response.data.rating;
+                this.total_order = response.data.total_order;
+                this.total_sales = response.data.total_sales;
+                this.orderTotalCurrentMonth = response.data.orderTotalCurrentMonth;
+                this.orderTotalLastMonth = response.data.orderTotalLastMonth;
+                this.new_order = response.data.new_order;
+                this.cancelled_order = response.data.cancelled_order;
+                this.onDelivery = response.data.onDelivery;
+                this.delivered = response.data.delivered;
+                this.seller_subscription = response.data.seller_subscription;
+                this.sellerPackageDetails = response.data.sellerPackageDetails;
+                this.seller_package_logo = response.data.seller_package_logo;
+                this.shop = response.data.shop;
+                this.data = response.data.data.products.data;
+                
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+ }
 }
 </script>
 
