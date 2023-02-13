@@ -14,7 +14,6 @@ import VueCookies from 'vue-cookies';
 import "vue-awesome-paginate/dist/style.css";
 const pinia = createPinia()
 var app = createApp(App);
-// var app2 = createApp(SellerLayout);
 const emitter = mitt();
 app.config.globalProperties.global = globalData;
 app.config.globalProperties.rootDomain ='https://localhost/backend/';
@@ -26,4 +25,3 @@ app.use(VueCookies);
 app.use(VueAwesomePaginate);
 app.component('AddToCartModal',AddToCartModal);
 app.mount("#app");
-// app2.mount("#app2");

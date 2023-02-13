@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table mb-0">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -84,16 +84,16 @@
 
                 <tbody>
                     <!-- @foreach ($products as $key => $product) -->
-                        <tr>
-                            <td>1</td>
+                        <tr v-for="(product,index) in products" :key="index">
+                            <td>{{ index+1 }}</td>
                             <td>
                                 <a href="" target="_blank" class="text-reset">
-                                    name
+                                    {{ product.name }}
                                 </a>
                             </td>
-                            <td>
+                            <td v-if="product.category_name !=null">
                                 <!-- @if ($product->category != null) -->
-                                    name
+                                    {{ product.category_name }}
                                 <!-- @endif -->
                             </td>
                             <td>
@@ -104,10 +104,11 @@
                                     }
                                     echo $qty;
                                 @endphp -->
+                                10
                             </td>
                             <td>unit_price</td>
                             <!-- @if(get_setting('product_approve_by_admin') == 1) -->
-                                <td>
+                                <td v-if="product_approve_by_admin==1">
                                     <!-- @if ($product->approved == 1) -->
                                         <span class="badge badge-inline badge-success">Approved</span>
                                     <!-- @else -->
@@ -165,7 +166,8 @@ export default {
                 seller_subscription:"",
                 remaining_uploads:"",
                 seller_package:"",
-                seller_logo:""
+                seller_logo:"",
+                product_approve_by_admin:""
         }
     },
     created(){
@@ -197,8 +199,9 @@ export default {
                 this.seller_subscription = response.data.seller_subscription;           
                 this.remaining_uploads = response.data.remaining_uploads;           
                 this.seller_package = response.data.seller_package;           
-                this.seller_logo = response.data.seller_logo;           
-               console.log(response.data);
+                this.seller_logo = response.data.seller_logo;   
+                this.product_approve_by_admin = response.data.product_approve_by_admin        
+                console.log(response.data);
             })
             .catch((err)=>{
                 console.log(err)
