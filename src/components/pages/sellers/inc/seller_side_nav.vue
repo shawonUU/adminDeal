@@ -29,13 +29,14 @@
                     </router-link>
                 </li>
                 <li class="aiz-side-nav-item">
-                    <a href="#" class="aiz-side-nav-link">
+                    <a @click="ProductsToggle=!ProductsToggle" href="javascript:void(0);"  class="aiz-side-nav-link">
                         <i class="las la-shopping-cart aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">Products</span>
                         <span class="aiz-side-nav-arrow"></span>
                     </a>
                     <!--Submenu-->
-                    <ul class="aiz-side-nav-list level-2">
+               
+                        <ul v-if="ProductsToggle">
                         <li class="aiz-side-nav-item">
                             <a href="seller.products"
                                 class="aiz-side-nav-link">
@@ -62,41 +63,27 @@
                             </a>
                         </li>
                     </ul>
+                   
+                    
                 </li>
-<!-- 
 
-
-                @if (get_setting('conversation_system') == 1)
-                    @php
-                        $conversation = \App\Models\Conversation::where('sender_id', Auth::user()->id)
-                            ->where('sender_viewed', 0)
-                            ->get();
-                    @endphp -->
-                    <li class="aiz-side-nav-item">
-                        <a href="seller.conversations.index"
-                            class="aiz-side-nav-link">
-                            <i class="las la-comment aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text">Message</span>
-                            <!-- @if (count($conversation) > 0) -->
-                                <span class="badge badge-success">(1)</span>
-                            <!-- @endif -->
-                        </a>
-                    </li>
-                <!-- @endif -->
-
-
-
-
-
-
+                <li v-if="conversation_system==1" class="aiz-side-nav-item">
+                    <a href="seller.conversations.index"
+                        class="aiz-side-nav-link">
+                        <i class="las la-comment aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Message</span>
+                            <span v-if="conversation.length > 0" class="badge badge-success">({{ conversation }})</span>
+                    </a>
+                </li>
+                
                  <li class="aiz-side-nav-item">
-                    <a href="#" class="aiz-side-nav-link">
+                    <a @click="JobsToggle=!JobsToggle" href="javascript:void(0);" class="aiz-side-nav-link">
                         <i class="las la-shopping-cart aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">Jobs</span>
                         <span class="aiz-side-nav-arrow"></span>
                     </a>
                     <!--Submenu-->
-                    <ul class="aiz-side-nav-list level-2">
+                    <ul v-if="JobsToggle">
                         <li class="aiz-side-nav-item">
                             <a href="job.index"
                                 class="aiz-side-nav-link">
@@ -120,14 +107,13 @@
                         <span class="aiz-side-nav-text">Uploaded Files</span>
                     </a>
                 </li>
-                <!-- @if (addon_is_activated('seller_subscription')) -->
-                    <li class="aiz-side-nav-item">
-                        <a href="#" class="aiz-side-nav-link">
+                    <li v-if="seller_subscription==true" class="aiz-side-nav-item">
+                        <a @click="PackageToggle=!PackageToggle" class="aiz-side-nav-link">
                             <i class="las la-shopping-cart aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">Package</span>
                             <span class="aiz-side-nav-arrow"></span>
                         </a>
-                        <ul class="aiz-side-nav-list level-2">
+                        <ul  v-if="PackageToggle">
                             <li class="aiz-side-nav-item">
                                 <a href="seller.seller_packages_list" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">Packages</span>
@@ -141,33 +127,31 @@
                             </li>
                         </ul>
                     </li>
-                <!-- @endif -->
-                <!-- @if (get_setting('coupon_system') == 1) -->
-                    <li class="aiz-side-nav-item">
+                
+              
+                    <li v-if="coupon_system==1" class="aiz-side-nav-item">
                         <a href="seller.coupon.index"
                             class="aiz-side-nav-link ">
                             <i class="las la-bullhorn aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">Coupon</span>
                         </a>
                     </li>
-                <!-- @endif -->
-                <!-- @if (addon_is_activated('wholesale') && get_setting('seller_wholesale_product') == 1) -->
-                    <li class="aiz-side-nav-item">
+
+                    <li v-if="wholesale==1" class="aiz-side-nav-item">
                         <a href="seller.wholesale_products_list"
                             class="aiz-side-nav-link">
                             <i class="las la-luggage-cart aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">Wholesale Products</span>
                         </a>
                     </li>
-                <!-- @endif -->
-                <!-- @if (addon_is_activated('auction') && get_setting('seller_auction_product') == 1) -->
-                    <li class="aiz-side-nav-item">
-                        <a href="javascript:void(0);" class="aiz-side-nav-link">
+               
+                    <li v-if="auction==1" class="aiz-side-nav-item">
+                        <a @click="auctionToggle=!auctionToggle" href="javascript:void(0);" class="aiz-side-nav-link">
                             <i class="las la-gavel aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">Auction</span>
                             <span class="aiz-side-nav-arrow"></span>
                         </a>
-                        <ul class="aiz-side-nav-list level-2">
+                        <ul v-if="auctionToggle">
                             <li class="aiz-side-nav-item">
                                 <a href="auction_products.seller.index"
                                     class="aiz-side-nav-link">
@@ -184,18 +168,18 @@
                             </li>
                         </ul>
                     </li>
-                <!-- @endif -->
-                <!-- @if (addon_is_activated('pos_system'))
-                    @if (get_setting('pos_activation_for_seller') != null && get_setting('pos_activation_for_seller') != 0) -->
-                        <li class="aiz-side-nav-item">
+
+                
+                    <template v-if="pos_system==true">
+                        <li v-if="pos_activation_for_seller==1" class="aiz-side-nav-item">
                             <a href="poin-of-sales.seller_index"
                                 class="aiz-side-nav-link">
                                 <i class="las la-fax aiz-side-nav-icon"></i>
                                 <span class="aiz-side-nav-text">POS Manager</span>
                             </a>
                         </li>
-                    <!-- @endif -->
-                <!-- @endif -->
+                    </template>    
+
                 <li class="aiz-side-nav-item">
                     <a href="seller.orders.index"
                         class="aiz-side-nav-link">
@@ -203,16 +187,13 @@
                         <span class="aiz-side-nav-text">Orders</span>
                     </a>
                 </li>
-                <!-- @if (addon_is_activated('refund_request')) -->
-                    <li class="aiz-side-nav-item">
+                    <li v-if="refund_request==true" class="aiz-side-nav-item">
                         <a href="vendor_refund_request"
                             class="aiz-side-nav-link">
                             <i class="las la-backward aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">Refund or exchange</span>
                         </a>
                     </li>
-                <!-- @endif -->
-
 
                 <li class="aiz-side-nav-item">
                     <a href="seller.shop.index"
@@ -245,54 +226,36 @@
                     </a>
                 </li>
 
-                <!-- @if (get_setting('conversation_system') == 1)
-                    @php
-                        $conversation = \App\Models\Conversation::where('sender_id', Auth::user()->id)
-                            ->where('sender_viewed', 0)
-                            ->get();
-                    @endphp -->
-                    <li class="aiz-side-nav-item">
-                        <a href="https://www.admindeal.com.bd/supportboard/admin.php"  target="_blank"
-                            class="aiz-side-nav-link">
-                            <i class="fa fa-map-marker aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text">Customer Tracking</span>
-                        </a>
-                    </li>
-                <!-- @endif -->
+                <li v-if="conversation_system==1" class="aiz-side-nav-item">
+                    <a href="https://www.admindeal.com.bd/supportboard/admin.php"  target="_blank"
+                        class="aiz-side-nav-link">
+                        <i class="fa fa-map-marker aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Customer Tracking</span>
+                    </a>
+                </li>
 
-                <!-- @if (get_setting('product_query_activation') == 1) -->
-                    <li class="aiz-side-nav-item">
-                        <a href="seller.product_query.index"
-                            class="aiz-side-nav-link">
-                            <i class="las la-question-circle aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text">Product Queries</span>
+                <li v-if="product_query_activation==1" class="aiz-side-nav-item">
+                    <a href="seller.product_query.index"
+                        class="aiz-side-nav-link">
+                        <i class="las la-question-circle aiz-side-nav-icon"></i>
+                        <span class="aiz-side-nav-text">Product Queries</span>
 
-                        </a>
-                    </li>
-                <!-- @endif -->
-
-                <!-- @php
-                    $support_ticket = DB::table('tickets')
-                        ->where('client_viewed', 0)
-                        ->where('user_id', Auth::user()->id)
-                        ->count();
-                @endphp -->
+                    </a>
+                </li>
                 <li class="aiz-side-nav-item">
                     <a href="seller.support_ticket.index"
                         class="aiz-side-nav-link">
                         <i class="las la-atom aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">Support Ticket</span>
-                        <!-- @if ($support_ticket > 0) -->
-                            <span class="badge badge-inline badge-success">1</span>
-                        <!-- @endif -->
+                            <span v-if="support_ticket.length > 0" class="badge badge-inline badge-success">{{ support_ticket }}</span>
                     </a>
                 </li>
 
-            </ul><!-- .aiz-side-nav -->
-        </div><!-- .aiz-side-nav-wrap -->
-    </div><!-- .aiz-sidebar -->
+            </ul>
+        </div>
+    </div>
     <div class="aiz-sidebar-overlay"></div>
-</div><!-- .aiz-sidebar -->
+</div>
 
 </template>
 
@@ -307,7 +270,22 @@ export default {
                 },
                 shop:[],
                 shop_logo:"",
-                header_logo:""
+                header_logo:"",
+                checkConversationSystem:"",
+                conversation:[],
+                seller_subscription:"",
+                coupon_system:"",
+                wholesale:"",
+                auction:"",
+                pos_system:"",
+                pos_activation_for_seller:"",
+                refund_request:"",
+                product_query_activation:"",
+                support_ticket:"",
+                ProductsToggle:false,
+                JobsToggle:false,
+                PackageToggle:false,
+                auctionToggle:false,
         }
     },
     created(){
@@ -328,9 +306,22 @@ export default {
                             token: this.auth.user.access_token,
                          }
             })
-            .then((response) => {
-                console.log(response.data)
-                this.shop = response.data[0];
+            .then((response) => {               
+                this.shop = response.data.shop;
+                this.shop_logo = response.data.shop_logo;
+                this.header_logo = response.data.header_logo;
+                this.checkConversationSystem = response.data.checkConversationSystem;
+                this.conversation = response.data.conversation;
+                this.seller_subscription = response.data.seller_subscription;
+                this.coupon_system = response.data.coupon_system;
+                this.wholesale = response.data.wholesale;
+                this.auction = response.data.auction;
+                this.pos_system = response.data.pos_system;
+                this.pos_activation_for_seller = response.data.pos_activation_for_seller;
+                this.refund_request = response.data.refund_request;
+                this.product_query_activation = response.data.product_query_activation;
+                this.support_ticket = response.data.support_ticket;
+                console.log(response.data);
             })
             .catch((err)=>{
                 console.log(err)

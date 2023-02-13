@@ -86,24 +86,20 @@
                     </table>
                 </div>
             
-                <div v-else="products.length == 0" class="text-center p-4">
+                <div v-else class="text-center p-4">
                     <p class="fs-17">{{ 'Your comparison list is empty'}}</p>
                 </div>
                
             </div>
         </div>
 
-        <!-- <AddToCartModal v-if="viewAddToCartModal" :productId="productId"></AddToCartModal> -->
-
+        <add-to-cart-modal v-if="viewAddToCartModal" :productId="productId"/>
     </section>
-
-    <AddToCartModalkk v-if="viewAddToCartModal" :productId="productId"></AddToCartModalkk>
 
 
 </template>
 
 <script>
-    import AddToCartModalkk from "../../layouts/Modal/AddToCartModal.vue";
     import axios from "axios";
     export default {
         data(){
@@ -114,14 +110,14 @@
                 viewAddToCartModal: false,
             }
         },
-        components: {
-            AddToCartModalkk,
-        },
         created(){
             this.getCompareItem();
         },
-        components: {},
-       
+        mounted(){
+            this.emitter.on("viewAddToCartModal", message => {
+            this.viewAddToCartModal = message;
+            });
+        },   
         methods: {
            getCompareItem(){
                 var compareItem = localStorage.getItem("compare");

@@ -170,7 +170,7 @@
                                                 <span class="aiz-side-nav-text">Auction</span>
                                                 <span class="aiz-side-nav-arrow"  data-toggle="collapse"></span>
                                             </a>                                        
-                                            <transition name="fade">
+                                           
                                                 <ul v-if="auctionToggle">
                                                     <li class="aiz-side-nav-item">
                                                         <a href="" class="aiz-side-nav-link">
@@ -183,7 +183,7 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </transition>
+                                         
                                             
                                         </li>
 
@@ -208,7 +208,7 @@
                                                 <span class="aiz-side-nav-text">My Affiliation</span>
                                                 <span class="aiz-side-nav-arrow"></span>
                                             </a>
-                                            <transition name="fade">
+                                            
                                             <ul v-if="affiliationToggle" class="">
                                                 <li class="aiz-side-nav-item">
                                                     <a href="affiliate.user.index" class="aiz-side-nav-link">
@@ -226,7 +226,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                            </transition>
+                                       
                                         </li>
                                         <li class="aiz-side-nav-item">
                                             <a href="" class="aiz-side-nav-link">
