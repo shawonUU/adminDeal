@@ -72,14 +72,30 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Tags</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control aiz-tag-input" name="tags[]"
-                                placeholder="Type and hit enter to add a tag">
+                            <!-- <input type="text" class="form-control aiz-tag-input" name="tags[]"
+                                placeholder="Type and hit enter to add a tag"> -->
+                                <div class='tag-input'>
+                                <div v-for='(tag, index) in tags' :key='tag' class='tag-input__tag'>
+                                     <span @click='removeTag(index)'>x</span>
+                                    {{ tag }}
+                                    </div>
+                                    <input
+                                        type='text'
+                                        placeholder="Enter tag"
+                                        class='tag-input__text '
+                                        :onchange='addTag'
+                                        @keydown.enter='addTag'
+                                        @keydown.,='addTag'
+                                        @keydown.delete='removeLastTag'
+                                    />
+                                </div>
                         </div>
                     </div>
+                       
                     <div v-if="pos_system==1" class="form-group row">
                         <label class="col-md-3 col-from-label">Barcode</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="barcode"
+                            <input v-model="product.barcode" type="text" class="form-control" name="barcode"
                                 placeholder="Barcode">
                         </div>
                     </div>
@@ -88,7 +104,7 @@
                         <label class="col-md-3 col-from-label">Refundable</label>
                         <div class="col-md-8">
                             <label class="aiz-switch aiz-switch-success mb-0">
-                                <input type="checkbox" name="refundable" checked value="1">
+                                <input v-model="product.refundable" type="checkbox" name="refundable" checked >
                                 <span></span>
                             </label>
                         </div>
@@ -143,7 +159,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Video Provider</label>
                         <div class="col-md-8">
-                            <select class="form-control aiz-selectpicker" name="video_provider" id="video_provider">
+                            <select v-model="product.video_provider" class="form-control aiz-selectpicker" name="video_provider" id="video_provider">
                                 <option value="youtube">Youtube</option>
                                 <option value="dailymotion">Dailymotion</option>
                                 <option value="vimeo">Vimeo</option>
@@ -153,7 +169,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Video Link</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="video_link"
+                            <input v-model="product.video_link" type="text" class="form-control" name="video_link"
                                 placeholder="Video Link">
                         </div>
                     </div>
@@ -220,7 +236,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Unit price</label>
                         <div class="col-md-6">
-                            <input type="number" lang="en" min="0" value="0" step="0.01"
+                            <input type="number" v-model="product.unit_price" lang="en" min="0"  step="0.01"
                                 placeholder="Unit price" name="unit_price" class="form-control"
                                 required>
                         </div>
@@ -229,18 +245,20 @@
                     <div class="form-group row">
                         <label class="col-md-3 control-label" for="start_date">Discount Date Range</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control aiz-date-range" name="date_range" placeholder="Select Date" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
+                          <input v-model="product.date_from" type="date" class="form-control aiz-date-range" name="date_range" placeholder="Select Date" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
+                            <span>To</span>
+                          <input v-model="product.to_date" type="date" class="form-control aiz-date-range" name="date_range" placeholder="Select Date" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Discount</label>
                         <div class="col-md-6">
-                            <input type="number" lang="en" min="0" value="0" step="0.01"
+                            <input type="number" v-model="product.discount"  lang="en" min="0"  step="0.01"
                                 placeholder="Discount" name="discount" class="form-control" required>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control aiz-selectpicker" name="discount_type">
+                            <select  v-model="product.discount_type" class="form-control aiz-selectpicker" name="discount_type">
                                 <option value="amount">Flat</option>
                                 <option value="percent">Percent</option>
                             </select>
@@ -251,7 +269,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">Quantity</label>
                             <div class="col-md-6">
-                                <input type="number" lang="en" min="0" value="0" step="1"
+                                <input v-model="product.current_stock" type="number" lang="en" min="0"  step="1"
                                     placeholder="Quantity" name="current_stock" class="form-control"
                                     required>
                             </div>
@@ -261,7 +279,7 @@
                                 SKU
                             </label>
                             <div class="col-md-6">
-                                <input type="text" placeholder="SKU" name="sku" class="form-control">
+                                <input v-model="product.sku" type="text" placeholder="SKU" name="sku" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -270,7 +288,7 @@
                             External link
                         </label>
                         <div class="col-md-9">
-                            <input type="text" placeholder="External link" name="external_link" class="form-control">
+                            <input v-model="product.external_link" type="text" placeholder="External link" name="external_link" class="form-control">
                             <small class="text-muted">Leave it blank if you do not use external site link</small>
                         </div>
                     </div>
@@ -279,7 +297,7 @@
                             External link button text
                         </label>
                         <div class="col-md-9">
-                            <input type="text" placeholder="External link button text" name="external_link_btn" class="form-control">
+                            <input type="text" v-model="product.external_link_btn" placeholder="External link button text" name="external_link_btn" class="form-control">
                             <small class="text-muted">Leave it blank if you do not use external site link</small>
                         </div>
                     </div>
@@ -297,7 +315,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Description</label>
                         <div class="col-md-8">
-                            <textarea class="aiz-text-editor" name="description"></textarea>
+                            <textarea v-model="product.description" class="aiz-text-editor" name="description"></textarea>
                         </div>
                     </div>
                 </div>
@@ -334,14 +352,14 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Meta Title</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="meta_title"
+                            <input type="text" v-model="product.description" class="form-control" name="meta_title"
                                 placeholder="Meta Title">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Description</label>
                         <div class="col-md-8">
-                            <textarea name="meta_description" rows="8" class="form-control"></textarea>
+                            <textarea name="meta_description" v-model="product.meta_description" rows="8" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -372,12 +390,11 @@
                 </div>
 
                 <div class="card-body">
-                    <!-- @if (get_setting('shipping_type') == 'product_wise_shipping') -->
-                    <div class="form-group row">
+                    <div v-if="shipping_type== 'product_wise_shipping'" class="form-group row">
                         <label class="col-md-6 col-from-label">Free Shipping</label>
                         <div class="col-md-6">
                             <label class="aiz-switch aiz-switch-success mb-0">
-                                <input type="radio" name="shipping_type" value="free" checked>
+                                <input v-model="product.shipping_type" type="radio"    name="shipping_type" value="free" checked>
                                 <span></span>
                             </label>
                         </div>
@@ -387,7 +404,7 @@
                         <label class="col-md-6 col-from-label">Flat Rate</label>
                         <div class="col-md-6">
                             <label class="aiz-switch aiz-switch-success mb-0">
-                                <input type="radio" name="shipping_type" value="flat_rate">
+                                <input v-model="product.shipping_type" type="radio" name="shipping_type" value="flat_rate">
                                 <span></span>
                             </label>
                         </div>
@@ -397,7 +414,7 @@
                         <div class="form-group row">
                             <label class="col-md-6 col-from-label">Shipping cost</label>
                             <div class="col-md-6">
-                                <input type="number" lang="en" min="0" value="0" step="0.01"
+                                <input v-model="product.flat_shipping_cost" type="number" lang="en" min="0" value="0" step="0.01"
                                     placeholder="Shipping cost" name="flat_shipping_cost"
                                     class="form-control" required>
                             </div>
@@ -421,7 +438,7 @@
                         <label for="name">
                             Quantity
                         </label>
-                        <input type="number" name="low_stock_quantity" value="1" min="0" step="1" class="form-control">
+                        <input v-model="product.low_stock_quantity" type="number" name="low_stock_quantity" min="0" step="1" class="form-control">
                     </div>
                 </div>
             </div>
@@ -439,7 +456,7 @@
                         <label class="col-md-6 col-from-label">Show Stock Quantity</label>
                         <div class="col-md-6">
                             <label class="aiz-switch aiz-switch-success mb-0">
-                                <input type="radio" name="stock_visibility_state" value="quantity" checked>
+                                <input v-model="product.stock_visibility_state" type="radio"  name="stock_visibility_state" value="quantity" checked>
                                 <span></span>
                             </label>
                         </div>
@@ -449,7 +466,7 @@
                         <label class="col-md-6 col-from-label">Show Stock With Text Only</label>
                         <div class="col-md-6">
                             <label class="aiz-switch aiz-switch-success mb-0">
-                                <input type="radio" name="stock_visibility_state" value="text">
+                                <input v-model="product.stock_visibility_state" type="radio" name="stock_visibility_state" value="text">
                                 <span></span>
                             </label>
                         </div>
@@ -572,10 +589,17 @@ export default {
                 productName:"",
                 unit:"",
                 weight:"0.00",
-                min_purchase_qty:"1"
+                min_purchase_qty:"1",
+                barcode:"",
+                refundable:"1",
 
 
-            }
+
+            },
+            searchKey:'',
+            tags: [],
+            shipping_type:"",
+
 
         }
     },
@@ -608,6 +632,7 @@ export default {
                 this.brands = response.data.brands;
                 this.refund_request = response.data.refund_request;
                 this.pos_system = response.data.pos_system;
+                this.shipping_type = response.data.shipping_type;
                 console.log(response.data)
             }).catch((err)=>{
                 console.log(err)
@@ -618,7 +643,35 @@ export default {
             },
         setBrand(brand){
             this.selectedBrand=brand.slug;
-        },    
+        },  
+        
+        addTag (event) {
+             if(event.code == "Comma" || event.code == "Enter" || event.type=="change"){
+                event.preventDefault()
+                var val = event.target.value.trim()
+                if (val.length > 0) {
+                        // if(this.tags.length <= 2){
+                        //     this.tags.push(val)
+                        //     event.target.value = ''
+                        // }else{
+                        //     event.target.value = ''
+                        // }
+                        this.tags.push(val)
+                        event.target.value = ''
+                       this.getAccessoriesList();
+                }
+             }
+            },
+        removeTag (index) {
+            this.tags.splice(index, 1);
+            this.getAccessoriesList();
+        },
+        removeLastTag(event) {
+            if (event.target.value.length === 0) {
+                this.removeTag(this.tags.length - 1);
+                this.getAccessoriesList();
+            }
+      }
     }
 }
 </script>
@@ -629,5 +682,38 @@ export default {
     border: 1px solid #e7e5e5!important;
     border-radius: 4px;
     height: 38px!important;
+}
+tag-input {
+  width: 100%;
+  border: 1px solid rgb(51, 50, 50);
+  font-size: 0.9em;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+.tag-input__tag {
+  height: 30px;
+  float: left;
+  margin-right: 10px;
+  background-color: #00b297;
+  margin-top: 10px;
+  line-height: 30px;
+  padding: 0 5px;
+  border-radius: 5px;
+  color: white
+}
+.tag-input__tag > span {
+  cursor: pointer;
+  opacity: 0.75;
+}
+.tag-input__text {
+  border: none;
+  outline: none;
+  font-size:12px;
+  line-height: 45px;
+  background: none;
+}
+.tag-input {
+    border: 1px solid #e2e5ec;
 }
 </style>
