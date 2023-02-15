@@ -150,12 +150,11 @@
                                 </div>
                                 <div class="col-md-6 text-center text-md-right">
                                   
-                                        <a v-if="auth.isAuthenticated" href="javascript:void(0)" class="btn btn-primary fw-600">
-                                            {{ 'Continue to Shipping' }}
-                                        </a>
+                                    <router-link v-if="auth.isAuthenticated" :to="{name: 'ShippingInfo'}" class="btn btn-primary fw-600">
+                                        {{ 'Continue to Shipping' }}
+                                    </router-link>
                                   
-                                        <button v-else class="btn btn-primary fw-600"
-                                            onclick="showCheckoutModal()">{{ 'Continue to Shipping' }}</button>
+                                    <router-link :to="{name: 'ShippingInfo'}" v-else class="btn btn-primary fw-600">{{ 'Continue to Shipping' }}</router-link>
                                     
                                 </div>
                             </div>
@@ -476,8 +475,8 @@
                     quantity: this.carts[index].quantity,
                 }
             }).then(res=>{
-                console.log("okkkk");
-                console.log(res.data);
+                // console.log("okkkk");
+                // console.log(res.data);
                 this.carts[index].single_price = "৳"+(this.carts[index].quantity * res.data);
             }).catch(err=>{
 

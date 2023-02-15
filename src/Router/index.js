@@ -48,6 +48,7 @@ import Cart from '../components/pages/user/cartView.vue';
 // After Authentication Component File
 import UserDashboard from '../components/pages/user/UserLayout.vue';
 
+
 const guest = (to, from, next) => {
   var user = localStorage.getItem("user");
   if (user !== null) {
@@ -123,6 +124,7 @@ const routes = [
     component: Cart
   },
 
+  
 
   {
     path: '/all_jobs',
