@@ -19,10 +19,12 @@
 import seller_nav from './inc/seller_nav.vue';
 import seller_side_nav from './inc/seller_side_nav.vue';
 import Dashboard from "./pages/Dashboard.vue";
-import SellerProducts from "./pages/seller_products.vue";
+import SellerProducts from "./pages/products/seller_products.vue";
+import editSellerProducts from "./pages/products/editProduct.vue";
+import createSellerProducts from "./pages/products/addProduct.vue";
 export default {
     props: ['componentName'],
-    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts},
+    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts,editSellerProducts,createSellerProducts},
     data(){
         return{
         selectedComponent:'',

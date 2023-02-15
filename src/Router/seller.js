@@ -21,5 +21,19 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'SellerProducts' }),
     beforeEnter: auth,
+  },
+  {
+    path:'/seller/product/create',
+    name:'createSellerProducts',
+    component: SellerLayout,
+    props: () => ({ componentName: 'createSellerProducts' }),
+    beforeEnter: auth,
+  },
+   {
+    path:'/seller/product/edit',
+    name:'editSellerProducts',
+    component: SellerLayout,
+    props: () => ({ componentName: 'editSellerProducts' }),
+    beforeEnter: auth,
   }
    ]
