@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<form class="" action="seller.products.store" method="POST" enctype="multipart/form-data" id="choice_form">
+<form class="" method="POST" enctype="multipart/form-data" id="choice_form">
     <div class="row gutters-5">
         <div class="col-lg-8">
             <input type="hidden" name="added_by" value="seller">
@@ -20,53 +20,52 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Product Name</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="name"
+                            <input v-model="product.productName" type="text" class="form-control" name="name"
                                 placeholder="Product Name" required>
                         </div>
                     </div>
                     <div class="form-group row" id="category">
                         <label class="col-md-3 col-from-label">Category</label>
                         <div class="col-md-8">
-                            <select class="form-control aiz-selectpicker" name="category_id" id="category_id"
-                                data-live-search="true" required>
+                            <!-- <select class="form-control aiz-selectpicker" name="category_id" id="category_id" -->
+                                <!-- data-live-search="true" required> -->
                                 <!-- @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->getTranslation('name</option>
                                 @foreach ($category->childrenCategories as $childCategory)
                                 @include('categories.child_category', ['child_category' => $childCategory])
                                 @endforeach
                                 @endforeach -->
-                            </select>
+                            <!-- </select> -->
+                            <Select2  v-model="categoryId" :options="categories" :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="setCategory($event)" placeholder="Select Category">
+                                {{ categories }}
+                            </Select2>
+                            
                         </div>
                     </div>
                     <div class="form-group row" id="brand">
                         <label class="col-md-3 col-from-label">Brand</label>
                         <div class="col-md-8">
-                            <select class="form-control aiz-selectpicker" name="brand_id" id="brand_id"
-                                data-live-search="true">
-                                <option value="">Select Brand</option>
-                                <!-- @foreach (\App\Models\Brand::all() as $brand) -->
-                                <option value="">name</option>
-                                <!-- @endforeach -->
-                            </select>
+                            <Select2 v-model="myValue" :options="brands" :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="setBrand($event)" placeholder="Select Brand">
+                            </Select2>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Unit</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="unit"
+                            <input v-model="product.unit" type="text" class="form-control" name="unit"
                                 placeholder="Unit (e.g. KG, Pc etc)" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Weight <small>(In Kg)</small></label>
                         <div class="col-md-8">
-                            <input type="number" class="form-control" name="weight" step="0.01" value="0.00" placeholder="0.00">
+                            <input v-model="product.weight" type="number" class="form-control"  step="0.01"  placeholder="0.00">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">Minimum Purchase Qty</label>
                         <div class="col-md-8">
-                            <input type="number" lang="en" class="form-control" name="min_qty" value="1" min="1"
+                            <input type="number" v-model="product.min_purchase_qty" lang="en" class="form-control"   min="1"
                                 required>
                         </div>
                     </div>
@@ -77,17 +76,15 @@
                                 placeholder="Type and hit enter to add a tag">
                         </div>
                     </div>
-                    @if (addon_is_activated('pos_system'))
-                    <div class="form-group row">
+                    <div v-if="pos_system==1" class="form-group row">
                         <label class="col-md-3 col-from-label">Barcode</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="barcode"
                                 placeholder="Barcode">
                         </div>
                     </div>
-                    @endif
-                    @if (addon_is_activated('refund_request'))
-                    <div class="form-group row">
+  
+                    <div  v-if="refund_request==1" class="form-group row">
                         <label class="col-md-3 col-from-label">Refundable</label>
                         <div class="col-md-8">
                             <label class="aiz-switch aiz-switch-success mb-0">
@@ -96,7 +93,7 @@
                             </label>
                         </div>
                     </div>
-                    @endif
+
                 </div>
             </div>
             <div class="card">
@@ -555,7 +552,42 @@
 </template>
 
 <script>
+import axios from 'axios';
+import Select2 from 'vue3-select2-component';
 export default {
+    components:{Select2},
+    data(){
+        return{         
+            auth:{
+                isAuthenticated: false,
+                user: {},
+                },
+            categories:[],
+            categoryId:"",
+            brands:[],
+            selectedBrand:"",
+            refund_request:"",
+            pos_system:"",
+            product:{
+                productName:"",
+                unit:"",
+                weight:"0.00",
+                min_purchase_qty:"1"
+
+
+            }
+
+        }
+    },
+    created(){
+        var user = localStorage.getItem("user");
+            if(user !== null){
+                user = JSON.parse(user);
+                this.auth.isAuthenticated = true;
+                this.auth.user = user;
+            }
+        this.getCategories();
+    },
     mounted() {
     this.emitter.emit("headerFooter", false);
     console.log('unmounted has been called'); 
@@ -564,9 +596,38 @@ export default {
     this.emitter.emit("headerFooter", false);
     console.log('unmounted has been called'); 
     },
+    methods:{
+        getCategories(){
+            axios.get(this.selfDomain+'vueseller/seller/product/create',{
+                headers: {
+                    Authorization: "Bearer " + this.auth.user.access_token,
+              }
+            })
+            .then((response)=>{
+                this.categories = response.data.categories;
+                this.brands = response.data.brands;
+                this.refund_request = response.data.refund_request;
+                this.pos_system = response.data.pos_system;
+                console.log(response.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        },
+        setCategory(category){
+            this.categoryId = category;
+            },
+        setBrand(brand){
+            this.selectedBrand=brand.slug;
+        },    
+    }
 }
 </script>
 
 <style>
-
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #e7e5e5!important;
+    border-radius: 4px;
+    height: 38px!important;
+}
 </style>
