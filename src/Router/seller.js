@@ -35,5 +35,13 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'editSellerProducts' }),
     beforeEnter: auth,
+  },
+
+  {
+    path:'/seller/reviews',
+    name:'productReviews',
+    component: SellerLayout,
+    props: () => ({ componentName: 'productReviews' }),
+    beforeEnter: auth,
   }
    ]
