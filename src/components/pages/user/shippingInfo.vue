@@ -94,14 +94,14 @@
                                         </div>
                                     <input type="hidden" name="checkout_type" value="logged">
                                     <div class="col-md-6 mx-auto mb-3" >
-                                        <div class="border p-3 rounded mb-3 c-pointer text-center bg-white h-100 d-flex flex-column justify-content-center" >
+                                        <a href="javascript:void(0)" @click="addNewAddress()" class="border p-3 rounded mb-3 c-pointer text-center bg-white h-100 d-flex flex-column justify-content-center" >
                                             <i class="las la-plus la-2x mb-3"></i>
                                             <div class="alpha-7">{{'Add New Address' }}</div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div v-else class="row align-items-center">
+                            <div class="row align-items-center">
                                 <div class="col-md-6 text-center text-md-left order-1 order-md-0">
                                     <router-link :to="{name:'home'}" class="btn btn-link">
                                         <i class="las la-arrow-left"></i>
@@ -109,7 +109,7 @@
                                     </router-link>
                                 </div>
                                 <div class="col-md-6 text-center text-md-right">
-                                    <button type="button" class="btn btn-primary fw-600">{{ 'Continue to Delivery Info'}}</button>
+                                    <button @click="delivery_info()" type="button" class="btn btn-primary fw-600">{{ 'Continue to Delivery Info'}}</button>
                                 </div>
                             </div>
                     </form>
@@ -117,11 +117,15 @@
             </div>
         </div>
     </section>
+    <AddressModal v-if="modalisOpen"></AddressModal>
 </template>
   
   <script>
+  import AddressModal from "../../layouts/Modal/addressModal.vue";
+
   import axios from 'axios';
   export default {
+    components:{AddressModal},
     data(){
       return{
         auth:{
@@ -129,7 +133,7 @@
           user: {},
         },
         addresses: [],
-       
+        modalisOpen: false,
       }
     },
     created(){
@@ -145,7 +149,9 @@
       
     },
     mounted(){
-      
+        this.emitter.on("addressModal", message => {
+            this.modalisOpen = message;
+        });
     },
     methods:{
 
@@ -157,6 +163,25 @@
           }).then(res=>{
               console.log(res.data);
               this.addresses = res.data.data;
+          }).catch(err=>{
+
+          });
+        },
+        addNewAddress(){
+            this.modalisOpen= true;
+        },
+        delivery_info(){
+            console.log("okk");
+            let address_id = 1;
+            axios.get(this.selfDomain+"vueweb/checkout/delivery_info", {
+              params:{
+                address_id: address_id,
+              },
+              headers: {
+                Authorization: "Bearer " + this.auth.user.access_token,
+              }
+          }).then(res=>{
+              console.log(res.data);
           }).catch(err=>{
 
           });
