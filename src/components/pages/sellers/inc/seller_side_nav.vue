@@ -57,10 +57,10 @@
                             </a>
                         </li>
                         <li class="aiz-side-nav-item">
-                            <a href="seller.reviews"
+                            <router-link  :to="{name:'productReviews'}"
                                 class="aiz-side-nav-link ">
                                 <span class="aiz-side-nav-text">Product Reviews</span>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                    
