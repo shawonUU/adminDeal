@@ -63,17 +63,14 @@
                             </router-link>
                         </li>
                     </ul>
-                   
-                    
                 </li>
-
-                <li v-if="conversation_system==1" class="aiz-side-nav-item">
-                    <a href="seller.conversations.index"
+                <li v-if="checkConversationSystem == 1" class="aiz-side-nav-item">
+                    <router-link :to="{name:'sellerConversation'}"
                         class="aiz-side-nav-link">
                         <i class="las la-comment aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">Message</span>
                             <span v-if="conversation.length > 0" class="badge badge-success">({{ conversation }})</span>
-                    </a>
+                    </router-link>
                 </li>
                 
                  <li class="aiz-side-nav-item">
@@ -85,10 +82,10 @@
                     <!--Submenu-->
                     <ul v-if="JobsToggle">
                         <li class="aiz-side-nav-item">
-                            <a href="job.index"
+                            <router-link :to="{name:'sellerJobs'}"
                                 class="aiz-side-nav-link">
                                 <span class="aiz-side-nav-text">All Jobs</span>
-                            </a>
+                            </router-link>
                         </li>
                          <li class="aiz-side-nav-item">
                             <a href="job.create"
