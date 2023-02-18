@@ -71,5 +71,12 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'sellerPackagesPaymentList' }),
     beforeEnter: auth,
+  },
+  {
+    path:'/seller/coupon',
+    name:'sellerCoupons',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerCoupons' }),
+    beforeEnter: auth,
   }
    ]

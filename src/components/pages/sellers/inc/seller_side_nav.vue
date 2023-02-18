@@ -127,11 +127,11 @@
                 
               
                     <li v-if="coupon_system==1" class="aiz-side-nav-item">
-                        <a href="seller.coupon.index"
+                        <router-link :to="{name:'sellerCoupons'}"
                             class="aiz-side-nav-link ">
                             <i class="las la-bullhorn aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">Coupon</span>
-                        </a>
+                        </router-link>
                     </li>
 
                     <li v-if="wholesale==1" class="aiz-side-nav-item">
