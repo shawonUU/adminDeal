@@ -25,9 +25,11 @@ import createSellerProducts from "./pages/products/addProduct.vue";
 import productReviews from "./pages/products/product_review.vue";
 import sellerConversation from "./pages/conversation/conversations.vue";
 import sellerJobs from "./pages/jobs/index.vue";
+import sellerPackages from "./pages/package/packages.vue";
+import sellerPackagesPaymentList from "./pages/package/purchase_package_list.vue";
 export default {
     props: ['componentName'],
-    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts,editSellerProducts,createSellerProducts,productReviews,sellerConversation,sellerJobs},
+    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts,editSellerProducts,createSellerProducts,productReviews,sellerConversation,sellerJobs,sellerPackages,sellerPackagesPaymentList},
     data(){
         return{
         selectedComponent:'',

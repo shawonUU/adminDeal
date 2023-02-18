@@ -57,5 +57,19 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'sellerJobs' }),
     beforeEnter: auth,
+  },
+  {
+    path:'/seller/seller-packages',
+    name:'sellerPackages',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerPackages' }),
+    beforeEnter: auth,
+  },
+  {
+    path:'/seller/packages-payment-list',
+    name:'sellerPackagesPaymentList',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerPackagesPaymentList' }),
+    beforeEnter: auth,
   }
    ]

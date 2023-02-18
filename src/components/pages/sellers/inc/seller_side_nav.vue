@@ -112,15 +112,15 @@
                         </a>
                         <ul  v-if="PackageToggle">
                             <li class="aiz-side-nav-item">
-                                <a href="seller.seller_packages_list" class="aiz-side-nav-link">
+                                <router-link :to="{name:'sellerPackages'}" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">Packages</span>
-                                </a>
+                                </router-link>
                             </li>
 
                             <li class="aiz-side-nav-item">
-                                <a href="seller.packages_payment_list" class="aiz-side-nav-link">
+                                <router-link :to="{name:'sellerPackagesPaymentList'}" class="aiz-side-nav-link">
                                     <span class="aiz-side-nav-text">Purchase Packages</span>
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </li>
