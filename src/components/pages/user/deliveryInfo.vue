@@ -386,7 +386,7 @@
             user = JSON.parse(user);
             this.auth.isAuthenticated = true;
             this.auth.user = user;
-            this.getShippingData();
+            // this.getShippingData();
         }
     },
     computed(){

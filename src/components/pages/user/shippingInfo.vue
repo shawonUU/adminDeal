@@ -171,8 +171,7 @@
             this.modalisOpen= true;
         },
         delivery_info(){
-            console.log("okk");
-            let address_id = 1;
+            let address_id = document.querySelector('input[name="address_id"]:checked').value;
             axios.get(this.selfDomain+"vueweb/checkout/delivery_info", {
               params:{
                 address_id: address_id,
