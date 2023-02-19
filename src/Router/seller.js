@@ -78,5 +78,19 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'sellerCoupons' }),
     beforeEnter: auth,
+  },
+  {
+    path:'/seller/coupon/create',
+    name:'sellerCouponCreate',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerCouponCreate' }),
+    beforeEnter: auth,
+  },
+  {
+    path:'/seller/orders',
+    name:'sellerOrder',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerOrder' }),
+    beforeEnter: auth,
   }
    ]

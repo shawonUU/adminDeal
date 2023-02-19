@@ -28,9 +28,11 @@ import sellerJobs from "./pages/jobs/index.vue";
 import sellerPackages from "./pages/package/packages.vue";
 import sellerPackagesPaymentList from "./pages/package/purchase_package_list.vue";
 import sellerCoupons from "./pages/coupon/index.vue";
+import sellerCouponCreate from "./pages/coupon/create.vue";
+import sellerOrder from "./pages/orders/index.vue";
 export default {
     props: ['componentName'],
-    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts,editSellerProducts,createSellerProducts,productReviews,sellerConversation,sellerJobs,sellerPackages,sellerPackagesPaymentList,sellerCoupons},
+    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts,editSellerProducts,createSellerProducts,productReviews,sellerConversation,sellerJobs,sellerPackages,sellerPackagesPaymentList,sellerCoupons,sellerCouponCreate,sellerOrder},
     data(){
         return{
         selectedComponent:'',

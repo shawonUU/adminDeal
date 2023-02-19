@@ -178,11 +178,11 @@
                     </template>    
 
                 <li class="aiz-side-nav-item">
-                    <a href="seller.orders.index"
+                    <router-link  :to="{name:'sellerOrder'}"
                         class="aiz-side-nav-link">
                         <i class="las la-money-bill aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">Orders</span>
-                    </a>
+                    </router-link>
                 </li>
                     <li v-if="refund_request==true" class="aiz-side-nav-item">
                         <a href="vendor_refund_request"
