@@ -576,8 +576,7 @@ console.log('unmounted has been called');
                             token: this.auth.user.access_token,
                          }
             })
-            .then((response) => {  
-                console.log(response.data)       
+            .then((response) => {        
                 this.product = response.data.product;
                 this.rating = response.data.rating;
                 this.total_order = response.data.total_order;

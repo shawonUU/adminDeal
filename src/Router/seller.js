@@ -43,5 +43,40 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'productReviews' }),
     beforeEnter: auth,
+  },
+  {
+    path:'/seller/conversations',
+    name:'sellerConversation',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerConversation' }),
+    beforeEnter: auth,
+  },
+  {
+    path:'/seller/jobs',
+    name:'sellerJobs',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerJobs' }),
+    beforeEnter: auth,
+  },
+  {
+    path:'/seller/seller-packages',
+    name:'sellerPackages',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerPackages' }),
+    beforeEnter: auth,
+  },
+  {
+    path:'/seller/packages-payment-list',
+    name:'sellerPackagesPaymentList',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerPackagesPaymentList' }),
+    beforeEnter: auth,
+  },
+  {
+    path:'/seller/coupon',
+    name:'sellerCoupons',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerCoupons' }),
+    beforeEnter: auth,
   }
    ]

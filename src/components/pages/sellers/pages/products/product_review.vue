@@ -21,31 +21,26 @@
                             $review = \App\Models\Review::find($value->id);
                         @endphp
                         @if($review != null && $review->product != null && $review->user != null) -->
-                            <tr v-for="(item,index) in review" :key="index">
+                            <tr v-for="(review,index) in reviews" :key="index">
                                 <td>
-                                    <!-- {{ $key+1 }} -->
+                                    {{ index+1 }}
                                 </td>
                                 <td>
-                                    <a href="product', $review->product->slug" target="_blank">{{ item.name }}</a>
+                                    <a href="javascript:void(0)" @click="review.product.digital==0?productDetails(review.product.slug):digitalProductDetails(review.product.slug)">{{ review.product.name }}</a>
                                 </td>
-                                <td>user->name</td>
+                                <td>{{ review.user.name }}</td>
                                 <td>
                                     <span class="rating rating-sm">
-                                        <!-- @for ($i=0; $i < $review->rating; $i++)
-                                            <i class="las la-star active"></i>
-                                        @endfor
-                                        @for ($i=0; $i < 5-$review->rating; $i++)
-                                            <i class="las la-star"></i>
-                                        @endfor -->
+                                        <template v-for="index in 5" :key="index">
+                                            <i v-if="index<=review.rating" class = 'las la-star active'></i>
+                                            <i v-else class = 'las la-star'></i>
+                                        </template>
                                     </span>
                                 </td>
-                                <td>review->comment</td>
+                                <td>{{review.comment}}</td>
                                 <td>
-                                    <!-- @if ($review->status == 1) -->
-                                        <span class="badge badge-inline badge-success">Published</span>
-                                    <!-- @else -->
-                                        <span class="badge badge-inline badge-danger">Unpublished</span>
-                                    <!-- @endif -->
+                                    <span v-if="review.status==1" class="badge badge-inline badge-success">Published</span>
+                                    <span v-else class="badge badge-inline badge-danger">Unpublished</span>
                                 </td>
                             </tr>
                 </tbody>
@@ -66,7 +61,7 @@ export default {
                 isAuthenticated: false,
                 user: {},
                 },
-                review:[]
+                reviews:[]
         }
     },
     created(){
@@ -95,14 +90,31 @@ export default {
 
             })
             .then((response) => {    
-                this.review = response.data.review;
-                console.log(response.data);
+                this.reviews = response.data.reviews;
+                console.log(response.data.reviews);
             })
             .catch((err)=>{
                 console.log(err)
             })
+        },
+        
+    productDetails(slug){
+      this.$router.push({
+        name: "singleProduct",
+        params: {
+          slug: slug
         }
+      });
     },
+    digitalProductDetails(slug,product){
+      this.$router.push({
+        name: "DigitalProductDetails",
+        params: {
+          slug: slug
+        }
+      });
+}
+    }
 }
 </script>
 
