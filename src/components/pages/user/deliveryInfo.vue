@@ -362,7 +362,7 @@
             </div>
         </div>
     </div>
-</section> -->
+    </section> -->
 
 </template>
   
@@ -380,23 +380,46 @@
        
       }
     },
+     mounted(){
+         this.emitter.on("addressId", nijosso => {
+            console.log(nijosso);
+            //  setDeliveryData(id);
+        });
+    },
     created(){
         var user = localStorage.getItem("user");
         if(user !== null){
             user = JSON.parse(user);
             this.auth.isAuthenticated = true;
             this.auth.user = user;
-            // this.getShippingData();
+            // this.setDeliveryData();
         }
-    },
-    computed(){
-      
-    },
-    mounted(){
+
        
     },
-    methods:{
 
+    methods:{
+        setDeliveryData(id){
+
+        //     axios.get(this.selfDomain+"vueweb/checkout/delivery_info", {
+        //       params:{
+        //         address_id: address_id,
+        //       },
+        //       headers: {
+        //         Authorization: "Bearer " + this.auth.user.access_token,
+        //       }
+        //   }).then(res=>{
+        //     // console.log(res.data);
+        //     this.emitter.emit("addressId", address_id);
+        //     this.$router.push({
+        //         name: "deliveryInfo",
+        //     });
+
+        //   }).catch(err=>{
+
+        //   });
+        },
+        
     }
   }
   </script>
