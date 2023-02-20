@@ -92,5 +92,12 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'sellerOrder' }),
     beforeEnter: auth,
+  },
+  {
+    path:'/seller/orders-details/:id?',
+    name:'sellerOrderDetails',
+    component: SellerLayout,
+    props: () => ({ componentName: 'sellerOrderDetails' }),
+    beforeEnter: auth,
   }
    ]

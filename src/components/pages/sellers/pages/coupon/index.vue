@@ -40,7 +40,7 @@
                 <tbody>
                     <!-- @foreach($coupons as $key => $coupon) -->
                         <tr v-for="(coupon,index) in coupons" :key="index">
-                            <td>{{ index+1 }}</td>
+                            <td>{{ (index+1)+(pageNumber-1)*10 }}</td>
                             <td>{{ coupon.code }}</td>
                             <td>
                                     <p v-if="coupon.type=='cart_base'">Cart Base</p>
@@ -91,6 +91,7 @@ export default {
              isAuthenticated: false,
              user: {},
              },
+             pageNumber:"",
              coupons:[],
              isDeleteModal:false,
              couponId:"",
