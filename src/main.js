@@ -20,11 +20,7 @@ var app = createApp(App);
 const emitter = mitt();
 app.config.globalProperties.global = globalData;
 app.config.globalProperties.rootDomain ='https://localhost/backend/';
-<<<<<<< HEAD
 app.config.globalProperties.selfDomain ='http://192.168.0.105:8080/';
-=======
-app.config.globalProperties.selfDomain ='http://localhost:8080/';
->>>>>>> 00010391d7c88af08399d0da33949a757c5f1f97
 app.config.globalProperties.emitter = emitter;
 
 app.use(Vue3Geolocation);
