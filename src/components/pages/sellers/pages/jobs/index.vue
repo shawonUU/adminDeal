@@ -29,7 +29,7 @@
                 <tbody>
                     <!-- @foreach ($jobs as $key => $job) -->
                         <tr v-for="(job,index) in jobs" :key="index">
-                            <td>{{ index+1 }}</td>
+                            <td>{{ (index+1)+(pageNumber-1)*10 }}</td>
                             <td>
                                 <a  @click="getJobSlug(job.slug)" target="_blank" class="text-reset">
                                     {{ job.title }}
@@ -72,6 +72,7 @@ export default {
 data(){
     return{
         auth:{
+            pageNumber:"",
             isAuthenticated: false,
             user: {},
             },
@@ -99,6 +100,7 @@ console.log('unmounted has been called');
 },
 methods:{
     getJobs(page){
+        this.pageNumber = page;
         axios.get(this.selfDomain+'vueseller/seller/jobs?page='+page,{  
         headers: {
                 Authorization: "Bearer " + this.auth.user.access_token,

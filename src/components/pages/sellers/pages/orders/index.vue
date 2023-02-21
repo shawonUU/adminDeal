@@ -6,7 +6,7 @@
               <h5 class="mb-md-0 h6">Orders</h5>
             </div>
               <div class="col-md-3 ml-auto">
-                  <select class="form-control aiz-selectpicker" data-placeholder="Filter by Payment Status" name="payment_status" onchange="sort_orders()">
+                  <select v-model="paymentStatus" @change="getFilterData" class="form-control aiz-selectpicker" data-placeholder="Filter by Payment Status" name="payment_status">
                       <option value="">Filter by Payment Status</option>
                       <option value="paid">Paid</option>
                       <option value="unpaid">Un-Paid</option>
@@ -14,7 +14,7 @@
               </div>
 
               <div class="col-md-3 ml-auto">
-                <select class="form-control aiz-selectpicker" data-placeholder="Filter by Payment Status" name="delivery_status" onchange="sort_orders()">
+                <select v-model="delivery_status" class="form-control aiz-selectpicker" @change="getFilterData"  data-placeholder="Filter by Payment Status" name="delivery_status">
                     <option value="">Filter by Deliver Status</option>
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
@@ -24,7 +24,7 @@
               </div>
               <div class="col-md-3">
                 <div class="from-group mb-0">
-                    <input type="text" class="form-control" id="search" name="search" placeholder="Type Order code & hit Enter') }}">
+                    <input v-model="searchKey" @keyup="getFilterData" type="text" class="form-control" id="search" name="search" placeholder="Type Order code">
                 </div>
               </div>
           </div>
@@ -54,7 +54,7 @@
                             @if($order != null) -->
                                 <tr v-for="(order,index) in orders" :key="index">
                                     <td>
-                                     {{ index+1 }}
+                                        {{ (index+1)+(pageNumber-1)*10 }}
                                     </td>
                                     <td>
                                         <a href="" onclick="show_order_details({{ $order->id }})">{{ order.code }}</a>
@@ -80,21 +80,14 @@
                                         
                                     </td>
                                      <td>
-                            <!-- @php
-                                           $today= Carbon\Carbon::today();
-                                           $diffdate = $today->diffInDays($order->updated_at);
-                                        @endphp -->
 
-                            <!-- @if($order->dontpay==null && $order->payment_status == 'paid' &&  $order->delivery_status== 'delivered' && $diffdate<2) -->
-
-                            <span class="badge badge-inline badge-success">No Objection</span>
-                            <!-- @endif
-                            @if($order->dontpay!=null && $order->payment_status == 'paid' &&  $order->delivery_status== 'delivered' && $diffdate<2) -->
-                            <span class="badge badge-inline badge-danger">DontPay Requested</span>
-                            <!-- @endif -->
-                        </td>
+                                        <span v-if="order.dontpay == null && order.payment_status == 'paid' && order.delivery_status == 'delivered' && order.diffdate<2" class="badge badge-inline badge-success">No Objection</span>
+                                        
+                                        <span v-if="order.dontpay != null && order.payment_status == 'paid' && order.delivery_status == 'delivered' && order.diffdate<2" class="badge badge-inline badge-danger">DontPay Requested</span>
+                            
+                                    </td>
                                     <td class="text-right">
-                                        <a href="'seller.orders.show" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="Order Details">
+                                        <a @click="getOrderId(order.id)" class="btn btn-soft-info btn-icon btn-circle btn-sm" title="Order Details">
                                             <i class="las la-eye"></i>
                                         </a>
                                         <a href="seller.invoice.download" class="btn btn-soft-warning btn-icon btn-circle btn-sm" title="Download Invoice">
@@ -102,15 +95,18 @@
                                         </a>
                                     </td>
                                 </tr>
-                            <!-- @endif
-                        @endforeach -->
                     </tbody>
                 </table>
                 <div class="aiz-pagination">
-                    <!-- {{ $orders->links() }} -->
+                    <vue-awesome-paginate
+                        :total-items="totalItems"
+                        :items-per-page="12"
+                        :max-pages-shown="5"
+                        v-model="currentPage"
+                        @click="getOrders"
+                    />
               	</div>
             </div>
-        <!-- @endif -->
     </div>
 </template>
 
@@ -119,11 +115,17 @@ import axios from 'axios';
 export default {
 data(){
     return{
+          pageNumber:"",
         auth:{
             isAuthenticated: false,
             user: {},
             },
-            orders:[]
+            orders:[],
+            currentPage:1,
+            totalItems:"",
+            paymentStatus:"",
+            delivery_status:"",
+            searchKey:""
     }
 },
     created(){
@@ -146,20 +148,51 @@ data(){
     },
     methods:{
         getOrders(page){
+
+            let payment_status = "";
+            let delivery_status = "";
+            let searchKey = "";
+
+            if(this.paymentStatus != null){
+                payment_status = this.paymentStatus;
+            }
+            if(this.delivery_status != null){
+                delivery_status = this.delivery_status
+            }
+            if(this.searchKey != null){
+                searchKey = this.searchKey
+            }
+            this.pageNumber = page;
             axios.get(this.selfDomain+'vueseller/seller/orders?page='+page,{  
                 headers: {
                         Authorization: "Bearer " + this.auth.user.access_token,
+                },
+                params: {
+                    payment_status:payment_status,
+                    delivery_status:delivery_status,
+                    search:searchKey
                 }
 
         })
         .then((response) => {    
             this.orders = response.data.orders;
-            // this.totalItems = response.data.totalJobs;
-            console.log(response.data.orders)
+            this.totalItems = response.data.totalOrder;
+            console.log(response.data)
         })
         .catch((err)=>{
             console.log(err)
         })
+        },
+        getFilterData(){
+            this.getOrders(1)
+        },
+        getOrderId(id){
+            this.$router.push({
+              name:'sellerOrderDetails',
+              params: {
+                id: id
+                }
+          }); 
         }
     }
 }
