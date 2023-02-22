@@ -368,7 +368,6 @@
         },
 
         store_delivery_info(){
-            // :to="{name:'paymentSelect'}"
 
             const formData = new FormData(this.$refs.myForm);
 
@@ -389,6 +388,10 @@
                 console.log(res.data);
             }).catch(err=>{
 
+            });
+
+            this.$router.push({
+                name: "paymentSelect",
             });
         },
         changeShipping(index, type){

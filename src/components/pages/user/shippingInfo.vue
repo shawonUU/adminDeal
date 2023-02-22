@@ -203,18 +203,6 @@
                     }
                 }).then(res=>{
                     console.log(res.data);
-                    // this.admin_products = res.data.admin_products;
-                    // this.seller_products = res.data.seller_products;
-                    // this.carts = res.data.carts;
-                    // this.carts = res.data.carts;
-                    // this.carts = res.data.carts;
-                    // this.shipping_type = res.data.shipping_type;
-                    // this.site_name = res.data.site_name;
-                    // this.adminId = res.data.adminId;
-                    // this.pickup_point_list = res.data.pickup_point_list;
-                    
-                    
-
 
                 }).catch(err=>{
 
