@@ -132,37 +132,44 @@
                                            </template>
                                            <template v-else-if="productDetail.product_info !=null && productDetail.product_info.auction_product == 1" >
                                             <strong>
-                                                <a href=""
+                                                <a 
                                                     class="text-muted">{{ productDetail.product_info.name }}</a></strong>
                                            </template>
                                            <template v-else> <strong >Product Unavailable</strong></template>
                                            
                                        
                                     </td>
-                                 <!--   <td>
-                                     @if ($order->shipping_type != null && $order->shipping_type == 'home_delivery')
-                                    //         Home Delivery
-                                    //     @elseif ($order->shipping_type == 'pickup_point')
-                                    //         @if ($order->pickup_point != null)
-                                    //             {{ $order->pickup_point->getTranslation('name
-                                    //             (Pickup Point)
-                                    //         @else
-                                    //             Pickup Point
-                                    //         @endif
-                                    //     @elseif($order->shipping_type == 'carrier')
-                                    //         @if ($order->carrier != null)
-                                    //             {{ $order->carrier->name }} (Carrier)
-                                    //             <br>
-                                    //             Transit Time').' - '.$order->carrier->transit_time.' '.translate('days
-                                    //         @else
-                                    //             Carrier
-                                    //         @endif
-                                    //     @endif
-                                    // </td> -->
-                                    <td class="text-center">orderDetail->quantity</td>
+                                
+
+                                    <td>
+                                        <template v-if="order.shipping_type != null && order.shipping_type == 'home_delivery'">
+                                            Home Delivery
+                                        </template>
+                                        <template v-else-if="order.shipping_type == 'pickup_point'">
+                                             <template v-if="order.pickup_point != null">
+                                                {{ order.pickup_point.name }}
+                                                    Pickup Point
+                                             </template>
+                                             <template v-else>
+                                                Pickup Point
+                                             </template>
+                                        </template>
+                                        <template v-else-if="order.shipping_type == 'carrier'">
+                                             <template v-if="order.carrier != null">
+                                                {{ order.carrier.name }}
+                                                   Carrier
+                                                   <br>
+                                                   Transit Time - {{ order.carrier.transit_time }} Days
+                                             </template>
+                                             <template v-else>
+                                                 Carrier
+                                             </template>
+                                        </template>
+                                    </td>
+                                    <td class="text-center">{{ productDetail.quantity }}</td>
                                     <td class="text-center">
-                                        orderDetail->price / $orderDetail->quantity</td>
-                                    <td class="text-center">orderDetail->price</td> 
+                                        {{ productDetail.product_price }}</td>
+                                    <td class="text-center">৳{{ productDetail.price }}</td> 
                                 </tr>
                            
                         </tbody> 
@@ -177,7 +184,7 @@
                                 <strong class="text-muted">Sub Total :</strong>
                             </td>
                             <td>
-                               orderDetails->sum('price')
+                               {{ order.product_sub_total }}
                             </td>
                         </tr>
                         <tr>
@@ -185,7 +192,7 @@
                                 <strong class="text-muted">Tax :</strong>
                             </td>
                             <td>
-                                order->orderDetails->sum('tax')
+                                {{ order.tax_total }}
                             </td>
                         </tr>
                         <tr>
@@ -193,7 +200,7 @@
                                 <strong class="text-muted">Shipping :</strong>
                             </td>
                             <td>
-                                order->orderDetails->sum('shipping_cost')
+                                {{ order.total_shipping }}
                             </td>
                         </tr>
                         <tr>
@@ -201,7 +208,7 @@
                                 <strong class="text-muted">Coupon :</strong>
                             </td>
                             <td>
-                               order->coupon_discount
+                              {{ order.coupon_discount }}
                             </td>
                         </tr>
                         <tr>
@@ -209,7 +216,7 @@
                                 <strong class="text-muted">TOTAL :</strong>
                             </td>
                             <td class="text-muted h5">
-                                 order->grand_total
+                                ৳{{ order.grand_total }}
                             </td>
                         </tr>
                     </tbody>
@@ -272,7 +279,7 @@
             this.order_shipping_address = response.data.order_shipping_address;
             this.user = response.data.user;
             this.productDetails = response.data.products;
-              console.log(response.data.products)
+              console.log(response.data)
           })
           .catch((err)=>{
               console.log(err)

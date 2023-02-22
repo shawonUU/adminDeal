@@ -849,9 +849,9 @@ export default {
                   this.$router.push({
                      name: "Brand",
                      params: {
-                     brand_slug: brand_slug
-               }
-               });
+                        brand_slug: brand_slug
+                     }
+                  });
                },
                 setThumbsSwiper(swiper){
                   this.thumbsSwiper = swiper;

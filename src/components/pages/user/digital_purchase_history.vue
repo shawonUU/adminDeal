@@ -62,7 +62,7 @@ export default {
     getDigitalPurchaseHistory(page){
    
         const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-        console.log("COllllll");
+       
 
         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
         axios.get(this.selfDomain+"vueweb/digital_purchase_history",{
@@ -70,11 +70,11 @@ export default {
                     Authorization: "Bearer " + this.auth.user.access_token,
                 }
       }).then((res)=>{
-        console.log(res);
+        // console.log(res);
         this.digitalPurchaseHistoriesHolder[page] = res.data[0].data;
         this.digitalPurchaseHistories = this.digitalPurchaseHistoriesHolder[page];
         this.totalItems = res.data[1];
-        console.log(res.data);
+        // console.log(res.data);
         this.scrollToTop();
       }).catch((err)=>{
          console.log(err)
