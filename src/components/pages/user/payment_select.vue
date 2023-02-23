@@ -40,12 +40,13 @@
             </div>
         </div>
     </section>
-  <!-- <section class="mb-4">
+
+  <section v-if="data != null" class="mb-4">
         <div class="container text-left">
             <div class="row">
                 <div class="col-lg-8">
                     <form class="form-default" role="form" id="checkout-form">
-                        <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
+                        <input type="hidden" name="owner_id" :value="data.carts[0]['owner_id']">
 
 
                         <div class="card rounded border-0 shadow-sm">
@@ -68,13 +69,12 @@
                                 <div class="row">
                                     <div class="col-xxl-8 col-xl-10 mx-auto">
                                         <div class="row gutters-10">
-                                            @if (get_setting('paypal_payment') == 1)
-                                                <div class="col-6 col-md-4">
+                                                <div v-if="data.paypal_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="paypal" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/paypal.png') }}"
+                                                            <img :src="data.paypal_payment_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -83,14 +83,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('stripe_payment') == 1)
-                                                <div class="col-6 col-md-4">
+                                            
+                                                <div v-if="data.stripe_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="stripe" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/stripe.png') }}"
+                                                            <img :src="data.stripe_payment_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -99,14 +98,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('mercadopago_payment') == 1)
-                                                <div class="col-6 col-md-4">
+                                            
+                                                <div v-if="data.mercadopago_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="mercadopago" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/mercadopago.png') }}"
+                                                            <img :src="data.mercadopago_payment_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -115,30 +113,26 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('sslcommerz_payment') == 1)
-                                                <div class="col-6 col-md-4">
+                                                <div v-if="data.sslcommerz_payment==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="sslcommerz" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/sslcommerz.png') }}"
+                                                            <img :src="data.sslcommerz_payment_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
-                                                                    class="d-block fw-600 fs-15">{{ translate('sslcommerz') }}</span>
+                                                                    class="d-block fw-600 fs-15">{{ 'sslcommerz' }}</span>
                                                             </span>
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('instamojo_payment') == 1)
-                                                <div class="col-6 col-md-4">
+                                                <div v-if="data.instamojo_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="instamojo" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/instamojo.png') }}"
+                                                            <img :src="data.instamojo_payment_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -147,14 +141,12 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('razorpay') == 1)
-                                                <div class="col-6 col-md-4">
+                                                <div v-if="data.razorpay == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="razorpay" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/rozarpay.png') }}"
+                                                            <img :src="data.razorpay_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -163,14 +155,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('paystack') == 1)
-                                                <div class="col-6 col-md-4">
+                                            
+                                                <div v-if="data.paystack==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="paystack" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/paystack.png') }}"
+                                                            <img :src="data.paystack_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -179,14 +170,12 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('voguepay') == 1)
-                                                <div class="col-6 col-md-4">
+                                                <div v-if="data.voguepay == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="voguepay" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/vogue.png') }}"
+                                                            <img :src="data.voguepay_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -195,14 +184,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('payhere') == 1)
-                                                <div class="col-6 col-md-4">
+                                            
+                                                <div v-if="data.payhere==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="payhere" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/payhere.png') }}"
+                                                            <img :src="data.payhere_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -211,14 +199,12 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('ngenius') == 1)
-                                                <div class="col-6 col-md-4">
+                                                <div v-if="data.ngenius==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="ngenius" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/ngenius.png') }}"
+                                                            <img :src="data.ngenius_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -227,14 +213,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('iyzico') == 1)
-                                                <div class="col-6 col-md-4">
+                                           
+                                                <div v-if="data.iyzico==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="iyzico" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/iyzico.png') }}"
+                                                            <img :src="data.iyzico_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -243,14 +228,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('nagad') == 1)
-                                                <div class="col-6 col-md-4">
+                                           
+                                                <div v-if="data.nagad == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="nagad" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/nagad.png') }}"
+                                                            <img :src="data.nagad_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -259,14 +243,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('bkash') == 1)
-                                                <div class="col-6 col-md-4">
+                                            
+                                                <div v-if="data.bkash==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="bkash" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/bkash.png') }}"
+                                                            <img :src="data.bkash_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -275,14 +258,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('aamarpay') == 1)
-                                                <div class="col-6 col-md-4">
+                                            
+                                                <div v-if="data.aamarpay==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="aamarpay" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/aamarpay.png') }}"
+                                                            <img :src="data.aamarpay_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -291,30 +273,27 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('authorizenet') == 1)
-                                                <div class="col-6 col-md-4">
+                                                <div v-if="data.authorizenet==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="authorizenet" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/authorizenet.png') }}"
+                                                            <img :rc="data.authorizenet_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
-                                                                    class="d-block fw-600 fs-15">{{ translate('Authorize Net') }}</span>
+                                                                    class="d-block fw-600 fs-15">{{ 'Authorize Net' }}</span>
                                                             </span>
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('payku') == 1)
-                                                <div class="col-6 col-md-4">
+                                           
+                                                <div v-if="data.payku == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="payku" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/payku.png') }}"
+                                                            <img :src="data.payku_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -323,15 +302,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (addon_is_activated('african_pg'))
-                                                @if (get_setting('mpesa') == 1)
-                                                    <div class="col-6 col-md-4">
+                                            <template v-if="data.african_pg">
+                                                    <div v-if="data.mpesa == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
                                                             <input value="mpesa" class="online_payment" type="radio"
                                                                 name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
-                                                                <img src="{{ static_asset('assets/img/cards/mpesa.png') }}"
+                                                                <img :src="data.mpesa_img"
                                                                     class="img-fluid mb-2">
                                                                 <span class="d-block text-center">
                                                                     <span
@@ -340,14 +317,12 @@
                                                             </span>
                                                         </label>
                                                     </div>
-                                                @endif
-                                                @if (get_setting('flutterwave') == 1)
-                                                    <div class="col-6 col-md-4">
+                                                    <div v-if="data.flutterwave == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
                                                             <input value="flutterwave" class="online_payment" type="radio"
                                                                 name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
-                                                                <img src="{{ static_asset('assets/img/cards/flutterwave.png') }}"
+                                                                <img :src="data.flutterwave_img"
                                                                     class="img-fluid mb-2">
                                                                 <span class="d-block text-center">
                                                                     <span
@@ -356,14 +331,12 @@
                                                             </span>
                                                         </label>
                                                     </div>
-                                                @endif
-                                                @if (get_setting('payfast') == 1)
-                                                    <div class="col-6 col-md-4">
+                                                    <div v-if="data.payfast == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
                                                             <input value="payfast" class="online_payment" type="radio"
                                                                 name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
-                                                                <img src="{{ static_asset('assets/img/cards/payfast.png') }}"
+                                                                <img :src="data.payfast_img"
                                                                     class="img-fluid mb-2">
                                                                 <span class="d-block text-center">
                                                                     <span
@@ -372,15 +345,13 @@
                                                             </span>
                                                         </label>
                                                     </div>
-                                                @endif
-                                            @endif
-                                            @if (addon_is_activated('paytm') && get_setting('paytm_payment') == 1)
-                                                <div class="col-6 col-md-4">
+                                            </template>
+                                                <div v-if="data.paytm && data.paytm_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="paytm" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/paytm.jpg') }}"
+                                                            <img :src="data.paytm_payment_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -389,14 +360,13 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (addon_is_activated('paytm') && get_setting('toyyibpay_payment') == 1)
-                                                <div class="col-6 col-md-4">
+
+                                                <div v-if="data.paytm && data.toyyibpay_payment==1 " class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
                                                         <input value="toyyibpay" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
-                                                            <img src="{{ static_asset('assets/img/cards/toyyibpay.png') }}"
+                                                            <img :src="data.toyyibpay_payment_img"
                                                                 class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span
@@ -405,88 +375,65 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            @endif
-                                            @if (get_setting('cash_payment') == 1)
-                                                @php
-                                                    $digital = 0;
-                                                    $cod_on = 1;
-                                                    foreach ($carts as $cartItem) {
-                                                        $product = \App\Models\Product::find($cartItem['product_id']);
-                                                        if ($product['digital'] == 1) {
-                                                            $digital = 1;
-                                                        }
-                                                        if ($product['cash_on_delivery'] == 0) {
-                                                            $cod_on = 0;
-                                                        }
-                                                    }
-                                                @endphp
-                                                @if ($digital != 1 && $cod_on == 1)
-                                                    <div class="col-6 col-md-4">
+
+                                                
+                                                    <div v-if="data.cash_payment == 1 && data.digital == 0 && data.cod_on == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
                                                             <input value="cash_on_delivery" class="online_payment"
                                                                 type="radio" name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
-                                                                <img src="{{ static_asset('assets/img/cards/cod.png') }}"
+                                                                <img :src="data.cod_on_img"
                                                                     class="img-fluid mb-2">
                                                                 <span class="d-block text-center">
                                                                     <span
-                                                                        class="d-block fw-600 fs-15">{{ translate('Cash on Delivery') }}</span>
+                                                                        class="d-block fw-600 fs-15">{{ 'Cash on Delivery' }}</span>
                                                                 </span>
                                                             </span>
                                                         </label>
                                                     </div>
-                                                @endif
-                                            @endif
-                                            @if (Auth::check())
-                                                @if (addon_is_activated('offline_payment'))
-                                                    @foreach (\App\Models\ManualPaymentMethod::all() as $method)
-                                                        <div class="col-6 col-md-4">
+                                              
+                                            <template v-if="auth.isAuthenticated && data.offline_payment">
+                                                        <div v-for="(method,index) in data.manualPaymentMethods" :key="index" class="col-6 col-md-4">
                                                             <label class="aiz-megabox d-block mb-3">
-                                                                <input value="{{ $method->heading }}" type="radio"
+                                                                <input :value="method.heading" type="radio"
                                                                     name="payment_option" class="offline_payment_option"
-                                                                    onchange="toggleManualPaymentData({{ $method->id }})"
-                                                                    data-id="{{ $method->id }}" checked>
+                                                                    :data-id="method.id" checked>
                                                                 <span class="d-block aiz-megabox-elem p-3">
-                                                                    <img src="{{ uploaded_asset($method->photo) }}"
+                                                                    <img :src="method.photo"
                                                                         class="img-fluid mb-2">
                                                                     <span class="d-block text-center">
                                                                         <span
-                                                                            class="d-block fw-600 fs-15">{{ $method->heading }}</span>
+                                                                            class="d-block fw-600 fs-15">{{ method.heading }}</span>
                                                                     </span>
                                                                 </span>
                                                             </label>
                                                         </div>
-                                                    @endforeach
 
-                                                    @foreach (\App\Models\ManualPaymentMethod::all() as $method)
-                                                        <div id="manual_payment_info_{{ $method->id }}" class="d-none">
-                                                            @php echo $method->description @endphp
-                                                            @if ($method->bank_info != null)
-                                                                <ul>
-                                                                    @foreach (json_decode($method->bank_info) as $key => $info)
-                                                                        <li>{{ translate('Bank Name') }} -
-                                                                            {{ $info->bank_name }},
-                                                                            {{ translate('Account Name') }} -
-                                                                            {{ $info->account_name }},
-                                                                            {{ translate('Account Number') }} -
-                                                                            {{ $info->account_number }},
-                                                                            {{ translate('Routing Number') }} -
-                                                                            {{ $info->routing_number }}
+                                                    
+                                                        <div v-for="(method,index) in data.manualPaymentMethods" :key="index" :id="'manual_payment_info_'+method.id" class="d-none">
+                                                            {{method.description}}
+                                                            
+                                                                <ul v-if="method.bank_info != null">
+                                                                        <li v-for="(info, index) in method.bank_info" :key="index">{{'Bank Name' }} -
+                                                                            {{ info.bank_name }},
+                                                                            {{ 'Account Name' }} -
+                                                                            {{ info.account_name }},
+                                                                            {{ 'Account Number' }} -
+                                                                            {{ info.account_number }},
+                                                                            {{ 'Routing Number' }} -
+                                                                            {{ info.routing_number }}
                                                                         </li>
-                                                                    @endforeach
                                                                 </ul>
-                                                            @endif
+                                                            
                                                         </div>
-                                                    @endforeach
-                                                @endif
-                                            @endif
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
 
-                                @if (addon_is_activated('offline_payment'))
-                                    <div class="d-none mb-3 rounded border bg-white p-3 text-left">
+                                    <div v-if="data.offline_payment" class="d-none mb-3 rounded border bg-white p-3 text-left">
                                         <div id="manual_payment_description">
+
 
                                         </div>
                                         <br>
@@ -509,12 +456,13 @@
                                                     <input type="hidden" name="photo" class="selected-files">
                                                 </div>
                                                 <div class="file-preview box sm">
+
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endif
-                                @if (Auth::check() && get_setting('wallet_system') == 1)
+                                <template v-if="auth.isAuthenticated && data.wallet_system == 1">
                                     <div class="separator mb-3">
                                         <span class="bg-white px-3">
                                             <span class="opacity-60">{{ 'Or' }}</span>
@@ -524,19 +472,16 @@
                                         <div class="h6 mb-3">
                                             <span class="opacity-80">{{ 'Your wallet balance :' }}</span>
                                             <span
-                                                class="fw-600">{{ single_price(Auth::user()->balance) }}</span>
+                                                class="fw-600">{{ data.user_balance_single_price }}</span>
                                         </div>
-                                        @if (Auth::user()->balance < $total)
-                                            <button type="button" class="btn btn-secondary" disabled>
+                                            <button v-if="data.user_balance < data.total" type="button" class="btn btn-secondary" disabled>
                                                 {{ 'Insufficient balance' }}
                                             </button>
-                                        @else
-                                            <button type="button" onclick="use_wallet()" class="btn btn-primary fw-600">
+                                            <button v-else type="button"  class="btn btn-primary fw-600">
                                                 {{ 'Pay with wallet' }}
                                             </button>
-                                        @endif
                                     </div>
-                                @endif
+                                </template>
                             </div>
                         </div>
                         <div class="pt-3">
@@ -545,21 +490,20 @@
                                 <span class="aiz-square-check"></span>
                                 <span>{{ 'I agree to the' }}</span>
                             </label>
-                            <a href="{{ route('terms') }}">{{'terms and conditions' }}</a>,
-                            <a href="{{ route('returnpolicy') }}">{{ 'return policy' }}</a> &
-                            <a href="{{ route('privacypolicy') }}">{{ 'privacy policy' }}</a>
+                            <a href="">{{'terms and conditions' }}</a>,
+                            <a href="">{{ 'return policy' }}</a> &
+                            <a href="">{{ 'privacy policy' }}</a>
                         </div>
 
                         <div class="row align-items-center pt-3">
                             <div class="col-6">
-                                <a href="{{ route('home') }}" class="link link--style-3">
+                                <router-link :to="{name: 'home'}" class="link link--style-3">
                                     <i class="las la-arrow-left"></i>
                                     {{ 'Return to shop' }}
-                                </a>
+                                </router-link>
                             </div>
                             <div class="col-6 text-right">
-                                <button type="button" onclick="submitOrder(this)"
-                                    class="btn btn-primary fw-600">{{ 'Complete Order' }}</button>
+                                <button type="button" class="btn btn-primary fw-600">{{ 'Complete Order' }}</button>
                             </div>
                         </div>
                     </form>
@@ -569,231 +513,226 @@
                     <div class="card rounded border-0 shadow-sm">
 
 
-    <div class="card-header">
-        <h3 class="fs-16 fw-600 mb-0">{{ 'Summary' }}</h3>
-        <div class="text-right">
-            <span class="badge badge-inline badge-primary">
-                {{ count($carts) }}
-                {{ 'Items' }}
-            </span>
-            @php
-                $coupon_discount = 0;
-            @endphp
-            @if (Auth::check() && get_setting('coupon_system') == 1)
-                @php
-                    $coupon_code = null;
-                @endphp
+                            <div class="card-header">
+                                <h3 class="fs-16 fw-600 mb-0">{{ 'Summary' }}</h3>
+                                <div class="text-right">
+                                    <span class="badge badge-inline badge-primary">
+                                        {{ data.carts.length }}
+                                        {{ 'Items' }}
+                                    </span>
+                                    <!-- @php
+                                        $coupon_discount = 0;
+                                    @endphp
+                                    @if (Auth::check() && get_setting('coupon_system') == 1)
+                                        @php
+                                            $coupon_code = null;
+                                        @endphp
 
-                @foreach ($carts as $key => $cartItem)
-                    @php
-                        $product = \App\Models\Product::find($cartItem['product_id']);
-                    @endphp
-                    @if ($cartItem->coupon_applied == 1)
-                        @php
-                            $coupon_code = $cartItem->coupon_code;
-                            break;
-                        @endphp
-                    @endif
-                @endforeach
+                                        @foreach ($carts as $key => $cartItem)
+                                            @php
+                                                $product = \App\Models\Product::find($cartItem['product_id']);
+                                            @endphp
+                                            @if ($cartItem->coupon_applied == 1)
+                                                @php
+                                                    $coupon_code = $cartItem->coupon_code;
+                                                    break;
+                                                @endphp
+                                            @endif
+                                        @endforeach
 
-                @php
-                    $coupon_discount = carts_coupon_discount($coupon_code);
-                @endphp
-            @endif
+                                        @php
+                                            $coupon_discount = carts_coupon_discount($coupon_code);
+                                        @endphp
+                                    @endif
 
-            @php $subtotal_for_min_order_amount = 0; @endphp
-            @foreach ($carts as $key => $cartItem)
-                @php $subtotal_for_min_order_amount += cart_product_price($cartItem, $cartItem->product, false, false) * $cartItem['quantity']; @endphp
-            @endforeach
+                                    @php $subtotal_for_min_order_amount = 0; @endphp
+                                    @foreach ($carts as $key => $cartItem)
+                                        @php $subtotal_for_min_order_amount += cart_product_price($cartItem, $cartItem->product, false, false) * $cartItem['quantity']; @endphp
+                                    @endforeach -->
 
-            @if (get_setting('minimum_order_amount_check') == 1 && $subtotal_for_min_order_amount < get_setting('minimum_order_amount'))
-                <span class="badge badge-inline badge-primary">
-                    {{ translate('Minimum Order Amount') . ' ' . single_price(get_setting('minimum_order_amount')) }}
-                </span>
-            @endif
-        </div>
-    </div>
+                                        <span v-if="data.minimum_order_amount_check == 1 && data.subtotal < data.minimum_order_amount" class="badge badge-inline badge-primary">
+                                            {{ 'Minimum Order Amount' + ' ' + data.minimum_order_amount_single_price }}
+                                        </span>
+                                </div>
+                            </div>
 
-    <div class="card-body">
-        @if (addon_is_activated('club_point'))
-            @php
-                $total_point = 0;
-            @endphp
-            @foreach ($carts as $key => $cartItem)
-                @php
-                    $product = \App\Models\Product::find($cartItem['product_id']);
-                    $total_point += $product->earn_point * $cartItem['quantity'];
-                @endphp
-            @endforeach
+                            <div class="card-body">
+                                <!-- @if (addon_is_activated('club_point'))
+                                    @php
+                                        $total_point = 0;
+                                    @endphp
+                                    @foreach ($carts as $key => $cartItem)
+                                        @php
+                                            $product = \App\Models\Product::find($cartItem['product_id']);
+                                            $total_point += $product->earn_point * $cartItem['quantity'];
+                                        @endphp
+                                    @endforeach -->
 
-            <div class="bg-soft-primary border-soft-primary mb-2 rounded border px-2">
-                {{ translate('Total Club point') }}:
-                <span class="fw-700 float-right">{{ $total_point }}</span>
-            </div>
-        @endif
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="product-name">{{ translate('Product') }}</th>
-                    <th class="product-total text-right">{{ translate('Total') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $subtotal = 0;
-                    $tax = 0;
-                    $shipping = 0;
-                    $product_shipping_cost = 0;
-                    $shipping_region = $shipping_info['city'];
-                @endphp
-                @foreach ($carts as $key => $cartItem)
-                    @php
-                        $product = \App\Models\Product::find($cartItem['product_id']);
-                        $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
-                        $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
-                        $product_shipping_cost = $cartItem['shipping_cost'];
-                        
-                        $shipping += $product_shipping_cost;
-                        
-                        $product_name_with_choice = $product->getTranslation('name');
-                        if ($cartItem['variant'] != null) {
-                            $product_name_with_choice = $product->getTranslation('name') . ' - ' . $cartItem['variant'];
-                        }
-                    @endphp
-                    <tr class="cart_item">
-                        <td class="product-name">
-                            {{ $product_name_with_choice }}
-                            <strong class="product-quantity">
-                                × {{ $cartItem['quantity'] }}
-                            </strong>
-                        </td>
-                        <td class="product-total text-right">
-                            <span
-                                class="pl-4 pr-0">{{ single_price(cart_product_price($cartItem, $cartItem->product, false, false) * $cartItem['quantity']) }}</span>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <input type="hidden" id="sub_total" value="{{ $subtotal }}">
-        <table class="table">
+                                    <div v-if="data.club_point" class="bg-soft-primary border-soft-primary mb-2 rounded border px-2">
+                                        {{ 'Total Club point' }}:
+                                        <span class="fw-700 float-right">{{ data.total_point }}</span>
+                                    </div>
+                                <!-- @endif -->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">{{ 'Product' }}</th>
+                                            <th class="product-total text-right">{{ 'Total' }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- @php
+                                            $subtotal = 0;
+                                            $tax = 0;
+                                            $shipping = 0;
+                                            $product_shipping_cost = 0;
+                                            $shipping_region = $shipping_info['city'];
+                                        @endphp
+                                        @foreach ($carts as $key => $cartItem)
+                                            @php
+                                                $product = \App\Models\Product::find($cartItem['product_id']);
+                                                $subtotal += cart_product_price($cartItem, $product, false, false) * $cartItem['quantity'];
+                                                $tax += cart_product_tax($cartItem, $product, false) * $cartItem['quantity'];
+                                                $product_shipping_cost = $cartItem['shipping_cost'];
+                                                
+                                                $shipping += $product_shipping_cost;
+                                                
+                                                $product_name_with_choice = $product->getTranslation('name');
+                                                if ($cartItem['variant'] != null) {
+                                                    $product_name_with_choice = $product->getTranslation('name') . ' - ' . $cartItem['variant'];
+                                                }
+                                            @endphp -->
+                                            <tr v-for="(cartItem, index) in data.carts" :key="index" class="cart_item">
+                                                <td class="product-name">
+                                                    {{ cartItem.product_name_with_choice }}
+                                                    <strong class="product-quantity">
+                                                        × {{ cartItem.quantity }}
+                                                    </strong>
+                                                </td>
+                                                <td class="product-total text-right">
+                                                    <span
+                                                        class="pl-4 pr-0">{{ cartItem.cart_product_single_price }}</span>
+                                                </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                                <input type="hidden" id="sub_total" :value="data.subtotal">
+                                <table class="table">
 
-            <tfoot>
-                <tr class="cart-subtotal">
-                    <th>{{ translate('Subtotal') }}</th>
-                    <td class="text-right">
-                        <span class="fw-600">{{ single_price($subtotal) }}</span>
-                    </td>
-                </tr>
+                                    <tfoot>
+                                        <tr class="cart-subtotal">
+                                            <th>{{ 'Subtotal' }}</th>
+                                            <td class="text-right">
+                                                <span class="fw-600">{{ data.subtotal_single_price }}</span>
+                                            </td>
+                                        </tr>
 
-                <tr class="cart-shipping">
-                    <th>{{ translate('Tax') }}</th>
-                    <td class="text-right">
-                        <span class="font-italic">{{ single_price($tax) }}</span>
-                    </td>
-                </tr>
+                                        <tr class="cart-shipping">
+                                            <th>{{ 'Tax' }}</th>
+                                            <td class="text-right">
+                                                <span class="font-italic">{{ data.tax_single_price }}</span>
+                                            </td>
+                                        </tr>
 
-                <tr class="cart-shipping">
-                    <th>{{ translate('Total Shipping') }}</th>
-                    <td class="text-right">
-                        <span class="font-italic">{{ single_price($shipping) }}</span>
-                    </td>
-                </tr>
+                                        <tr class="cart-shipping">
+                                            <th>{{ 'Total Shipping' }}</th>
+                                            <td class="text-right">
+                                                <span class="font-italic">{{ data.shipping_single_price }}</span>
+                                            </td>
+                                        </tr>
 
-                @if (Session::has('club_point'))
-                    <tr class="cart-shipping">
-                        <th>{{ translate('Redeem point') }}</th>
-                        <td class="text-right">
-                            <span class="font-italic">{{ single_price(Session::get('club_point')) }}</span>
-                        </td>
-                    </tr>
-                @endif
+                                        <!-- @if (Session::has('club_point'))
+                                            <tr class="cart-shipping">
+                                                <th>{{ translate('Redeem point') }}</th>
+                                                <td class="text-right">
+                                                    <span class="font-italic">{{ single_price(Session::get('club_point')) }}</span>
+                                                </td>
+                                            </tr>
+                                        @endif -->
 
-                @if ($coupon_discount > 0)
-                    <tr class="cart-shipping">
-                        <th>{{ 'Coupon Discount' }}</th>
-                        <td class="text-right">
-                            <span class="font-italic">{{ single_price($coupon_discount) }}</span>
-                        </td>
-                    </tr>
-                @endif
+                                            <tr v-if="data.coupon_discount > 0" class="cart-shipping">
+                                                <th>{{ 'Coupon Discount' }}</th>
+                                                <td class="text-right">
+                                                    <span class="font-italic">{{ data.coupon_discount_single_price }}</span>
+                                                </td>
+                                            </tr>
 
-                @php
-                    $total = $subtotal + $tax + $shipping;
-                    if (Session::has('club_point')) {
-                        $total -= Session::get('club_point');
-                    }
-                    if ($coupon_discount > 0) {
-                        $total -= $coupon_discount;
-                    }
-                @endphp
+                                        <!-- @php
+                                            $total = $subtotal + $tax + $shipping;
+                                            if (Session::has('club_point')) {
+                                                $total -= Session::get('club_point');
+                                            }
+                                            if ($coupon_discount > 0) {
+                                                $total -= $coupon_discount;
+                                            }
+                                        @endphp -->
 
-                <tr class="cart-total">
-                    <th><span class="strong-600">{{ 'Total' }}</span></th>
-                    <td class="text-right">
-                        <strong><span>{{ single_price($total) }}</span></strong>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+                                        <!-- <tr class="cart-total">
+                                            <th><span class="strong-600">{{ 'Total' }}</span></th>
+                                            <td class="text-right">
+                                                <strong><span>{{ single_price($total) }}</span></strong>
+                                            </td>
+                                        </tr> -->
+                                    </tfoot>
+                                </table>
 
-        @if (addon_is_activated('club_point'))
-            @if (Session::has('club_point'))
-                <div class="mt-3">
-                    <form class="" action="{{ route('checkout.remove_club_point') }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="input-group">
-                            <div class="form-control">{{ Session::get('club_point') }}</div>
-                            <div class="input-group-append">
-                                <button type="submit"
-                                    class="btn btn-primary">{{ 'Remove Redeem Point' }}</button>
+                                <!-- @if (addon_is_activated('club_point'))
+                                    @if (Session::has('club_point'))
+                                        <div class="mt-3">
+                                            <form class="" action="{{ route('checkout.remove_club_point') }}" method="POST"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="input-group">
+                                                    <div class="form-control">{{ Session::get('club_point') }}</div>
+                                                    <div class="input-group-append">
+                                                        <button type="submit"
+                                                            class="btn btn-primary">{{ 'Remove Redeem Point' }}</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @endif
+                                @endif -->
+
+                                <!-- @if (Auth::check() && get_setting('coupon_system') == 1)
+                                    @if ($coupon_discount > 0 && $coupon_code)
+                                        <div class="mt-3">
+                                            <form class="" id="remove-coupon-form" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="input-group">
+                                                    <div class="form-control">{{ $coupon_code }}</div>
+                                                    <div class="input-group-append">
+                                                        <button type="button" id="coupon-remove"
+                                                            class="btn btn-primary">{{ 'Change Coupon' }}</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <div class="mt-3">
+                                            <form class="" id="apply-coupon-form" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="code"
+                                                        onkeydown="return event.key != 'Enter';"
+                                                        placeholder="{{ 'Have coupon code? Enter here' }}" required>
+                                                    <div class="input-group-append">
+                                                        <button type="button" id="coupon-apply"
+                                                            class="btn btn-primary">{{ 'Apply' }}</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @endif
+                                @endif -->
+
                             </div>
                         </div>
-                    </form>
-                </div>
-            @endif
-        @endif
-
-        @if (Auth::check() && get_setting('coupon_system') == 1)
-            @if ($coupon_discount > 0 && $coupon_code)
-                <div class="mt-3">
-                    <form class="" id="remove-coupon-form" enctype="multipart/form-data">
-                        @csrf
-                        <div class="input-group">
-                            <div class="form-control">{{ $coupon_code }}</div>
-                            <div class="input-group-append">
-                                <button type="button" id="coupon-remove"
-                                    class="btn btn-primary">{{ 'Change Coupon' }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            @else
-                <div class="mt-3">
-                    <form class="" id="apply-coupon-form" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="code"
-                                onkeydown="return event.key != 'Enter';"
-                                placeholder="{{ 'Have coupon code? Enter here' }}" required>
-                            <div class="input-group-append">
-                                <button type="button" id="coupon-apply"
-                                    class="btn btn-primary">{{ 'Apply' }}</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            @endif
-        @endif
-
-    </div>
-</div>
                 </div>
             </div>
         </div>
-  </section> -->
+  </section> 
 </template>
 
 
@@ -809,9 +748,7 @@
           user: {},
         },
 
-        carts:[],
-        shipping_info: '',
-        total: 0,
+        data: null,
 
        
       }
@@ -829,16 +766,13 @@
 
     methods:{
         getPaymentInfoForSelect(){
-             axios.get(this.selfDomain+"vueweb/checkout/payment_info", {
+            axios.get(this.selfDomain+"vueweb/checkout/payment_info", {
                 headers: {
                     Authorization: "Bearer " + this.auth.user.access_token,
                 }
             }).then(res=>{
                 console.log(res.data);
-                this.carts = res.data.carts;
-                this.carts = res.data.carts;
-                this.total = res.data.total;
-
+                this.data = res.data;
 
             }).catch(err=>{
 
