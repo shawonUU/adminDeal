@@ -71,7 +71,7 @@
                                         <div class="row gutters-10">
                                                 <div v-if="data.paypal_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="paypal" class="online_payment" type="radio"
+                                                        <input value="paypal" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.paypal_payment_img"
@@ -86,7 +86,7 @@
                                             
                                                 <div v-if="data.stripe_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="stripe" class="online_payment" type="radio"
+                                                        <input value="stripe" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.stripe_payment_img"
@@ -101,7 +101,7 @@
                                             
                                                 <div v-if="data.mercadopago_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="mercadopago" class="online_payment" type="radio"
+                                                        <input value="mercadopago" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.mercadopago_payment_img"
@@ -115,7 +115,7 @@
                                                 </div>
                                                 <div v-if="data.sslcommerz_payment==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="sslcommerz" class="online_payment" type="radio"
+                                                        <input value="sslcommerz" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.sslcommerz_payment_img"
@@ -129,7 +129,7 @@
                                                 </div>
                                                 <div v-if="data.instamojo_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="instamojo" class="online_payment" type="radio"
+                                                        <input value="instamojo" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.instamojo_payment_img"
@@ -143,7 +143,7 @@
                                                 </div>
                                                 <div v-if="data.razorpay == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="razorpay" class="online_payment" type="radio"
+                                                        <input value="razorpay" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.razorpay_img"
@@ -158,7 +158,7 @@
                                             
                                                 <div v-if="data.paystack==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="paystack" class="online_payment" type="radio"
+                                                        <input value="paystack" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.paystack_img"
@@ -172,7 +172,7 @@
                                                 </div>
                                                 <div v-if="data.voguepay == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="voguepay" class="online_payment" type="radio"
+                                                        <input value="voguepay" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.voguepay_img"
@@ -187,7 +187,7 @@
                                             
                                                 <div v-if="data.payhere==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="payhere" class="online_payment" type="radio"
+                                                        <input value="payhere" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.payhere_img"
@@ -201,7 +201,7 @@
                                                 </div>
                                                 <div v-if="data.ngenius==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="ngenius" class="online_payment" type="radio"
+                                                        <input value="ngenius" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.ngenius_img"
@@ -216,7 +216,7 @@
                                            
                                                 <div v-if="data.iyzico==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="iyzico" class="online_payment" type="radio"
+                                                        <input value="iyzico" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.iyzico_img"
@@ -231,7 +231,7 @@
                                            
                                                 <div v-if="data.nagad == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="nagad" class="online_payment" type="radio"
+                                                        <input value="nagad" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.nagad_img"
@@ -246,7 +246,7 @@
                                             
                                                 <div v-if="data.bkash==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="bkash" class="online_payment" type="radio"
+                                                        <input value="bkash" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.bkash_img"
@@ -261,7 +261,7 @@
                                             
                                                 <div v-if="data.aamarpay==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="aamarpay" class="online_payment" type="radio"
+                                                        <input value="aamarpay" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.aamarpay_img"
@@ -275,7 +275,7 @@
                                                 </div>
                                                 <div v-if="data.authorizenet==1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="authorizenet" class="online_payment" type="radio"
+                                                        <input value="authorizenet" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :rc="data.authorizenet_img"
@@ -290,7 +290,7 @@
                                            
                                                 <div v-if="data.payku == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="payku" class="online_payment" type="radio"
+                                                        <input value="payku" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.payku_img"
@@ -305,7 +305,7 @@
                                             <template v-if="data.african_pg">
                                                     <div v-if="data.mpesa == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
-                                                            <input value="mpesa" class="online_payment" type="radio"
+                                                            <input value="mpesa" @click="online_payment()" class="online_payment" type="radio"
                                                                 name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
                                                                 <img :src="data.mpesa_img"
@@ -319,7 +319,7 @@
                                                     </div>
                                                     <div v-if="data.flutterwave == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
-                                                            <input value="flutterwave" class="online_payment" type="radio"
+                                                            <input value="flutterwave" @click="online_payment()" class="online_payment" type="radio"
                                                                 name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
                                                                 <img :src="data.flutterwave_img"
@@ -333,7 +333,7 @@
                                                     </div>
                                                     <div v-if="data.payfast == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
-                                                            <input value="payfast" class="online_payment" type="radio"
+                                                            <input value="payfast" @click="online_payment()" class="online_payment" type="radio"
                                                                 name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
                                                                 <img :src="data.payfast_img"
@@ -348,7 +348,7 @@
                                             </template>
                                                 <div v-if="data.paytm && data.paytm_payment == 1" class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="paytm" class="online_payment" type="radio"
+                                                        <input value="paytm" @click="online_payment()" class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.paytm_payment_img"
@@ -363,7 +363,7 @@
 
                                                 <div v-if="data.paytm && data.toyyibpay_payment==1 " class="col-6 col-md-4">
                                                     <label class="aiz-megabox d-block mb-3">
-                                                        <input value="toyyibpay" class="online_payment" type="radio"
+                                                        <input value="toyyibpay" @click="online_payment()"  class="online_payment" type="radio"
                                                             name="payment_option" checked>
                                                         <span class="d-block aiz-megabox-elem p-3">
                                                             <img :src="data.toyyibpay_payment_img"
@@ -379,7 +379,7 @@
                                                 
                                                     <div v-if="data.cash_payment == 1 && data.digital == 0 && data.cod_on == 1" class="col-6 col-md-4">
                                                         <label class="aiz-megabox d-block mb-3">
-                                                            <input value="cash_on_delivery" class="online_payment"
+                                                            <input value="cash_on_delivery" @click="online_payment()" class="online_payment"
                                                                 type="radio" name="payment_option" checked>
                                                             <span class="d-block aiz-megabox-elem p-3">
                                                                 <img :src="data.cod_on_img"
@@ -396,6 +396,7 @@
                                                         <div v-for="(method,index) in data.manualPaymentMethods" :key="index" class="col-6 col-md-4">
                                                             <label class="aiz-megabox d-block mb-3">
                                                                 <input :value="method.heading" type="radio"
+                                                                    @change="toggleManualPaymentData(method.id)"
                                                                     name="payment_option" class="offline_payment_option"
                                                                     :data-id="method.id" checked>
                                                                 <span class="d-block aiz-megabox-elem p-3">
@@ -439,21 +440,21 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <label>{{ 'Transaction ID'}} <span class="text-danger">*</span></label>
+                                                <label> Transaction ID  <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control mb-3" name="trx_id" id="trx_id" placeholder="{{ 'Transaction ID' }}" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 col-form-label">{{ 'Photo' }}</label>
+                                            <label class="col-md-3 col-form-label">Photo</label>
                                             <div class="col-md-9">
                                                 <div class="input-group" data-toggle="aizuploader" data-type="image">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text bg-soft-secondary font-weight-medium">{{ 'Browse'}}</div>
                                                     </div>
                                                     <div class="form-control file-amount">{{ 'Choose image' }}</div>
-                                                    <input type="hidden" name="photo" class="selected-files">
+                                                    <input type="hidden" id="photo" name="photo" class="selected-files">
                                                 </div>
                                                 <div class="file-preview box sm">
 
@@ -503,7 +504,7 @@
                                 </router-link>
                             </div>
                             <div class="col-6 text-right">
-                                <button type="button" class="btn btn-primary fw-600">{{ 'Complete Order' }}</button>
+                                <button id="complete_order" @click="submitOrder()" type="button" class="btn btn-primary fw-600">{{ 'Complete Order' }}</button>
                             </div>
                         </div>
                     </form>
@@ -641,14 +642,13 @@
                                             </td>
                                         </tr>
 
-                                        <!-- @if (Session::has('club_point'))
-                                            <tr class="cart-shipping">
-                                                <th>{{ translate('Redeem point') }}</th>
+                                      
+                                            <tr v-if="club_point" class="cart-shipping">
+                                                <th>{{ 'Redeem point' }}</th>
                                                 <td class="text-right">
-                                                    <span class="font-italic">{{ single_price(Session::get('club_point')) }}</span>
+                                                    <span class="font-italic">{{ club_point }}</span>
                                                 </td>
                                             </tr>
-                                        @endif -->
 
                                             <tr v-if="data.coupon_discount > 0" class="cart-shipping">
                                                 <th>{{ 'Coupon Discount' }}</th>
@@ -657,33 +657,26 @@
                                                 </td>
                                             </tr>
 
-                                        <!-- @php
-                                            $total = $subtotal + $tax + $shipping;
-                                            if (Session::has('club_point')) {
-                                                $total -= Session::get('club_point');
-                                            }
-                                            if ($coupon_discount > 0) {
-                                                $total -= $coupon_discount;
-                                            }
-                                        @endphp -->
+                                        
 
-                                        <!-- <tr class="cart-total">
+                                        <tr class="cart-total">
                                             <th><span class="strong-600">{{ 'Total' }}</span></th>
                                             <td class="text-right">
-                                                <strong><span>{{ single_price($total) }}</span></strong>
+                                                <strong>
+                                                    <span>{{ club_point  ? data.total - club_point :  data.coupon_discount > 0 ? data.total - data.coupon_discount : data.total}}</span>
+                                                </strong>
                                             </td>
-                                        </tr> -->
+                                        </tr>
                                     </tfoot>
                                 </table>
 
-                                <!-- @if (addon_is_activated('club_point'))
-                                    @if (Session::has('club_point'))
-                                        <div class="mt-3">
-                                            <form class="" action="{{ route('checkout.remove_club_point') }}" method="POST"
+                              
+                                        <div v-if="data.club_point && club_point" class="mt-3">
+                                            <form class="" 
                                                 enctype="multipart/form-data">
-                                                @csrf
+                                               
                                                 <div class="input-group">
-                                                    <div class="form-control">{{ Session::get('club_point') }}</div>
+                                                    <div class="form-control">{{  }}</div>
                                                     <div class="input-group-append">
                                                         <button type="submit"
                                                             class="btn btn-primary">{{ 'Remove Redeem Point' }}</button>
@@ -691,16 +684,16 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    @endif
-                                @endif -->
+                                   
 
-                                <!-- @if (Auth::check() && get_setting('coupon_system') == 1)
-                                    @if ($coupon_discount > 0 && $coupon_code)
-                                        <div class="mt-3">
+                               
+                                <templete v-if="auth.isAuthenticated == true && data.coupon_system == 1">
+                                   
+                                        <div v-if="data.coupon_discount > 0 && data.coupon_code" class="mt-3">
                                             <form class="" id="remove-coupon-form" enctype="multipart/form-data">
-                                                @csrf
+                                             
                                                 <div class="input-group">
-                                                    <div class="form-control">{{ $coupon_code }}</div>
+                                                    <div class="form-control">{{ data.coupon_code }}</div>
                                                     <div class="input-group-append">
                                                         <button type="button" id="coupon-remove"
                                                             class="btn btn-primary">{{ 'Change Coupon' }}</button>
@@ -708,11 +701,11 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    @else
+                                    
                                         <div class="mt-3">
                                             <form class="" id="apply-coupon-form" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
+                                            
+                                                <input type="hidden" name="owner_id" value="{{ data.carts[0]['owner_id'] }}">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" name="code"
                                                         onkeydown="return event.key != 'Enter';"
@@ -724,8 +717,8 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    @endif
-                                @endif -->
+                                  
+                                </templete>
 
                             </div>
                         </div>
@@ -749,18 +742,21 @@
         },
 
         data: null,
+        club_point: null
 
        
       }
     },
     created(){
         var user = localStorage.getItem("user");
+        this.club_point = localStorage.getItem("club_point");
         if(user !== null){
             user = JSON.parse(user);
             this.auth.isAuthenticated = true;
             this.auth.user = user;
 
             this.getPaymentInfoForSelect();
+            
         }
     },
 
@@ -771,13 +767,82 @@
                     Authorization: "Bearer " + this.auth.user.access_token,
                 }
             }).then(res=>{
-                console.log(res.data);
+                // console.log(res.data);
                 this.data = res.data;
+                this.toggleManualPaymentData($('input[name=payment_option]:checked').data('id'));
 
             }).catch(err=>{
 
             });
-        } 
+        } ,
+        toggleManualPaymentData(id){
+            if (typeof id != 'undefined') {
+                $('#manual_payment_description').parent().removeClass('d-none');
+                let data = $('#manual_payment_info_' + id).html();
+                // console.log(data);
+                $('#manual_payment_description').html();
+            }
+        },
+        online_payment(){
+            $('#manual_payment_description').parent().addClass('d-none');
+        },
+        submitOrder() {
+            let el = document.getElementById("complete_order");
+            let minimum_order_amount_check = this.data.minimum_order_amount_check;
+            let minimum_order_amount = this.data.minimum_order_amount_check == 1 ? this.data.minimum_order_amount : 0;
+            $(el).prop('disabled', true);
+            if ($('#agree_checkbox').is(":checked")) {
+                if (minimum_order_amount_check && $('#sub_total').val() < minimum_order_amount) {
+                    alert('You order amount is less then the minimum order amount');
+                } else {
+                    var offline_payment_active = this.data.offline_payment;
+                    if (offline_payment_active == 'true' && $('.offline_payment_option').is(":checked") && $('#trx_id').val() == '') {
+                       alert('You need to put Transaction id');
+                        $(el).prop('disabled', false);
+                    } else {
+
+                        let payment_option = $('input[name=payment_option]:checked').data('id');
+                        if(payment_option != null){
+                            localStorage.setItem("payment_type", 'cart_payment');
+                        }
+                        let combined_order_id = localStorage.getItem("combined_order_id");
+                        let data={'combined_order_id' : combined_order_id};
+                        localStorage.setItem("payment_data", data);
+
+                        let trx_id = $("#trx_id").val();
+                        let photo = $("#photo").val();
+
+                        // $('#checkout-form').submit();
+                        // alert('submit');
+
+                        
+                        axios.get(this.selfDomain+"vueweb/checkout/payment", {
+                            params:{
+                                combined_order_id: combined_order_id,
+                                trx_id: trx_id,
+                                photo: photo,
+                                payment_option: payment_option,
+                            },
+                            headers: {
+                                Authorization: "Bearer " + this.auth.user.access_token,
+                            }
+                        }).then(res=>{
+                          
+
+                        }).catch(err=>{
+
+                        });
+
+
+                    }
+                }
+            } else {
+                alert('You need to agree with our policies');
+                $(el).prop('disabled', false);
+            }
+        }
+
+
     }
   }
   </script>
