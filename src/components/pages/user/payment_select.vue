@@ -394,6 +394,7 @@
                                               
                                             <template v-if="auth.isAuthenticated && data.offline_payment">
                                                         <div v-for="(method,index) in data.manualPaymentMethods" :key="index" class="col-6 col-md-4">
+                                                            
                                                             <label class="aiz-megabox d-block mb-3">
                                                                 <input :value="method.heading" type="radio"
                                                                     @change="toggleManualPaymentData(method.id)"
@@ -790,7 +791,7 @@
             let el = document.getElementById("complete_order");
             let minimum_order_amount_check = this.data.minimum_order_amount_check;
             let minimum_order_amount = this.data.minimum_order_amount_check == 1 ? this.data.minimum_order_amount : 0;
-            $(el).prop('disabled', true);
+            // $(el).prop('disabled', true);
             if ($('#agree_checkbox').is(":checked")) {
                 if (minimum_order_amount_check && $('#sub_total').val() < minimum_order_amount) {
                     alert('You order amount is less then the minimum order amount');
@@ -801,7 +802,9 @@
                         $(el).prop('disabled', false);
                     } else {
 
-                        let payment_option = $('input[name=payment_option]:checked').data('id');
+                        let payment_option = $('input[name=payment_option]:checked').val();
+
+                        // console.log(payment_option);return;
                         if(payment_option != null){
                             localStorage.setItem("payment_type", 'cart_payment');
                         }
@@ -827,7 +830,7 @@
                                 Authorization: "Bearer " + this.auth.user.access_token,
                             }
                         }).then(res=>{
-                          
+                          console.log(res.data);
 
                         }).catch(err=>{
 
