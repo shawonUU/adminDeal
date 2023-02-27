@@ -184,12 +184,12 @@
                         <span class="aiz-side-nav-text">Orders</span>
                     </router-link>
                 </li>
-                    <li v-if="refund_request==true" class="aiz-side-nav-item">
-                        <a href="vendor_refund_request"
+                    <li v-if="refund_request==true" class="aiz-side-nav-item">                       
+                        <router-link :to="{name:'refundRequest'}"
                             class="aiz-side-nav-link">
                             <i class="las la-backward aiz-side-nav-icon"></i>
                             <span class="aiz-side-nav-text">Refund or exchange</span>
-                        </a>
+                        </router-link>
                     </li>
 
                 <li class="aiz-side-nav-item">
@@ -201,11 +201,11 @@
                 </li>
 
                 <li class="aiz-side-nav-item">
-                    <a href="seller.payments.index"
+                    <router-link :to="{name:'paymentHistory'}"
                         class="aiz-side-nav-link">
                         <i class="las la-history aiz-side-nav-icon"></i>
                         <span class="aiz-side-nav-text">Payment History</span>
-                    </a>
+                    </router-link>
                 </li>
 
                 <li class="aiz-side-nav-item">

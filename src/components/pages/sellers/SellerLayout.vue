@@ -31,9 +31,11 @@ import sellerCoupons from "./pages/coupon/index.vue";
 import sellerCouponCreate from "./pages/coupon/create.vue";
 import sellerOrder from "./pages/orders/index.vue";
 import sellerOrderDetails from "./pages/orders/order_details.vue";
+import refundRequest from "./pages/refund_request/index.vue";
+import paymentHistory from "./pages/peyments/index.vue";
 export default {
     props: ['componentName'],
-    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts,editSellerProducts,createSellerProducts,productReviews,sellerConversation,sellerJobs,sellerPackages,sellerPackagesPaymentList,sellerCoupons,sellerCouponCreate,sellerOrder,sellerOrderDetails},
+    components:{seller_nav,seller_side_nav,Dashboard,SellerProducts,editSellerProducts,createSellerProducts,productReviews,sellerConversation,sellerJobs,sellerPackages,sellerPackagesPaymentList,sellerCoupons,sellerCouponCreate,sellerOrder,sellerOrderDetails,refundRequest,paymentHistory},
     data(){
         return{
         selectedComponent:'',

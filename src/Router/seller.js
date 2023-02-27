@@ -99,5 +99,19 @@ export default [
     component: SellerLayout,
     props: () => ({ componentName: 'sellerOrderDetails' }),
     beforeEnter: auth,
+  },
+  {
+    path:'/refund-request',
+    name:'refundRequest',
+    component: SellerLayout,
+    props: () => ({ componentName: 'refundRequest' }),
+    beforeEnter: auth,
+  },
+  {
+    path:'/seller/payments',
+    name:'paymentHistory',
+    component: SellerLayout,
+    props: () => ({ componentName: 'paymentHistory' }),
+    beforeEnter: auth,
   }
    ]
