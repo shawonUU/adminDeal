@@ -831,7 +831,9 @@
                             }
                         }).then(res=>{
                           console.log(res.data);
-
+                          this.$router.push({
+                            name: "OrderConfirmed",
+                          });
                         }).catch(err=>{
 
                         });
